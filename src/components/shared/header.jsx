@@ -24,7 +24,7 @@ export const Header = () => {
         </Link>
 
         <Link href='/pagetwo'
-          className={`${pathname === '/pagetwo' && 'text-[#D8001A]'}`}
+          className={`${pathname === '/pagetwo' && 'text-[#D8001A]'} font-adi`}
         >
           two
         </Link>

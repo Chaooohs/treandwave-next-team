@@ -19,7 +19,8 @@ module.exports = {
     extend: {
       fontFamily: {
         mont: ['var(--font-montserrat)'],
-        mul: ['var(--font-roboto-mulish)'],
+        mul: ['var(--font-mulish)'],
+        adi: ['var(--font-adieu)'],
       },
       colors: {
         border: "hsl(var(--border))",

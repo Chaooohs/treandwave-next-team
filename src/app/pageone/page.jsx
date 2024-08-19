@@ -6,7 +6,7 @@ export default function PageOne() {
     <main>
       <div className="wrap">
         <div className="py-8 box-border">
-          <Title text='Hello' size="xl" weight='bold' />
+          <Title text='Hello' size="xl" className='font-bold' />
         </div>
       </div>
     </main>

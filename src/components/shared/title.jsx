@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 
-export const Title = ({ text, size = 'sm', weight, className }) => {
+export const Title = ({ text, size = 'sm', className }) => {
   const mapTagBySize = {
     xs: 'h5',
     sm: 'h4',
@@ -20,18 +20,9 @@ export const Title = ({ text, size = 'sm', weight, className }) => {
     '2xl': 'text-[48px]',
   };
 
-  const mapClassNameByWeight = {
-    xs: '',
-    sm: '',
-    md: '',
-    lg: '',
-    bold: 'font-bold',
-    '2xl': '',
-  };
-
   return React.createElement(
     mapTagBySize[size],
-    { className: clsx(mapClassNameBySize[size], mapClassNameByWeight[weight], className) },
+    { className: clsx(mapClassNameBySize[size], className) },
     text,
   );
 };

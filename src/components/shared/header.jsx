@@ -16,10 +16,7 @@ export const Header = () => {
           <Button
             variant='default'
             size='lg'
-            className={`
-              bg-blue-500 hover:bg-blue-400  rounded text-white 
-              ${pathname === '/' && 'bg-blue-400'}
-              `}
+            className={`${pathname === '/' && 'text-[#D8001A]'}`}
           >
             main
           </Button>
@@ -28,10 +25,7 @@ export const Header = () => {
           <Button
             variant='default'
             size='lg'
-            className={`
-              bg-blue-500 hover:bg-blue-400  rounded text-white 
-              ${pathname === '/pageone' && 'bg-blue-400'}
-              `}
+            className={`${pathname === '/pageone' && 'text-[#D8001A]'}`}
           >
             pageone
           </Button>
@@ -40,10 +34,7 @@ export const Header = () => {
           <Button
             variant='default'
             size='lg'
-            className={`
-            bg-blue-500 hover:bg-blue-400  rounded text-white 
-            ${pathname === '/pagetwo' && 'bg-blue-400'}
-            `}
+            className={`${pathname === '/pagetwo' && 'text-[#D8001A]'}`}
           >
             pagetwo
           </Button>

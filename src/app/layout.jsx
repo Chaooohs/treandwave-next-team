@@ -1,11 +1,20 @@
-import { Nunito } from "next/font/google";
+import { Montserrat, Mulish } from "next/font/google";
 import { Footer, Header } from "@/components/shared";
 import "./globals.css";
 
-const nunito = Nunito({
-  subsets: ["latin"],
-  weight: ['400', '700',]
-});
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-montserrat',
+  weight: ['400', '500', '600']
+})
+
+const mulish = Mulish({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mulish',
+  weight: ['400']
+})
 
 export const metadata = {
   title: "TrendWave",
@@ -15,11 +24,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={nunito.className}>
+      <body className={`${montserrat.variable} ${mulish.variable}`}>
         <div className="page">
-          <Header/>
+          <Header />
           {children}
-          <Footer/>
+          <Footer />
         </div>
       </body>
     </html>

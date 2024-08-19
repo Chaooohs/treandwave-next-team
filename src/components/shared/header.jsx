@@ -12,18 +12,21 @@ export const Header = () => {
       <div className="flex align-center h-20 border-b items-center gap-x-8 px-8 box-border">
 
         <Link href='/'
-          className={`${pathname === '/' && 'text-[#D8001A]'}`}
+          className={`${pathname === '/' && 'text-[#D8001A]'} font-mont`}
         >
+          home
         </Link>
 
         <Link href='/pageone'
-          className={`${pathname === '/pageone' && 'text-[#D8001A]'}`}
+          className={`${pathname === '/pageone' && 'text-[#D8001A]'} font-mul`}
         >
+          one
         </Link>
 
         <Link href='/pagetwo'
           className={`${pathname === '/pagetwo' && 'text-[#D8001A]'}`}
         >
+          two
         </Link>
 
       </div>

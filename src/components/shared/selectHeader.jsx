@@ -12,7 +12,7 @@ import {
 export function SelectHeader() {
   return (
     <Select>
-      <SelectTrigger className='w-[142px] border-none text-header outline-none hover:text-[#D8001A]'>
+      <SelectTrigger className='w-[142px] border-none text-header outline-none header-link'>
         <SelectValue placeholder="Каталог" />
       </SelectTrigger>
       <SelectContent>

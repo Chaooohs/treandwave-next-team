@@ -31,7 +31,15 @@
     --chart-5: 27 87% 67%;
   }
 
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  /* #region common */
+
   .page {
+    container-type: inline-size;
     display: grid;
     grid-template-rows: auto 1fr auto;
     max-width: 1440px;
@@ -43,7 +51,48 @@
     @apply px-24 box-border;
   }
 
+  .content {
+    @apply py-14 box-border;
+  }
+
+  .baner {
+    position: relative;
+    width: 100cqi;
+  }
+
+  .card-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(294px, 1fr));
+    column-gap: 24px;
+    margin-top: 48px
+  }
+
+  /* #endregion */
+
+  /* #region header */
+
   .text-header {
     @apply font-mont text-base font-semibold uppercase;
   }
+
+  .header-link {
+    @apply flex items-center gap-x-2 box-border py-2 hover:border-b hover:text-gray-500
+    transition-all duration-300 ease-linear cursor-pointer;
+  }
+
+  .header-icon path,
+  .header-icon-cart path {
+    transition: all 0.3s linear;
+  }
+
+  .header-link:hover .header-icon path {
+    stroke: gray;
+  }
+
+  .header-link:hover .header-icon-cart path {
+    fill: gray;
+  }
+
+  /* #endregion */
+
 }

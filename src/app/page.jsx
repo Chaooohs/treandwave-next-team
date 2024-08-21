@@ -1,9 +1,10 @@
+import { Baner, NewColection } from "@/components/shared";
 
 export default function Home() {
   return (
-    <div>
-      <main>
-      </main>
-    </div>
+    <main>
+      <Baner />
+      <NewColection />
+    </main>
   );
 }

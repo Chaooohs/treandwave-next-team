@@ -1,5 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-export const store = configureStore({
-  reducer: {},
-})
+import goods from './features/goodsSlice'
+
+export const makeStore = () => {
+  return configureStore({
+    reducer: {
+      goods,
+    },
+  })
+}

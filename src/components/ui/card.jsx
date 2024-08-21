@@ -1,11 +1,25 @@
+'use client'
 import Image from "next/image"
 import { Title } from "."
+import { useRef } from "react"
 
 
 export const Card = ({ el }) => {
+  const ref = useRef()
+
+  const mouseEnter = () => {
+    ref.current.classList.add('opacity')
+  }
+  const mouseLeave = () => {
+    ref.current.classList.remove('opacity')
+  }
+
   return (
     <>
-      <Image src={el.imageOne} alt={el.title} width={"100%"} height={"auto"} />
+      <div className="wrapper-img">
+        <Image src={el.imageOne} alt={el.title} width={"100%"} height={"auto"} />
+        <Image src={el.imageTwo} alt={el.title} width={"100%"} height={"auto"} className="img-hide" />
+      </div>
 
       <Title text={el.title} size="xs" className="font-mont font-semibold uppercase mt-3" />
 

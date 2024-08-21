@@ -77,7 +77,7 @@
 
   .header-link {
     @apply flex items-center gap-x-2 box-border py-2 border-b border-white
-     hover:text-gray-500 hover:border-gray-400
+    hover:text-gray-600 hover:border-gray-400
     transition-all duration-300 ease-linear cursor-pointer;
   }
 
@@ -87,11 +87,11 @@
   }
 
   .header-link:hover .header-icon path {
-    stroke: gray;
+    stroke: #4b5563;
   }
 
   .header-link:hover .header-icon-cart path {
-    fill: gray;
+    fill: #4b5563;
   }
 
   /* #endregion */

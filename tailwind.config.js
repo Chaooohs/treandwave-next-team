@@ -20,7 +20,6 @@ module.exports = {
       fontFamily: {
         mont: ['var(--font-montserrat)'],
         mul: ['var(--font-mulish)'],
-        adi: ['var(--font-adieu)'],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -17,7 +17,7 @@ export const Header = () => {
 
   return (
     <header className="relative">
-      <div className="wrap">
+      <div className="px-[3cqi]">
         <div className="flex align-center justify-between items-center h-20 gap-x-8 text-header">
 
           <nav className="flex items-center gap-x-6">

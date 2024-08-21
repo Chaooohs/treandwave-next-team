@@ -6,7 +6,7 @@ import ArrowDown from '../../../public/image/svg/arrow-down.svg'
 export const BurgerMenu = () => {
   const dispatch = useDispatch()
   return (
-    <div className="absolute top-0 left-0 z-50 bg-red-300 w-[590px] h-screen box-border pt-5 pl-24 ">
+    <div className="absolute top-0 left-0 z-50 bg-red-300 w-[590px] h-screen box-border pt-5 pl-[3cqi] ">
 
       <div
         className="flex items-center gap-x-1 header-link border-none"

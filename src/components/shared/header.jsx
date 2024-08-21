@@ -14,7 +14,7 @@ export const Header = () => {
       <div className="wrap">
         <div className="flex align-center justify-between items-center h-20 gap-x-8 text-header">
 
-          <div className="flex items-center gap-x-6">
+          <nav className="flex items-center gap-x-6">
 
             <SelectHeader />
 
@@ -22,11 +22,11 @@ export const Header = () => {
             <Link className="header-link" href='/colections'>Колекції</Link>
             <Link className="header-link" href='/about'> Про нас</Link>
 
-          </div>
+          </nav>
 
           <div className="font-mont font-semibold uppercase text-2xl">Logo</div>
 
-          <div className="flex gap-x-6">
+          <nav className="flex gap-x-6">
 
             <div className="header-link transit">
               <Search className='header-icon'/>
@@ -46,7 +46,7 @@ export const Header = () => {
               </Link>
             </div>
 
-          </div>
+          </nav>
         </div>
       </div>
     </header>

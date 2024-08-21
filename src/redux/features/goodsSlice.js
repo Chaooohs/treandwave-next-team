@@ -42,7 +42,7 @@ const initialState = {
 }
 
 const goodsSlice = createSlice({
-  name: "filters",
+  name: "goods",
   initialState,
   reducers: {
     addGoods: (state, action) => {

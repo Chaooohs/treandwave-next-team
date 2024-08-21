@@ -2,7 +2,7 @@ import Image from "next/image"
 import { Title } from "."
 
 
-export const Card = ({el}) => {
+export const Card = ({ el }) => {
   return (
     <>
       <Image src={el.imageOne} alt={el.title} width={"100%"} height={"auto"} />
@@ -11,13 +11,22 @@ export const Card = ({el}) => {
 
       <div className="flex items-center gap-x-2 mt-2">
         {
-          el.discoutn > 0 &&
-          <span
-            className="font-mont font-medium text-base uppercase line-through text-gray-400">
-            {`${(el.price / 100) * el.discoutn} uah`}
-          </span>
+          el.discoutn > 0
+            ?
+            <>
+              <span
+                className="font-mont font-medium text-base uppercase line-through text-gray-400">
+                {`${el.price} uah`}
+              </span>
+              <span className="font-mont font-medium text-lg uppercase">
+                {`${(el.price / 100) * el.discoutn} uah`}
+              </span>
+            </>
+            :
+            <span className="font-mont font-medium text-lg uppercase">
+              {`${el.price} uah`}
+            </span>
         }
-        <span className="font-mont font-medium text-lg uppercase">{`${el.price} uah`}</span>
       </div>
 
       <div className="absolute top-4 left-4 flex gap-x-1">

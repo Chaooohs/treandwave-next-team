@@ -12,7 +12,7 @@ export const Title = ({ text, size = 'sm', className }) => {
   };
 
   const mapClassNameBySize = {
-    xs: 'text-[16px]',
+    xs: 'text-[18px]',
     sm: 'text-[22px]',
     md: 'text-[26px]',
     lg: 'text-[32px]',

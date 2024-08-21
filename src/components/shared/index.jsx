@@ -1,3 +1,6 @@
-export * from './title'
 export * from './header'
 export * from './footer'
+export * from './baner'
+export * from './newcolection'
+export * from './bestsaler'
+export * from './categories'

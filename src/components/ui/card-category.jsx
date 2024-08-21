@@ -1,0 +1,14 @@
+import Image from "next/image";
+import { Title } from ".";
+
+
+export const CardCategory = ({ el }) => {
+  return (
+    <>
+      <div className="bg-black">
+        <Image src={el.image} className="hover:opacity-80 duration-300"/>
+      </div>
+      <Title text={el.name} size="xs" className="font-mont font-semibold uppercase mt-3" />
+    </>
+  );
+};

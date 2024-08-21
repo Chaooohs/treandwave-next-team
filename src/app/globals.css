@@ -76,7 +76,8 @@
   }
 
   .header-link {
-    @apply flex items-center gap-x-2 box-border py-2 hover:border-b hover:text-gray-500
+    @apply flex items-center gap-x-2 box-border py-2 border-b border-white
+     hover:text-gray-500 hover:border-gray-400
     transition-all duration-300 ease-linear cursor-pointer;
   }
 

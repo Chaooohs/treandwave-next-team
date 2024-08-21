@@ -12,7 +12,7 @@ export const BestSaler = () => {
         <div className="content">
 
           <div className="flex items-center justify-between">
-            <Title text="бестселери" size="xl" className="font-adi uppercase " />
+            <Title text="бестселери" size="xl" className="font-mul font-extrabold uppercase " />
             <ButtonWithArrow/>
           </div>
 

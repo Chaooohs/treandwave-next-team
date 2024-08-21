@@ -1,39 +1,41 @@
 import { createSlice } from "@reduxjs/toolkit";
+import imageOne from '/public/image/jpg/card-one.jpg'
+import imageTwo from '/public/image/jpg/card-two.jpg'
 
 const initialState = {
   goods: [
     {
       id: 1,
       title: 'Product name',
-      imageOne: '../../../public/image/jgp/card-one.jpg',
-      imageTwo: '../../../public/image/jgp/card-two.jpg',
+      imageOne: imageOne,
+      imageTwo: imageTwo,
       price: 1500,
       discoutn: 40,
     },
     {
       id: 2,
       title: 'Product name',
-      imageOne: '../../../public/image/jgp/card-one.jpg',
-      imageTwo: '../../../public/image/jgp/card-two.jpg',
+      imageOne: imageOne,
+      imageTwo: imageTwo,
+      price: 1500,
+      discoutn: 0,
+    },
+    {
+      id: 3,
+      title: 'Product name',
+      imageOne: imageOne,
+      imageTwo: imageTwo,
       price: 1500,
       discoutn: 40,
       best: true,
     },
     {
-      id: 3,
-      title: 'Product name',
-      imageOne: '../../../public/image/jgp/card-one.jpg',
-      imageTwo: '../../../public/image/jgp/card-two.jpg',
-      price: 1500,
-      discoutn: 40,
-    },
-    {
       id: 4,
       title: 'Product name',
-      imageOne: '../../../public/image/jgp/card-one.jpg',
-      imageTwo: '../../../public/image/jgp/card-two.jpg',
+      imageOne: imageOne,
+      imageTwo: imageTwo,
       price: 1500,
-      discoutn: 40,
+      discoutn: 0,
       best: true,
     },
   ],

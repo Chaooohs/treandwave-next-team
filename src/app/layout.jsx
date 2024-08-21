@@ -15,7 +15,7 @@ const mulish = Mulish({
   subsets: ['cyrillic'],
   display: 'swap',
   variable: '--font-mulish',
-  weight: ['400']
+  weight: ['400', '700', '800']
 })
 
 const adieu = localFont({

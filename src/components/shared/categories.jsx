@@ -10,7 +10,7 @@ export const Categories = () => {
     <section>
       <div className="wrap">
         <div className="content">
-          <Title text="Категорії" size="xl" className="font-adi uppercase " />
+          <Title text="Категорії" size="xl" className="font-mul font-extrabold uppercase " />
           <div className="card-layout">
             {Array.isArray(categories) &&
               categories.map((el) => {

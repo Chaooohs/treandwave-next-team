@@ -20,6 +20,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         button2: " text-[#FDFDFD] border-b border-[#121212] uppercase hover:text-[#CFCFCF] active:text-[#999999] active:border-[#121212] transition-all hover:border-[#CFCFCF] hover:border-b-[1px]	  duration-300 ease-in-out",
         buttonRed: " text-[#E03348] border-b border-[#121212] uppercase hover:text-[#E03348] active:text-[#D8001A] active:border-[#121212] transition-all hover:border-[#E03348] hover:border-b-[1px]	 duration-300 ease-in-out",
+        buttonBlack: "bg-[#121212] text-[#FDFDFD] uppercase",
       },
       size: {
         default: "h-10 px-4 py-2",

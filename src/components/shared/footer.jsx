@@ -11,6 +11,8 @@ import Logo from "../ui/logo";
 
 export const Footer = () => {
 
+  const currentYear = new Date().getFullYear();
+
   const footerLinks = [
     {
       title: 'каталог',
@@ -98,7 +100,7 @@ export const Footer = () => {
           </div>
           <div>
             <p className="font-medium text-sm">
-              © 2024 TreandWave
+              © {currentYear} TreandWave
             </p>
           </div>
           <div>

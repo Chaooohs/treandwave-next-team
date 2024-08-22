@@ -19,9 +19,9 @@ export default function SwiperYou() {
         centeredSlides={true}
         navigation={false}
         grabCursor={true}
-        // pagination={{
-        //   clickable: true,
-        // }}
+        pagination={{
+          clickable: true,
+        }}
         modules={[Navigation, FreeMode, Pagination]}
         className="w-[100cqi] h-[45cqi] mb-14"
       >

@@ -40,7 +40,7 @@ export function PopUp({onClick, isValid, onClose}) {
           <DialogTitle></DialogTitle>
             <DialogDescription>
             </DialogDescription>
-            <div onClick={onClose}>
+            <div onClick={onClose} className=' cursor-pointer'>
               <X className="h-4 w-4 absolute right-10" />
               <span className="sr-only">Close</span>
             </div>

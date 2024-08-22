@@ -53,14 +53,16 @@ export default function MailForm() {
         return re.test(String(email).toLowerCase());
     };
 
-    const closeModal = () => setIsModalOpen(false);
-
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setEmail('');
+    }
 
 
 
     return(
-        <div className="px-5 md:px-24 flex">
-            <div className="grid md:grid-cols-2 py-10 gap-5 md:gap-20 justify-center items-center">
+        <div className="px-5 md:px-24 flex w-full">
+            <div className="grid w-full md:grid-cols-2 py-10 gap-5 md:gap-20 justify-center items-center">
                 <div>
                     <Title text={'Підписка на розсилку'} size="lg" className={'font-mul uppercase font-extrabold'}/>
                     <p className="font-mont text-base font-normal">

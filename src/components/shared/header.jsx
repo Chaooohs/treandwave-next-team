@@ -48,23 +48,23 @@ export const Header = () => {
 
           <nav className="flex gap-x-6">
 
-            <div className="header-link transit">
+            <Link href='/search' className="header-link transit">
               <Search className='header-icon' />
-              <Link className="transit" href='/search'>Пошук</Link>
-            </div>
+              <span className="transit">Пошук</span>
+            </Link>
 
-            <div className="header-link">
+            <Link href='/wishlist' className="header-link">
               <Heart className='header-icon' />
-              <Link href='/wishlist'>Вішліст</Link>
-            </div>
+              <span >Вішліст</span>
+            </Link>
 
-            <div className="header-link">
+            <Link href='/cart' className="header-link">
               <Cart className='header-icon-cart' />
-              <Link href='/cart'>
+              <div>
                 <span>Кошик</span>
                 <span> (0)</span>
-              </Link>
-            </div>
+              </div>
+            </Link>
 
           </nav>
         </div>

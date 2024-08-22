@@ -1,4 +1,4 @@
-import { Baner, BestSaler, Categories, NewColection } from "@/components/shared";
+import { Baner, BestSaler, Categories, NewColection, YouSection } from "@/components/shared";
 
 export default function Home() {
   return (
@@ -7,6 +7,7 @@ export default function Home() {
       <NewColection />
       <BestSaler/>
       <Categories/>
+      <YouSection/>
     </main>
   );
 }

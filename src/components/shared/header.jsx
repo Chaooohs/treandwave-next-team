@@ -36,13 +36,15 @@ export const Header = () => {
             }
 
 
-            <Link className="header-link text-red-500 hover:text-red-400 hover:border-red-400" href='/'>Sale</Link>
+            <Link className="header-link text-red-500 hover:text-red-400 hover:border-red-400" href='/sale'>Sale</Link>
             <Link className="header-link" href='/colections'>Колекції</Link>
             <Link className="header-link" href='/about'> Про нас</Link>
 
           </nav>
 
-          <div className="font-mont font-semibold uppercase text-2xl">Logo</div>
+          <Link href='/'>
+            <div className="font-mont font-semibold uppercase text-2xl">Logo</div>
+          </Link>
 
           <nav className="flex gap-x-6">
 
@@ -53,7 +55,7 @@ export const Header = () => {
 
             <div className="header-link">
               <Heart className='header-icon' />
-              <Link href='/list'>Вішліст</Link>
+              <Link href='/wishlist'>Вішліст</Link>
             </div>
 
             <div className="header-link">

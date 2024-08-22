@@ -1,8 +1,9 @@
 'use client';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import {  Title, Button } from "../ui";
 import { Input } from '../ui/input.jsx';
-import { usePathname } from 'next/navigation';
+
 import {
     Dialog,
     DialogClose,
@@ -17,16 +18,16 @@ import { PopUp } from "../ui/popUp";
 
 
 export default function MailForm() {
-    const pathname = usePathname();
-
-    const showMailForm = pathname === '/' || pathname === '/colections' || pathname === '/catalog' || pathname === '/catalog';
-
-    if (!showMailForm) return null;
 
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+    const pathname = usePathname();
+
+    const showMailForm = pathname === '/' || pathname === '/colections' || pathname === '/catalog' || pathname === '/catalog';
+
+    if (!showMailForm) return null;
 
 
     const handleSubmit = () => {

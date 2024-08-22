@@ -12,7 +12,7 @@ export const CardYou = () => {
       <header>
         <div className="p-4 box-border flex items-center justify-between">
           <div className="flex items-center gap-x-2">
-            <Image src={avatar} width={32} height={32} className="w-8 h-8 rounded-full"/>
+            <Image src={avatar} alt="avatar" width={32} height={32} className="w-8 h-8 rounded-full"/>
             <Title text='laura_perez' className='font-mont text-sm font-semibold leading-5'/>
           </div>
           <button>
@@ -21,7 +21,7 @@ export const CardYou = () => {
         </div>
       </header>
       <main>
-        <Image src={laura} width={340} height={340} className="w-full"/>
+        <Image src={laura} alt="img" width={340} height={340} className="w-full"/>
       </main>
       <footer>
         <div className="p-4">

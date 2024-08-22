@@ -29,6 +29,14 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    --swiper-pagination-top: auto;
+    --swiper-pagination-color: #212121;
+    --swiper-pagination-bullet-width: 40px;
+    --swiper-pagination-bullet-height: 6px;
+    --swiper-pagination-bullet-border-radius: 3px;
+    --swiper-navigation-color: #121212;
+
   }
 
   img {
@@ -42,7 +50,7 @@
     container-type: inline-size;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    max-width: 1440px;
+    max-width: 1920px;
     /* height: 100vh; */
     margin: 0 auto;
   }
@@ -62,7 +70,7 @@
 
   .card-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(328px, 1fr));
     gap: 24px;
     margin-top: 48px;
   }

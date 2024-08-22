@@ -16,13 +16,13 @@ export const SwiperDemo = ({imgOne, imgTwo}) => {
         disableOnInteraction: false,
       }}
       modules={[Autoplay, EffectFade]}
-      className="w-full"
+      className=""
     >
       <SwiperSlide >
-        <Image src={imgOne} alt='img' />
+        <Image src={imgOne} alt='img' priority={true}/>
       </SwiperSlide>
       <SwiperSlide >
-        <Image src={imgTwo} alt='img' />
+        <Image src={imgTwo} alt='img' priority={true}/>
       </SwiperSlide>
     </Swiper>
   )

@@ -16,12 +16,12 @@
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: #ffffff;
+    --accent-foreground: #4d4d4d;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 223.3 100 50;
-    --input: 214.3 31.8% 91.4%;
+    --input: #212121;
     --ring: 0 0 0;
     --radius: 0.4rem;
     --chart-1: 12 76% 61%;
@@ -75,7 +75,7 @@
 
   .card-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(328px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(328px, 1fr));
     gap: 24px;
     margin-top: 48px;
   }

@@ -1,6 +1,6 @@
 
 
-export default function () {
+export default function WishList () {
   return (
     <main>
       

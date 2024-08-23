@@ -58,7 +58,7 @@ export const Card = ({ el }) => {
       </div>
 
       <button
-        className="absolute top-6 right-8"
+        className="absolute top-3 right-4 w-[52px] h-[52px] bg-[#21212114] rounded-full flex items-center justify-center"
         onClick={() => dispatch(addToWishList(el))}
       >
         <HeartCard className={`${fillHeart?.id === el.id && 'card-heart'}`} />

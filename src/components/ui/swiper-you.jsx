@@ -16,7 +16,7 @@ export default function SwiperYou() {
         slidesPerView={3}
         spaceBetween={24}
         freeMode={true}
-        centeredSlides={true}
+        centeredSlides={false}
         navigation={false}
         grabCursor={true}
         pagination={{

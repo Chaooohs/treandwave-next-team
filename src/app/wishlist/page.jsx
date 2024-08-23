@@ -1,8 +1,9 @@
 'use client'
-import { Button, Card, Title } from "@/components/ui"
 import { useSelector } from "react-redux"
+import Link from "next/link"
 
 import Heart from '../../../public/image/svg/heart-wishlist.svg'
+import { Button, Card, Title } from "@/components/ui"
 
 
 export default function WishList() {
@@ -41,12 +42,14 @@ export default function WishList() {
               <span className="font-medium text-sm mt-1">
                 Додавайте товари до свого вішлісту. Просто натисніть на іконку серця поруч із товаром, і він з'явиться тут.
               </span>
-              <Button
-                variant='outline'
-                className='w-[130px] h-11 mt-6'
-              >
-                Каталог
-              </Button>
+              <Link href='/'>
+                <Button
+                  variant='outline'
+                  className='w-[130px] h-11 mt-6'
+                >
+                  Каталог
+                </Button>
+              </Link>
             </div>
           </div>
       }

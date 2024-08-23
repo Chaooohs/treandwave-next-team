@@ -10,8 +10,8 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 223.3 100 50;
-    --primary-foreground: 0 0 99;
+    --primary: #0047ff;
+    --primary-foreground: #336cff;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
@@ -36,10 +36,10 @@
     --swiper-pagination-bullet-height: 6px;
     --swiper-pagination-bullet-border-radius: 3px;
     --swiper-navigation-color: #121212;
-
   }
 
   body {
+    font-family: "Montserrat", sans-serif;
     height: 100vh;
     color: #212121;
   }
@@ -55,7 +55,7 @@
     container-type: inline-size;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    max-width: 1920px;
+    max-width: 1440px;
     min-height: 100%;
     margin: 0 auto;
   }
@@ -75,7 +75,7 @@
 
   .card-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(328px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
     gap: 24px;
     margin-top: 48px;
   }

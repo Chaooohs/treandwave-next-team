@@ -12,6 +12,8 @@ const wishlistSlice = createSlice({
       const found = state.wishlist.find((el) => el.id === action.payload.id)
       if(!found) {
         state.wishlist.push(action.payload)
+      } else if (found) {
+        state.wishlist = state.wishlist.filter((el) => el.id !== action.payload.id)
       }
     },
   },

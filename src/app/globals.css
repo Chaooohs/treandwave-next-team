@@ -81,6 +81,10 @@
     margin-top: 48px;
   }
 
+  .swiper {
+    padding-left: 96px !important;
+  }
+
   /* #endregion */
 
   /* #region header */

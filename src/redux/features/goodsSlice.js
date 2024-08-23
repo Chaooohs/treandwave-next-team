@@ -27,7 +27,6 @@ const initialState = {
       imageTwo: imageTwo,
       price: 1500,
       discoutn: 40,
-      best: true,
     },
     {
       id: 4,

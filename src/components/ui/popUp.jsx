@@ -82,7 +82,6 @@ export function PopUp({onClick, isValid, onClose}) {
           </DialogFooter>
         </DialogContent>
         <DialogOverlay/>
-               
       </Dialog>
     )
   }

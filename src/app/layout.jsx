@@ -3,6 +3,7 @@ import { Footer, Header } from "@/components/shared";
 import "./globals.css";
 import StoreProvider from "./StoreProvider";
 import MailForm from "@/components/shared/mailForm";
+import RunningLine from "@/components/shared/runningLine";
 
 const montserrat = Montserrat({
   subsets: ['cyrillic'],
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
       <body className={`${montserrat.variable} ${mulish.variable}`}>
         <StoreProvider>
           <div className="page">
+            <RunningLine/>
             <Header />
             {children}
             <MailForm />

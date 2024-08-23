@@ -1,24 +1,23 @@
 'use client'
 import Image from "next/image"
+import { useDispatch, useSelector } from "react-redux"
+
 import { Title } from "."
-import { useRef } from "react"
+import HeartCard from '../../../public/image/svg/heart-card.svg'
+import { addToWishList } from "@/redux/features/wishlistSlice"
 
 
 export const Card = ({ el }) => {
-  const ref = useRef()
+  const dispatch = useDispatch()
+  const wishlist = useSelector(state => state.wishlist.wishlist)
 
-  const mouseEnter = () => {
-    ref.current.classList.add('opacity')
-  }
-  const mouseLeave = () => {
-    ref.current.classList.remove('opacity')
-  }
+  const fillHeart = wishlist?.find((card) => card.id === el?.id)
 
   return (
     <>
-      <div className="wrapper-img">
+      <div className="card-img">
         <Image src={el.imageOne} alt={el.title} width={"100%"} height={"auto"} />
-        <Image src={el.imageTwo} alt={el.title} width={"100%"} height={"auto"} className="img-hide" />
+        <Image src={el.imageTwo} alt={el.title} width={"100%"} height={"auto"} className="card-img-hide" />
       </div>
 
       <Title text={el.title} size="xs" className="font-mont font-semibold uppercase mt-3" />
@@ -57,6 +56,13 @@ export const Card = ({ el }) => {
           </div>
         }
       </div>
+
+      <button
+        className="absolute top-6 right-8"
+        onClick={() => dispatch(addToWishList(el))}
+      >
+        <HeartCard className={`${fillHeart?.id === el.id && 'card-heart'}`} />
+      </button>
     </>
   )
 }

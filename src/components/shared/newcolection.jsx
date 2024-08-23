@@ -11,7 +11,7 @@ export const NewColection = () => {
         <div className="content">
 
           <div className="flex items-center justify-between">
-            <Title text="Нова колекція" size="xl" className="font-mul font-extrabold uppercase " />
+            <Title text="Нова колекція" size="xl" className="font-mul font-extrabold uppercase" />
             <ButtonWithArrow/>
           </div>
 

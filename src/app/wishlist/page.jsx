@@ -11,17 +11,17 @@ export default function WishList() {
 
   return (
     <main>
-      <div className="content pt-6">
+      <div className="content pt-6 h-full">
         {
           wishlist.length > 0
             ?
             <div className="wrap">
-              {/* <div className="content"> */}
+              <div className="flex items-center justify-center flex-col	">
                 <div className="text-center">
                   <Title text={'ваш вішліст'} size="xl" className='font-mul font-extrabold uppercase' />
                   <span className="font-medium text-sm">Збережені товари чекають на вас!</span>
                 </div>
-                <div className="card-layout">
+                <div className="card-layout w-full">
                   {
                     Array.isArray(wishlist) &&
                     wishlist.map((el) => {
@@ -34,7 +34,7 @@ export default function WishList() {
                   }
                 </div>
               </div>
-            // </div>
+            </div>
             :
             <div className="h-full flex items-center justify-center">
               <div className="w-[612px] flex flex-col items-center text-center">

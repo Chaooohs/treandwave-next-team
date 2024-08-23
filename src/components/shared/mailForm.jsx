@@ -76,14 +76,15 @@ export default function MailForm() {
                             placeholder='Введіть вашу електронну пошту' 
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className='font-mont font-medium '
+                            className={`font-mont font-medium border-[1px] ${error ? 'border-[#C50018] text-[#C50018]' : 'border-stone-300 text-[#121212]'} hover:border-[#0047FF] focus:border-[#0047FF] focus:text-[#121212] focus-visible:ring-0`}
                         />
                         
                         {error && <p className="text-xs font-mont font-medium text-red-500">{error}</p>}
-
+                        {!error &&
                         <p className="text-xs font-mont font-medium text-[#939393]">
                             Ми поважаємо вашу конфіденційність.
                         </p>
+                        }
                     </div>
                     <PopUp onClick={handleSubmit} isValid={isModalOpen} onClose={closeModal}/>
                     

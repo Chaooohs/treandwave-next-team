@@ -40,7 +40,7 @@ export default function WishList() {
               <Heart />
               <Title text={'ваш вішліст порожній'} size="xs" className='font-semibold uppercase mt-3' />
               <span className="font-medium text-sm mt-1">
-                Додавайте товари до свого вішлісту. Просто натисніть на іконку серця поруч із товаром, і він з'явиться тут.
+                Додавайте товари до свого вішлісту. Просто натисніть на іконку серця поруч із товаром, і він з&#39;явиться тут.
               </span>
               <Link href='/'>
                 <Button

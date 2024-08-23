@@ -10,7 +10,7 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: #0047ff;
+    --primary: 223, 100%, 50%;
     --primary-foreground: #336cff;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -111,22 +111,27 @@
 
   /* #region card */
 
-  .wrapper-img {
+  .card-img {
     position: relative;
   }
-  .wrapper-img .img-hide {
+  .card-img .card-img-hide {
     position: absolute;
     top: 0;
     left: 0;
     opacity: 0;
     transition: all 0.3s ease-in-out;
   }
-  .wrapper-img:hover .img-hide {
+  .card-img:hover .card-img-hide {
     opacity: 1;
     position: absolute;
     top: 0;
     left: 0;
     transition: all 0.3s ease-in-out;
+  }
+  
+  .card-heart path {
+    fill: #0047ff;
+    stroke: #0047ff;
   }
 
   /* #endregion */

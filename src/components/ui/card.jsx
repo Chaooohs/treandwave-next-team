@@ -15,9 +15,9 @@ export const Card = ({ el }) => {
 
   return (
     <>
-      <div className="wrapper-img">
+      <div className="card-img">
         <Image src={el.imageOne} alt={el.title} width={"100%"} height={"auto"} />
-        <Image src={el.imageTwo} alt={el.title} width={"100%"} height={"auto"} className="img-hide" />
+        <Image src={el.imageTwo} alt={el.title} width={"100%"} height={"auto"} className="card-img-hide" />
       </div>
 
       <Title text={el.title} size="xs" className="font-mont font-semibold uppercase mt-3" />
@@ -61,7 +61,7 @@ export const Card = ({ el }) => {
         className="absolute top-6 right-8"
         onClick={() => dispatch(addToWishList(el))}
       >
-        <HeartCard className={`${fillHeart?.id === el.id && 'fill-black'}`} />
+        <HeartCard className={`${fillHeart?.id === el.id && 'card-heart'}`} />
       </button>
     </>
   )

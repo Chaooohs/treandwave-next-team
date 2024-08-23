@@ -23,13 +23,13 @@ module.exports = {
       },
       colors: {
         border: "hsl(var(--border))",
-        input: "(var(--input))",
+        input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "(var(--primary))",
-          foreground: "(var(--primary-foreground))",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",

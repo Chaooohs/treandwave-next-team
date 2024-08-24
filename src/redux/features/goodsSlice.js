@@ -6,7 +6,7 @@ const initialState = {
   goods: [
     {
       id: 1,
-      title: 'Product name',
+      title: 'product-one',
       imageOne: imageOne,
       imageTwo: imageTwo,
       price: 1500,
@@ -14,7 +14,7 @@ const initialState = {
     },
     {
       id: 2,
-      title: 'Product name',
+      title: 'product-two',
       imageOne: imageOne,
       imageTwo: imageTwo,
       price: 1500,
@@ -22,7 +22,7 @@ const initialState = {
     },
     {
       id: 3,
-      title: 'Product name',
+      title: 'product-three',
       imageOne: imageOne,
       imageTwo: imageTwo,
       price: 1500,
@@ -30,7 +30,7 @@ const initialState = {
     },
     {
       id: 4,
-      title: 'Product name',
+      title: 'product-four',
       imageOne: imageOne,
       imageTwo: imageTwo,
       price: 1500,

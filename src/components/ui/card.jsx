@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Title } from "."
 import HeartCard from '../../../public/image/svg/heart-card.svg'
 import { addToWishList } from "@/redux/features/wishlistSlice"
+import Link from "next/link"
 
 
 export const Card = ({ el }) => {
@@ -14,7 +15,7 @@ export const Card = ({ el }) => {
   const fillHeart = wishlist?.find((card) => card.id === el?.id)
 
   return (
-    <>
+    <Link href={`${el.title}`}>
       <div className="card-img">
         <Image src={el.imageOne} alt={el.title} width={"100%"} height={"auto"} />
         <Image src={el.imageTwo} alt={el.title} width={"100%"} height={"auto"} className="card-img-hide" />
@@ -63,6 +64,6 @@ export const Card = ({ el }) => {
       >
         <HeartCard className={`${fillHeart?.id === el.id && 'card-heart'}`} />
       </button>
-    </>
+    </Link>
   )
 }

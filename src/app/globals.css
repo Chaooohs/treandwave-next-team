@@ -85,6 +85,12 @@
     padding-left: 40px !important;
   }
 
+  .product-layout {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    column-gap: 32px
+  }
+
   /* #endregion */
 
   /* #region header */

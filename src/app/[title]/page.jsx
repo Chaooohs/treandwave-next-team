@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 
-import { Button, Title } from "@/components/ui";
+import { Button, Colors, Title, Price } from "@/components/ui";
 
 
 export default function Product() {
@@ -26,6 +26,7 @@ export default function Product() {
                     product.images.map((img, index) => {
                       return (
                         <Image
+                          key={index}
                           src={img}
                           alt={product.title}
                           width={124}
@@ -46,21 +47,21 @@ export default function Product() {
               </div>
             </main>
             <aside>
+
               <Title text={product.title} size="lg" className='uppercase font-semibold' />
-              <div className="mt-3 font-semibold text-2xl uppercase">
-                <span></span>
-                <span>{`${product.price} uah`}</span>
-              </div>
-              <div>
-                {
-                  product.color.map(el => {
-                    return (
-                      <Button />
-                    )
-                  })
-                }
-              </div>
-              <div>
+
+              <Price
+                price={product.price}
+                discount={product.discount}
+                sizeP='text-2xl'
+                sizeD='text-lg'
+                className='mt-3'
+              />
+
+              <Title text='колір' size="xs" className='font-semibold uppercase mt-8' />
+              <Colors colors={product.colors} width='36px' height='36px' />
+
+              {/* <div>
                 {
                   product.size.map(el => {
                     return (
@@ -68,7 +69,7 @@ export default function Product() {
                     )
                   })
                 }
-              </div>
+              </div> */}
               <div>
                 <Button>до вішлісту</Button>
                 <Button>Додати в кошик</Button>

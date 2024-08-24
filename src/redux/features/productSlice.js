@@ -10,8 +10,9 @@ const initialState = {
       images: [imageOne, imageTwo],
       price: 1500,
       discoutn: 40,
-      color: ['blue', 'red', 'green'],
+      colors: ['#336cff', '#e03348', '#4d4d4d'],
       size: ['s', 'm', 'l', 'xl'],
+      discount: 10,
     },
 }
 

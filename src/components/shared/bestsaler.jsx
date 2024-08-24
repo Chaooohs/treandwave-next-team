@@ -1,6 +1,7 @@
 "use client";
 import { useSelector } from "react-redux";
-import { ButtonWithArrow, Card, Title } from "../ui";
+import { ButtonWithArrow, Title } from "../ui";
+import { Card } from "../shared";
 
 
 export const BestSaler = () => {

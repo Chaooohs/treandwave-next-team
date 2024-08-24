@@ -50,6 +50,10 @@
     width: 100%;
   }
 
+  label {
+    display: inline-block;
+  }
+
   /* #region common */
 
   .page {
@@ -91,6 +95,10 @@
     column-gap: 32px
   }
 
+  .input-color:checked + label {
+    opacity: 0.2
+  }
+  
   /* #endregion */
 
   /* #region header */

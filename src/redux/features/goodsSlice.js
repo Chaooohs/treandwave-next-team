@@ -10,7 +10,7 @@ const initialState = {
       imageOne: imageOne,
       imageTwo: imageTwo,
       price: 1500,
-      discoutn: 40,
+      discount: 40,
     },
     {
       id: 2,
@@ -18,7 +18,7 @@ const initialState = {
       imageOne: imageOne,
       imageTwo: imageTwo,
       price: 1500,
-      discoutn: 0,
+      discount: 0,
     },
     {
       id: 3,
@@ -26,7 +26,7 @@ const initialState = {
       imageOne: imageOne,
       imageTwo: imageTwo,
       price: 1500,
-      discoutn: 40,
+      discount: 40,
     },
     {
       id: 4,
@@ -34,7 +34,7 @@ const initialState = {
       imageOne: imageOne,
       imageTwo: imageTwo,
       price: 1500,
-      discoutn: 0,
+      discount: 0,
       best: true,
     },
   ],

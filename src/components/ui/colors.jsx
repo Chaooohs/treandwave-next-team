@@ -18,7 +18,7 @@ export const Colors = ({ colors, width, height }) => {
   }
 
   return (
-    <div className="flex gap-x-2 mt-3">
+    <div className="flex gap-x-2">
       {
         colors?.map((color, index) => {
           return (

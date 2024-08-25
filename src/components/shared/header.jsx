@@ -64,7 +64,7 @@ export const Header = () => {
               <Heart className='header-icon' />
             </Link>
 
-            <Link href='/cart' className="header-link">
+            <Link href='/shopping-cart' className="header-link">
               <Cart className='header-icon-cart' />
               <div>
                 <span>Кошик</span>

@@ -32,7 +32,7 @@ export const Colors = ({ colors, width, height }) => {
               />
               <label
                 htmlFor={`color${index}`}
-                className='rounded-sm'
+                className='rounded-sm cursor-pointer'
                 style={{ backgroundColor: color, width: width, height: height }}
               >
               </label>

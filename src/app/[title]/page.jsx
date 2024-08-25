@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 
 import { Button, Colors, Title, Price, Sizes } from "@/components/ui";
+import { Accordion, Card } from "@/components/shared";
 import { addToWishList } from "@/redux/features/wishlistSlice";
 import { addToCart } from "@/redux/features/cartSlice";
 import Heart from '../../../public/image/svg/heart.svg'
@@ -13,6 +14,7 @@ export default function Product() {
   const dispatch = useDispatch()
   const product = useSelector(state => state.product.product)
   const wishlist = useSelector(state => state.wishlist.wishlist)
+  const goods = useSelector((state) => state.goods.goods);
   const { color, size } = useSelector(state => state.texture)
   const [indexImage, setIndexImage] = useState(0)
   const ref = useRef()
@@ -104,7 +106,7 @@ export default function Product() {
               <Title text='розмір' size="xs" className='font-semibold uppercase mt-8' />
               <Sizes sizes={product.sizes} width='58px' height='36px' />
 
-              <div className="flex mt-8">
+              <div className="flex my-8">
                 <Button
                   ref={ref}
                   variant='outline'
@@ -121,12 +123,48 @@ export default function Product() {
                 </Button>
               </div>
               <div>
-
+                <Accordion text='Опис товару' />
+                <Accordion text='Оплата та доставка' />
+                <Accordion text='повернення та обмін' />
               </div>
             </aside>
           </div>
         </div>
       </div>
+      <section>
+        <div className="wrap">
+          <div className="content">
+            <Title text='З цим товаром купують' className='text-2xl font-semibold uppercase' />
+            <div className="card-layout mt-6">
+              {Array.isArray(goods) &&
+                goods.map((el) => {
+                  return (
+                    <div key={el.id} className="relative">
+                      <Card el={el} />
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className="wrap">
+          <div className="content">
+            <Title text='Вам може сподобатися' className='text-2xl font-semibold uppercase' />
+            <div className="card-layout mt-6">
+              {Array.isArray(goods) &&
+                goods.map((el) => {
+                  return (
+                    <div key={el.id} className="relative">
+                      <Card el={el} />
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        </div>
+      </section>
     </section>
   )
 }

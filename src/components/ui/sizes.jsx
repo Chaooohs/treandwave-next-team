@@ -28,12 +28,12 @@ export const Sizes = ({ sizes, width, height }) => {
                 value={size}
                 id={`size${index}`}
                 onChange={onChange}
-                className="hidden input-size"
+                className="hidden input-size "
               />
               <label
                 htmlFor={`size${index}`}
-                className='rounded-lg flex items-center justify-center font-semibold text-sm '
-                style={{ width: width, height: height, border: '1px solid #ededed' }}
+                className='rounded-lg flex items-center justify-center font-semibold text-sm cursor-pointer'
+                style={{ width: width, height: height, border: '1px solid #ededed', textTransform: 'uppercase' }}
               >
                 {size}
               </label>

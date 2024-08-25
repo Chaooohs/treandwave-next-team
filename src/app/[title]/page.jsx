@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 
@@ -12,8 +12,18 @@ import Heart from '../../../public/image/svg/heart.svg'
 export default function Product() {
   const dispatch = useDispatch()
   const product = useSelector(state => state.product.product)
-  const {color, size} = useSelector(state => state.texture)
+  const wishlist = useSelector(state => state.wishlist.wishlist)
+  const { color, size } = useSelector(state => state.texture)
   const [indexImage, setIndexImage] = useState(0)
+  const ref = useRef()
+
+  useEffect(() => {
+    const found = wishlist.find(el => el.id === product.id)
+    if (found) {
+      ref.current.disabled = true;
+      // ref.current.setAttribute('disabled', 'disabled');
+    }
+  }, [wishlist])
 
   const handleClick = (index) => {
     setIndexImage(index)
@@ -96,11 +106,12 @@ export default function Product() {
 
               <div className="flex mt-8">
                 <Button
+                  ref={ref}
                   variant='outline'
                   className='mr-2 w-[176px] h-[52px] text-base font-semibold uppercase flex items-center gap-x-1'
                   onClick={handleClickToWishList}
                 >
-                  <Heart/>
+                  <Heart />
                   до вішлісту
                 </Button>
                 <Button

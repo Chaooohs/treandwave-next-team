@@ -16,15 +16,17 @@ import { BurgerMenu } from "."
 export const Header = () => {
   const dispatch = useDispatch()
   const burger = useSelector(state => state.open.burger)
+  const cart = useSelector(state => state.cart.cart)
 
+  const counter = cart?.reduce((sum, el) => el.count + sum, 0);
 
   return (
     <header className="sticky z-40 top-12 bg-[#fdfdfd]">
       <div className="wrap">
         <div className="flex align-center justify-between items-center h-20 gap-x-8 text-header">
-          
+
           <Link href='/'>
-            <Logo/>
+            <Logo />
           </Link>
 
           <nav className="flex items-center gap-x-6">
@@ -66,9 +68,11 @@ export const Header = () => {
 
             <Link href='/shopping-cart' className="header-link">
               <Cart className='header-icon-cart' />
-              <div>
+              <div className="flex gap-x-1">
                 <span>Кошик</span>
-                <span> (0)</span>
+                <div>
+                  (<span className="w-8 inline-block text-center">{counter}</span>)
+                </div>
                 {/* <Basket className='header-icon-cart'/> */}
               </div>
             </Link>

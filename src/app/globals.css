@@ -40,9 +40,13 @@
   }
 
   body {
-    font-family: "Montserrat", sans-serif;
     height: 100vh;
     color: #212121;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-mulish)
   }
 
   img {

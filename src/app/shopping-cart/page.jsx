@@ -9,12 +9,18 @@ export default function ShoppingCart() {
   const goods = useSelector(state => state.goods.goods);
   const cart = useSelector(state => state.cart.cart);
 
+  const counter = cart?.reduce((sum, el) => el.count + sum, 0);
+
   return (
     <section>
       <div className="wrap">
         <div className="content">
           <Title text='Кошик' size="xl" className='font-mul font-extrabold uppercase ' />
-          <span className="text-lg font-medium uppercase">Усього (2 товари)</span>
+          <div className="text-lg font-medium uppercase">
+            Усього (
+            <span className="w-9 inline-block text-center">{counter}</span>
+            товари )
+          </div>
           <div className="product-layout">
             <main>
               {Array.isArray(goods) &&
@@ -26,7 +32,9 @@ export default function ShoppingCart() {
                   );
                 })}
             </main>
-            <aside></aside>
+            <aside>
+
+            </aside>
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux"
 import { addSize, removeSize } from "@/redux/features/textureSlice"
+import { cn } from "@/lib/utils"
 
 
-
-export const Sizes = ({ sizes, width, height }) => {
+export const Sizes = ({ sizes, width, height, className }) => {
   const dispatch = useDispatch()
 
   const onChange = (e) => {
@@ -18,7 +18,7 @@ export const Sizes = ({ sizes, width, height }) => {
   }
 
   return (
-    <div className="flex flex-wrap gap-2 w-[344px]">
+    <div className={cn("flex flex-wrap gap-2 w-[344px]", className)}>
       {
         sizes?.map((size, index) => {
           return (

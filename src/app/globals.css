@@ -98,6 +98,10 @@
   .input-color:checked + label {
     opacity: 0.2
   }
+
+  .input-size:checked + label {
+    background-color: #ededed;
+  }
   
   /* #endregion */
 

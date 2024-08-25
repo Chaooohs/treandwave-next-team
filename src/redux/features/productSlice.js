@@ -11,7 +11,7 @@ const initialState = {
       price: 1500,
       discoutn: 40,
       colors: ['#336cff', '#e03348', '#4d4d4d'],
-      size: ['s', 'm', 'l', 'xl'],
+      sizes: ['s', 'm', 'l', 'xl','xxl','2xl','3xl',],
       discount: 10,
     },
 }

@@ -1,17 +1,47 @@
 'use client'
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 
-import { Button, Colors, Title, Price } from "@/components/ui";
+import { Button, Colors, Title, Price, Sizes } from "@/components/ui";
+import { addToWishList } from "@/redux/features/wishlistSlice";
+import { addToCart } from "@/redux/features/cartSlice";
+import Heart from '../../../public/image/svg/heart.svg'
 
 
 export default function Product() {
+  const dispatch = useDispatch()
   const product = useSelector(state => state.product.product)
+  const {color, size} = useSelector(state => state.texture)
   const [indexImage, setIndexImage] = useState(0)
 
   const handleClick = (index) => {
     setIndexImage(index)
+  }
+
+  const handleClickToWishList = () => {
+    const a = {
+      id: product.id,
+      title: product.title,
+      images: product.images,
+      price: product.price,
+      discount: product.discount,
+    }
+    dispatch(addToWishList(a))
+  }
+
+  const handleClickToCart = () => {
+    const a = {
+      id: product.id,
+      title: product.title,
+      images: product.images,
+      price: product.price,
+      discount: product.discount,
+      color: color,
+      size: size,
+    }
+    console.log(a)
+    dispatch(addToCart(a))
   }
 
   return (
@@ -61,18 +91,23 @@ export default function Product() {
               <Title text='колір' size="xs" className='font-semibold uppercase mt-8' />
               <Colors colors={product.colors} width='36px' height='36px' />
 
-              {/* <div>
-                {
-                  product.size.map(el => {
-                    return (
-                      <Button />
-                    )
-                  })
-                }
-              </div> */}
-              <div>
-                <Button>до вішлісту</Button>
-                <Button>Додати в кошик</Button>
+              <Title text='розмір' size="xs" className='font-semibold uppercase mt-8' />
+              <Sizes sizes={product.sizes} width='58px' height='36px' />
+
+              <div className="flex mt-8">
+                <Button
+                  variant='outline'
+                  className='mr-2 w-[176px] h-[52px] text-base font-semibold uppercase flex items-center gap-x-1'
+                  onClick={handleClickToWishList}
+                >
+                  <Heart/>
+                  до вішлісту
+                </Button>
+                <Button
+                  className=' w-full max-w-[409px] h-[52px] text-base font-semibold uppercase'
+                  onClick={handleClickToCart}
+                >Додати в кошик
+                </Button>
               </div>
               <div>
 

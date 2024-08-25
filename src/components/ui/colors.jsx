@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { addColor, removeColor } from "@/redux/features/cartSlice"
+import { addColor, removeColor } from "@/redux/features/textureSlice"
 
 
 
@@ -21,7 +21,6 @@ export const Colors = ({ colors, width, height }) => {
     <div className="flex gap-x-2 mt-3">
       {
         colors?.map((color, index) => {
-          console.log(color)
           return (
             <div key={index}>
               <input

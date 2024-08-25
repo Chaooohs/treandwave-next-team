@@ -3,7 +3,8 @@ import { useSelector } from "react-redux"
 import Link from "next/link"
 
 import Heart from '../../../public/image/svg/heart-wishlist.svg'
-import { Button, Card, Title } from "@/components/ui"
+import { Button, Title } from "@/components/ui"
+import { Card } from "@/components/shared"
 
 
 export default function WishList() {
@@ -13,7 +14,7 @@ export default function WishList() {
     <main>
       <div className="content pt-6 h-full">
         {
-          wishlist.length > 0
+          wishlist?.length > 0
             ?
             <div className="wrap">
               <div className="flex items-center justify-center flex-col	">

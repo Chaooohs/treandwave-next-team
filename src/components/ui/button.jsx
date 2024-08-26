@@ -21,6 +21,9 @@ const buttonVariants = cva(
         button2: " text-[#FDFDFD] border-b border-[#121212] uppercase hover:text-[#CFCFCF] active:text-[#999999] active:border-[#121212] transition-all hover:border-[#CFCFCF] hover:border-b-[1px]	  duration-300 ease-in-out",
         buttonRed: " text-[#E03348] border-b border-[#121212] uppercase hover:text-[#E03348] active:text-[#D8001A] active:border-[#121212] transition-all hover:border-[#E03348] hover:border-b-[1px]	 duration-300 ease-in-out",
         buttonBlack: "bg-[#121212] text-[#FDFDFD] uppercase",
+        tag: " px-4 py-3 border-[1px] border-[#EDEDED] uppercase text-[#121212] font-mont font-semibold text-sm rounded-[8px] hover:border-[#121212] active:border-[#121212] active:text-[#FDFDFD] active:bg-[#121212]",
+        functional: " px-4 py-3 border-[1px] border-[#121212] uppercase text-[#121212] font-mont font-semibold text-sm rounded-[8px] focus-visible:ring-0  ",
+        outlineBlue: " px-5 py-4 border-[1px] border-[#0047FF] uppercase text-[#0047FF] font-mont font-semibold text-sm rounded-[8px] ",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux"
 import { addColor, removeColor } from "@/redux/features/textureSlice"
+import { cn } from "@/lib/utils"
 
 
-
-export const Colors = ({ colors, width, height }) => {
+export const Colors = ({ colors, width, height, className }) => {
   const dispatch = useDispatch()
 
   const onChange = (e) => {
@@ -18,7 +18,7 @@ export const Colors = ({ colors, width, height }) => {
   }
 
   return (
-    <div className="flex gap-x-2 mt-3">
+    <div className={cn("flex gap-x-2", className)}>
       {
         colors?.map((color, index) => {
           return (

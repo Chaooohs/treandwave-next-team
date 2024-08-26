@@ -26,8 +26,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${montserrat.variable} ${mulish.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${mulish.variable}`}>
+      <body className="font-mont">
         <StoreProvider>
           <div className="page">
             <RunningLine/>

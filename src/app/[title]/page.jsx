@@ -51,6 +51,7 @@ export default function Product() {
       discount: product.discount,
       color: color,
       size: size,
+      count: 1,
     }
     console.log(a)
     dispatch(addToCart(a))
@@ -101,16 +102,16 @@ export default function Product() {
               />
 
               <Title text='колір' size="xs" className='font-semibold uppercase mt-8' />
-              <Colors colors={product.colors} width='36px' height='36px' />
+              <Colors colors={product.colors} width='36px' height='36px' className='mt-3' />
 
               <Title text='розмір' size="xs" className='font-semibold uppercase mt-8' />
-              <Sizes sizes={product.sizes} width='58px' height='36px' />
+              <Sizes sizes={product.sizes} width='58px' height='36px' className='mt-3'/>
 
               <div className="flex my-8">
                 <Button
                   ref={ref}
                   variant='outline'
-                  className='mr-2 w-[176px] h-[52px] text-base font-semibold uppercase flex items-center gap-x-1'
+                  className='mr-2 w-[182px] h-[52px] text-base font-semibold uppercase flex items-center gap-x-1'
                   onClick={handleClickToWishList}
                 >
                   <Heart />

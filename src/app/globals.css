@@ -40,9 +40,13 @@
   }
 
   body {
-    font-family: "Montserrat", sans-serif;
     height: 100vh;
     color: #212121;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-mulish);
   }
 
   img {
@@ -70,7 +74,7 @@
   }
 
   .content {
-    @apply py-14 box-border;
+    @apply pb-14 mt-14 box-border;
   }
 
   .baner {
@@ -115,6 +119,23 @@
     grid-template-rows: 1fr;
   }
 
+  .cart {
+    position: fixed;
+    top: 48px;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    width: 428px;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 24px;
+    transform: translateX(100vw);
+    transition: all 1s linear;
+  }
+  .open-cart {
+    transform: translateX(0);
+  }
+
   /* #endregion */
 
   /* #region header */
@@ -129,6 +150,7 @@
     transition-all duration-300 ease-linear cursor-pointer;
   }
 
+  .header-icon,
   .header-icon path,
   .header-icon-cart path {
     transition: all 0.3s linear;
@@ -139,6 +161,9 @@
   }
 
   .header-link:hover .header-icon-cart path {
+    fill: #4b5563;
+  }
+  .header-link:hover .header-icon-shopping-cart {
     fill: #4b5563;
   }
 
@@ -167,6 +192,13 @@
   .card-heart path {
     fill: #0047ff;
     stroke: #0047ff;
+  }
+
+  .card-cart {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 12px;
+    border: 1px solid #4d4d4d;
   }
 
   /* #endregion */

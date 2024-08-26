@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  burger: false,
+  burgerOpen: false,
+  cartOpen: false,
 }
 
 const openSlice = createSlice({
@@ -9,10 +10,13 @@ const openSlice = createSlice({
   initialState,
   reducers: {
     openBurger: (state, action) => {
-      state.burger = action.payload
+      state.burgerOpen = action.payload
+    },
+    openCart: (state, action) => {
+      state.cartOpen = action.payload
     },
   },
 })
 
-export const { openBurger } = openSlice.actions
+export const { openBurger, openCart } = openSlice.actions
 export default openSlice.reducer;

@@ -13,12 +13,12 @@ export const CardForCart = ({ el }) => {
 
   return (
     <>
-      <div className="w-[124px]">
+      <div className="w-32">
         <Image src={el.images[0]} alt={el.title} width={124} height={180} />
       </div>
-      <div>
+      <div className="w-[11rem]">
 
-        <Title text={el.title} size="xs" className="font-semibold uppercase" />
+        <Title text={el.title} className="text-base font-semibold uppercase" />
 
         <Price price={el.price} discount={el.discount} sizeP='16px' sizeD='18px' />
 

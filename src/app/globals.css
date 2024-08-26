@@ -46,7 +46,7 @@
 
   h1,
   h2 {
-    font-family: var(--font-mulish)
+    font-family: var(--font-mulish);
   }
 
   img {
@@ -74,7 +74,7 @@
   }
 
   .content {
-    @apply py-14 box-border;
+    @apply pb-14 mt-14 box-border;
   }
 
   .baner {
@@ -117,6 +117,23 @@
   }
   .accordion-open {
     grid-template-rows: 1fr;
+  }
+
+  .cart {
+    position: fixed;
+    top: 48px;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    width: 428px;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 24px;
+    transform: translateX(100vw);
+    transition: all 1s linear;
+  }
+  .open-cart {
+    transform: translateX(0);
   }
 
   /* #endregion */
@@ -179,10 +196,9 @@
 
   .card-cart {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-auto-flow: column;
     column-gap: 12px;
     border: 1px solid #4d4d4d;
-    padding: 24px;
   }
 
   /* #endregion */

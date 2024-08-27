@@ -15,14 +15,14 @@ export const PopoverBurger = () => {
           <ArrowDown className='header-icon' />
         </div>
       </PopoverTrigger>
-      <PopoverContent align='end' alignOffset={0} sideOffset={19} className='bg-[#f7f7f7] w-[596px]'>
+      <PopoverContent align='end' sideOffset={19} className='w-[586px] bg-[#f7f7f7] rounded-none'>
+        <BurgerMenu />
         <PopoverClose
           className="z-50 border-none h-[24px] w-[24px] absolute top-[38px] right-[38px] outline-none cursor-pointer"
           aria-label="Close"
         >
           <CloseIcon />
         </PopoverClose>
-        <BurgerMenu />
       </PopoverContent>
     </Popover>
   )

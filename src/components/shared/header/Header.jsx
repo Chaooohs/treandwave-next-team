@@ -45,8 +45,8 @@ export const Header = () => {
               <Heart className='header-icon' />
             </Link>
 
-            <PopoverCart counter={counter}/>
-            
+            <PopoverCart counter={counter} />
+
           </nav>
         </div>
       </div>

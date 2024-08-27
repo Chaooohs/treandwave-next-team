@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux"
 
 import { Counter } from "."
 import Image from "next/image"
-import { Colors, Price, Sizes, Title } from "../ui"
+import { Colors, Sizes, Title, PriceCart } from "../ui"
 import Trash from '../../../public/image/svg/trash.svg'
 import { removeFromCart } from "@/redux/features/cartSlice"
 
@@ -20,7 +20,7 @@ export const CardForCart = ({ el }) => {
 
         <Title text={el.title} className="text-base font-semibold uppercase" />
 
-        <Price price={el.price} discount={el.discount} sizeP='16px' sizeD='18px' />
+        <PriceCart price={el.price} discount={el.discount} sizeP='16px' sizeD='18px' count={el.count} />
 
         <div className="h-[36px] mt-4 flex items-center gap-x-2" >
           <span className="font-medium text-sm mb-2">Колір:</span>

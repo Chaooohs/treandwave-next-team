@@ -1,9 +1,9 @@
 import { Montserrat, Mulish } from "next/font/google";
 import { Footer, Header } from "@/components/shared";
-import "./globals.css";
 import StoreProvider from "./StoreProvider";
 import MailForm from "@/components/shared/mailForm";
 import RunningLine from "@/components/shared/runningLine";
+import "./globals.css";
 
 const montserrat = Montserrat({
   subsets: ['cyrillic'],

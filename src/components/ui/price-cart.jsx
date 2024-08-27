@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-export const Price = ({ price, discount, sizeP, sizeD, className, count }) => {
+export const PriceCart = ({ price, discount, sizeP, sizeD, className, count }) => {
 
   return (
     <>
@@ -14,11 +14,11 @@ export const Price = ({ price, discount, sizeP, sizeD, className, count }) => {
             >
               {`${price} uah`}
             </span>
-            <span>{`${price * (1 - (discount / 100))} uah`}</span>
+            <span>{`${(price * count) * (1 - (discount / 100))} uah`}</span>
           </div>
           :
           <div className={cn(`mt-3 font-semibold ${sizeP} uppercase flex items-center gap-x-2`, className)}>
-            <span>{`${price} uah`}</span>
+            <span>{`${price * count} uah`}</span>
           </div>
       }
     </>

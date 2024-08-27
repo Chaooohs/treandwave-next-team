@@ -2,6 +2,7 @@
 import Link from "next/link"
 import { useDispatch, useSelector } from "react-redux"
 import { openBurger, openCart } from "@/redux/features/openSlice"
+import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from "@/components/ui/popover"
 
 import Search from '../../../public/image/svg/search.svg'
 import Heart from '../../../public/image/svg/heart.svg'
@@ -9,7 +10,6 @@ import Cart from '../../../public/image/svg/cart.svg'
 import Man from '../../../public/image/svg/man.svg'
 import Logo from '../../../public/image/svg/logo.svg'
 import ArrowDown from '../../../public/image/svg/arrow-down.svg'
-import Basket from '../../../public/image/svg/shopping-basket.svg'
 import { BurgerMenu } from "."
 import ShoppingCart from "./shopping-cart"
 
@@ -65,24 +65,28 @@ export const Header = () => {
             <Link href='/wishlist' className="header-link">
               <Heart className='header-icon' />
             </Link>
-
-            <button className="header-link" onClick={() => dispatch(openCart(!false))}>
-              <Cart className='header-icon-cart' />
-              <div className="flex gap-x-1 uppercase">
-                <span>Кошик</span>
-                <div>
-                  (<span className="w-8 inline-block text-center">{counter}</span>)
+            <Popover>
+              <PopoverTrigger>
+                <div className="header-link">
+                  <Cart className='header-icon-cart' />
+                  <div className="flex gap-x-1 uppercase">
+                    <span>Кошик</span>
+                    (<span className="w-4 inline-block text-center">{counter}</span>)
+                  </div>
                 </div>
-                {/* <Basket className='header-icon-cart'/> */}
-              </div>
-            </button>
+              </PopoverTrigger>
+              <PopoverContent align='end' className='bg-[#f7f7f7] w-[440px] px-6 pt-6 pb-14'>
+                <PopoverArrow className="fill-[#f7f7f7] z-40 w-14 h-6" />
+                <ShoppingCart counter={counter} />
+              </PopoverContent>
+            </Popover>
           </nav>
         </div>
       </div>
-      {
+      {/* {
         cartOpen &&
         <ShoppingCart />
-      }
+      } */}
     </header>
   )
 }

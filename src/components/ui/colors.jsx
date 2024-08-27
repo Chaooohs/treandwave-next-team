@@ -24,7 +24,8 @@ export const Colors = ({ colors, width, height, className }) => {
           return (
             <div key={index}>
               <input
-                type="checkbox"
+                type="radio"
+                name="color"
                 value={color}
                 id={`color${index}`}
                 onChange={onChange}

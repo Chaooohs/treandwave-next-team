@@ -104,7 +104,8 @@
   }
 
   .input-size:checked + label {
-    background-color: #ededed;
+    background-color: #121212;
+    color: #fdfdfd;
   }
 
   .accordion {
@@ -117,23 +118,6 @@
   }
   .accordion-open {
     grid-template-rows: 1fr;
-  }
-
-  .cart {
-    position: fixed;
-    top: 48px;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
-    width: 428px;
-    background-color: #fff;
-    box-sizing: border-box;
-    padding: 24px;
-    transform: translateX(100vw);
-    transition: all 1s linear;
-  }
-  .open-cart {
-    transform: translateX(0);
   }
 
   /* #endregion */

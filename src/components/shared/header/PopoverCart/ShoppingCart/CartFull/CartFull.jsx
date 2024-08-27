@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 
 import { CardForCart } from "@/components/shared";
-import { Button } from "../ui";
+import { Button } from "@/components/ui";
 
 export const CartFull = () => {
   const cart = useSelector(state => state.cart.cart);

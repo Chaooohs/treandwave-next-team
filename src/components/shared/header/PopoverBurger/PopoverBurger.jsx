@@ -12,23 +12,17 @@ export const PopoverBurger = () => {
   const [click, setClick] = useState(false)
   const [isOpen, setIsOpen] = useState()
 
-  // useEffect(() => {
-  //   const a = ref.current.dataset.state
-  //   if (a === 'open') {
-  //     setIsOpen(true)
-  //   } else if (a === 'closed') {
-  //     setIsOpen(false)
-  //   }
-  //   setClick(false)
-  // }, [click])
+  useEffect(() => {
+    const a = ref.current.dataset.state
+    if (a === 'open') {
+      setIsOpen(true)
+    } else if (a === 'closed') {
+      setIsOpen(false)
+    }
+    setClick(false)
+  }, [click, isOpen])
 
-  const a = ref.current.dataset.state
-  if (a === 'open') {
-    setIsOpen(true)
-  } else if (a === 'closed') {
-    setIsOpen(false)
-  }
-
+ 
   return (
     <>
       {
@@ -45,7 +39,7 @@ export const PopoverBurger = () => {
             <ArrowDown className='header-icon' />
           </div>
         </PopoverTrigger>
-        <PopoverContent align='end' sideOffset={19} className='w-[586px] bg-[#f7f7f7] rounded-none'>
+        <PopoverContent onPointerDownOutside={() => setClick(!false)} align='end' sideOffset={19} className='w-[586px] bg-[#f7f7f7] rounded-none'>
           <BurgerMenu />
           <PopoverClose
             className="z-50 border-none h-[24px] w-[24px] absolute top-[38px] right-[38px] outline-none cursor-pointer"

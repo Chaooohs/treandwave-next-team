@@ -22,12 +22,12 @@ export const PopoverBurger = () => {
     setClick(false)
   }, [click, isOpen])
 
- 
+
   return (
     <>
       {
         isOpen &&
-        <div className="fixed top-0 right-0 bottom-0 left-0 bg-[#00000052] z-40"></div>
+        <div className="fixed top-0 right-0 bottom-0 left-0 bg-[#00000026] z-40"></div>
       }
       <Popover>
         <PopoverTrigger ref={ref}>
@@ -39,7 +39,12 @@ export const PopoverBurger = () => {
             <ArrowDown className='header-icon' />
           </div>
         </PopoverTrigger>
-        <PopoverContent onPointerDownOutside={() => setClick(!false)} align='end' sideOffset={19} className='w-[586px] bg-[#f7f7f7] rounded-none'>
+        <PopoverContent
+          onPointerDownOutside={() => setClick(!false)}
+          align='end'
+          sideOffset={19}
+          className='w-[586px] bg-white rounded-none'
+        >
           <BurgerMenu />
           <PopoverClose
             className="z-50 border-none h-[24px] w-[24px] absolute top-[38px] right-[38px] outline-none cursor-pointer"

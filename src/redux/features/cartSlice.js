@@ -9,7 +9,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action ) => {
-      const found = state.cart.find(el => el.id === action.payload.id);
+      const found = state.cart.find(el => el.id === action.payload.id && el.color[0] === action.payload.color[0]);
       if (!found) {
         state.cart.push(action.payload)
       }

@@ -18,6 +18,7 @@ export default function Product() {
   const { color, size } = useSelector(state => state.texture)
   const [indexImage, setIndexImage] = useState(0)
   const ref = useRef()
+  const [isWarning, setIsWarning] = useState('')
 
   useEffect(() => {
     const found = wishlist.find(el => el.id === product.id)
@@ -53,8 +54,12 @@ export default function Product() {
       size: size,
       count: 1,
     }
-    console.log(a)
-    dispatch(addToCart(a))
+    if (size.length > 0 & color.length > 0) {
+      dispatch(addToCart(a))
+      setIsWarning('')
+    } else {
+      setIsWarning('оберiть солiр та розмiр')
+    }
   }
 
   return (
@@ -105,8 +110,8 @@ export default function Product() {
               <Colors colors={product.colors} width='36px' height='36px' className='mt-3' />
 
               <Title text='розмір' size="xs" className='font-semibold uppercase mt-8' />
-              <Sizes sizes={product.sizes} width='58px' height='36px' className='mt-3'/>
-
+              <Sizes sizes={product.sizes} width='58px' height='36px' className='mt-3' />
+              <span className="text-red-500">{isWarning}</span>
               <div className="flex my-8">
                 <Button
                   ref={ref}

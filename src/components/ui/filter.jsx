@@ -151,10 +151,10 @@ export function Filter({onApplyFilters}) {
                 </Accordion>
               </SheetDescription>
             </SheetHeader>
-            <SheetFooter className='flex justify-between w-full gap-5 pt-10'>
+            <SheetFooter className='flex sm:justify-center w-full gap-2 pt-10'>
                 <Button onClick={clearFilters} variant="outlineBlue" className='px-6 py-3'>очистити</Button>
                 <SheetClose asChild>
-                <Button onClick={applyFilters} variant='default' type="submit" className='uppercase px-6 py-3 rounded-[8px] font-mont'>застосувати</Button>
+                <Button onClick={applyFilters} variant='default' type="submit" className='uppercase px-6 py-3 rounded-[4px] font-mont'>застосувати</Button>
               </SheetClose>
             </SheetFooter>
           </SheetContent>

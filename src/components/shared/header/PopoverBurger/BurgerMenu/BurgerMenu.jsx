@@ -5,7 +5,7 @@ export const BurgerMenu = () => {
     <div className=" w-[586px] h-screen box-border pt-5">
       <div className="wrap">
         <div className="font-semibold uppercase text-base inline-flex gap-y-10 flex-col mt-12">
-          <Link href='#!' className="header-link">Усі</Link>
+          <Link href='/catalog' className="header-link">Усі</Link>
           <Link href='#!' className="header-link">Sale</Link>
           <Link href='#!' className="header-link">Колекції</Link>
           <Link href='#!' className="header-link">Бестселери</Link>

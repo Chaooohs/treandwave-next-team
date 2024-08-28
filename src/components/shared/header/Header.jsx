@@ -27,7 +27,7 @@ export const Header = () => {
           <nav className="flex items-center gap-x-6">
             <PopoverBurger />
             <Link className="header-link text-red-500 hover:text-red-400 hover:border-red-400" href='/sale'>Sale</Link>
-            <Link className="header-link" href='/colections'>Колекції</Link>
+            <Link className="header-link" href='/collections'>Колекції</Link>
             <Link className="header-link" href='/about'> Про нас</Link>
           </nav>
 

@@ -60,7 +60,7 @@ export default function CardList({title, tags, image}) {
                 </div>
                )}
             <div className="h-[1px] w-full bg-[#EDEDED]"></div>
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center">
                 <div>
                     <p>{productsQuantity} результати</p>
                 </div>

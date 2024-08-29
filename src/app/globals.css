@@ -157,11 +157,20 @@
 
   .card-img {
     position: relative;
+    height: 27.8cqi;
+  }
+  .card-img img {
+    height: 100%;
+    object-fit: cover;
   }
   .card-img .card-img-hide {
     position: absolute;
     top: 0;
     left: 0;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  .card-img:hover .card-img-top {
     opacity: 0;
     transition: all 0.3s ease-in-out;
   }

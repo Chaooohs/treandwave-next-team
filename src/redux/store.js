@@ -7,10 +7,12 @@ import wishlist from './features/wishlistSlice'
 import product from './features/productSlice'
 import texture from './features/textureSlice'
 import cart from './features/cartSlice'
+import { goodsApi } from './api/goodsApi'
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
+      [goodsApi.reducerPath]: goodsApi.reducer,
       goods,
       categories,
       open,
@@ -19,5 +21,8 @@ export const makeStore = () => {
       texture,
       cart,
     },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(goodsApi.middleware),
   })
+  setupListeners(store.dispatch)
 }

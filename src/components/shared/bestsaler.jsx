@@ -1,11 +1,11 @@
-"use client";
-import { useSelector } from "react-redux";
+// "use client";
 import { ButtonWithArrow, Title } from "../ui";
 import { Card } from "../shared";
 
 
-export const BestSaler = () => {
-  const goods = useSelector((state) => state.goods.goods);
+export const BestSaler = ({ products }) => {
+
+  const goods = products?.slice(10, 14);
 
   return (
     <section>
@@ -14,7 +14,7 @@ export const BestSaler = () => {
 
           <div className="flex items-center justify-between">
             <Title text="бестселери" size="xl" className="font-mul font-extrabold uppercase " />
-            <ButtonWithArrow/>
+            <ButtonWithArrow />
           </div>
 
           <div className="card-layout">
@@ -22,7 +22,7 @@ export const BestSaler = () => {
               goods.map((el) => {
                 return (
                   <div key={el.id} className="relative">
-                    <Card el={el}/>
+                    <Card el={el} />
                   </div>
                 );
               })}

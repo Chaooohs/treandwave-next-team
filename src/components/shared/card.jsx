@@ -12,16 +12,15 @@ export const Card = ({ el }) => {
   const dispatch = useDispatch()
   const wishlist = useSelector(state => state.wishlist.wishlist)
 
-
-
   const fillHeart = wishlist?.find((card) => card.id === el?.id)
+
   return (
     <>
-      <Link href={`${el.title}`}>
+      <Link href={`${el.id}`}>
 
         <div className="card-img">
-          <Image src={el.images[0]} alt={el.title} width={"100%"} height={"auto"} />
-          <Image src={el.images[1]} alt={el.title} width={"100%"} height={"auto"} className="card-img-hide" />
+          <Image src={el.images[0]} alt={el.title} width={322} height={400} className="card-img-top" />
+          <Image src={el.images[1]} alt={el.title} width={322} height={400} className="card-img-hide" />
         </div>
 
         <Title text={el.title} size="xs" className="font-mont font-semibold uppercase mt-3" />

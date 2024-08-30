@@ -24,6 +24,7 @@ const buttonVariants = cva(
         tag: " px-4 py-3 border-[1px] border-[#EDEDED] uppercase text-[#121212] font-mont font-semibold text-sm rounded-[8px] hover:border-[#121212] active:border-[#121212] active:text-[#FDFDFD] active:bg-[#121212]",
         functional: " px-4 py-3 border-[1px] border-[#121212] uppercase text-[#121212] font-mont font-semibold text-sm rounded-[8px] focus-visible:ring-0  ",
         outlineBlue: " px-5 py-4 border-[1px] border-[#0047FF] uppercase text-[#0047FF] font-mont font-semibold text-sm rounded-[4px] ",
+        aboutMenuBut: " uppercase text-[#121212] hover:text-[#6A6A6A] active:text-[#121212] font-mont font-semibold text-sm ",
       },
       size: {
         default: "h-10 px-4 py-2",

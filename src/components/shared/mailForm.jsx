@@ -25,7 +25,12 @@ export default function MailForm() {
 
     const pathname = usePathname();
 
-    const showMailForm = pathname === '/' || pathname === '/colections' || pathname === '/catalog' || pathname === '/sale';
+    const showMailForm = 
+    pathname === '/' || 
+    pathname === '/colections' || 
+    pathname === '/catalog' || 
+    pathname === '/sale' ||
+    pathname.startsWith('/about');
 
     if (!showMailForm) return null;
 

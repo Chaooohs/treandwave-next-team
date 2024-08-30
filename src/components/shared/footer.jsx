@@ -21,11 +21,11 @@ export const Footer = () => {
         [
           {
             subtitle: 'sale',
-            href: ''
+            href: '/sale'
           },
           {
             subtitle: 'Нова колекція',
-            href: ''
+            href: '/collections'
           },
           {
             subtitle: 'Бестселери',
@@ -33,7 +33,7 @@ export const Footer = () => {
           },
           {
             subtitle: 'Колекції',
-            href: ''
+            href: '/collections'
           },
         ]
     },
@@ -44,7 +44,7 @@ export const Footer = () => {
         [
           {
             subtitle: 'про нас',
-            href: ''
+            href: '/about'
           },
           {
             subtitle: 'оплата і доставка',
@@ -67,16 +67,16 @@ export const Footer = () => {
             </div>
             <div className="flex gap-3">
               <Link href='https://uk-ua.facebook.com/'>
-                <Fb />
+                <Fb fill="#FDFDFD"/>
               </Link>
               <Link href='https://www.instagram.com/'>
-                <Inst />
+                <Inst fill="#FDFDFD"/>
               </Link>
               <Link href='https://web.telegram.org/'>
-                <Telegram />
+                <Telegram fill="#FDFDFD"/>
               </Link>
               <Link href='https://www.tiktok.com/uk-UA/'>
-                <TikTok />
+                <TikTok fill="#FDFDFD"/>
               </Link>
             </div>
           </div>

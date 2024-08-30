@@ -27,7 +27,7 @@ export const Card = ({ el }) => {
 
         <Price
           price={el.price}
-          discount={el.discount}
+          discount={Math.floor(el.discountPercentage)}
           sizeP='text-lg'
           sizeD='text-base'
           className='mt-2'
@@ -35,9 +35,9 @@ export const Card = ({ el }) => {
 
         <div className="absolute top-4 left-4 flex gap-x-1">
           {
-            el.discoutn > 0 &&
+            el.discountPercentage > 1 &&
             <div className=" w-16 h-9	bg-black flex items-center text-center justify-center">
-              <span className="text-base font-medium text-white">{`${el.discoutn}%`}</span>
+              <span className="text-base font-medium text-white">{`${Math.floor(el.discountPercentage)}%`}</span>
             </div>
           }
           {

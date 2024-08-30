@@ -6,7 +6,6 @@ import { useGetGoodsQuery } from "@/redux/api/goodsApi";
 import CardList from "@/components/shared/CardList/CardList";
 
 
-
 export default function Page() {
   const [isQuery, setIsQuery] = useState('')
 
@@ -17,6 +16,8 @@ export default function Page() {
       pageNumber: data?.pageNumber,
     }),
   })
+
+  console.log(goods)
 
   const handlePaginationClick = (e) => {
     setIsQuery(`skip=${e.selected}0`)
@@ -29,7 +30,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="lg:px-24 px-5 w-full">
+      <div className="wrap">
         <CardList title={title} tags={tagsArr} products={goods} totalGoods={totalGoods} />
       </div>
 

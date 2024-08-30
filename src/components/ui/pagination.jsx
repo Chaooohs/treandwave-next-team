@@ -7,11 +7,11 @@ export const PaginationOutline = ({ totalGoods, onPaginationClick }) => {
       <ReactPaginate
         className="pagination"
         breakLabel="..."
-        nextLabel=">"
+        nextLabel="&#129138;"
         onPageChange={onPaginationClick}
         pageRangeDisplayed={2}
         pageCount={Math.ceil(totalGoods / 10)}
-        previousLabel="<"
+        previousLabel="&#129136;"
         renderOnZeroPageCount={null}
       />
     </div>

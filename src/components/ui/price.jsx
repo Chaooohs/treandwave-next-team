@@ -3,6 +3,8 @@ import { cn } from '@/lib/utils';
 
 export const Price = ({ price, discount, sizeP, sizeD, className, count }) => {
 
+  let finalPrice = price * (1 - (discount / 100))
+
   return (
     <>
       {
@@ -14,7 +16,7 @@ export const Price = ({ price, discount, sizeP, sizeD, className, count }) => {
             >
               {`${price} uah`}
             </span>
-            <span>{`${price * (1 - (discount / 100))} uah`}</span>
+            <span>{`${finalPrice.toFixed(2)} uah`}</span>
           </div>
           :
           <div className={cn(`mt-3 font-semibold ${sizeP} uppercase flex items-center gap-x-2`, className)}>

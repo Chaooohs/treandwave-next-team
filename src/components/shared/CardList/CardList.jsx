@@ -30,8 +30,8 @@ export default function CardList({ title, tags, image, products, totalGoods }) {
   };
 
   return (
-    <div className="bg-white pt-10 pb-20 font-mont w-full flex flex-col gap-5 lg:gap-10">
-      <div className="relative flex flex-col gap-5 lg:gap-10">
+    <div className="bg-white pt-10 pb-20 font-mont w-full flex flex-col gap-5 xl:gap-10">
+      <div className="relative flex flex-col gap-6">
         <div>
           Головна / Каталог
         </div>
@@ -66,7 +66,7 @@ export default function CardList({ title, tags, image, products, totalGoods }) {
           <Filter onApplyFilters={applyFilters} />
         </div>
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid md:grid-cols-2 grid-cols-4 gap-5">
         {
           Array.isArray(products) &&
           products.map((el) => {

@@ -21,6 +21,10 @@ module.exports = {
         mont: ['var(--font-montserrat)'],
         mul: ['var(--font-mulish)'],
       },
+      screens: {
+        'lg': { 'max': '1023px' },
+        'md': { 'max': '767px' },
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

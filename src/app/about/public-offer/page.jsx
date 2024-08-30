@@ -96,7 +96,7 @@ export default function Page() {
                     {textPage.li2.map((item, index) => (
                         Array.isArray(item) ? (
                             
-                                <ol className="list-disc list-inside ml-4">
+                                <ol key={index} className="list-disc list-inside ml-4">
                                     {item.map((subitem, subindex) => (
                                         <li key={subindex}>{subitem}</li>
                                     ))}
@@ -113,7 +113,7 @@ export default function Page() {
                     {textPage.li4.map((item, index) => (
                         Array.isArray(item) ? (
                             
-                                <ol className="list-[lower-latin] list-inside ml-4">
+                                <ol key={index} className="list-[lower-latin] list-inside ml-4">
                                     {item.map((subitem, subindex) => (
                                         <li key={subindex}>{subitem}</li>
                                     ))}

@@ -32,7 +32,7 @@ export const Accordion = ({text}) => {
       onClick={() => setIsToggle(!isToggle)}
       className='relative max-w-xl w-full cursor-pointer'
     >
-      <div className='flex justify-between mb-3 h-[52px]'>
+      <div className='flex justify-between mt-3 h-[36px]'>
         <Title
           text={text}
           size='xs'
@@ -46,7 +46,7 @@ export const Accordion = ({text}) => {
           <div className="accordion-hidden">
             <div className='bg-white' >
               <ul className='list-none m-0 p-0'>
-                <li className='p-3 hover:bg-color-divider tracking-[1px] '>
+                <li className='p-2 hover:bg-color-divider tracking-[1px] '>
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui laudantium eligendi maiores earum excepturi. Harum excepturi labore enim omnis, distinctio, esse amet quas, in libero vero doloremque officia reprehenderit similique!
                 </li>
               </ul>

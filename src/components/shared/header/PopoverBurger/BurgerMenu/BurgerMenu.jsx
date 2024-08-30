@@ -6,8 +6,8 @@ export const BurgerMenu = () => {
       <div className="wrap">
         <div className="font-semibold uppercase text-base inline-flex gap-y-10 flex-col mt-12">
           <Link href='/catalog' className="header-link">Усі</Link>
-          <Link href='#!' className="header-link">Sale</Link>
-          <Link href='#!' className="header-link">Колекції</Link>
+          <Link href='/sale' className="header-link">Sale</Link>
+          <Link href='/collections' className="header-link">Колекції</Link>
           <Link href='#!' className="header-link">Бестселери</Link>
           <Link href='#!' className="header-link">Сукні</Link>
           <Link href='#!' className="header-link">Костюми</Link>

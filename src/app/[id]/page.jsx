@@ -8,11 +8,15 @@ import { Accordion, Card } from "@/components/shared";
 import { addToWishList } from "@/redux/features/wishlistSlice";
 import { addToCart } from "@/redux/features/cartSlice";
 import Heart from '../../../public/image/svg/heart.svg'
+import { useGetSingleProductQuery } from "@/redux/api/goodsApi";
+import { usePathname } from "next/navigation";
 
 
 export default function Product() {
+  const path = usePathname()
+  const { data: product } = useGetSingleProductQuery(`/products${path}`)
+
   const dispatch = useDispatch()
-  const product = useSelector(state => state.product.product)
   const wishlist = useSelector(state => state.wishlist.wishlist)
   const goods = useSelector((state) => state.goods.goods);
   const { color, size } = useSelector(state => state.texture)
@@ -71,7 +75,8 @@ export default function Product() {
               <div className="flex gap-4">
                 <div className="flex flex-col gap-3">
                   {
-                    product.images.map((img, index) => {
+                    product?.images &&
+                    product.images?.map((img, index) => {
                       return (
                         <Image
                           key={index}
@@ -90,27 +95,30 @@ export default function Product() {
                   }
                 </div>
                 <div className="w-full ">
-                  <Image src={product.images[indexImage]} alt={product.title} width={580} height={828} />
+                  {
+                    product?.images &&
+                    <Image src={product.images[indexImage]} alt={product.title} width={580} height={828} />
+                  }
                 </div>
               </div>
             </main>
             <aside>
 
-              <Title text={product.title} size="lg" className='uppercase font-semibold' />
+              <Title text={product?.title} size="lg" className='uppercase font-semibold' />
 
               <Price
-                price={product.price}
-                discount={product.discount}
+                price={product?.price}
+                discount={product?.discount}
                 sizeP='text-2xl'
                 sizeD='text-lg'
                 className='mt-3'
               />
 
               <Title text='колір' size="xs" className='font-semibold uppercase mt-8' />
-              <Colors colors={product.colors} width='36px' height='36px' className='mt-3' />
+              <Colors colors={product?.colors} width='36px' height='36px' className='mt-3' />
 
               <Title text='розмір' size="xs" className='font-semibold uppercase mt-8' />
-              <Sizes sizes={product.sizes} width='58px' height='36px' className='mt-3' />
+              <Sizes sizes={product?.sizes} width='58px' height='36px' className='mt-3' />
               <span className="text-red-500">{isWarning}</span>
               <div className="flex my-8">
                 <Button

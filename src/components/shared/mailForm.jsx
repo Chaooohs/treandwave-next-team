@@ -25,7 +25,12 @@ export default function MailForm() {
 
     const pathname = usePathname();
 
-    const showMailForm = pathname === '/' || pathname === '/colections' || pathname === '/catalog' || pathname === '/sale';
+    const showMailForm = 
+    pathname === '/' || 
+    pathname === '/colections' || 
+    pathname === '/catalog' || 
+    pathname === '/sale' ||
+    pathname.startsWith('/about');
 
     if (!showMailForm) return null;
 
@@ -61,8 +66,8 @@ export default function MailForm() {
 
 
     return(
-        <div className="px-5 md:px-24 flex w-full">
-            <div className="grid w-full md:grid-cols-2 py-10 gap-5 md:gap-20 justify-center items-center">
+        <div className="px-5 lg:px-24 flex w-full">
+            <div className="grid w-full lg:grid-cols-2 py-10 gap-5 md:gap-20 justify-center items-center">
                 <div>
                     <Title text={'Підписка на розсилку'} size="lg" className={'font-mul uppercase font-extrabold'}/>
                     <p className="font-mont text-base font-normal">

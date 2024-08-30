@@ -3,7 +3,7 @@ import { Footer, Header } from "@/components/shared";
 import StoreProvider from "./StoreProvider";
 import MailForm from "@/components/shared/mailForm";
 import RunningLine from "@/components/shared/runningLine";
-import "./globals.css";
+import "./globals.scss";
 
 const montserrat = Montserrat({
   subsets: ['cyrillic'],

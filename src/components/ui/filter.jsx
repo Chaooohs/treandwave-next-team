@@ -25,10 +25,10 @@ export function Filter({onApplyFilters}) {
     const [selectedColors, setSelectedColors] = useState([]);
     const [selectedPrice, setSelectedPrice] = useState([]);
     
-    console.log(selectedSizes);
-    console.log(selectedModels);
-    console.log(selectedPrice);
-    console.log(selectedColors);
+    // console.log(selectedSizes);
+    // console.log(selectedModels);
+    // console.log(selectedPrice);
+    // console.log(selectedColors);
 
 
     const sizes = ["34", "36", "38", "40", "XS", "S", "M", "L", "XL"];

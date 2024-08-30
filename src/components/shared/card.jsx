@@ -12,23 +12,22 @@ export const Card = ({ el }) => {
   const dispatch = useDispatch()
   const wishlist = useSelector(state => state.wishlist.wishlist)
 
-
-
   const fillHeart = wishlist?.find((card) => card.id === el?.id)
+
   return (
     <>
-      <Link href={`${el.title}`}>
+      <Link href={`${el.id}`}>
 
         <div className="card-img">
-          <Image src={el.images[0]} alt={el.title} width={"100%"} height={"auto"} />
-          <Image src={el.images[1]} alt={el.title} width={"100%"} height={"auto"} className="card-img-hide" />
+          <Image src={el.images[0]} alt={el.title} width={322} height={400} className="card-img-top" />
+          <Image src={el.images[1]} alt={el.title} width={322} height={400} className="card-img-hide" />
         </div>
 
         <Title text={el.title} size="xs" className="font-mont font-semibold uppercase mt-3" />
 
         <Price
           price={el.price}
-          discount={el.discount}
+          discount={Math.floor(el.discountPercentage)}
           sizeP='text-lg'
           sizeD='text-base'
           className='mt-2'
@@ -36,9 +35,9 @@ export const Card = ({ el }) => {
 
         <div className="absolute top-4 left-4 flex gap-x-1">
           {
-            el.discoutn > 0 &&
+            el.discountPercentage > 1 &&
             <div className=" w-16 h-9	bg-black flex items-center text-center justify-center">
-              <span className="text-base font-medium text-white">{`${el.discoutn}%`}</span>
+              <span className="text-base font-medium text-white">{`${Math.floor(el.discountPercentage)}%`}</span>
             </div>
           }
           {

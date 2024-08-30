@@ -1,10 +1,10 @@
-"use client";
-import { useSelector } from "react-redux";
+// "use client";
 import { ButtonWithArrow, Title } from "../ui";
 import { Card } from "../shared";
 
-export const NewColection = () => {
-  const goods = useSelector((state) => state.goods.goods);
+export const NewColection = ({ products }) => {
+
+  const goods = products?.slice(6, 10);
 
   return (
     <section>
@@ -13,15 +13,15 @@ export const NewColection = () => {
 
           <div className="flex items-center justify-between">
             <Title text="Нова колекція" size="xl" className="font-mul font-extrabold uppercase" />
-            <ButtonWithArrow/>
+            <ButtonWithArrow />
           </div>
 
           <div className="card-layout">
             {Array.isArray(goods) &&
-              goods.map((el) => {
+              goods?.map((el) => {
                 return (
                   <div key={el.id} className="relative">
-                    <Card el={el}/>
+                    <Card el={el} />
                   </div>
                 );
               })}

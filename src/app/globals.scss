@@ -99,11 +99,11 @@
     column-gap: 32px;
   }
 
-  .input-color:checked + label {
+  .input-color:checked+label {
     opacity: 0.2;
   }
 
-  .input-size:checked + label {
+  .input-size:checked+label {
     background-color: #121212;
     color: #fdfdfd;
   }
@@ -113,11 +113,47 @@
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.5s ease;
   }
+
   .accordion-hidden {
     overflow: hidden;
   }
+
   .accordion-open {
     grid-template-rows: 1fr;
+  }
+
+  .pagination {
+    display: flex;
+    column-gap: 4px;
+
+    & li {
+      border: 1px solid black;
+      border-radius: 4px;
+
+      & a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 600;
+        width: 40px;
+        height: 40px;
+        transition: all .3s linear;
+
+        &:hover {
+          background-color: black;
+          color: white;
+        }
+      }
+    }
+
+    & .selected {
+      & a {
+        background-color: black !important;
+        color: white;
+      }
+    }
+
   }
 
   /* #endregion */
@@ -129,9 +165,7 @@
   }
 
   .header-link {
-    @apply flex items-center gap-x-2 box-border py-2 border-b border-white
-    hover:text-gray-600 hover:border-gray-400
-    transition-all duration-300 ease-linear cursor-pointer;
+    @apply flex items-center gap-x-2 box-border py-2 border-b border-white hover:text-gray-600 hover:border-gray-400 transition-all duration-300 ease-linear cursor-pointer;
   }
 
   .header-icon,
@@ -147,6 +181,7 @@
   .header-link:hover .header-icon-cart path {
     fill: #4b5563;
   }
+
   .header-link:hover .header-icon-shopping-cart {
     fill: #4b5563;
   }
@@ -157,7 +192,14 @@
 
   .card-img {
     position: relative;
+    height: 27.8cqi;
   }
+
+  .card-img img {
+    height: 100%;
+    object-fit: cover;
+  }
+
   .card-img .card-img-hide {
     position: absolute;
     top: 0;
@@ -165,6 +207,12 @@
     opacity: 0;
     transition: all 0.3s ease-in-out;
   }
+
+  .card-img:hover .card-img-top {
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
   .card-img:hover .card-img-hide {
     opacity: 1;
     position: absolute;

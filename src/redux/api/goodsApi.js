@@ -8,12 +8,13 @@ export const goodsApi = createApi({
   endpoints: (builder) => ({
     getGoods: builder.query({
       query: (query = "") => ({
-        url: "/products",
+        url: query,
       }),
       transformResponse: response => ({
         goods: response.products,
         limit: response.limit,
-        total: response.total,
+        totalGoods: response.total,
+        pageNumber: response.skip,
       }),
     }),
     getSingleProduct: builder.query({

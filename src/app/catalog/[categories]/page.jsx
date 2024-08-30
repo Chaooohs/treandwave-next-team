@@ -1,4 +1,4 @@
-import CardList from "@/components/ui/cardList";
+import CardList from "@/components/shared/CardList/CardList";
 import pic from '/public/image/jpg/PHOTO.png'
 
 export default function Page() {

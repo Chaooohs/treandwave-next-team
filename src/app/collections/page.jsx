@@ -1,4 +1,4 @@
-import CardList from "@/components/ui/cardList";
+import CardList from "@/components/shared/CardList/CardList";
 
 export default function Page() {
     const title = 'Колекції';

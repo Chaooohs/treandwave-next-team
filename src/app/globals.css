@@ -120,6 +120,9 @@
     grid-template-rows: 1fr;
   }
 
+  .css-litcis-MuiButtonBase-root-MuiPaginationItem-root {
+    border: 1px solid black;
+  }
   /* #endregion */
 
   /* #region header */

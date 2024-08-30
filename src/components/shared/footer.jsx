@@ -16,7 +16,7 @@ export const Footer = () => {
   const footerLinks = [
     {
       title: 'каталог',
-      href: '',
+      href: '/catalog',
       items:
         [
           {
@@ -48,11 +48,11 @@ export const Footer = () => {
           },
           {
             subtitle: 'оплата і доставка',
-            href: ''
+            href: '/about/payment-and-delivery'
           },
           {
             subtitle: 'повернення',
-            href: ''
+            href: '/about/exchange-and-return'
           },
         ]
     }
@@ -60,7 +60,7 @@ export const Footer = () => {
   return (
     <footer>
       <div className="font-mont bg-[#121212] text-white">
-        <div className="px-10 md:px-24 grid  md:grid-cols-2 gap-5 md:gap-20 py-20">
+        <div className="px-10 lg:px-24 grid grid-cols-1  lg:grid-cols-2 gap-5 md:gap-20 py-20">
           <div className="flex flex-col gap-5 justify-center">
             <div>
               <Logo className={'text-white'} />
@@ -88,9 +88,13 @@ export const Footer = () => {
                   {item.items.map((item, index) => (
                     <div key={index}>
                       {item.subtitle.toLocaleLowerCase() === 'sale' ? (
-                        <Button variant="buttonRed" size="base">{item.subtitle}</Button>
+                        <Link href={item.href}>
+                          <Button variant="buttonRed" size="base">{item.subtitle}</Button>
+                        </Link>
                       ) : (
-                        <Button variant="button2" size="base">{item.subtitle}</Button>
+                        <Link href={item.href}>
+                          <Button variant="button2" size="base">{item.subtitle}</Button>
+                        </Link>
                       )}
                     </div>
                   ))}

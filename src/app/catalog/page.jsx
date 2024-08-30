@@ -1,9 +1,10 @@
 'use client'
 import { useEffect, useState } from "react";
 
-import CardList from "@/components/shared/CardList/CardList";
-import PaginationOutlined from "@/components/ui/pagination";
+import { PaginationOutline } from "@/components/ui";
 import { useGetGoodsQuery } from "@/redux/api/goodsApi";
+import CardList from "@/components/shared/CardList/CardList";
+
 
 
 export default function Page() {
@@ -17,8 +18,8 @@ export default function Page() {
     }),
   })
 
-  const handlePaginationClick = (_, page) => {
-    setIsQuery(`skip=${page - 1}0`)
+  const handlePaginationClick = (e) => {
+    setIsQuery(`skip=${e.selected}0`)
   }
 
   useEffect(() => window.scrollTo(0, 0), [pageNumber])
@@ -31,13 +32,8 @@ export default function Page() {
       <div className="lg:px-24 px-5 w-full">
         <CardList title={title} tags={tagsArr} products={goods} totalGoods={totalGoods} />
       </div>
-      <div>
-        <PaginationOutlined
-          totalGoods={totalGoods}
-          pageNumber={pageNumber}
-          onPaginationClick={handlePaginationClick}
-        />
-      </div>
+
+      <PaginationOutline totalGoods={totalGoods} onPaginationClick={handlePaginationClick}/>
     </>
   )
 }

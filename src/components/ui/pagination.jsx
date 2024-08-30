@@ -1,18 +1,19 @@
-import * as React from 'react';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+'use client'
+import ReactPaginate from "react-paginate";
 
-export default function PaginationOutlined({ totalGoods, onPaginationClick }) {
+export const PaginationOutline = ({ totalGoods, onPaginationClick }) => {
   return (
-    <div className='flex justify-center'>
-      <Stack spacing={1}>
-        <Pagination
-          count={Math.ceil(totalGoods / 10)}
-          variant="outlined"
-          shape="rounded"
-          onChange={onPaginationClick}
-        />
-      </Stack>
-     </div>
+    <div className="flex justify-center my-7">
+      <ReactPaginate
+        className="pagination"
+        breakLabel="..."
+        nextLabel=">"
+        onPageChange={onPaginationClick}
+        pageRangeDisplayed={2}
+        pageCount={Math.ceil(totalGoods / 10)}
+        previousLabel="<"
+        renderOnZeroPageCount={null}
+      />
+    </div>
   );
 }

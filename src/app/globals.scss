@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+
+  /* #region tags */
+
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -57,6 +60,8 @@
   label {
     display: inline-block;
   }
+
+  /* #endregion */
 
   /* #region common */
 
@@ -127,7 +132,7 @@
     column-gap: 4px;
 
     & li {
-      border: 1px solid black;
+      border: 1px solid #121212;
       border-radius: 4px;
 
       & a {
@@ -141,8 +146,33 @@
         transition: all .3s linear;
 
         &:hover {
-          background-color: black;
-          color: white;
+          background-color: #121212;
+          color: #fdfdfd;
+        }
+      }
+    }
+
+    & .prev,
+    & .next {
+      border: 1px solid #ededed;
+    }
+
+    & .prev:hover,
+    & .next:hover {
+      border: 1px solid #212121;
+      transition: all .3s linear;
+      & a {
+        background: transparent;
+        color: #212121;
+      }
+    }
+
+    & .disabled {
+      color: #ededed;
+      &:hover {
+        border: 1px solid #ededed;
+        & a {
+          color: #ededed;
         }
       }
     }

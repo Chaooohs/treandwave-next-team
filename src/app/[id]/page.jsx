@@ -124,7 +124,7 @@ export default function Product() {
                 <Button
                   ref={ref}
                   variant='outline'
-                  className='mr-2 w-[182px] h-[52px] text-base font-semibold uppercase flex items-center gap-x-1'
+                  className='button-outline mr-2 w-[182px] h-[52px] text-base font-semibold uppercase flex items-center gap-x-1'
                   onClick={handleClickToWishList}
                 >
                   <Heart />

@@ -21,7 +21,7 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
     --accent: 0, 0%, 99%;
-    --accent-foreground: 0, 0%, 30%;
+    --accent-foreground: 0, 0%, 42%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 223.3 100 50;
@@ -111,6 +111,15 @@
   .input-size:checked+label {
     background-color: #121212;
     color: #fdfdfd;
+  }
+
+  .button-outline {
+    & svg path {
+      transition: all .3s linear;
+    }
+    &:hover svg path {
+      stroke: #6a6a6a;
+    }
   }
 
   .accordion {

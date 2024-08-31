@@ -137,8 +137,8 @@ export default function Product() {
                 </Button>
               </div>
               <div>
-                <Accordion text='Опис товару' />
-                <Accordion text='Оплата та доставка' />
+                <Accordion text='опис товару' />
+                <Accordion text='оплата та доставка' />
                 <Accordion text='повернення та обмін' />
               </div>
             </aside>

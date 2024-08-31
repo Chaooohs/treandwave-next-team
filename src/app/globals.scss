@@ -205,7 +205,7 @@
   }
 
   .header-link {
-    @apply flex items-center gap-x-2 box-border py-2 border-b border-white hover:text-gray-600 hover:border-gray-400 transition-all duration-300 ease-linear cursor-pointer;
+    @apply flex items-center gap-x-2 box-border py-2 border-b border-white hover:text-[#6a6a6a] hover:border-[#6a6a6a] transition-all duration-300 ease-linear cursor-pointer;
   }
 
   .header-icon,
@@ -215,15 +215,15 @@
   }
 
   .header-link:hover .header-icon path {
-    stroke: #4b5563;
+    stroke: #6a6a6a;
   }
 
   .header-link:hover .header-icon-cart path {
-    fill: #4b5563;
+    fill: #6a6a6a;
   }
 
   .header-link:hover .header-icon-shopping-cart {
-    fill: #4b5563;
+    fill: #6a6a6a;
   }
 
   /* #endregion */

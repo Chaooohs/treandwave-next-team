@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Cross from '../../../public/image/svg/cross.svg'
 import { Title } from '../ui'
 
-export const Accordion = ({text}) => {
+export const Accordion = ({ text }) => {
   const [isToggle, setIsToggle] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const ref = useRef()
@@ -46,9 +46,19 @@ export const Accordion = ({text}) => {
           <div className="accordion-hidden">
             <div className='bg-white' >
               <ul className='list-none m-0 p-0'>
+                {
+                text === "опис товару" &&
                 <li className='p-2 hover:bg-color-divider tracking-[1px] '>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui laudantium eligendi maiores earum excepturi. Harum excepturi labore enim omnis, distinctio, esse amet quas, in libero vero doloremque officia reprehenderit similique!
+                  Комплект з трикотажу світло-сірого кольору, що складається зі шортів і худі. Шорти з високою посадкою, мають м'яку гумку на поясі та зав'язки для регулювання. Завдяки закругленому краю на шортах створюється легкий спортивний стиль. Худі з блискавкою на всю довжину, має капюшон та широкі рукави, що забезпечують комфорт і свободу рухів. Ідеально підходить для активного відпочинку або повсякденних справ.
+                  Матеріал: 80% бавовна, 20% поліестер.
                 </li>
+                }
+                {
+                text === "оплата та доставка" &&
+                <li className='p-2 hover:bg-color-divider tracking-[1px] '>
+                  Усі замовлення, які виконуються на нашому сайті, можна оплатити за допомогою банківських карт. Підтримуємо VISA, MasterCard та інші платіжні системи. Або сплачуйте післяплатою при отриманні.
+                </li>
+                }
               </ul>
             </div>
           </div>

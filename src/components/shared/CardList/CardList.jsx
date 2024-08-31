@@ -66,7 +66,7 @@ export default function CardList({ title, tags, image, products, totalGoods }) {
           <Filter onApplyFilters={applyFilters} />
         </div>
       </div>
-      <div className="grid md:grid-cols-2 grid-cols-4 gap-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
         {
           Array.isArray(products) &&
           products.map((el) => {

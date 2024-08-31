@@ -85,7 +85,7 @@ export const Accordion = ({ text }) => {
                     </div>
                     <div className='mt-2 flex gap-x-2'>
                       <NovaPoshtaDeliveryIcon />
-                      <span className='font-semibold text-sm uppercase'>Нова пошта - кур’єр</span>
+                      <span className='font-semibold text-sm uppercase'>Нова пошта - кур&apos;єр</span>
                       <span className='font-medium text-sm uppercase'>99 UAH</span>
                     </div>
                   </li>

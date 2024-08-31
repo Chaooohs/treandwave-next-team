@@ -4,8 +4,8 @@ import Link from "next/link";
 import VisaLogo from '/public/image/svg/visa-logo.svg';
 import MoneyIcon from '/public/image/svg/money.svg';
 import NovaPoshtaIcon from '/public/image/svg/novaposhta.svg';
-import MasterCard from '/public/image/svg/Mastercard.svg';
-import ApplepayIcon from '/public/image/svg/ApplePay.svg';
+import MasterCard from '/public/image/svg/mastercard-logo.svg';
+import ApplepayIcon from '/public/image/svg/applepay-logo.svg';
 
 
 

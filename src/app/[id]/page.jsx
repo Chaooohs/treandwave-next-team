@@ -124,7 +124,7 @@ export default function Product() {
                 <Button
                   ref={ref}
                   variant='outline'
-                  className='mr-2 w-[182px] h-[52px] text-base font-semibold uppercase flex items-center gap-x-1'
+                  className='button-outline mr-2 w-[182px] h-[52px] text-base font-semibold uppercase flex items-center gap-x-1'
                   onClick={handleClickToWishList}
                 >
                   <Heart />
@@ -137,8 +137,8 @@ export default function Product() {
                 </Button>
               </div>
               <div>
-                <Accordion text='Опис товару' />
-                <Accordion text='Оплата та доставка' />
+                <Accordion text='опис товару' />
+                <Accordion text='оплата та доставка' />
                 <Accordion text='повернення та обмін' />
               </div>
             </aside>

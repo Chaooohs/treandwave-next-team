@@ -6,7 +6,7 @@ import Inst from '/public/image/svg/inst.svg';
 import Telegram from '/public/image/svg/telegram.svg';
 import TikTok from '/public/image/svg/tikTok.svg';
 import Link from "next/link";
-import Logo from "../ui/logo";
+import Logo from '/public/image/svg/logo.svg'
 
 
 export const Footer = () => {
@@ -60,10 +60,10 @@ export const Footer = () => {
   return (
     <footer>
       <div className="font-mont bg-[#121212] text-white">
-        <div className="px-10 lg:px-24 grid grid-cols-1  lg:grid-cols-2 gap-5 md:gap-20 py-20">
+        <div className="px-10 lg:px-24 grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-20 py-20">
           <div className="flex flex-col gap-5 justify-center">
             <div>
-              <Logo className={'text-white'} />
+              <Logo fill='white' stroke='white' className={''} />
             </div>
             <div className="flex gap-3">
               <Link href='https://uk-ua.facebook.com/'>
@@ -84,16 +84,16 @@ export const Footer = () => {
             {footerLinks.map((item, index) => (
               <div key={index} className="flex flex-col gap-5">
                 <Title2 text={item.title} />
-                <div className="">
+                <div className="flex flex-col gap-1">
                   {item.items.map((item, index) => (
                     <div key={index}>
                       {item.subtitle.toLocaleLowerCase() === 'sale' ? (
                         <Link href={item.href}>
-                          <Button variant="buttonRed" size="base">{item.subtitle}</Button>
+                          <Button variant="buttonRed" size="base" className=' rounded-none py-1'>{item.subtitle}</Button>
                         </Link>
                       ) : (
                         <Link href={item.href}>
-                          <Button variant="button2" size="base">{item.subtitle}</Button>
+                          <Button variant="button2" size="base" className='rounded-none py-1'>{item.subtitle}</Button>
                         </Link>
                       )}
                     </div>

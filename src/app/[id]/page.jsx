@@ -58,12 +58,12 @@ export default function Product() {
       size: size,
       count: 1,
     }
-    if (size.length > 0 & color.length > 0) {
+    // if (size.length > 0 & color.length > 0) {
       dispatch(addToCart(a))
       setIsWarning('')
-    } else {
-      setIsWarning('оберiть солiр та розмiр')
-    }
+    // } else {
+      // setIsWarning('оберiть солiр та розмiр')
+    // }
   }
 
   return (
@@ -137,7 +137,7 @@ export default function Product() {
                 </Button>
               </div>
               <div>
-                <Accordion text='опис товару' />
+                <Accordion text='опис товару' description={product?.description} />
                 <Accordion text='оплата та доставка' />
                 <Accordion text='повернення та обмін' />
               </div>

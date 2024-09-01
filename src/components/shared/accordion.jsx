@@ -10,7 +10,7 @@ import NovaPoshtaIcon from '/public/image/svg/novaposhta-w20.svg';
 import NovaPoshtaDeliveryIcon from '/public/image/svg/novaposhta-delivery.svg';
 import { Title } from '../ui'
 
-export const Accordion = ({ text }) => {
+export const Accordion = ({ text, description }) => {
   const [isToggle, setIsToggle] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const ref = useRef()
@@ -55,8 +55,7 @@ export const Accordion = ({ text }) => {
                 {
                   text === "опис товару" &&
                   <li className='p-2 hover:bg-color-divider tracking-[1px] '>
-                    Комплект з трикотажу світло-сірого кольору, що складається зі шортів і худі. Шорти з високою посадкою, мають м'яку гумку на поясі та зав'язки для регулювання. Завдяки закругленому краю на шортах створюється легкий спортивний стиль. Худі з блискавкою на всю довжину, має капюшон та широкі рукави, що забезпечують комфорт і свободу рухів. Ідеально підходить для активного відпочинку або повсякденних справ.
-                    Матеріал: 80% бавовна, 20% поліестер.
+                    {description}
                   </li>
                 }
                 {
@@ -95,7 +94,7 @@ export const Accordion = ({ text }) => {
                   <p>
                     Протягом 14 днів з моменту покупки ви можете обміняти або повернути товар, який не підійшов. Більш детально ознайомитися з умовами можна у розділі&#160;
                     <Link
-                      href='#!'
+                      href='/about/exchange-and-return'
                       className='underline hover:text-[#6a6a6a] duration-300'
                     >
                       «Повернення та обмін».

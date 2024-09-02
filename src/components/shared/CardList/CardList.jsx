@@ -9,7 +9,7 @@ import { SortingMenu } from "../../ui/sortingMenu";
 
 
 
-export default function CardList({ title, tags, image, products, totalGoods }) {
+export default function CardList({ title, tags, image, products, totalGoods, loading }) {
   const productsQuantity = products?.length;
 
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -68,6 +68,9 @@ export default function CardList({ title, tags, image, products, totalGoods }) {
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
         {
+          loading ?
+          <h1>Loading...</h1>
+        :
           Array.isArray(products) &&
           products.map((el) => {
             return (

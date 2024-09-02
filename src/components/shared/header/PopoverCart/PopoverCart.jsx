@@ -1,7 +1,7 @@
 import { Popover, PopoverContent, PopoverTrigger, PopoverArrow, PopoverClose } from "@/components/ui/popover"
 
-import Cart from '../../../../../public/image/svg/cart.svg'
-import CloseIcon from '../../../../../public/image/svg/close.svg'
+import Cart from '/public/image/svg/cart.svg'
+import CloseIcon from '/public/image/svg/close.svg'
 import ShoppingCart from "./ShoppingCart/ShoppingCart"
 import { useEffect, useRef, useState } from "react"
 

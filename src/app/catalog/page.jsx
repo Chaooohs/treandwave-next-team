@@ -1,6 +1,6 @@
 'use client'
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import qs from 'qs'
 
@@ -12,17 +12,20 @@ import CardList from "@/components/shared/CardList/CardList";
 
 export default function Page() {
   const router = useRouter()
+  const pathname = usePathname()
   const dispatch = useDispatch()
   let { limit, skip } = useSelector((state) => state.filters);
 
-
-  const { goods, totalGoods, pageNumber } = useGetGoodsQuery(`/products?limit=${limit}&skip=${skip}`, {
-    selectFromResult: ({ data }) => ({
-      goods: data?.goods,
-      totalGoods: data?.totalGoods,
-      pageNumber: data?.pageNumber,
-    }),
-  })
+  const { goods, totalGoods, pageNumber, loading } = useGetGoodsQuery(`/products?limit=${limit}&skip=${skip}`,
+    {
+      selectFromResult: ({ data, isLoading }) => ({
+        goods: data?.goods,
+        totalGoods: data?.totalGoods,
+        pageNumber: data?.pageNumber,
+        loading: isLoading,
+      }),
+    },
+  )
 
 
   useEffect(() => {
@@ -48,7 +51,9 @@ export default function Page() {
   }
 
 
-  useEffect(() => window.scrollTo(0, 0), [pageNumber])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pageNumber])
 
 
   const title = 'Каталог';
@@ -58,7 +63,13 @@ export default function Page() {
   return (
     <>
       <div className="wrap">
-        <CardList title={title} tags={tagsArr} products={goods} totalGoods={totalGoods} />
+        <CardList
+          title={pathname.substring(1)}
+          tags={tagsArr}
+          products={goods}
+          totalGoods={totalGoods}
+          loading={loading}
+        />
       </div>
 
       <PaginationOutline

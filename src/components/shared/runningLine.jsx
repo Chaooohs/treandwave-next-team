@@ -12,7 +12,7 @@ export default function RunningLine() {
         'Безкоштовна доставка від 2500 UAH',
     ]
     return(
-        <div className="sticky  top-0 z-50 h-12 bg-[#121212] max-w-screen overflow-hidden flex">
+        <div className="sticky  top-0 z-40 h-12 bg-[#121212] max-w-screen overflow-hidden flex">
             <motion.div 
                 animate={{ x: ['2%', '-48%'] }}
                 transition={{

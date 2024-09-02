@@ -1,5 +1,6 @@
 'use client'
 import Link from "next/link"
+import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { useMediaQuery } from "react-responsive"
 
@@ -11,28 +12,54 @@ import Logo from '/public/image/svg/logo.svg'
 import BurgerIcon from '/public/image/svg/burger.svg'
 import { PopoverBurger } from "./PopoverBurger"
 import { PopoverCart } from "./PopoverCart"
+import { BurgerMobile } from "./BurgerMobile"
 
 
 export const Header = () => {
+  const ref = useRef()
   const cart = useSelector(state => state.cart.cart)
   const isDesktop = useMediaQuery({ minWidth: 1024 })
   const isMobile = useMediaQuery({ maxWidth: 1023 })
+  const [isOpen, setIsOpen] = useState(false)
 
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
+
+  useEffect(() => {
+    if (isMobile && isOpen) {
+      ref.current.classList.add('burger-open');
+      // setTimeout(() => {
+      // }, 50);
+    } else if (isMobile && !isOpen) {
+      ref.current.classList.remove('burger-open');
+      // setTimeout(() => {
+      // }, 350);
+    }
+  }, [isOpen]);
 
   return (
     <header className="sticky z-40 top-12 bg-[#fdfdfd]">
       <div className="wrap">
-        <div className="flex align-center justify-between items-center h-20 gap-x-8 text-header
+        <div className="flex align-center justify-between items-center h-20 lg:h-[50px] gap-x-8 text-header
         lg:grid lg:grid-cols-3
         ">
 
           {isMobile &&
+            <div
+              ref={ref}
+              className="burger fixed top-0 right-0 bottom-0 left-0 z-50 bg-white box-border py-16 px-6 overflow-auto">
+              <BurgerMobile />
+            </div>
+          }
+
+          {isMobile &&
             <div className="justify-self-start row-span-1 flex items-center gap-x-5">
-              <button >
+              <button
+                className="fixed z-50"
+                onClick={() => setIsOpen(!isOpen)}
+              >
                 <BurgerIcon />
               </button>
-              <Link href='/search' className="header-link transit">
+              <Link href='/search' className="header-link transit lg:ml-12">
                 <Search className='header-icon' />
               </Link>
             </div>

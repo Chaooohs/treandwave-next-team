@@ -6,6 +6,7 @@ import { Card } from "..";
 import { Button, Title } from "@/components/ui";
 import { Filter } from "../../ui/filter";
 import { SortingMenu } from "../../ui/sortingMenu";
+import { BreadcrumbCustom } from "@/components/ui/breadCrumbsCustom";
 
 
 
@@ -33,7 +34,7 @@ export default function CardList({ title, tags, image, products, totalGoods }) {
     <div className="bg-white pt-10 pb-20 font-mont w-full flex flex-col gap-5 xl:gap-10">
       <div className="relative flex flex-col gap-6">
         <div>
-          Головна / Каталог
+          <BreadcrumbCustom title={title}/>
         </div>
         <div>
           <Title text={title} size="xl" className='font-mul font-extrabold uppercase' />
@@ -45,7 +46,7 @@ export default function CardList({ title, tags, image, products, totalGoods }) {
         )}
       </div>
       {tags && (
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
 
           {tags.map((item, index) => (
             <div key={index}>

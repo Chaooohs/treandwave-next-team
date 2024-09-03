@@ -60,7 +60,7 @@ export const Footer = () => {
   return (
     <footer>
       <div className="font-mont bg-[#121212] text-white">
-        <div className="px-10 lg:px-24 grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-20 py-20">
+        <div className="px-5 md:px-10 lg:px-24 grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-20 py-20">
           <div className="flex flex-col gap-5 justify-center">
             <div>
               <Logo fill='white' stroke='white' className={''} />
@@ -80,7 +80,7 @@ export const Footer = () => {
               </Link>
             </div>
           </div>
-          <div className="flex gap-10 md:gap-20">
+          <div className="flex gap-5 md:gap-20 justify-between md:justify-start">
             {footerLinks.map((item, index) => (
               <div key={index} className="flex flex-col gap-5">
                 <Title2 text={item.title} />

@@ -1,16 +1,72 @@
 'use client';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useGetGoodsQuery } from "@/redux/api/goodsApi";
+import { useRouter } from "next/navigation";
+import qs from 'qs'
 
 import Image from "next/image";
 import { Card } from "..";
-import { Button, Title } from "@/components/ui";
+import { Button, PaginationOutline, Title } from "@/components/ui";
 import { Filter } from "../../ui/filter";
 import { SortingMenu } from "../../ui/sortingMenu";
+<<<<<<< HEAD
 import { BreadcrumbCustom } from "@/components/ui/breadCrumbsCustom";
+=======
+import { setFilters, setSkip } from "@/redux/features/filtersSlice";
 
 
 
-export default function CardList({ title, tags, image, products, totalGoods }) {
+export default function CardList({ title, tags, image, }) {
+
+
+  const router = useRouter()
+  const dispatch = useDispatch()
+  let { limit, skip } = useSelector((state) => state.filters);
+
+  const { products, totalGoods, pageNumber, loading } = useGetGoodsQuery(`/products?limit=${limit}&skip=${skip}`,
+    {
+      selectFromResult: ({ data, isLoading }) => ({
+        products: data?.goods,
+        totalGoods: data?.totalGoods,
+        pageNumber: data?.pageNumber,
+        loading: isLoading,
+      }),
+    },
+  )
+
+
+  useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+      dispatch(setFilters(params));
+    }
+  }, []);
+
+
+  useEffect(() => {
+    const string = {
+      limit,
+      skip,
+    }
+    const queryString = qs.stringify(string, { skipNulls: true })
+    router.push(`?${queryString}`);
+  }, [skip])
+
+
+  const handlePaginationClick = (e) => {
+    dispatch(setSkip(`${e.selected}0`))
+  }
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pageNumber])
+
+>>>>>>> ev
+
+
+
   const productsQuantity = products?.length;
 
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -67,8 +123,11 @@ export default function CardList({ title, tags, image, products, totalGoods }) {
           <Filter onApplyFilters={applyFilters} />
         </div>
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-4 gap-5">
         {
+          loading ?
+          <h1>Loading...</h1>
+        :
           Array.isArray(products) &&
           products.map((el) => {
             return (
@@ -79,6 +138,13 @@ export default function CardList({ title, tags, image, products, totalGoods }) {
           })
         }
       </div>
+
+      <PaginationOutline
+        totalGoods={totalGoods}
+        onPaginationClick={handlePaginationClick}
+        skip={skip}
+      />
+
     </div>
   )
 }

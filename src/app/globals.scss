@@ -67,6 +67,7 @@
 
   .page {
     container-type: inline-size;
+    position: relative;
     display: grid;
     grid-template-rows: auto auto 1fr auto;
     max-width: 1440px;
@@ -75,11 +76,20 @@
   }
 
   .wrap {
-    @apply px-10 box-border;
+    @apply px-10 box-border lg:px-6;
   }
 
   .content {
     @apply pb-14 mt-14 box-border;
+  }
+
+  .burger {
+    transform: translateX(-100vw);
+    transition: all .3s linear;
+  }
+
+  .burger-open {
+    transform: translateX(0);
   }
 
   .baner {
@@ -205,7 +215,7 @@
   }
 
   .header-link {
-    @apply flex items-center gap-x-2 box-border py-2 border-b border-white hover:text-[#6a6a6a] hover:border-[#6a6a6a] transition-all duration-300 ease-linear cursor-pointer;
+    @apply flex items-center gap-x-2 box-border border-b border-white hover:text-[#6a6a6a] hover:border-[#6a6a6a] transition-all duration-300 ease-linear cursor-pointer;
   }
 
   .header-icon,

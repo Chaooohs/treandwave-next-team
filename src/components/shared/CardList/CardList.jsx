@@ -10,9 +10,6 @@ import { Card } from "..";
 import { Button, PaginationOutline, Title } from "@/components/ui";
 import { Filter } from "../../ui/filter";
 import { SortingMenu } from "../../ui/sortingMenu";
-<<<<<<< HEAD
-import { BreadcrumbCustom } from "@/components/ui/breadCrumbsCustom";
-=======
 import { setFilters, setSkip } from "@/redux/features/filtersSlice";
 
 
@@ -63,7 +60,6 @@ export default function CardList({ title, tags, image, }) {
     window.scrollTo(0, 0)
   }, [pageNumber])
 
->>>>>>> ev
 
 
 

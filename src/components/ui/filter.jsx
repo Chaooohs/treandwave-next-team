@@ -62,7 +62,7 @@ export function Filter({onApplyFilters}) {
           <SheetTrigger asChild>
             <Button variant='functional'>
                 <FilterIcon />
-                <p className="pl-1">фільтрувати</p>
+                <p className="pl-1 hidden md:block">фільтрувати</p>
             </Button>
           </SheetTrigger >
           <SheetContent className='sm:w-screen md:w-[400px] overflow-y-auto max-h-[826px]'>

@@ -28,7 +28,7 @@ export function SortingMenu() {
         <DropdownMenuTrigger asChild>
           <Button variant='functional'>
             <Sort />
-            <p className="pl-1 hidden md:block">Сортувати</p>
+            <p className="pl-1 block md:hidden">Сортувати</p>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className='w-56 border-[#212121]'>

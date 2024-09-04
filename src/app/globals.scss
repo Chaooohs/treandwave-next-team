@@ -114,6 +114,24 @@
     column-gap: 32px;
   }
 
+  .search-box {
+    & input {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      text-transform: uppercase;
+      color: #121212;
+
+      &::placeholder {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        text-transform: uppercase;
+        color: #939393;
+      }
+    }
+  }
+
   .input-color:checked+label {
     opacity: 0.2;
   }
@@ -127,6 +145,7 @@
     & svg path {
       transition: all .3s linear;
     }
+
     &:hover svg path {
       stroke: #6a6a6a;
     }
@@ -180,6 +199,7 @@
     & .next:hover {
       border: 1px solid #212121;
       transition: all .3s linear;
+
       & a {
         background: transparent;
         color: #212121;
@@ -188,8 +208,10 @@
 
     & .disabled {
       color: #ededed;
+
       &:hover {
         border: 1px solid #ededed;
+
         & a {
           color: #ededed;
           cursor: default !important;
@@ -215,7 +237,7 @@
   }
 
   .header-link {
-    @apply flex items-center gap-x-2 box-border border-b border-white hover:text-[#6a6a6a] hover:border-[#6a6a6a] transition-all duration-300 ease-linear cursor-pointer;
+    @apply py-4 flex items-center gap-x-2 box-border border-b border-white hover:text-[#6a6a6a] hover:border-[#6a6a6a] transition-all duration-300 ease-linear cursor-pointer;
   }
 
   .header-icon,

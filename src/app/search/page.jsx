@@ -1,11 +1,13 @@
 'use client'
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import {useDebouncedCallback} from "use-debounce"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { useDebouncedCallback } from "use-debounce"
 import { usePathname } from "next/navigation"
 
 import CardList from "@/components/shared/CardList/CardList"
 import { setSearch } from "@/redux/features/filtersSlice"
+import CloseIcon from '/public/image/svg/close.svg'
+import SearchIcon from '/public/image/svg/search.svg'
 
 
 export default function Page() {
@@ -13,10 +15,6 @@ export default function Page() {
   const dispatch = useDispatch()
   const [isSearchValue, setIsSearchValue] = useState('')
 
-
-  useEffect(() => {
-    setIsSearchValue('')
-  }, [])
 
   const searchValueByTimer = useDebouncedCallback((value) => {
     dispatch(setSearch(value))
@@ -27,17 +25,29 @@ export default function Page() {
     setIsSearchValue(value)
   }
 
+  const onClearSearch = () => {
+    setIsSearchValue('')
+    dispatch(setSearch(''))
+  }
+
 
   return (
     <div className="wrap">
-      <div className="search-box">
+      <div className="search-box relative">
+        <SearchIcon className='absolute top-[38px] left-3'/>
         <input
-          type="search"
-          className="rounded border border-[#ededed] outline-none w-full h-[52px] bg-transparent box-border p-3 mt-6"
+          type="text"
+          className="rounded border border-[#ededed] outline-none w-full h-[52px] bg-transparent box-border py-3 px-14 mt-6"
           placeholder="пошук"
           value={isSearchValue}
-          onChange={(e)=> onChangeSearch(e.target.value)}
+          onChange={(e) => onChangeSearch(e.target.value)}
         />
+        <button
+          className="absolute top-[38px] right-3"
+          onClick={onClearSearch}
+        >
+          <CloseIcon />
+        </button>
       </div>
       <CardList pathname={pathname} />
     </div>

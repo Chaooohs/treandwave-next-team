@@ -1,22 +1,60 @@
 'use client'
 import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import Logo from '/public/image/svg/logo.svg'
+import CloseIcon from '/public/image/svg/close.svg'
+import { setOpenBurger } from '@/redux/features/openSlice'
 
 export const BurgerMobile = () => {
+  const ref = useRef();
+  const dispatch = useDispatch()
+  const [isOpen, setIsOpen] = useState(false)
+  const burger = useSelector(state => state.open.burger)
+
+  useEffect(() => {
+    if (burger && !isOpen) {
+      setTimeout(() => {
+        ref.current.classList.add('burger-open');
+        document.body.classList.add('no-scroll')
+      }, 50);
+    }
+    else if (isOpen) {
+      ref.current.classList.remove('burger-open');
+      setTimeout(() => {
+        dispatch(setOpenBurger(false))
+      }, 350);
+    }
+  }, [isOpen, burger]);
+
+  const handleClick = () => {
+    setIsOpen(true)
+    document.body.classList.remove('no-scroll')
+  }
+
   return (
-    <>
-      <Logo className='ml-auto' />
+    <div
+      ref={ref}
+      className="burger fixed top-0 right-0 bottom-0 left-0 z-50 bg-white box-border py-16 px-6 overflow-auto"
+    >
+      <div className='burger-mobile-grid'>
+        <Logo />
+        <button onClick={handleClick}>
+          <CloseIcon />
+        </button>
+      </div>
       <nav>
-        <div className="font-semibold uppercase text-base inline-flex gap-y-4 flex-col mt-12">
-          <Link href='/catalog' className="header-link">Усі</Link>
-          <Link href='/sale' className="header-link">Sale</Link>
-          <Link href='/collections' className="header-link">Колекції</Link>
-          <Link href='#!' className="header-link">Бестселери</Link>
-          <Link href='#!' className="header-link">Сукні</Link>
-          <Link href='#!' className="header-link">Костюми</Link>
-          <Link href='#!' className="header-link">футболки та Топи</Link>
+        <div className="font-semibold uppercase text-base inline-flex flex-col mt-12">
+          <Link href='/catalog' className="header-link" onClick={handleClick}>Усі</Link>
+          <Link href='/sale' className="header-link" onClick={handleClick}>Sale</Link>
+          <Link href='/collections' className="header-link" onClick={handleClick}>Колекції</Link>
+          <Link href='#!' className="header-link" onClick={handleClick}>Бестселери</Link>
+          <Link href='#!' className="header-link" onClick={handleClick}>Сукні</Link>
+          <Link href='#!' className="header-link" onClick={handleClick}>Костюми</Link>
+          <Link href='#!' className="header-link" onClick={handleClick}>футболки та Топи</Link>
         </div>
       </nav>
-    </>
+    </div>
   )
 }

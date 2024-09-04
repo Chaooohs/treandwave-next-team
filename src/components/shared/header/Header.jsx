@@ -1,7 +1,6 @@
 'use client'
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useMediaQuery } from "react-responsive"
 
 import Cart from '/public/image/svg/cart.svg'
@@ -13,28 +12,18 @@ import BurgerIcon from '/public/image/svg/burger.svg'
 import { PopoverBurger } from "./PopoverBurger"
 import { PopoverCart } from "./PopoverCart"
 import { BurgerMobile } from "./BurgerMobile"
+import { setOpenBurger } from "@/redux/features/openSlice"
 
 
 export const Header = () => {
-  const ref = useRef()
+  const dispatch = useDispatch()
   const cart = useSelector(state => state.cart.cart)
+  const burger = useSelector(state => state.open.burger)
   const isDesktop = useMediaQuery({ minWidth: 1024 })
   const isMobile = useMediaQuery({ maxWidth: 1023 })
-  const [isOpen, setIsOpen] = useState(false)
 
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
 
-  useEffect(() => {
-    if (isMobile && isOpen) {
-      ref.current.classList.add('burger-open');
-      // setTimeout(() => {
-      // }, 50);
-    } else if (isMobile && !isOpen) {
-      ref.current.classList.remove('burger-open');
-      // setTimeout(() => {
-      // }, 350);
-    }
-  }, [isOpen]);
 
   return (
     <header className="sticky z-40 top-12 bg-[#fdfdfd]">
@@ -43,23 +32,16 @@ export const Header = () => {
         lg:grid lg:grid-cols-3
         ">
 
-          {isMobile &&
-            <div
-              ref={ref}
-              className="burger fixed top-0 right-0 bottom-0 left-0 z-50 bg-white box-border py-16 px-6 overflow-auto">
-              <BurgerMobile />
-            </div>
+          {isMobile && burger &&
+            <BurgerMobile />
           }
 
           {isMobile &&
             <div className="justify-self-start row-span-1 flex items-center gap-x-5">
-              <button
-                className="fixed z-50"
-                onClick={() => setIsOpen(!isOpen)}
-              >
+              <button onClick={() => dispatch(setOpenBurger(true))}>
                 <BurgerIcon />
               </button>
-              <Link href='/search' className="header-link transit lg:ml-12">
+              <Link href='/search' className="header-link transit">
                 <Search className='header-icon' />
               </Link>
             </div>

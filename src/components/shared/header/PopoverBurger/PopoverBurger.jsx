@@ -42,7 +42,7 @@ export const PopoverBurger = () => {
         <PopoverContent
           onPointerDownOutside={() => setClick(!false)}
           align='end'
-          sideOffset={19}
+          sideOffset={11}
           className='w-[586px] bg-white rounded-none'
         >
           <BurgerMenu />

@@ -65,6 +65,10 @@
 
   /* #region common */
 
+  .no-scroll {
+    overflow: hidden;
+  }
+
   .page {
     container-type: inline-size;
     position: relative;
@@ -237,7 +241,8 @@
   }
 
   .header-link {
-    @apply py-4 flex items-center gap-x-2 box-border border-b border-white hover:text-[#6a6a6a] hover:border-[#6a6a6a] transition-all duration-300 ease-linear cursor-pointer;
+    @apply py-4 flex items-center gap-x-2 box-border border-b border-white hover:text-[#6a6a6a] hover:border-[#6a6a6a] transition-all duration-300 ease-linear cursor-pointer
+    lg:border-none;
   }
 
   .header-icon,
@@ -306,4 +311,22 @@
   }
 
   /* #endregion */
+
+  /* #region media 1023 */
+
+  .burger-mobile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    & svg {
+      grid-column: 2/3;
+      justify-self: center;
+    }
+    & button {
+      grid-column: 3/4;
+      justify-self: end;
+    }
+  }
+
+  /* #endregion */
+
 }

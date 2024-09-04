@@ -36,7 +36,7 @@ export const BurgerMobile = () => {
   return (
     <div
       ref={ref}
-      className="burger fixed top-0 right-0 bottom-0 left-0 z-50 bg-white box-border py-16 px-6 overflow-auto"
+      className="burger absolute h-screen top-0 right-0 bottom-0 left-0 z-50 bg-white box-border pt-[20px] pb-16 px-6 overflow-auto"
     >
       <div className='burger-mobile-grid'>
         <Logo />

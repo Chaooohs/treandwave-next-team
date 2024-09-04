@@ -11,7 +11,7 @@ export const Categories = () => {
       <div className="wrap">
         <div className="content">
           <Title text="Категорії" size="xl" className="font-mul font-extrabold uppercase " />
-          <div className="card-layout">
+          <div className="card-layout-home">
             {Array.isArray(categories) &&
               categories.map((el) => {
                 return (

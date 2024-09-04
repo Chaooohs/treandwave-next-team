@@ -17,7 +17,7 @@ export const BestSaler = ({ products }) => {
             <ButtonWithArrow />
           </div>
 
-          <div className="card-layout">
+          <div className="card-layout-home">
             {Array.isArray(goods) &&
               goods.map((el) => {
                 return (

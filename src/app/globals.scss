@@ -101,7 +101,7 @@
     width: 100cqi;
   }
 
-  .card-layout {
+  .card-layout-home {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18cqi, 1fr));
     gap: 24px;
@@ -314,19 +314,32 @@
 
   /* #region media 1023 */
 
-  .burger-mobile-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    & svg {
-      grid-column: 2/3;
-      justify-self: center;
+  @media (max-width: 1023px) {
+
+    .burger-mobile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      & svg {
+        grid-column: 2/3;
+        justify-self: center;
+      }
+      & button {
+        grid-column: 3/4;
+        justify-self: end;
+      }
     }
-    & button {
-      grid-column: 3/4;
-      justify-self: end;
+    .card-layout-home {
+      display: flex;
+      width: 100vw;
+      overflow-x: auto;
+      padding-right: 40px;
+    }
+    .card-img {
+      width: 224px;
+      height: 278px;
     }
   }
-
+    
   /* #endregion */
 
 }

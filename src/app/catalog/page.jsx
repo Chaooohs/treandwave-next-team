@@ -11,69 +11,17 @@ import CardList from "@/components/shared/CardList/CardList";
 
 
 export default function Page() {
-  // const pathname = usePathname()
-  // const router = useRouter()
-  // const dispatch = useDispatch()
-  // let { limit, skip } = useSelector((state) => state.filters);
-
-  // const { goods, totalGoods, pageNumber, loading } = useGetGoodsQuery(`/products?limit=${limit}&skip=${skip}`,
-  //   {
-  //     selectFromResult: ({ data, isLoading }) => ({
-  //       goods: data?.goods,
-  //       totalGoods: data?.totalGoods,
-  //       pageNumber: data?.pageNumber,
-  //       loading: isLoading,
-  //     }),
-  //   },
-  // )
-
-
-  // useEffect(() => {
-  //   if (window.location.search) {
-  //     const params = qs.parse(window.location.search.substring(1));
-  //     dispatch(setFilters(params));
-  //   }
-  // }, []);
-
-
-  // useEffect(() => {
-  //   const string = {
-  //     limit,
-  //     skip,
-  //   }
-  //   const queryString = qs.stringify(string, { skipNulls: true })
-  //   router.push(`?${queryString}`);
-  // }, [skip])
-
-
-  // const handlePaginationClick = (e) => {
-  //   dispatch(setSkip(`${e.selected}0`))
-  // }
-
-
-  // useEffect(() => {
-  //   window.scrollTo(0, 0)
-  // }, [pageNumber])
-
 
   const title = 'Каталог';
   const tagsArr = ['брюки', 'спідниця', 'жакети', 'футболки', 'сукні']
 
 
   return (
-    <>
-      <div className="wrap">
-        <CardList
-          title={title}
-          tags={tagsArr}
-        />
-      </div>
-
-      {/* <PaginationOutline
-        totalGoods={totalGoods}
-        onPaginationClick={handlePaginationClick}
-        skip={skip}
-      /> */}
-    </>
+    <div className="wrap">
+      <CardList
+        title={title}
+        tags={tagsArr}
+      />
+    </div>
   )
 }

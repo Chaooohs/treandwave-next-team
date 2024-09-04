@@ -13,15 +13,27 @@ import { SortingMenu } from "../../ui/sortingMenu";
 import { setFilters, setSkip } from "@/redux/features/filtersSlice";
 
 
-
 export default function CardList({ title, tags, image, pathname, }) {
-
-
   const router = useRouter()
   const dispatch = useDispatch()
   let { limit, skip, search } = useSelector((state) => state.filters);
-  
-  const { products, totalGoods, pageNumber, loading } = useGetGoodsQuery(`/products${pathname === '/search' ? pathname : ''}?limit=${limit}&skip=${skip}&q=${search}`,
+
+  let category = ''
+  switch (pathname) {
+    case "/search":
+      category = '/search'
+      break;
+    case "/sale":
+      category = '/category/groceries'
+      break;
+    case "/collections":
+      category = '/category/furniture'
+      break;
+    default:
+      category = '';
+  }
+
+  const { products, totalGoods, loading } = useGetGoodsQuery(`/products${category}?limit=${limit}&skip=${skip}&q=${search}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.goods,
@@ -31,6 +43,7 @@ export default function CardList({ title, tags, image, pathname, }) {
       }),
     },
   )
+
 
   useEffect(() => {
     if (window.location.search) {

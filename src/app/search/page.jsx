@@ -5,7 +5,7 @@ import { useDebouncedCallback } from "use-debounce"
 import { usePathname } from "next/navigation"
 
 import CardList from "@/components/shared/CardList/CardList"
-import { setSearch } from "@/redux/features/filtersSlice"
+import { setSearch, setSkip } from "@/redux/features/filtersSlice"
 import CloseIcon from '/public/image/svg/close.svg'
 import SearchIcon from '/public/image/svg/search.svg'
 
@@ -28,8 +28,10 @@ export default function Page() {
   const onClearSearch = () => {
     setIsSearchValue('')
     dispatch(setSearch(''))
+    dispatch(setSkip('0'))
   }
 
+  const title = 'пошук';
 
   return (
     <div className="wrap">
@@ -49,7 +51,7 @@ export default function Page() {
           <CloseIcon />
         </button>
       </div>
-      <CardList pathname={pathname} />
+      <CardList pathname={pathname} title={title} />
     </div>
   )
 }

@@ -19,7 +19,7 @@ export function BreadcrumbCustom({title}) {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/" className=' text-sm'>Головна</BreadcrumbLink>
+          <BreadcrumbLink href="/" className=' text-sm capitalize'>головна</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
           /
@@ -31,7 +31,7 @@ export function BreadcrumbCustom({title}) {
           /
         </BreadcrumbSeparator> */}
         <BreadcrumbItem>
-          <BreadcrumbPage>{title}</BreadcrumbPage>
+          <BreadcrumbPage className=' text-sm capitalize'>{title}</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

@@ -6,22 +6,34 @@ import { useRouter } from "next/navigation";
 import qs from 'qs'
 
 import Image from "next/image";
-import { Card } from "..";
+import { BreadcrumbCustom, Card } from "..";
 import { Button, PaginationOutline, Title } from "@/components/ui";
 import { Filter } from "../../ui/filter";
 import { SortingMenu } from "../../ui/sortingMenu";
 import { setFilters, setSkip } from "@/redux/features/filtersSlice";
 
 
-
-export default function CardList({ title, tags, image, }) {
-
-
+export default function CardList({ title, tags, image, pathname, }) {
   const router = useRouter()
   const dispatch = useDispatch()
-  let { limit, skip } = useSelector((state) => state.filters);
+  let { limit, skip, search } = useSelector((state) => state.filters);
 
-  const { products, totalGoods, pageNumber, loading } = useGetGoodsQuery(`/products?limit=${limit}&skip=${skip}`,
+  let category = ''
+  switch (pathname) {
+    case "/search":
+      category = '/search'
+      break;
+    case "/sale":
+      category = '/category/groceries'
+      break;
+    case "/collections":
+      category = '/category/furniture'
+      break;
+    default:
+      category = '';
+  }
+
+  const { products, totalGoods, loading } = useGetGoodsQuery(`/products${category}?limit=${limit}&skip=${skip}&q=${search}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.goods,
@@ -45,10 +57,11 @@ export default function CardList({ title, tags, image, }) {
     const string = {
       limit,
       skip,
+      q: search === "" ? null : search,
     }
     const queryString = qs.stringify(string, { skipNulls: true })
     router.push(`?${queryString}`);
-  }, [skip])
+  }, [skip, search])
 
 
   const handlePaginationClick = (e) => {
@@ -58,7 +71,7 @@ export default function CardList({ title, tags, image, }) {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [pageNumber])
+  }, [skip])
 
 
 
@@ -86,7 +99,7 @@ export default function CardList({ title, tags, image, }) {
     <div className="bg-white pt-10 pb-20 font-mont w-full flex flex-col gap-5 xl:gap-10">
       <div className="relative flex flex-col gap-6">
         <div>
-          <BreadcrumbCustom title={title}/>
+          <BreadcrumbCustom title={title} />
         </div>
         <div>
           <Title text={title} size="xl" className='font-mul font-extrabold uppercase' />
@@ -122,16 +135,16 @@ export default function CardList({ title, tags, image, }) {
       <div className="grid grid-cols-4 gap-5">
         {
           loading ?
-          <h1>Loading...</h1>
-        :
-          Array.isArray(products) &&
-          products.map((el) => {
-            return (
-              <div key={el.id} className="relative">
-                <Card el={el} />
-              </div>
-            )
-          })
+            <h1>Loading...</h1>
+            :
+            Array.isArray(products) &&
+            products.map((el) => {
+              return (
+                <div key={el.id} className="relative">
+                  <Card el={el} />
+                </div>
+              )
+            })
         }
       </div>
 

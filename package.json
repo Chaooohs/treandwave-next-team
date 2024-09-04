@@ -31,7 +31,8 @@
     "sass": "^1.77.8",
     "swiper": "^11.1.9",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "use-debounce": "^10.0.3"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

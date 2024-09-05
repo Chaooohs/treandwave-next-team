@@ -31,7 +31,7 @@ export const CartFull = () => {
           <span className="uppercase text-base font-semibold">uah</span>
         </div>
         <Button className='mt-8 w-full uppercase font-semibold text-base'>Оформити замовлення</Button>
-        <Link href='#!'>
+        <Link href='/checkout'>
           <Button variant='outline' className='mt-3 w-full uppercase font-semibold text-base'>Оформити замовлення</Button>
         </Link>
       </div>

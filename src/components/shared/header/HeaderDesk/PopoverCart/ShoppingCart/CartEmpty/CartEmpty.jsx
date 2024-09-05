@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Button, Title } from "@/components/ui"
-import CartBig from '../../../../../../../public/image/svg/cart-big.svg'
+import CartBig from '/public/image/svg/cart-big.svg'
 
 
 export const CartEmpty = () => {

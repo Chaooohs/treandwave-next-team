@@ -72,8 +72,8 @@
   .page {
     container-type: inline-size;
     position: relative;
-    display: grid;
-    grid-template-rows: auto auto 1fr auto;
+    // display: grid;
+    // grid-template-rows: auto auto 1fr auto;
     max-width: 1440px;
     min-height: 100%;
     margin: 0 auto;
@@ -330,7 +330,6 @@
     }
     .card-layout-home {
       display: flex;
-      width: 100vw;
       overflow-x: auto;
       padding-right: 40px;
     }

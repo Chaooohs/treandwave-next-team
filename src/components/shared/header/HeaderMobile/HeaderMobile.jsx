@@ -19,32 +19,36 @@ export const HeaderMobile = () => {
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
 
   return (
-    <>
-      {
-        burger &&
-        <BurgerMobile />
-      }
+    <header className="sticky z-40 top-12 bg-[#fdfdfd]">
+      <div className="wrap">
+        <div className="h-14 grid grid-cols-3 items-center">
 
-      <div className="justify-self-start row-span-1 flex items-center gap-x-5">
-        <button onClick={() => dispatch(setOpenBurger(true))}>
-          <BurgerIcon />
-        </button>
-        <Link href='/search' className="header-link transit">
-          <Search className='header-icon' />
-        </Link>
-      </div>
+          {
+            burger &&
+            <BurgerMobile />
+          }
 
-      <Link href='/' className="lg:justify-self-center lg:row-span-1">
-        <Logo />
-      </Link>
+          <div className="justify-self-start row-span-1 flex items-center gap-x-5">
+            <button onClick={() => dispatch(setOpenBurger(true))}>
+              <BurgerIcon />
+            </button>
+            <Link href='/search' className="header-link transit">
+              <Search className='header-icon' />
+            </Link>
+          </div>
 
-      <div className="header-link">
-        <Cart className='header-icon-cart' />
-        <div className="flex gap-x-1 uppercase">
-          (<span className="w-4 inline-block text-center">{counter}</span>)
+          <Link href='/' className="justify-self-center row-span-1">
+            <Logo />
+          </Link>
+
+          <div className="header-link justify-self-end">
+            <Cart className='header-icon-cart' />
+            <div className="flex gap-x-1 uppercase font-semibold">
+              (<span className="w-4 inline-block text-center">{counter}</span>)
+            </div>
+          </div>
         </div>
       </div>
-      
-    </>
+    </header>
   )
 }

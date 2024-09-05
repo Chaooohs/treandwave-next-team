@@ -1,8 +1,8 @@
 'use client'
 import { Popover, PopoverContent, PopoverTrigger, PopoverArrow, PopoverClose } from "@/components/ui/popover"
 
-import CloseIcon from '../../../../../public/image/svg/close.svg'
-import ArrowDown from '../../../../../public/image/svg/arrow-down.svg'
+import CloseIcon from '/public/image/svg/close.svg'
+import ArrowDown from '/public/image/svg/arrow-down.svg'
 import { BurgerMenu } from "./BurgerMenu"
 import { useEffect, useRef, useState } from "react"
 

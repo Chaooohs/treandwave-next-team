@@ -3,8 +3,8 @@ import MailForm from "@/components/shared/mailForm";
 
 export default function AboutLayout({ children }) {
     return (
-        <section className="w-full pt-10 pb-20 px-5 lg:px-10 flex">
+        <main className="w-full pt-10 pb-20 px-5 lg:px-10 flex">
             <AboutNavigation/>
             {children}
-        </section>
+        </main>
   )}

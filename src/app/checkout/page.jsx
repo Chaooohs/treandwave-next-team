@@ -12,7 +12,7 @@ export default function ShoppingCart() {
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
 
   return (
-    <section>
+    <main>
       <div className="wrap">
         <div className="content">
           <Title text='Кошик' size="xl" className='font-mul font-extrabold uppercase ' />
@@ -38,6 +38,6 @@ export default function ShoppingCart() {
           </div>
         </div>
       </div>
-    </section>
+    </main>
   )
 }

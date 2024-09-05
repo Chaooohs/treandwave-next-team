@@ -47,6 +47,10 @@
     color: #212121;
   }
 
+  main {
+    flex: 1 1 auto;
+  }
+
   h1,
   h2 {
     font-family: var(--font-mulish);
@@ -72,8 +76,8 @@
   .page {
     container-type: inline-size;
     position: relative;
-    // display: grid;
-    // grid-template-rows: auto auto 1fr auto;
+    display: flex;
+    flex-direction: column;
     max-width: 1440px;
     min-height: 100%;
     margin: 0 auto;

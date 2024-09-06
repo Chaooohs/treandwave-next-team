@@ -10,7 +10,7 @@ export const YouSection = () => {
         <div className="content">
 
           <div className="flex items-center gap-x-3">
-            <Title text='Ви' size='xl' className='font-mul font-extrabold uppercase' />
+            <Title text='Ви' size='xl' className='font-mul font-extrabold uppercase lg:text-3xl' />
             <Heart className='w-48' />
           </div>
 

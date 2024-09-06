@@ -16,7 +16,7 @@ export const Baner = () => {
 
         <div className='absolute top-2/4 left-2/4 z-10 text-center translate-y-[-50%] translate-x-[-50%]'>
 
-          <Title text='sale' size='xl' className='font-mul font-extrabold uppercase text-white' />
+          <Title text='sale' size='2xl' className='font-mul font-extrabold uppercase text-white' />
 
           <p className='font-mont text-2xl font-semibold text-white mt-3'>до 50% знижки</p>
 

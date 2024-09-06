@@ -50,16 +50,16 @@ export default function MailForm() {
 
 
   return (
-    <div className="wrap">
+    <div className="wrap md:px-4 lg:px-28 ">
       <div className="content">
-        <div className="flex flex-row gap-5 md:flex-col items-center md:justify-start justify-around ">
-          <div className='w-1/2 md:w-full'>
-            <Title text={'Підписка на розсилку'} size="lg" className={'font-mul uppercase font-extrabold'} />
+        <div className="flex flex-row gap-5 lg:flex-col items-center md:justify-start justify-around ">
+          <div className='w-1/2 lg:w-full'>
+            <Title text={'Підписка на розсилку'} size="lg" className={'font-mul uppercase font-extrabold md:text-2xl'} />
             <p className="font-mont text-base font-normal">
               Підпишись та дізнавайся першим про акції та знижки
             </p>
           </div>
-          <div className="w-1/2 md:w-full">
+          <div className="w-1/2 lg:w-full">
             <div>
               <Input
                 type="email"

@@ -22,7 +22,7 @@ export function PopUp({onClick, isValid, onClose}) {
         <DialogTrigger asChild className=''>
           <Button
               variant='default'
-              className='w-48 h-14 font-mont font-semibold text-base uppercase'
+              className='w-48 h-14 font-mont font-semibold text-base uppercase lg:w-full'
               onClick={onClick}
               
             >

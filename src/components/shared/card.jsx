@@ -23,21 +23,21 @@ export const Card = ({ el }) => {
           <Image src={el.images[1]} alt={el.title} width={322} height={400} className="card-img-hide" />
         </div>
 
-        <Title text={el.title} size="xs" className="font-mont font-semibold uppercase mt-3" />
+        <Title text={el.title} size="xs" className="font-mont font-semibold uppercase mt-3 lg:text-base" />
 
         <Price
           price={el.price}
           discount={Math.floor(el.discountPercentage)}
           sizeP='text-lg'
           sizeD='text-base'
-          className='mt-2'
+          className='mt-2 lg:text-sm'
         />
 
         <div className="absolute top-4 left-4 flex gap-x-1">
           {
             el.discountPercentage > 1 &&
-            <div className=" w-16 h-9	bg-black flex items-center text-center justify-center">
-              <span className="text-base font-medium text-white">{`${Math.floor(el.discountPercentage)}%`}</span>
+            <div className=" py-1 px-2 bg-black flex items-center text-center justify-center">
+              <span className="text-base font-medium text-white lg:text-xs">{`${Math.floor(el.discountPercentage)}%`}</span>
             </div>
           }
           {

@@ -88,7 +88,7 @@
   }
 
   .content {
-    @apply pb-14 mt-14 box-border;
+    @apply  my-14 box-border lg:my-10;
   }
 
   .burger {
@@ -336,6 +336,7 @@
       display: flex;
       overflow-x: auto;
       padding-right: 40px;
+      margin-top: 40px;
     }
     .card-img {
       width: 224px;

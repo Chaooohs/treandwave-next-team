@@ -14,7 +14,7 @@ export const BestSaler = ({ products }) => {
             <Title text="бестселери" size="xl" className="font-mul font-extrabold uppercase lap:text-3xl mob:text-2xl " />
             <ButtonWithArrow />
           </div>
-          <div className="lap:h-[450px] lap:relative mob:h-[400px]">
+          <div className="lap:h-[450px] lap:relative mob:h-[368px]">
             <div className="card-layout-home lap:absolute lap:inset-0 lap:pl-6">
               {Array.isArray(goods) &&
                 goods.map((el) => {

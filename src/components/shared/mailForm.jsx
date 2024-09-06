@@ -50,23 +50,23 @@ export default function MailForm() {
 
 
   return (
-    <div className="wrap md:px-4 lg:px-28 ">
+    <div className="wrap">
       <div className="content">
-        <div className="flex flex-row gap-5 lg:flex-col items-center md:justify-start justify-around ">
-          <div className='w-1/2 lg:w-full'>
-            <Title text={'Підписка на розсилку'} size="lg" className={'font-mul uppercase font-extrabold md:text-2xl'} />
-            <p className="font-mont text-base font-normal">
+        <div className="flex flex-row gap-5 lap:flex-col items-center mob:justify-start justify-around lap:w-4/6 lap:mx-auto mob:w-full ">
+          <div className='w-1/2 lap:w-full'>
+            <Title text={'Підписка на розсилку'} size="lg" className={'font-mul uppercase font-extrabold mob:text-2xl'} />
+            <p className="font-mont text-base font-normal lap:mt-3 mob:text-sm	mob:mt-2">
               Підпишись та дізнавайся першим про акції та знижки
             </p>
           </div>
-          <div className="w-1/2 lg:w-full">
-            <div>
+          <div className="w-1/2 lap:w-full">
+            <div className='lap:mt-10 mob:mt-6'>
               <Input
                 type="email"
                 placeholder='Введіть вашу електронну пошту'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`font-mont font-medium border-[1px] ${error ? 'border-[#C50018] text-[#C50018]' : 'border-stone-300 text-[#121212]'} hover:border-[#0047FF] focus:border-[#0047FF] focus:text-[#121212] focus-visible:ring-0`}
+                className={`h-14 font-medium border-[1px] ${error ? 'border-[#C50018] text-[#C50018]' : 'border-stone-300 text-[#121212]'} hover:border-[#0047FF] focus:border-[#0047FF] focus:text-[#121212] focus-visible:ring-0`}
               />
               {error && <p className="text-xs font-mont font-medium text-red-500 mt-1 mb-6">{error}</p>}
               {!error &&

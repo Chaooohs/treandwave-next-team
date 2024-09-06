@@ -23,7 +23,7 @@ export default function SwiperYou() {
           clickable: true,
         }}
         modules={[Navigation, FreeMode, Pagination]}
-        className="w-[100cqi] h-[45cqi] mb-14 swiper-pd"
+        className="w-[100cqi] h-[45cqi] mb-14 swiper-pd mob:h-[280px] mob:mb-4"
       >
         <SwiperSlide><CardYou/></SwiperSlide>
         <SwiperSlide><CardYou/></SwiperSlide>

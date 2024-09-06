@@ -22,9 +22,8 @@ export function PopUp({onClick, isValid, onClose}) {
         <DialogTrigger asChild className=''>
           <Button
               variant='default'
-              className='w-48 h-14 font-mont font-semibold text-base uppercase lg:w-full'
+              className='w-48 h-14 mob:h-[44px] font-mont font-semibold text-base uppercase lap:w-full lap:mt-6'
               onClick={onClick}
-              
             >
               підписатися
           </Button>

@@ -84,11 +84,11 @@
   }
 
   .wrap {
-    @apply px-10 box-border lg:px-6;
+    @apply px-10 box-border lap:px-6 mob:px-4;
   }
 
   .content {
-    @apply  my-14 box-border lg:my-10;
+    @apply my-14 box-border lap:my-10 mob:my-6;
   }
 
   .burger {
@@ -245,8 +245,7 @@
   }
 
   .header-link {
-    @apply py-4 flex items-center gap-x-2 box-border border-b border-white hover:text-[#6a6a6a] hover:border-[#6a6a6a] transition-all duration-300 ease-linear cursor-pointer
-    lg:border-none;
+    @apply py-4 flex items-center gap-x-2 box-border border-b border-white hover:text-[#6a6a6a] hover:border-[#6a6a6a] transition-all duration-300 ease-linear cursor-pointer lg:border-none;
   }
 
   .header-icon,
@@ -323,27 +322,45 @@
     .burger-mobile-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
+
       & svg {
         grid-column: 2/3;
         justify-self: center;
       }
+
       & button {
         grid-column: 3/4;
         justify-self: end;
       }
     }
+
     .card-layout-home {
       display: flex;
       overflow-x: auto;
       padding-right: 40px;
       margin-top: 40px;
     }
+
     .card-img {
       width: 224px;
       height: 278px;
     }
   }
-    
+
   /* #endregion */
 
+  /* #region */
+
+  @media (max-width: 767px) {
+
+    .swiper-pd {
+      padding-left: 16px !important;
+    }
+
+    // .swiper-slide {
+    //   width: 182px !important;
+    // }
+  }
+
+  /* #endregion */
 }

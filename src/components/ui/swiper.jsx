@@ -19,10 +19,10 @@ export const SwiperDemo = ({imgOne, imgTwo}) => {
       className=""
     >
       <SwiperSlide >
-        <Image src={imgOne} alt='img' priority={true}/>
+        <Image src={imgOne} alt='img' priority={true} className='mob:h-[634px] mob:object-cover'/>
       </SwiperSlide>
       <SwiperSlide >
-        <Image src={imgTwo} alt='img' priority={true}/>
+        <Image src={imgTwo} alt='img' priority={true} className='mob:h-[634px] mob:object-cover'/>
       </SwiperSlide>
     </Swiper>
   )

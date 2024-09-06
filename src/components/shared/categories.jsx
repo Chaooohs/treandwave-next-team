@@ -8,15 +8,15 @@ export const Categories = () => {
 
   return (
     <section>
-      <div className="wrap lg:p-0">
+      <div className="wrap lap:p-0">
         <div className="content">
-          <Title text="Категорії" size="xl" className="wrap font-mul font-extrabold uppercase lg:text-3xl" />
-          <div className="lg:h-[420px] lg:relative">
-            <div className="card-layout-home lg:absolute lg:inset-0 lg:pl-6">
+          <Title text="Категорії" size="xl" className="wrap font-mul font-extrabold uppercase lap:text-3xl mob:text-2xl" />
+          <div className="lap:h-[420px] lap:relative mob:h-[282px]">
+            <div className="card-layout-home lap:absolute lap:inset-0 lap:pl-6 mob:mt-6 mob:pl-4">
               {Array.isArray(categories) &&
                 categories.map((el) => {
                   return (
-                    <div key={el.id}>
+                    <div key={el.id} className="mob:h-60">
                       <CardCategory el={el} />
                     </div>
                   );

@@ -22,8 +22,8 @@ module.exports = {
         mul: ['var(--font-mulish)'],
       },
       screens: {
-        'lg': { 'max': '1023px' },
-        'md': { 'max': '767px' },
+        'lap': { 'max': '1023px' },
+        'mob': { 'max': '767px' },
       },
       colors: {
         border: "hsl(var(--border))",

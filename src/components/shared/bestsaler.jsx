@@ -8,14 +8,14 @@ export const BestSaler = ({ products }) => {
 
   return (
     <section>
-      <div className="wrap lg:p-0">
+      <div className="wrap lap:p-0">
         <div className="content">
           <div className="wrap flex items-center justify-between">
-            <Title text="бестселери" size="xl" className="font-mul font-extrabold uppercase lg:text-3xl " />
+            <Title text="бестселери" size="xl" className="font-mul font-extrabold uppercase lap:text-3xl mob:text-2xl " />
             <ButtonWithArrow />
           </div>
-          <div className="lg:h-[450px] lg:relative">
-            <div className="card-layout-home lg:absolute lg:inset-0 lg:pl-6">
+          <div className="lap:h-[450px] lap:relative mob:h-[400px]">
+            <div className="card-layout-home lap:absolute lap:inset-0 lap:pl-6">
               {Array.isArray(goods) &&
                 goods.map((el) => {
                   return (

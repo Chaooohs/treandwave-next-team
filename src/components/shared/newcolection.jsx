@@ -10,7 +10,7 @@ export const NewColection = ({ products }) => {
     <section>
       <div className="wrap lap:p-0">
         <div className="content">
-          <div className="lap:px-6 flex items-center justify-between">
+          <div className="lap:px-6 mob:px-4 flex items-center justify-between">
             <Title text="Нова колекція" size="xl" className="font-mul font-extrabold uppercase lap:text-3xl mob:text-2xl" />
             <ButtonWithArrow />
           </div>

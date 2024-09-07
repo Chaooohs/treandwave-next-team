@@ -3,7 +3,7 @@ import Image from "next/image"
 import { useDispatch, useSelector } from "react-redux"
 
 import { Price, Title } from "../ui"
-import HeartCard from '../../../public/image/svg/heart-card.svg'
+import HeartIcon from '../../../public/image/svg/heart.svg'
 import { addToWishList } from "@/redux/features/wishlistSlice"
 import Link from "next/link"
 
@@ -50,10 +50,10 @@ export const Card = ({ el }) => {
 
       </Link>
       <button
-        className="absolute top-3 right-4 w-[52px] h-[52px] bg-[#21212114] rounded-full flex items-center justify-center"
+        className="absolute top-3 right-4 w-[52px] h-[52px] bg-[#21212114] rounded-full flex items-center justify-center lap:w-9 lap:h-9"
         onClick={() => dispatch(addToWishList(el))}
       >
-        <HeartCard className={`${fillHeart?.id === el.id && 'card-heart'}`} />
+        <HeartIcon className={`${fillHeart?.id === el.id && 'card-heart'} w-6 h-6 lap:w-5 lap:h-5`} />
       </button>
     </>
   )

@@ -43,7 +43,7 @@ export const HeaderDesk = () => {
             </Link>
 
             <Link href='/wishlist' className="header-link">
-              <Heart className='header-icon' />
+              <Heart className='header-icon w-[26px] h-[26px]' />
             </Link>
 
             <PopoverCart counter={counter} />

@@ -245,7 +245,7 @@
   }
 
   .header-link {
-    @apply py-4 flex items-center gap-x-2 box-border border-b border-white hover:text-[#6a6a6a] hover:border-[#6a6a6a] transition-all duration-300 ease-linear cursor-pointer lg:border-none;
+    @apply flex items-center gap-x-2 box-border border-b border-white hover:text-[#6a6a6a] hover:border-[#6a6a6a] transition-all duration-300 ease-linear cursor-pointer lg:border-none;
   }
 
   .header-icon,
@@ -344,6 +344,10 @@
     .card-img {
       width: 224px;
       height: 278px;
+    }
+
+    .card-img:hover .card-img-top {
+      opacity: 1;
     }
   }
 

@@ -20,7 +20,7 @@ export const Card = ({ el }) => {
 
         <div className="card-img">
           <Image src={el.images[0]} alt={el.title} width={322} height={400} className="card-img-top" />
-          <Image src={el.images[1]} alt={el.title} width={322} height={400} className="card-img-hide" />
+          <Image src={el.images[1]} alt={el.title} width={322} height={400} className="card-img-hide lap:hidden" />
         </div>
 
         <Title text={el.title} size="xs" className="font-mont font-semibold uppercase mt-3 lap:text-base mob:text-xs" />
@@ -30,7 +30,7 @@ export const Card = ({ el }) => {
           discount={Math.floor(el.discountPercentage)}
           sizeP='text-lg'
           sizeD='text-base'
-          className='mt-2 lap:text-sm'
+          className='mt-2 lap:text-sm mob:flex-col mob:items-start'
         />
 
         <div className="absolute top-4 left-4 flex gap-x-1">

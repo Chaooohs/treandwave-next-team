@@ -20,9 +20,7 @@ export const HeaderDesk = () => {
   return (
     <header className="sticky z-40 top-12 bg-[#fdfdfd]">
       <div className="wrap">
-        <div className="flex align-center justify-between items-center h-20 lg:h-[50px] gap-x-8 text-header
-        lg:grid lg:grid-cols-3
-        ">
+        <div className="flex align-center justify-between items-center h-20 gap-x-8 text-header">
 
           <Link href='/' className="lg:justify-self-center lg:row-span-1">
             <Logo />

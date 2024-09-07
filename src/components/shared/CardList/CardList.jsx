@@ -132,7 +132,7 @@ export default function CardList({ title, tags, image, pathname, }) {
           <Filter onApplyFilters={applyFilters} />
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-5 lg:grid-cols-3">
+      <div className="grid grid-cols-4 gap-5 lap:grid-cols-3 mob:grid-cols-2">
         {
           loading ?
             <h1>Loading...</h1>

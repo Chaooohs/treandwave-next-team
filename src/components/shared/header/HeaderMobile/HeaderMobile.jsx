@@ -41,12 +41,12 @@ export const HeaderMobile = () => {
             <Logo />
           </Link>
 
-          <div className="header-link justify-self-end">
+          <Link href='/checkout' className="header-link justify-self-end">
             <Cart className='header-icon-cart' />
             <div className="flex gap-x-1 uppercase font-semibold">
               (<span className="w-4 inline-block text-center">{counter}</span>)
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </header>

@@ -315,7 +315,7 @@
 
   /* #endregion */
 
-  /* #region media 1023 */
+  /* #region media 1023px */
 
   @media (max-width: 1023px) {
 
@@ -353,7 +353,7 @@
 
   /* #endregion */
 
-  /* #region */
+  /* #region media 767px */
 
   @media (max-width: 767px) {
 
@@ -364,6 +364,14 @@
     .card-img {
       width: 162px;
       height: 202px;
+    }
+
+    .pagination {
+
+      & .prev,
+      & .next {
+        display: none;
+      }
     }
   }
 

@@ -19,7 +19,7 @@ export const HeaderMobile = () => {
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
 
   return (
-    <header className="sticky z-40 top-12 bg-[#fdfdfd]">
+    <header className="sticky z-40 top-12 bg-[#fdfdfd] hidden lap:block">
       <div className="wrap">
         <div className="h-14 grid grid-cols-3 items-center">
 

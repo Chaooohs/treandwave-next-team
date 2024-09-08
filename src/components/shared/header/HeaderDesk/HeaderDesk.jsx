@@ -18,7 +18,7 @@ export const HeaderDesk = () => {
 
 
   return (
-    <header className="sticky z-40 top-12 bg-[#fdfdfd]">
+    <header className="sticky z-40 top-12 bg-[#fdfdfd] lap:hidden">
       <div className="wrap">
         <div className="flex align-center justify-between items-center h-20 gap-x-8 text-header">
 

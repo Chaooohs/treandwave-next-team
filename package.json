@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@artsy/fresnel": "^7.1.4",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
@@ -28,7 +27,6 @@
     "react-dom": "^18",
     "react-paginate": "^8.2.0",
     "react-redux": "^9.1.2",
-    "react-responsive": "^10.0.0",
     "sass": "^1.77.8",
     "swiper": "^11.1.9",
     "tailwind-merge": "^2.5.2",

@@ -15,18 +15,18 @@ export default function ShoppingCart() {
     <main>
       <div className="wrap">
         <div className="content">
-          <Title text='Кошик' size="xl" className='font-mul font-extrabold uppercase ' />
-          <div className="text-lg font-medium uppercase">
+          <Title text='Кошик' size="xl" className='font-mul font-extrabold uppercase  mob:text-3xl' />
+          <div className="text-lg font-medium uppercase lap:text-base	mob:mt-2">
             Усього (
             <span className="w-9 inline-block text-center">{counter}</span>
             товари )
           </div>
-          <div className="product-layout">
+          <div className="product-layout mt-10 lap:mt-6">
             <main>
               {Array.isArray(goods) &&
                 cart.map((el) => {
                   return (
-                    <div key={el.id} className="relative card-cart mt-8 mb-6">
+                    <div key={el.id} className="relative card-cart mb-6 mob:mb-3 rounded">
                       <CardForCart el={el} />
                     </div>
                   );

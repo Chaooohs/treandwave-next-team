@@ -7,6 +7,7 @@ import Search from '/public/image/svg/search.svg'
 import BurgerIcon from '/public/image/svg/burger.svg'
 import Logo from '/public/image/svg/logo.svg'
 import Cart from '/public/image/svg/cart.svg'
+import Heart from '/public/image/svg/heart.svg'
 import { setOpenBurger } from "@/redux/features/openSlice"
 
 
@@ -37,16 +38,21 @@ export const HeaderMobile = () => {
             </Link>
           </div>
 
-          <Link href='/' className="justify-self-center row-span-1">
+          <Link href='/' className="justify-self-center row-span-1 mob:justify-self-end">
             <Logo />
           </Link>
 
-          <Link href='/checkout' className="header-link justify-self-end">
-            <Cart className='header-icon-cart' />
-            <div className="flex gap-x-1 uppercase font-semibold">
-              (<span className="w-4 inline-block text-center">{counter}</span>)
-            </div>
-          </Link>
+          <div className="flex gap-x-3 justify-self-end">
+            <Link href='/wishlist' className="header-link">
+              <Heart className='header-icon w-[26px] h-[26px]' />
+            </Link>
+            <Link href='/checkout' className="header-link">
+              <Cart className='header-icon-cart' />
+              <div className="flex gap-x-1 uppercase font-semibold">
+                (<span className="w-4 inline-block text-center">{counter}</span>)
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </header>

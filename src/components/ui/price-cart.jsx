@@ -17,7 +17,7 @@ export const PriceCart = ({ price, discount, sizeP, sizeD, className, count }) =
             <span>{`${(price * count) * (1 - (discount / 100))} uah`}</span>
           </div>
           :
-          <div className={cn(`mt-3 font-semibold ${sizeP} uppercase flex items-center gap-x-2`, className)}>
+          <div className={cn(`mt-3 font-medium ${sizeP} uppercase flex items-center gap-x-2 lap:text-sm`, className)}>
             <span>{`${price * count} uah`}</span>
           </div>
       }

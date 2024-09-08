@@ -308,9 +308,12 @@
 
   .card-cart {
     display: grid;
+    grid-template-columns: 124px 2fr 0fr;
     grid-auto-flow: column;
     column-gap: 12px;
     border: 1px solid #4d4d4d;
+    box-sizing: border-box;
+    padding: 12px;
   }
 
   /* #endregion */
@@ -371,6 +374,10 @@
       height: 202px;
     }
 
+    .card-cart {
+      grid-template-columns: auto 2fr 0fr;
+    }
+
     .pagination {
 
       & .prev,
@@ -381,4 +388,5 @@
   }
 
   /* #endregion */
+
 }

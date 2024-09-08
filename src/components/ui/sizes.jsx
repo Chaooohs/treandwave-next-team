@@ -18,7 +18,7 @@ export const Sizes = ({ sizes, width, height, className }) => {
   }
 
   return (
-    <div className={cn("flex flex-wrap gap-2 w-[344px]", className)}>
+    <div className={cn("flex flex-wrap gap-2 w-[344px] mob:w-full", className)}>
       {
         sizes?.map((size, index) => {
           return (

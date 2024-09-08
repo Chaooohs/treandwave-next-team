@@ -349,6 +349,11 @@
     .card-img:hover .card-img-top {
       opacity: 1;
     }
+
+    .product-layout {
+      grid-template-columns: 1fr;
+      column-gap: 32px;
+    }
   }
 
   /* #endregion */

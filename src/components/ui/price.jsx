@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-export const Price = ({ price, discount, sizeP, sizeD, className, count }) => {
+export const Price = ({ price, discount, sizeP, sizeD, className }) => {
 
   let finalPrice = price * (1 - (discount / 100))
 

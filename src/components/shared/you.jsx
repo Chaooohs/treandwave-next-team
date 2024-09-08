@@ -17,7 +17,7 @@ export const YouSection = () => {
       </div >
       <div className="wrap lap:px-0">
         <div className="lap:h-[450px] lap:relative lap:h-[396px] mob:h-[222px]">
-          <div className="grid grid-cols-4 lap:flex lap:overflow-auto lap:absolute lap:inset-0 lap:pl-6 mob:pl-4 gap-x-6">
+          <div className="grid grid-cols-4 lap:flex lap:overflow-auto lap:absolute lap:inset-0 lap:px-6 mob:px-4 gap-x-6">
             <div className="relative"><CardYou /></div>
             <div className="relative"><CardYou /></div>
             <div className="relative"><CardYou /></div>

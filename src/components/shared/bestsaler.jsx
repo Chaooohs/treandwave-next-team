@@ -15,7 +15,7 @@ export const BestSaler = ({ products }) => {
             <ButtonWithArrow />
           </div>
           <div className="lap:h-[450px] lap:relative mob:h-[368px]">
-            <div className="card-layout-home lap:absolute lap:inset-0 lap:pl-6">
+            <div className="card-layout-home lap:absolute lap:inset-0 lap:px-6 mob:px-4">
               {Array.isArray(goods) &&
                 goods.map((el) => {
                   return (

@@ -98,12 +98,16 @@ export default function CardList({ title, tags, image, pathname, }) {
   return (
     <div className="bg-white pt-10 pb-20 font-mont w-full flex flex-col gap-5 xl:gap-10">
       <div className="relative flex flex-col gap-6">
-        <div>
-          <BreadcrumbCustom title={title} />
-        </div>
-        <div>
-          <Title text={title} size="xl" className='font-mul font-extrabold uppercase' />
-        </div>
+        {pathname !== '/search' && (
+          <div className="flex flex-col gap-6">
+            <div>
+              <BreadcrumbCustom title={title} />
+            </div>
+            <div>
+              <Title text={title} size="xl" className='font-mul font-extrabold uppercase' />
+            </div>
+          </div>
+        )}
         {image && (
           <div className="w-[86px] h-full absolute right-0">
             <Image src={image} alt='category image' className=" h-full object-contain" />
@@ -122,7 +126,9 @@ export default function CardList({ title, tags, image, pathname, }) {
           ))}
         </div>
       )}
-      <div className="h-[1px] w-full bg-[#EDEDED]"></div>
+      {pathname !== '/search' && (
+          <div className="h-[1px] w-full bg-[#EDEDED]"></div>
+      )}
       <div className="flex justify-between items-center">
         <div>
           <p>{totalGoods} результати</p>

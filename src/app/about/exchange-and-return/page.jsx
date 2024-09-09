@@ -31,11 +31,11 @@ export default function Page() {
 
 
     return(
-        <div className="border-l-[1px] font-mont border-[#EDEDED] w-full px-10 flex flex-col gap-5">
-            <Title text={textPage.title} size="lg" className=' font-semibold uppercase ' />
+        <div className="mob:border-none lap:border-l-[1px] font-mont border-[#EDEDED] w-full mob:px-0 lap:px-10 flex flex-col gap-5">
+            <Title text={textPage.title} size="lg" className='mob:hidden lap:block font-semibold uppercase ' />
             <div className="flex flex-col gap-5">
                 <div className="h-10 flex items-center">
-                    <Title text={textPage.subtitle} size="xs" className='font-semibold uppercase text-[#212121]' />
+                    <Title text={textPage.subtitle} size="xs" className=' font-semibold uppercase text-[#212121]' />
                 </div>
                 <p>{textPage.p1}</p>
                 <ul className="flex flex-col gap-2 list-disc list-inside">

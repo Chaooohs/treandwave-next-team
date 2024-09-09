@@ -12,7 +12,7 @@ export const Price = ({ price, discount, sizeP, sizeD, className }) => {
           ?
           <div className={cn(`font-semibold ${sizeP} uppercase flex items-center gap-x-2`, className)}>
             <span
-              className={`${sizeD} line-through text-gray-400`}
+              className={`${sizeD} line-through text-gray-400 mob:text-sm`}
             >
               {`${price} uah`}
             </span>

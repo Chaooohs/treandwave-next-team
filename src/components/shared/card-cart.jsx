@@ -13,33 +13,44 @@ export const CardForCart = ({ el }) => {
 
   return (
     <>
-      <div className="w-32">
-        <Image src={el.images[0]} alt={el.title} width={124} height={180} />
-      </div>
-      <div className="w-[11rem]">
+      <Image
+        src={el.images[0]}
+        alt={el.title}
+        width={124}
+        height={180}
+        className="w-[124px] h-[156px] object-cover"
+      />
 
+      <div>
         <Title text={el.title} className="text-base font-semibold uppercase" />
 
-        <PriceCart price={el.price} discount={el.discount} sizeP='16px' sizeD='18px' count={el.count} />
+        <PriceCart
+          price={el.price}
+          discount={el.discount}
+          sizeP='16px'
+          sizeD='18px'
+          count={el.count}
+          className='mob:mt-1'
+        />
 
-        <div className="h-[36px] mt-4 flex items-center gap-x-2" >
-          <span className="font-medium text-sm mb-2">Колір:</span>
+        <div className=" mt-4 flex items-center gap-x-2" >
+          <span className="font-medium text-sm mb-2 lap:text-xs">Колір:</span>
           <Colors colors={el.color} width='24px' height='24px' />
         </div>
 
-        <div className="h-[36px] flex items-center gap-x-2">
-          <span className="font-medium text-sm">Розмір:</span>
+        <div className=" flex items-center gap-x-2">
+          <span className="font-medium text-sm lap:text-xs">Розмір:</span>
           <Sizes sizes={el.size} />
         </div>
 
-        <div className="h-[36px] flex items-center gap-x-2">
-          <span className="font-medium text-sm">Кількість:</span>
+        <div className=" flex items-center gap-x-2">
+          <span className="font-medium text-sm lap:text-xs">Кількість:</span>
           <Counter card={el} />
         </div>
       </div>
 
       <div className="header-icon">
-        <button className="w-9 h-9 header-link" onClick={() => dispatch(removeFromCart(el.id))}>
+        <button className="header-link" onClick={() => dispatch(removeFromCart(el.id))}>
           <Trash className='header-icon-shopping-cart' />
         </button>
       </div>

@@ -19,7 +19,7 @@ export const Counter = ({card}) => {
           <Minus />
         </button>
         <span
-          className='w-9 h-9 flex items-center justify-center text-sm font-medium font-mont'
+          className='w-9 h-9 flex items-center justify-center text-sm font-medium font-mont mob:text-xs'
         >
           {
             card.count

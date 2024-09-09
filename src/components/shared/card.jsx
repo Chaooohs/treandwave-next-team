@@ -30,7 +30,7 @@ export const Card = ({ el }) => {
           discount={Math.floor(el.discountPercentage)}
           sizeP='text-lg'
           sizeD='text-base'
-          className='mt-2 lap:text-sm mob:flex-col mob:items-start'
+          className='mt-2 lap:text-sm mob:flex-col mob:items-start mob:text-sm'
         />
 
         <div className="absolute top-4 left-4 flex gap-x-1">

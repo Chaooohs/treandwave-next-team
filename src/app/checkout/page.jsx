@@ -1,5 +1,6 @@
 'use client'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import Link from "next/link";
 
 import { Button, Title } from "@/components/ui";
@@ -7,13 +8,20 @@ import { CardForCart } from "@/components/shared";
 import VisaIcon from '/public/image/svg/visa-logo.svg'
 import MasterIcon from '/public/image/svg/mastercard-logo.svg'
 import AppleIcon from '/public/image/svg/applepay-logo.svg'
+import { setTotalPrice } from "@/redux/features/cartSlice";
 
 
 export default function ShoppingCart() {
+  const dispatch = useDispatch()
   const goods = useSelector(state => state.goods.goods);
-  const cart = useSelector(state => state.cart.cart);
+  const {cart, totalPrice} = useSelector(state => state.cart);
 
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
+
+  useEffect(() => {
+    dispatch(setTotalPrice())
+  }, [cart])
+
 
   return (
     <main>
@@ -45,7 +53,7 @@ export default function ShoppingCart() {
                 </div> */}
                 <div className="flex justify-between items-center uppercase">
                   <span className="font-semibold text-base uppercase lap:text-base">До сплати</span>
-                  <span className="text-2xl font-semibold uppercase lap:text-base"> uah</span>
+                  <span className="text-2xl font-semibold uppercase lap:text-base"> {totalPrice} uah</span>
                 </div>
               </div>
               <Button

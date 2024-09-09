@@ -36,8 +36,8 @@ export default function Page() {
 
 
     return(
-        <div className="mob:border-none lap:border-l-[1px] text-sm font-mont border-[#EDEDED] w-full mob:px-0 lap:px-10 flex flex-col gap-5 text-[#4D4D4D]">
-            <Title text={textPage.title} size="lg" className='mob:hidden lap:block font-semibold uppercase text-[#212121]' />
+        <div className="border-l-[1px] mob:border-none lap:border-l-[1px] text-sm font-mont border-[#EDEDED] w-full px-10  mob:px-0 lap:px-10 flex flex-col gap-5 text-[#4D4D4D]">
+            <Title text={textPage.title} size="lg" className='mob:hidden lap:block leading-tight font-semibold uppercase text-[#212121]' />
             <div className="flex flex-col gap-5">
             <p>{textPage.p1}</p>
                 <div className="h-10 flex items-center">

@@ -22,7 +22,7 @@ export default function Page() {
         subtext2: 'Наш асортимент постійно оновлюється, тому ви завжди знайдете щось нове та цікаве. Обирайте одяг, який підкреслить ваш стиль, і підтримуйте українське виробництво!'
     }
     return(
-        <div className=" mob:border-none lap:border-l-[1px] font-mont border-[#EDEDED] mob:pt-5 lap:pt-0 w-full mob:px-0 lap:px-10 flex flex-col gap-5">
+        <div className="border-l-[1px] mob:border-none lap:border-l-[1px] font-mont border-[#EDEDED] mob:pt-5 lap:pt-0 w-full px-10 mob:px-0 lap:px-10 flex flex-col gap-5">
             <Title text={textPage.title} size="lg" className=' mob:hidden lap:block font-semibold uppercase ' />
             <div>
                 <Image src={pageImage} alt='trend wave picture'/>

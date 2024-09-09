@@ -37,13 +37,13 @@ export default function AboutLayout({ children }) {
 
     return (
         <main className="w-full ">
-            <div className="mob:hidden lap:block w-full pt-10 pb-20 px-5 lg:px-10 flex">
+            <div className="mob:hidden lap:flex w-full pt-10 pb-20 px-5 lg:px-10 flex">
                 <AboutNavigation/>
                 {children}
             </div>
 
-            <div className="mob:block lap:hidden w-full pt-10 pb-20 px-5 lg:px-10 flex">
-                <div className="flex flex-col gap-2 pr-5">
+            <div className="hidden lap:hidden w-full pt-10 pb-20 px-5 lg:px-10 mob:flex ">
+                <div className="flex w-full flex-col gap-2 pr-5">
                     <Accordion type="single" collapsible>
                         {mainLinks.map((item, index) => (
                             <div key={index}>

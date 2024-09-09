@@ -21,7 +21,7 @@ export default function Page() {
         p4:'Послуга безкоштовної доставки діє при замовленні від 2500 грн за умови повної оплати.'
     }
     return(
-        <div className="mob:border-none lap:border-l-[1px] font-mont border-[#EDEDED] text-sm w-full mob:px-0 lap:px-10 flex flex-col gap-5 text-[#4D4D4D]">
+        <div className="border-l-[1px] mob:border-none lap:border-l-[1px] font-mont border-[#EDEDED] text-sm w-full px-10 mob:px-0 lap:px-10 flex flex-col gap-5 text-[#4D4D4D]">
             <Title text={textPage.title} size="lg" className='mob:hidden lap:block font-semibold uppercase text-[#212121]' />
             <div className="flex gap-3">
                 <div>

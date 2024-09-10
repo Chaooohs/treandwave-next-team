@@ -49,6 +49,7 @@ export const BurgerMobile = () => {
           <Link href='/catalog' className="header-link" onClick={handleClick}>Усі</Link>
           <Link href='/sale' className="header-link" onClick={handleClick}>Sale</Link>
           <Link href='/collections' className="header-link" onClick={handleClick}>Колекції</Link>
+          <Link href='/wishlist' className="header-link" onClick={handleClick}>Вiшлiст</Link>
           <Link href='#!' className="header-link" onClick={handleClick}>Бестселери</Link>
           <Link href='#!' className="header-link" onClick={handleClick}>Сукні</Link>
           <Link href='#!' className="header-link" onClick={handleClick}>Костюми</Link>

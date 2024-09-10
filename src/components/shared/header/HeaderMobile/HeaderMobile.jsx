@@ -38,14 +38,14 @@ export const HeaderMobile = () => {
             </Link>
           </div>
 
-          <Link href='/' className="justify-self-center row-span-1 mob:justify-self-end">
+          <Link href='/' className="justify-self-center row-span-1">
             <Logo />
           </Link>
 
           <div className="flex gap-x-3 justify-self-end">
-            <Link href='/wishlist' className="header-link">
+            {/* <Link href='/wishlist' className="header-link">
               <Heart className='header-icon w-[26px] h-[26px]' />
-            </Link>
+            </Link> */}
             <Link href='/checkout' className="header-link">
               <Cart className='header-icon-cart' />
               <div className="flex gap-x-1 uppercase font-semibold">

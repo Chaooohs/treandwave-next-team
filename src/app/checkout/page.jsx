@@ -12,6 +12,7 @@ import { setTotalPrice } from "@/redux/features/cartSlice";
 
 
 export default function ShoppingCart() {
+
   const dispatch = useDispatch()
   const goods = useSelector(state => state.goods.goods);
   const {cart, totalPrice} = useSelector(state => state.cart);

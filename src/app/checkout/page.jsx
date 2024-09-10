@@ -1,6 +1,6 @@
 'use client'
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 
 import { Button, Title } from "@/components/ui";
@@ -12,17 +12,22 @@ import { setTotalPrice } from "@/redux/features/cartSlice";
 
 
 export default function ShoppingCart() {
-
+  const refButton = useRef()
   const dispatch = useDispatch()
   const goods = useSelector(state => state.goods.goods);
-  const {cart, totalPrice} = useSelector(state => state.cart);
+  const { cart, totalPrice } = useSelector(state => state.cart);
 
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
 
   useEffect(() => {
-    dispatch(setTotalPrice())
-  }, [cart])
 
+    dispatch(setTotalPrice())
+    
+    if (counter === 0) {
+      refButton.current.setAttribute('disabled', 'disabled')
+    }
+
+  }, [cart])
 
   return (
     <main>
@@ -58,9 +63,11 @@ export default function ShoppingCart() {
                 </div>
               </div>
               <Button
+                ref={refButton}
                 className='font-semibold text-base uppercase h-14 w-full mt-10'
               >
-                Оформити замовлення
+                <Link href='/checkout/delivery'>Оформити замовлення</Link>
+                
               </Button>
               <div className="mt-16 text-lg font-semibold uppercase lap:mt-10">Потрібна допомога?</div>
               <div className="mt-3 flex flex-col text-base font-medium gap-y-2 underline">
@@ -70,9 +77,9 @@ export default function ShoppingCart() {
               </div>
               <div className="mt-10 text-lg font-semibold uppercase">Методи оплати</div>
               <div className="flex gap-x-6 items-center mt-6 lap:mb-10">
-                <VisaIcon/>
-                <MasterIcon/>
-                <AppleIcon/>
+                <VisaIcon />
+                <MasterIcon />
+                <AppleIcon />
               </div>
             </aside>
           </div>

@@ -63,7 +63,7 @@ export const Footer = () => {
         <div className="px-24 mob:px-5 lap:px-10 grid grid-cols-[1fr,_3fr] lap:grid-cols-[1fr,_2fr] mob:grid-cols-1 gap-20 lap:gap-5 py-20 mob:py-10">
           <div className="flex flex-col gap-6 justify-center">
             <div>
-              <Logo fill='white' stroke='white' className={''} />
+              <Logo className='footer-logo'/>
             </div>
             <div className="flex gap-3">
               <Link href='https://uk-ua.facebook.com/'>

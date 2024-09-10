@@ -44,7 +44,6 @@ export default function AboutLayout({ children }) {
       const handlePrefetch = (link) => {
         router.prefetch(link)
       }
-    console.log(activeAccordion);
 
     const handleAccordionToggle = (value) => {
         setActiveAccordion((prevValue) => (prevValue === value ? null : value));

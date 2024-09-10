@@ -13,10 +13,12 @@ import {
     AccordionItem,
     AccordionTrigger,
   } from "@/components/ui/accordion"
+import { useEffect, useState } from 'react';
 
 export default function AboutLayout({ children }) {
     const pathname = usePathname();
     const router = useRouter();
+    const [activeAccordion, setActiveAccordion] = useState(null);
 
     const mainLinks = [
         { buttonName:'Про нас', link:'/about'},
@@ -26,6 +28,14 @@ export default function AboutLayout({ children }) {
         { buttonName:'Договір публічної оферти', link:'/about/public-offer'},
         { buttonName:'Політика конфіденційності', link:'/about/privacy-policy'},
     ]
+    
+
+    useEffect(() => {
+        const activeItem = mainLinks.findIndex(item => pathname === item.link);
+        if (activeItem !== -1) {
+            setActiveAccordion(`item-${activeItem + 1}`)
+        }
+    }, [pathname]);
 
     const handleClick = (link) => {
         router.push(link)
@@ -34,6 +44,12 @@ export default function AboutLayout({ children }) {
       const handlePrefetch = (link) => {
         router.prefetch(link)
       }
+    console.log(activeAccordion);
+
+    const handleAccordionToggle = (value) => {
+        setActiveAccordion((prevValue) => (prevValue === value ? null : value));
+    };
+
 
     return (
         <main className="w-full ">
@@ -44,14 +60,20 @@ export default function AboutLayout({ children }) {
 
             <div className="hidden lap:hidden w-full pt-10 pb-20 px-5 lg:px-10 mob:flex ">
                 <div className="flex w-full flex-col gap-2 pr-5">
-                    <Accordion type="single" collapsible>
+                    <Accordion type="single" collapsible
+                    value={activeAccordion}
+                    onValueChange={handleAccordionToggle}
+                        >
                         {mainLinks.map((item, index) => (
                             <div key={index}>
-                                <AccordionItem value={`item-${index + 1}"`}>
+                                <AccordionItem value={`item-${index + 1}`}>
                                     <AccordionTrigger 
                                         onMouseEnter={() => handlePrefetch(item.link)}
-                                        onClick={() => handleClick(item.link)}>{item.buttonName}</AccordionTrigger>
-                                    <AccordionContent>
+                                        onClick={() => handleClick(item.link)}
+                                        
+                                        
+                                         >{item.buttonName}</AccordionTrigger>
+                                    <AccordionContent >
                                         {children}
                                     </AccordionContent>
                                 </AccordionItem>

@@ -10,7 +10,6 @@ import Cart from '/public/image/svg/cart.svg'
 import { PopoverBurger } from "./PopoverBurger"
 import { setOpenCart } from "@/redux/features/openSlice"
 import { CartRight } from "./CartRight"
-// import { PopoverCart } from "./PopoverCart"
 
 
 export const HeaderDesk = () => {
@@ -61,8 +60,6 @@ export const HeaderDesk = () => {
                 (<span className="w-4 inline-block text-center">{counter}</span>)
               </div>
             </div>
-
-            {/* <PopoverCart counter={counter} /> */}
           </nav>
         </div>
       </div>

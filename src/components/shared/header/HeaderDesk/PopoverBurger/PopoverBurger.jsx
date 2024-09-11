@@ -1,5 +1,5 @@
 'use client'
-import { Popover, PopoverContent, PopoverTrigger, PopoverArrow, PopoverClose } from "@/components/ui/popover"
+import { Popover, PopoverContent, PopoverTrigger, PopoverClose } from "@/components/ui/popover"
 
 import CloseIcon from '/public/image/svg/close.svg'
 import ArrowDown from '/public/image/svg/arrow-down.svg'

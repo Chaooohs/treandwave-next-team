@@ -100,6 +100,15 @@
     transform: translateX(0);
   }
 
+  .cart {
+    transform: translateX(100vw);
+    transition: all .3s linear;
+  }
+
+  .cart-open {
+    transform: translateX(0);
+  }
+
   .baner {
     position: relative;
     width: 100cqi;

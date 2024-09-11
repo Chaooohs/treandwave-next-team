@@ -1,17 +1,22 @@
 'use client'
 import Link from "next/link"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import Search from '/public/image/svg/search.svg'
 import Heart from '/public/image/svg/heart.svg'
 import Man from '/public/image/svg/man.svg'
 import Logo from '/public/image/svg/logo.svg'
+import Cart from '/public/image/svg/cart.svg'
 import { PopoverBurger } from "./PopoverBurger"
-import { PopoverCart } from "./PopoverCart"
+import { setOpenCart } from "@/redux/features/openSlice"
+import { CartRight } from "./CartRight"
+// import { PopoverCart } from "./PopoverCart"
 
 
 export const HeaderDesk = () => {
+  const dispatch = useDispatch()
   const cart = useSelector(state => state.cart.cart)
+  const CartSide = useSelector(state => state.open.cart)
 
 
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
@@ -46,10 +51,25 @@ export const HeaderDesk = () => {
               <Heart className='header-icon w-[26px] h-[26px]' />
             </Link>
 
-            <PopoverCart counter={counter} />
+            <div
+              className="header-link"
+              onClick={() => dispatch(setOpenCart(true))}
+            >
+              <Cart className='header-icon-cart' />
+              <div className="flex gap-x-1 uppercase">
+                <span>Кошик</span>
+                (<span className="w-4 inline-block text-center">{counter}</span>)
+              </div>
+            </div>
+
+            {/* <PopoverCart counter={counter} /> */}
           </nav>
         </div>
       </div>
+      {
+        CartSide &&
+        <CartRight counter={counter}/>
+      }
     </header>
   )
 }

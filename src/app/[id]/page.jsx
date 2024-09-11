@@ -67,7 +67,7 @@ export default function Product() {
   }
 
   return (
-    <section>
+    <main>
       <div className="wrap">
         <div className="content">
           <div className="product-layout">
@@ -179,6 +179,6 @@ export default function Product() {
           </div>
         </div>
       </section>
-    </section>
+    </main>
   )
 }

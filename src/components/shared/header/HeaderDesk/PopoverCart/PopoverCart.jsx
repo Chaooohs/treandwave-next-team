@@ -10,15 +10,15 @@ export const PopoverCart = ({ counter }) => {
   const [click, setClick] = useState(false)
   const [isOpen, setIsOpen] = useState()
 
-  // useEffect(() => {
-  //   const a = ref.current.dataset.state
-  //   if (a === 'open') {
-  //     setIsOpen(true)
-  //   } else if (a === 'closed') {
-  //     setIsOpen(false)
-  //   }
-  //   setClick(false)
-  // }, [click, isOpen])
+  useEffect(() => {
+    const a = ref.current.dataset.state
+    if (a === 'open') {
+      setIsOpen(true)
+    } else if (a === 'closed') {
+      setIsOpen(false)
+    }
+    setClick(false)
+  }, [click, isOpen])
 
   return (
     <>

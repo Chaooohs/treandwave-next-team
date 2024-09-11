@@ -101,6 +101,8 @@
   }
 
   .cart {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     transform: translateX(100vw);
     transition: all .3s linear;
   }

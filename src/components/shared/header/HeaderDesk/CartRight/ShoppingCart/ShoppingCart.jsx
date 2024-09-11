@@ -4,7 +4,7 @@ import { CartEmpty } from "./CartEmpty";
 
 export default function ShoppingCart({ counter }) {
   return (
-    <div>
+    <>
 
       
 
@@ -15,6 +15,6 @@ export default function ShoppingCart({ counter }) {
           :
           <CartEmpty/>
       }
-    </div>
+    </>
   )
 }

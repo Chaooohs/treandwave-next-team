@@ -2,16 +2,13 @@ import { CartFull } from "./CartFull";
 import { CartEmpty } from "./CartEmpty";
 
 
-export default function ShoppingCart({ counter }) {
+export default function ShoppingCart({ counter, setIsOpen }) {
   return (
     <>
-
-      
-
       {
         counter > 0
           ?
-          <CartFull />
+          <CartFull setIsOpen={setIsOpen} />
           :
           <CartEmpty/>
       }

@@ -38,7 +38,10 @@ export const CartRight = ({ counter }) => {
     <>
       {
         !isOpen &&
-        <div className="fixed top-0 right-0 bottom-0 left-0 bg-[#00000026] z-40"></div>
+        <div
+         className="fixed top-0 right-0 bottom-0 left-0 bg-[#00000026] z-40"
+         onClick={handleClick}
+         ></div>
       }
 
       <div
@@ -54,7 +57,7 @@ export const CartRight = ({ counter }) => {
           </button>
         </div>
 
-        <ShoppingCart counter={counter} />
+        <ShoppingCart counter={counter} setIsOpen={setIsOpen} />
 
       </div>
 

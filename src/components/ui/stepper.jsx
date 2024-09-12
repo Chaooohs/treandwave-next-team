@@ -1,5 +1,20 @@
-export default function Stepper({ currentStep }) {
+'use client';
+import { usePathname } from 'next/navigation';
+
+export default function Stepper({ }) {
+    const pathname = usePathname();
+
     const steps = ['Кошик', 'Доставка', 'Оплата', 'Замовлення оформлено'];
+
+    const getCurrentStep = () => {
+        if (pathname.includes('checkout/delivery')) return 2;
+        if (pathname.includes('checkout/payment')) return 3;
+        if (pathname.includes('confirmation')) return 4;
+        if (pathname.includes('checkout')) return 1;
+    };
+
+    const currentStep = getCurrentStep();
+
 
     return (
         <div className="flex items-center gap-5 text-sm">

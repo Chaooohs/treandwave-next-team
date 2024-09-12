@@ -16,7 +16,7 @@ export const Card = ({ el }) => {
 
   return (
     <>
-      <Link href={`${el.id}`} >
+      <Link href={`/products/${el.id}`} >
 
         <div className="card-img">
           <Image src={el.images[0]} alt={el.title} width={322} height={400} className="card-img-top" />

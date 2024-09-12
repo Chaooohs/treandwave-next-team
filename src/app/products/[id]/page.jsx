@@ -7,14 +7,14 @@ import { Button, Colors, Title, Price, Sizes } from "@/components/ui";
 import { Accordion, Card } from "@/components/shared";
 import { addToWishList } from "@/redux/features/wishlistSlice";
 import { addToCart } from "@/redux/features/cartSlice";
-import Heart from '../../../public/image/svg/heart.svg'
+import Heart from '/public/image/svg/heart.svg'
 import { useGetSingleProductQuery } from "@/redux/api/goodsApi";
 import { usePathname } from "next/navigation";
 
 
 export default function Product() {
   const path = usePathname()
-  const { data: product } = useGetSingleProductQuery(`/products${path}`)
+  const { data: product } = useGetSingleProductQuery(`${path}`)
 
   const dispatch = useDispatch()
   const wishlist = useSelector(state => state.wishlist.wishlist)

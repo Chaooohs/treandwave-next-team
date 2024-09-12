@@ -16,7 +16,7 @@ const mulish = Mulish({
   subsets: ['cyrillic'],
   display: 'swap',
   variable: '--font-mulish',
-  weight: ['400', '700', '800']
+  weight: ['200', '400', '700', '800']
 })
 
 export const metadata = {

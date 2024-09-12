@@ -18,7 +18,7 @@ export const PriceCart = ({ price, discount, sizeP, sizeD, className, count }) =
           </div>
           :
           <div className={cn(`mt-3 font-medium ${sizeP} uppercase flex items-center gap-x-2 lap:text-sm`, className)}>
-            <span>{`${price * count} uah`}</span>
+            <span>{`${(price * count).toLocaleString("ru")} uah`}</span>
           </div>
       }
     </>

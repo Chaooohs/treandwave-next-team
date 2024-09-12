@@ -37,7 +37,7 @@ export const CartFull = ({ setIsOpen }) => {
       <div className="border-t border-[#212121] rounded px-6 pb-6 box-border mt-6">
         <div className="mt-6 flex justify-between items-end">
           <span className="uppercase text-sm font-semibold">До сплати</span>
-          <span className="uppercase text-base font-semibold">{totalPrice} uah</span>
+          <span className="uppercase text-base font-semibold">{totalPrice.toLocaleString("ru")} uah</span>
         </div>
         <Link href='/checkout/delivery' onClick={() => setIsOpen(true)}>
           <Button className='h-12 mt-8 w-full uppercase font-semibold text-base'>Оформити замовлення</Button>

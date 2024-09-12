@@ -59,7 +59,7 @@ export default function ShoppingCart() {
                 </div> */}
                 <div className="flex justify-between items-center uppercase">
                   <span className="font-semibold text-base uppercase lap:text-base">До сплати</span>
-                  <span className="text-2xl font-semibold uppercase lap:text-base"> {totalPrice} uah</span>
+                  <span className="text-2xl font-semibold uppercase lap:text-base"> {totalPrice.toLocaleString("ru")} uah</span>
                 </div>
               </div>
               <Button

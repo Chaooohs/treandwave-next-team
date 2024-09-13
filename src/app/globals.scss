@@ -116,6 +116,13 @@
     width: 100cqi;
   }
 
+  .card-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18cqi, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
   .card-layout-home {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18cqi, 1fr));
@@ -352,6 +359,10 @@
       }
     }
 
+    .card-layout {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
     .card-layout-home {
       display: flex;
       overflow-x: auto;
@@ -382,6 +393,10 @@
 
     .swiper-pd {
       padding-left: 16px !important;
+    }
+
+    .card-layout {
+      grid-template-columns: 1fr 1fr;
     }
 
     .card-img {

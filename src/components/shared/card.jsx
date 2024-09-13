@@ -15,9 +15,9 @@ export const Card = ({ el }) => {
   const wishlist = useSelector(state => state.wishlist.wishlist)
 
   const fillHeart = wishlist?.find((card) => card.id === el?.id)
-
+  
   return (
-    <div className={`${path === '/' ? 'lap:w-[224px] mob:w-[162px]' : null}`}>
+    <div className={`${path.substring(1) === '' ? 'lap:w-[224px] mob:w-[162px]' : null}`}>
       <Link href={`/products/${el.id}`} >
 
         <div className="card-img">

@@ -23,7 +23,7 @@ export default function WishList() {
                     <Title text={'ваш вішліст'} size="xl" className='font-mul font-extrabold uppercase mb-3 lap:mb-2 lap:text-3xl mob:text-2xl' />
                     <span className="font-medium text-sm">Збережені товари чекають на вас!</span>
                   </div>
-                  <div className="card-layout-home w-full">
+                  <div className="card-layout w-full">
                     {
                       Array.isArray(wishlist) &&
                       wishlist.map((el) => {

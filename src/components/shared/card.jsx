@@ -6,16 +6,18 @@ import { Price, Title } from "../ui"
 import HeartIcon from '../../../public/image/svg/heart.svg'
 import { addToWishList } from "@/redux/features/wishlistSlice"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 
 export const Card = ({ el }) => {
+  const path = usePathname()
   const dispatch = useDispatch()
   const wishlist = useSelector(state => state.wishlist.wishlist)
 
   const fillHeart = wishlist?.find((card) => card.id === el?.id)
 
   return (
-    <>
+    <div className={`${path === '/' ? 'lap:w-[224px] mob:w-[162px]' : null}`}>
       <Link href={`/products/${el.id}`} >
 
         <div className="card-img">
@@ -55,6 +57,6 @@ export const Card = ({ el }) => {
       >
         <HeartIcon className={`${fillHeart?.id === el.id && 'card-heart'} w-6 h-6 lap:w-5 lap:h-5`} />
       </button>
-    </>
+    </div>
   )
 }

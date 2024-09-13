@@ -7,15 +7,17 @@ import Heart from '/public/image/svg/heart.svg'
 import Man from '/public/image/svg/man.svg'
 import Logo from '/public/image/svg/logo.svg'
 import Cart from '/public/image/svg/cart.svg'
-import { PopoverBurger } from "./PopoverBurger"
-import { setOpenCart } from "@/redux/features/openSlice"
+import ArrowDown from '/public/image/svg/arrow-down.svg'
+import { setOpenBurger, setOpenCart } from "@/redux/features/openSlice"
 import { CartRight } from "./CartRight"
+import { BurgerLeft } from "./BurgerLeft"
 
 
 export const HeaderDesk = () => {
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cart.cart)
   const CartSide = useSelector(state => state.open.cart)
+  const burger = useSelector(state => state.open.burger)
 
 
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
@@ -31,7 +33,13 @@ export const HeaderDesk = () => {
           </Link>
 
           <nav className="flex items-center gap-x-6">
-            <PopoverBurger />
+            <div
+              className="flex items-center gap-x-1 header-link"
+              onClick={() => dispatch(setOpenBurger(true))}
+            >
+              <span className="uppercase">каталог</span>
+              <ArrowDown className='header-icon' />
+            </div>
             <Link className="header-link text-red-500 hover:text-red-400 hover:border-red-400" href='/sale'>Sale</Link>
             <Link className="header-link" href='/collections'>Колекції</Link>
             <Link className="header-link" href='/about'> Про нас</Link>
@@ -64,8 +72,12 @@ export const HeaderDesk = () => {
         </div>
       </div>
       {
+        burger &&
+        <BurgerLeft />
+      }
+      {
         CartSide &&
-        <CartRight counter={counter}/>
+        <CartRight counter={counter} />
       }
     </header>
   )

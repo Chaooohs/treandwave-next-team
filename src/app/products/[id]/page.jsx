@@ -13,6 +13,7 @@ import { usePathname } from "next/navigation";
 
 
 export default function Product() {
+
   const path = usePathname()
   const { data: product } = useGetSingleProductQuery(`${path}`)
 

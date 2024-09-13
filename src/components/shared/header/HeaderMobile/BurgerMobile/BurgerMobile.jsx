@@ -47,12 +47,10 @@ export const BurgerMobile = () => {
       <nav>
         <div className="font-semibold uppercase text-base inline-flex flex-col gap-y-4 mt-12 mob:text-sm mob:gap-y-3">
           <Link href='/catalog' className="header-link" onClick={handleClick}>Усі</Link>
+          <hr></hr>
           <Link href='/sale' className="header-link" onClick={handleClick}>Sale</Link>
           <Link href='/collections' className="header-link" onClick={handleClick}>Колекції</Link>
-          <Link href='#!' className="header-link" onClick={handleClick}>Бестселери</Link>
-          <Link href='#!' className="header-link" onClick={handleClick}>Сукні</Link>
-          <Link href='#!' className="header-link" onClick={handleClick}>Костюми</Link>
-          <Link href='#!' className="header-link" onClick={handleClick}>футболки та Топи</Link>
+          <hr></hr>
           <Link href='/about' className="header-link text-gray-700" onClick={handleClick}>Про нас</Link>
           <Link href='/about/contacts' className="header-link text-gray-700" onClick={handleClick}>Контакти</Link>
           <Link href='/wishlist' className="header-link text-gray-700" onClick={handleClick}>Ваш вішліст</Link>

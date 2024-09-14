@@ -47,9 +47,9 @@ export const Filters = () => {
 
       <div
         ref={ref}
-        className="cart absolute w-[440px] h-screen top-12 bottom-0 right-0 z-50 bg-white box-border pt-[5px] pb-16 overflow-auto">
+        className="cart absolute w-[440px] mob:w-full h-screen top-12 bottom-0 right-0 z-50 bg-white box-border pt-[5px] pb-16 overflow-auto">
 
-        <div className="flex px-6 py-8 border-b border-[#121212] mb-6">
+        <div className="flex px-6 py-8 border-b border-[#121212] mb-6 mob:pt-14">
           <Title text='фільтрувати' className='text-2xl uppercase font-semibold box-border leading-none' />
           <button
             className="block ml-auto"

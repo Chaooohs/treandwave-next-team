@@ -131,9 +131,9 @@ export function Filter({ onApplyFilters }) {
       </Accordion>
     
 
-      <div className="border-t border-[#121212] px-6 py-8">
+      <div className="border-t border-[#121212] px-6 py-8 flex">
         <Button onClick={clearFilters} variant="outline" className='font-semibold uppercase w-36 h-11 mr-2'>очистити</Button>
-        <Button onClick={applyFilters} type="submit" className='uppercase w-60 h-11'>застосувати</Button>
+        <Button onClick={applyFilters} type="submit" className='uppercase w-60 h-11 mob:w-full'>застосувати</Button>
       </div>
     </>
   )

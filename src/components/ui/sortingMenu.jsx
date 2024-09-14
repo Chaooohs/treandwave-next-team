@@ -26,7 +26,7 @@ export function SortingMenu() {
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant='functional'>
+          <Button variant='outline' className='font-semibold uppercase button-outline'>
             <Sort />
             <p className="pl-1 lap:block mob:hidden">Сортувати</p>
           </Button>

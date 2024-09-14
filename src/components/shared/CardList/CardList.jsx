@@ -6,17 +6,19 @@ import { useRouter } from "next/navigation";
 import qs from 'qs'
 
 import Image from "next/image";
-import { BreadcrumbCustom, Card } from "..";
+import { BreadcrumbCustom, Card, Filters } from "..";
 import { Button, PaginationOutline, Title } from "@/components/ui";
-import { Filter } from "../../ui/filter";
 import { SortingMenu } from "../../ui/sortingMenu";
 import { setFilters, setSkip } from "@/redux/features/filtersSlice";
+import { setOpenFilters } from "@/redux/features/openSlice";
+import FilterIcon from '/public/image/svg/filter.svg';
 
 
 export default function CardList({ title, tags, image, pathname, }) {
   const router = useRouter()
   const dispatch = useDispatch()
   let { limit, skip, search } = useSelector((state) => state.filters);
+  let filters = useSelector((state) => state.open.filters);
 
   let category = ''
   switch (pathname) {
@@ -127,15 +129,23 @@ export default function CardList({ title, tags, image, pathname, }) {
         </div>
       )}
       {pathname !== '/search' && (
-          <div className="h-[1px] w-full bg-[#EDEDED]"></div>
+        <div className="h-[1px] w-full bg-[#EDEDED]"></div>
       )}
       <div className="flex justify-between items-center">
         <div>
           <p>{totalGoods} результати</p>
         </div>
         <div className="flex gap-5">
+
           <SortingMenu />
-          <Filter onApplyFilters={applyFilters} />
+
+          <div onClick={() => dispatch(setOpenFilters(true))} className="button-outline">
+            <Button variant='outline'>
+              <FilterIcon />
+              <p className="pl-1 lap:block mob:hidden font-semibold uppercase">фільтрувати</p>
+            </Button>
+          </div>
+
         </div>
       </div>
       <div className="grid grid-cols-4 gap-5 lap:grid-cols-3 mob:grid-cols-2">
@@ -159,6 +169,11 @@ export default function CardList({ title, tags, image, pathname, }) {
         onPaginationClick={handlePaginationClick}
         skip={skip}
       />
+
+      {
+        filters &&
+        <Filters />
+      }
 
     </div>
   )

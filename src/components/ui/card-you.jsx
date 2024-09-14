@@ -1,8 +1,8 @@
 import Image from "next/image"
 import { Title } from "."
-import avatar from '../../../public/image/jpg/avatar.jpg'
-import laura from '../../../public/image/jpg/laura.jpg'
-import Dots from '../../../public/image/svg/dots.svg'
+import avatar from '/public/image/jpg/avatar.jpg'
+import laura from '/public/image/jpg/laura.jpg'
+import Dots from '/public/image/svg/dots.svg'
 
 
 

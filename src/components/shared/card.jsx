@@ -3,7 +3,7 @@ import Image from "next/image"
 import { useDispatch, useSelector } from "react-redux"
 
 import { Price, Title } from "../ui"
-import HeartIcon from '../../../public/image/svg/heart.svg'
+import HeartIcon from '/public/image/svg/heart.svg'
 import { addToWishList } from "@/redux/features/wishlistSlice"
 import Link from "next/link"
 import { usePathname } from "next/navigation"

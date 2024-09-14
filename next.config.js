@@ -32,6 +32,16 @@ module.exports = {
   },
   images: {
     domains: ['cdn.dummyjson.com'],
-  }
+  },
+  experimental: {
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
+  },
 }
 

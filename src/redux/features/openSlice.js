@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { setFilters } from "./filtersSlice";
 
 const initialState = {
   burger: false,
   cart: false,
+  filters: false,
 }
 
 const openSlice = createSlice({
@@ -15,8 +17,11 @@ const openSlice = createSlice({
     setOpenCart: (state, action) => {
       state.cart = action.payload
     },
+    setOpenFilters: (state, action) => {
+      state.filters = action.payload
+    },
   },
 })
 
-export const { setOpenBurger, setOpenCart } = openSlice.actions
+export const { setOpenBurger, setOpenCart, setOpenFilters } = openSlice.actions
 export default openSlice.reducer;

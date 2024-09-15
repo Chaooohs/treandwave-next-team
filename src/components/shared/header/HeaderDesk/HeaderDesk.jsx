@@ -11,6 +11,7 @@ import ArrowDown from '/public/image/svg/arrow-down.svg'
 import { setOpenBurger, setOpenCart } from "@/redux/features/openSlice"
 import { CartRight } from "./CartRight"
 import { BurgerLeft } from "./BurgerLeft"
+import { Filters } from "../../filters"
 
 
 export const HeaderDesk = () => {
@@ -18,6 +19,7 @@ export const HeaderDesk = () => {
   const cart = useSelector(state => state.cart.cart)
   const CartSide = useSelector(state => state.open.cart)
   const burger = useSelector(state => state.open.burger)
+  let filters = useSelector((state) => state.open.filters);
 
 
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
@@ -78,6 +80,10 @@ export const HeaderDesk = () => {
       {
         CartSide &&
         <CartRight counter={counter} />
+      }
+      {
+        filters &&
+        <Filters />
       }
     </header>
   )

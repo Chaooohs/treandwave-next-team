@@ -9,6 +9,7 @@ import Logo from '/public/image/svg/logo.svg'
 import Cart from '/public/image/svg/cart.svg'
 import Heart from '/public/image/svg/heart.svg'
 import { setOpenBurger } from "@/redux/features/openSlice"
+import { Filters } from "../../filters"
 
 
 
@@ -16,6 +17,7 @@ export const HeaderMobile = () => {
   const dispatch = useDispatch()
   const burger = useSelector(state => state.open.burger)
   const cart = useSelector(state => state.cart.cart)
+  let filters = useSelector((state) => state.open.filters);
 
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
 
@@ -27,6 +29,11 @@ export const HeaderMobile = () => {
           {
             burger &&
             <BurgerMobile />
+          }
+
+          {
+            filters &&
+            <Filters />
           }
 
           <div className="justify-self-start row-span-1 flex items-center gap-x-5">

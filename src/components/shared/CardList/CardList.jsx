@@ -18,7 +18,6 @@ export default function CardList({ title, tags, image, pathname, }) {
   const router = useRouter()
   const dispatch = useDispatch()
   let { limit, skip, search } = useSelector((state) => state.filters);
-  let filters = useSelector((state) => state.open.filters);
 
   let category = ''
   switch (pathname) {
@@ -169,11 +168,6 @@ export default function CardList({ title, tags, image, pathname, }) {
         onPaginationClick={handlePaginationClick}
         skip={skip}
       />
-
-      {
-        filters &&
-        <Filters />
-      }
 
     </div>
   )

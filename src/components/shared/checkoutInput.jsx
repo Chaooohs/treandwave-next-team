@@ -8,7 +8,6 @@ export default function CheckoutInput({promocod}) {
     const [promo, setPromo] = useState('');
     const [isValid, setIsValid] = useState(false);
     const [error, setError] = useState('');
-    console.log(isValid);
 
     const validPromoCodes = ['DISCOUNT10', 'SALE20'];
 

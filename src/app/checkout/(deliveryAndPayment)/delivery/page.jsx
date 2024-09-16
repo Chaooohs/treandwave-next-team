@@ -1,32 +1,34 @@
 'use client';
 import { useEffect, useState } from "react";
-import Stepper from "@/components/ui/stepper";
 import Nova from '/public/image/svg/delivery.svg';
 import NovaPoshta from '/public/image/svg/novaposhta.svg';
 import { Button } from "@/components/ui";
-import CheckoutSummary from "@/components/shared/checkoutSummary";
-import CheckoutInput from "@/components/shared/checkoutInput";
-import { setTotalPrice } from "@/redux/features/cartSlice";
-import { DeliveryData } from "@/components/ui/deliveryData";
+import { DeliveryData } from "./components/deliveryData";
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
     const [selectedDelivery, setSelectedDelivery] = useState(null);
-    const [name, setName] = useState([]);
-    const [address, setAddress] = useState([]);
-    const [cities, setCities] = useState([]);
-
-    useEffect(() => {
-        fetchCities().then(setCities);
-    }, []);
+    const [clientData, setClientData] = useState({});
+    const [deliveryInfo, setDeliveryInfo] = useState({});
+    const router = useRouter();
 
     const deliveryOptions = [
         { id: 1, name: 'НОВА ПОШТА - ВІДДІЛЕННЯ', cost: 79 },
         { id: 2, name: 'НОВА ПОШТА - ПОШТОМАТ', cost: 79 },
         { id: 3, name: `НОВА ПОШТА - КУР'ЄР`, cost: 99 },
       ];
-
-    // console.log(cities);
-    console.log(selectedDelivery);
+    
+    const handleSendingInfo = () => {
+        if (Object.keys(clientData).length === 0 || Object.keys(deliveryInfo).length === 0) {
+            alert('Будь ласка, заповніть усі дані перед продовженням.');
+            return;
+        }
+            
+        console.log('Інфо про клієнта:', clientData);
+        console.log('Інфо про delivery:', deliveryInfo);
+        alert('Відправила дані в консоль');
+        router.push('/checkout/payment');
+    }
 
     return(
                     <div className="flex flex-col gap-10 w-full">
@@ -57,7 +59,7 @@ export default function Page() {
                                         </div>
                                     </div>
                                     
-                                        {selectedDelivery === item.id && <DeliveryData cities={cities}/>}
+                                        {selectedDelivery === item.id && <DeliveryData selectedDelivery={selectedDelivery} setClientData={setClientData} setDeliveryInfo={setDeliveryInfo}/>}
 
                                 </div>
                             ))}
@@ -66,8 +68,7 @@ export default function Page() {
                             <Button
                                 variant='default'
                                 className='font-mont font-semibold text-base uppercase px-5 py-8'
-                               
-                                
+                                onClick={handleSendingInfo}
                             >
                                 Продовжити оформлення
                             </Button>
@@ -76,20 +77,3 @@ export default function Page() {
     )
 }
 
-async function fetchCities(params) {
-    const res = await fetch('https://api.novaposhta.ua/v2.0/json/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify({
-                "apiKey": "692fdef2615463a4b951f6bb0754ec97",
-                "modelName": "AddressGeneral",
-                "calledMethod": "getCities",
-                "methodProperties": {
-                    "Limit" : "500"
-                }
-                    })
-    });
-
-    const data = await res.json();
-    return data.data;
-}

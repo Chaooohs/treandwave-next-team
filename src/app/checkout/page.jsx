@@ -22,7 +22,7 @@ export default function ShoppingCart() {
   useEffect(() => {
 
     dispatch(setTotalPrice())
-    
+
     if (counter === 0) {
       refButton.current.setAttribute('disabled', 'disabled')
     }
@@ -62,13 +62,15 @@ export default function ShoppingCart() {
                   <span className="text-2xl font-semibold uppercase lap:text-base"> {totalPrice.toLocaleString("ru")} uah</span>
                 </div>
               </div>
-              <Button
-                ref={refButton}
-                className='font-semibold text-base uppercase h-14 w-full mt-10'
-              >
-                <Link href='/checkout/delivery'>Оформити замовлення</Link>
-                
-              </Button>
+
+              <Link href='/checkout/delivery'>
+                <Button
+                  ref={refButton}
+                  className='font-semibold text-base uppercase h-14 w-full mt-10'
+                >
+                  Оформити замовлення
+                </Button>
+              </Link>
               <div className="mt-16 text-lg font-semibold uppercase lap:mt-10">Потрібна допомога?</div>
               <div className="mt-3 flex flex-col text-base font-medium gap-y-2 underline">
                 <Link href='/about/payment-and-delivery' className="hover:text-[#6a6a6a] duration-300">Оплата і доставка</Link>

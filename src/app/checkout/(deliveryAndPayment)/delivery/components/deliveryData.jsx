@@ -27,7 +27,6 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
-  const ref = useRef(null);
   const inputRef = useRef(null);
 
 
@@ -58,27 +57,27 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
         <form className="flex flex-col gap-5 w-full">
           <h3 className="uppercase font-semibold text-base">Особисті дані</h3>
           <div className="grid grid-cols-2 gap-5">
-            <Input
+            {/* <Input
               type="text"
               placeholder={`Ім’я`}
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className={` font-mont border-[1px]  rounded-none border-[#BABABA] font-medium  `}
-            />
-            <Input
+              className={` border-[1px]  rounded-none border-[#BABABA]  `}
+            /> */}
+            {/* <Input
               type="text"
               placeholder={`Прізвище`}
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              className={` font-mont border-[1px] rounded-none border-[#BABABA] font-medium  `}
-            />
-            <Input
+              className={` border-[1px] rounded-none border-[#BABABA] `}
+            /> */}
+            {/* <Input
               type="email"
               placeholder={`Email`}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={` font-mont border-[1px] rounded-none border-[#BABABA] font-medium  `}
-            />
+              className={` border-[1px] rounded-none border-[#BABABA] `}
+            /> */}
             {/* <Input
               ref={ref}
               inputRef={inputRef}
@@ -90,17 +89,55 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
             /> */}
 
             <IMaskInput
+              mask={/^[a-zA-Z а-щА-ЩЬьЮюЯяЇїІіЄє ]+$/g}
+              radix="."
+              value=""
+              unmask={false}
+              inputRef={inputRef}
+              onAccept={
+                (value, mask) => console.log(value)
+              }
+              placeholder='Ім’я'
+              style={{height: '40px', background: 'transparent', border: '1px solid rgb(186 186 186)', padding: '4px 0 0 12px', outline: 'none' }}
+            />
+
+            <IMaskInput
+              mask={/^[a-zA-Z а-щА-ЩЬьЮюЯяЇїІіЄє ]+$/g}
+              radix="."
+              value=""
+              unmask={false}
+              inputRef={inputRef}
+              onAccept={
+                (value, mask) => console.log(value)
+              }
+              placeholder='Прізвище'
+              style={{height: '40px', background: 'transparent', border: '1px solid rgb(186 186 186)', padding: '4px 0 0 12px', outline: 'none' }}
+            />
+
+            <IMaskInput
+              mask={/^\S*@?\S*$/}
+              radix="."
+              value=""
+              unmask={false}
+              inputRef={inputRef}
+              onAccept={
+                (value, mask) => console.log(value)
+              }
+              placeholder='Email'
+              style={{height: '40px', background: 'transparent', border: '1px solid rgb(186 186 186)', padding: '4px 0 0 12px', outline: 'none' }}
+            />
+
+            <IMaskInput
               mask={'+{38}(000)000-00-00'}
               radix="."
               value=""
               unmask={false}
-              ref={ref}
               inputRef={inputRef}
               onAccept={
                 (value, mask) => console.log(value)
               }
               placeholder='+38(0__)___-__-__'
-              style={{background: 'transparent', border: '1px solid rgb(186 186 186)',padding:'4px 0 0 12px', outline: 'none'}}
+              style={{height: '40px', background: 'transparent', border: '1px solid rgb(186 186 186)', padding: '4px 0 0 12px', outline: 'none' }}
             />
 
           </div>

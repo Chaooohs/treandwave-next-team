@@ -8,7 +8,7 @@ import { Button } from "@/components/ui";
 import { setTotalPrice } from "@/redux/features/cartSlice";
 
 
-export const CartFull = ({ setIsOpen }) => {
+export const CartFull = ({ onHandleClick }) => {
   const dispatch = useDispatch()
   const { cart, totalPrice } = useSelector(state => state.cart);
 
@@ -39,10 +39,10 @@ export const CartFull = ({ setIsOpen }) => {
           <span className="uppercase text-sm font-semibold">До сплати</span>
           <span className="uppercase text-base font-semibold">{totalPrice.toLocaleString("ru")} uah</span>
         </div>
-        <Link href='/checkout/delivery' onClick={() => setIsOpen(true)}>
+        <Link href='/checkout/delivery' onClick={onHandleClick}>
           <Button className='h-12 mt-8 w-full uppercase font-semibold text-base'>Оформити замовлення</Button>
         </Link>
-        <Link href='/checkout' onClick={() => setIsOpen(true)}>
+        <Link href='/checkout' onClick={onHandleClick}>
           <Button variant='outline' className='h-12 mt-3 w-full uppercase font-semibold text-base'>дивитися кошик</Button>
         </Link>
       </div>

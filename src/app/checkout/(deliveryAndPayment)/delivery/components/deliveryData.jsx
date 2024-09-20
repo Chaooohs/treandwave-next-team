@@ -9,18 +9,32 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Button } from '../ui/button.jsx';
-import { Input } from '../ui/input.jsx';
-import { useState } from 'react';
-import { Tag } from 'lucide-react';
 
-export function DeliveryData({cities}) {
+import { Input } from '../../../../../components/ui/input.jsx';
+import { useState, useEffect } from 'react';
+import { BranchDelivery } from "./branchDelivery.jsx";
+import { PostomatDelivery } from "./postomatDelivery.jsx";
+import { CourierDelivery } from "./courierDelivery.jsx";
+
+
+export function DeliveryData({selectedDelivery, setClientData, setDeliveryInfo}) {
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
-  console.log(cities);
+  useEffect(() => {
+    const clientInfo = {
+      firstName,
+      lastName,
+      email,
+      phone,
+    };
+    setClientData(clientInfo);
+  }, [firstName, lastName, email, phone]);
+
+
 
   return (
     <div className="w-full">
@@ -28,39 +42,10 @@ export function DeliveryData({cities}) {
         <div className="bg-[#EDEDED] h-[1px] w-full"></div>
 
         {/*  address  */}
-        <div className="flex flex-col gap-5 w-full">
-          <h3 className="uppercase font-semibold text-base">Адреса відділення</h3>
-          <div>
-            <Select>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Місто" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Населений пункт</SelectLabel>
-                  {cities.map((item, index) => (
-                    <SelectItem key={index} value={item.CityID}>{item.Description}</SelectItem>
-                  ))} 
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Select>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Відділення" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Відділення</SelectLabel>
-                  {/* {cities.map((item, index) => ( */}
-                    <SelectItem value="est">Eastern Standard Time (EST)</SelectItem>
-                  {/* ))} */}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
+          {selectedDelivery === 1 && <BranchDelivery setDeliveryInfo={setDeliveryInfo} />} {/* Отделения */}
+          {selectedDelivery === 2 && <PostomatDelivery setDeliveryInfo={setDeliveryInfo} />} {/* Поштоматы */}
+          {selectedDelivery === 3 && <CourierDelivery setDeliveryInfo={setDeliveryInfo} />} {/* Курьер */}
+
 
         {/*  name  */}
         <form className="flex flex-col gap-5 w-full">
@@ -94,12 +79,8 @@ export function DeliveryData({cities}) {
                 onChange={(e) => setPhone(e.target.value)}
                 className={` font-mont border-[1px] rounded-none border-[#BABABA] font-medium  `}
             />
-
-          </div>
-                    
-        </form>
-
-        
+          </div>             
+        </form>  
       </div>
     </div>
   )

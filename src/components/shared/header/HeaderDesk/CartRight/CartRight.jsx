@@ -57,7 +57,7 @@ export const CartRight = ({ counter }) => {
           </button>
         </div>
 
-        <ShoppingCart counter={counter} setIsOpen={setIsOpen} />
+        <ShoppingCart counter={counter} onHandleClick={handleClick} />
 
       </div>
 

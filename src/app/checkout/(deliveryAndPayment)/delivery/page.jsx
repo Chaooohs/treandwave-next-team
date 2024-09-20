@@ -24,9 +24,8 @@ export default function Page() {
             return;
         }
             
-        console.log('Інфо про клієнта:', clientData);
-        console.log('Інфо про delivery:', deliveryInfo);
-        alert('Відправила дані в консоль');
+        localStorage.setItem('clientData', JSON.stringify(clientData));
+        localStorage.setItem('deliveryData', JSON.stringify(deliveryInfo));
         router.push('/checkout/payment');
     }
 
@@ -55,6 +54,10 @@ export default function Page() {
                                                 value={item.id}
                                                 checked={selectedDelivery === item.id}
                                                 onChange={() => setSelectedDelivery(item.id)}
+                                                className={`w-6 h-6 appearance-none rounded-full border-[1px] border-gray-600 checked:border-[#0047FF] 
+                                                    checked:ring-[1px] checked:ring-[#0047FF] checked:bg-[#0047FF] checked:ring-offset-2 focus:ring-2 
+                                                    focus:ring-[#0047FF] cursor-pointer`}
+                                    
                                             />
                                         </div>
                                     </div>

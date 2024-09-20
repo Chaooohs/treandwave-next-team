@@ -24,16 +24,13 @@ export default function CheckoutInput({setDiscount}) {
         if (foundPromo) {
             setIsValid(true);
             setError('');
-
             setAppliedDiscount(foundPromo.discount);
             setDiscount(foundPromo.discount);
         }
-
       };
-      console.log(appliedDiscount);
 
     return(
-        <div className='flex h-10 text-sm w-full'>
+        <div className='flex min-h-10 text-sm w-full'>
             {isValid ? (
                 <div>
                     <div className='bg-[#E2ECFF] rounded-[3px] p-5'>
@@ -51,7 +48,7 @@ export default function CheckoutInput({setDiscount}) {
                         placeholder={`Введіть промокод`}
                         value={promo}
                         onChange={(e) => setPromo(e.target.value)}
-                        className={` focus:outline-none focus:border-[1px] pl-10 font-mont border-[1px] border-r-0 rounded-none border-[#BABABA] font-medium  ${error ? 'border-[#C50018] text-[#C50018]' : 'border-stone-300 text-[#121212]'} hover:border-[#0047FF] focus:border-[#0047FF] focus:text-[#121212] focus-visible:ring-0`}
+                        className={`ring-0 rounded-none rounded-l-[3px] ring-offset-0 focus-visible:ring-offset-0 focus-visible:ring-0 outline-offset-0  pl-10 font-mont border-[1px] border-r-0 border-[#BABABA] font-medium  group-hover:border-[#0047FF] focus:border-[#0047FF] focus:text-[#121212]`}
                     />
                     </div>
                     <div className='absolute z-10 rotate-90 pt-[1px] pl-5'>
@@ -59,7 +56,7 @@ export default function CheckoutInput({setDiscount}) {
                     </div>
                     <Button
                         variant='grayBut'
-                        className={`font-mont rounded-none h-full font-semibold uppercase group-hover:text-[#0047FF] group-hover:border-[#0047FF] ${error && 'border-[#C50018] text-[#C50018]'}`}
+                        className={`font-mont rounded-r-[3px] h-full border-[1px] font-semibold uppercase group-hover:text-[#0047FF] group-hover:border-[#0047FF] `}
                         onClick={handlePromo}
                     >
                         Застосувати

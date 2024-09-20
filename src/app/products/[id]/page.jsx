@@ -33,6 +33,10 @@ export default function Product() {
     }
   }, [wishlist])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const handleClick = (index) => {
     setIndexImage(index)
   }

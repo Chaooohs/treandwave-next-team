@@ -4,13 +4,14 @@ import * as React from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { Plus } from "lucide-react";
 import { Minus } from 'lucide-react';
+import { ChevronUp } from 'lucide-react';
 
 import { cn } from "@/lib/utils"
 
 const Accordion = AccordionPrimitive.Root
 
 const AccordionItem = React.forwardRef(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item ref={ref} className={cn("border-b", className)} {...props} />
+  <AccordionPrimitive.Item ref={ref} className={cn("", className)} {...props} />
 ))
 AccordionItem.displayName = "AccordionItem"
 
@@ -19,13 +20,14 @@ const AccordionTrigger = React.forwardRef(({ className, children, ...props }, re
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex flex-1 items-center justify-between py-4 transition-all [&[data-state=open]>.minus-icon]:block [&[data-state=open]>.plus-icon]:hidden  text-lg font-mont uppercase font-semibold text-[#121212]",
+        "flex flex-1 items-center gap-2 py-4 transition-all [&[data-state=open]>.chevronup-icon]:rotate-180 [&[data-state=open]>.minus-icon]:block [&[data-state=open]>.plus-icon]:hidden  text-lg font-mont uppercase font-semibold text-[#121212]",
         className
       )}
       {...props}>
       {children}
-      <Plus className="plus-icon h-6 w-6 shrink-0 transition-transform duration-200" />
-      <Minus className="minus-icon hidden h-6 w-6 shrink-0 transition-transform duration-200" />
+      <ChevronUp className="chevronup-icon"/>
+      {/* <Plus className="plus-icon h-6 w-6 shrink-0 transition-transform duration-200" />
+      <Minus className="minus-icon hidden h-6 w-6 shrink-0 transition-transform duration-200" /> */}
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ))

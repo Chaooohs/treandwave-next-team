@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function CheckoutSummary({}) {
     const [discount, setDiscount] = useState(null);
     const totalPrice = useSelector((state) => state.cart.totalPrice);
-    const discountAmount = Math.round( (totalPrice * discount / 100) *100)/100
+    const discountAmount = Math.round((totalPrice * discount / 100)*100)/100;
     const forPay = totalPrice - discountAmount;
 
     return(
@@ -15,17 +15,17 @@ export default function CheckoutSummary({}) {
                 <h3 className="uppercase font-semibold text-2xl">Ваше замовлення</h3>
                 <div className="flex justify-between">
                     <p>Товарів на суму</p>
-                    <p>{totalPrice} uah</p>
+                    <p>{totalPrice.toLocaleString('ru')} uah</p>
                 </div>
                 {discount && 
                     <div className="flex justify-between">
                         <p className="uppercase">Промокод</p>
-                        <p className="text-[#D8001A] uppercase">-{discountAmount} uah</p>
+                        <p className="text-[#D8001A] uppercase">-{discountAmount.toLocaleString('ru')} uah</p>
                     </div>
                 }
                 <div className="flex justify-between uppercase">
                     <h3>До сплати</h3>
-                    <h3 className="text-2xl">{forPay} uah</h3>
+                    <h3 className="text-2xl">{forPay.toLocaleString('ru')} uah</h3>
                 </div>
             </div>
             <CheckoutInput setDiscount={setDiscount}/>

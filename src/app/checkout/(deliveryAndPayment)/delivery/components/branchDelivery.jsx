@@ -80,10 +80,10 @@ export function BranchDelivery({ setDeliveryInfo }) {
             <input
               type="text"
               value={search}
-              placeholder="Місто"
+              placeholder="Введіть назву міста"
               onChange={handleInputChange}
               // onFocus={handleFocus}
-              className={`w-full p-2 font-mont border-[1px] text-black rounded-sm border-[#BABABA] font-medium  `}
+              className={`w-full p-2 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
             />
             {isDropDownOpen &&
               <div className="border-[1px] pb-4 ">
@@ -100,7 +100,7 @@ export function BranchDelivery({ setDeliveryInfo }) {
           </div>
           <div>
             <Select onValueChange={setSelectedDivision}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full border-[#BABABA] h-[42px]">
                 <SelectValue placeholder="Відділення" />
               </SelectTrigger>
               <SelectContent>

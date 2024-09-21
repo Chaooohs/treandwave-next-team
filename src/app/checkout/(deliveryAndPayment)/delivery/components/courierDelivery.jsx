@@ -16,16 +16,20 @@ export function CourierDelivery({setDeliveryInfo}) {
   const [isStreetDropDownOpen, setStreetIsDropDownOpen] = useState(false);
 
   const handleInputChange = (e) => {
-      setSearch(e.target.value);
+    const value = e.target.value
+    if (value) {
+      setSearch(value);
+      setIsDropDownOpen(true);
+    }
   };
 
   const handleInputChangeStreet = (e) => {
     setSearchStreet(e.target.value);
 };
 
-  const handleFocus = () => {
-    setIsDropDownOpen(true);
-  };
+  // const handleFocus = () => {
+  //   setIsDropDownOpen(true);
+  // };
 
   const handleFocusStreet = () => {
     setStreetIsDropDownOpen(true);
@@ -83,10 +87,10 @@ export function CourierDelivery({setDeliveryInfo}) {
             <input 
               type="text" 
               value={search}
-              placeholder="Місто"
+              placeholder="Введіть назву міста"
               onChange={handleInputChange}
-              onFocus={handleFocus}
-              className={`w-full p-2 font-mont border-[1px] text-black rounded-sm border-[#BABABA] font-medium  `}
+              // onFocus={handleFocus}
+              className={`w-full p-2 border-[1px] text-black rounded-sm border-[#BABABA] outline-none bg-transparent `}
               />
               {isDropDownOpen && 
                 <div className="border-[1px] pb-4 ">
@@ -109,7 +113,7 @@ export function CourierDelivery({setDeliveryInfo}) {
                 placeholder="Вулиця"
                 onChange={handleInputChangeStreet}
                 onFocus={handleFocusStreet}
-                className={`w-full p-2 font-mont border-[1px] text-black rounded-sm border-[#BABABA] font-medium  `}
+                className={`w-full p-2 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
                 />
                 {isStreetDropDownOpen && 
                     <div className="border-[1px] pb-4 ">

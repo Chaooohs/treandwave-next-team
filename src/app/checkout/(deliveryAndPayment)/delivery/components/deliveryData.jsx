@@ -127,7 +127,8 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
                 (value, mask) => isSetFirstName(value)
               }
               placeholder='Ім’я'
-              style={{ height: '40px', background: 'transparent', border: '1px solid rgb(186 186 186)', padding: '4px 0 0 12px', outline: 'none' }}
+              style={{ padding: '2px 0 0 12px' }}
+              className="rounded outline-none h-[42px] bg-transparent border border-[#bababa] pl-3"
             />
 
             <IMaskInput
@@ -140,7 +141,8 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
                 (value, mask) => isSetLastName(value)
               }
               placeholder='Прізвище'
-              style={{ height: '40px', background: 'transparent', border: '1px solid rgb(186 186 186)', padding: '4px 0 0 12px', outline: 'none' }}
+              style={{ padding: '2px 0 0 12px' }}
+              className="rounded outline-none h-[42px] bg-transparent border border-[#bababa] pl-3"
             />
 
             <IMaskInput
@@ -151,7 +153,8 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
               inputRef={inputRef}
               onAccept={checkEmail}
               placeholder='Email'
-              style={{ height: '40px', background: 'transparent', border: '1px solid rgb(186 186 186)', padding: '4px 0 0 12px', outline: 'none' }}
+              style={{ padding: '2px 0 0 12px' }}
+              className="rounded outline-none h-[42px] bg-transparent border border-[#bababa] pl-3"
             />
 
             <IMaskInput
@@ -162,8 +165,10 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
               inputRef={inputRef}
               onAccept={checkPhone}
               placeholder='+38(0__)___-__-__'
-              style={{ height: '40px', background: 'transparent', border: '1px solid rgb(186 186 186)', padding: '4px 0 0 12px', outline: 'none' }}
+              style={{ padding: '2px 0 0 12px' }}
+              className="rounded outline-none h-[42px] bg-transparent border border-[#bababa] pl-3"
             />
+
 
           </div>
         </form>

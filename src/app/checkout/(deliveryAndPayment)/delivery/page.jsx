@@ -36,7 +36,7 @@ export default function Page() {
     <div className="flex flex-col gap-10 w-full">
       <div className="flex flex-col gap-3 ">
         {deliveryOptions.map((item) => (
-          <div key={item.id} className="w-full items-center justify-between border-[1px] border-[#4D4D4D] p-6 flex flex-col gap-5">
+          <div key={item.id} className="rounded w-full items-center justify-between border-[1px] border-[#4D4D4D] p-6 flex flex-col gap-5">
             <div className="w-full items-center justify-between  flex gap-5">
               {item.id === 3 ? (<div> <Nova className=' ' /> </div>) :
                 (<div> <NovaPoshta className=' ' /> </div>)}

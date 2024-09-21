@@ -23,12 +23,16 @@ export function PostomatDelivery({setDeliveryInfo}) {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
   const handleInputChange = (e) => {
-      setSearch(e.target.value);
+    const value = e.target.value
+    if (value) {
+      setSearch(value);
+      setIsDropDownOpen(true);
+    }
   };
 
-  const handleFocus = () => {
-    setIsDropDownOpen(true);
-  };
+  // const handleFocus = () => {
+  //   setIsDropDownOpen(true);
+  // };
 
   const handleSelectedAddress = (address) => {
     setSearch(address);
@@ -74,10 +78,10 @@ export function PostomatDelivery({setDeliveryInfo}) {
             <input 
               type="text" 
               value={search}
-              placeholder="Місто"
+              placeholder="Введіть назву міста"
               onChange={handleInputChange}
-              onFocus={handleFocus}
-              className={`w-full p-2 font-mont border-[1px] text-black rounded-sm border-[#BABABA] font-medium  `}
+              // onFocus={handleFocus}
+              className={`w-full p-2 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
               />
               {isDropDownOpen && 
                 <div className="border-[1px] pb-4 ">
@@ -94,7 +98,7 @@ export function PostomatDelivery({setDeliveryInfo}) {
           </div>
           <div>
             <Select onValueChange={setSelectedDivision}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full border-[#BABABA] h-[42px]">
                 <SelectValue placeholder="Поштомат" />
               </SelectTrigger>
               <SelectContent>

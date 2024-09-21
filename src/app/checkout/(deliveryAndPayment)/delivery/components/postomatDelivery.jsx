@@ -53,11 +53,13 @@ export function PostomatDelivery({setDeliveryInfo}) {
   }, [selectedCity]);
 
   useEffect(() => {
-    const deliveryInfo = {
-      selectedCity,
-      selectedDivision,
-    };
-    setDeliveryInfo(deliveryInfo);
+    if(selectedCity) {
+      const deliveryInfo = {
+        selectedCity,
+        // selectedDivision,
+      };
+      setDeliveryInfo(deliveryInfo);
+    }
   }, [selectedCity, selectedDivision]);
 
   return (

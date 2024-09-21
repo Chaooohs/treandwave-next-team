@@ -18,11 +18,14 @@ export default function Page() {
     { id: 3, name: `НОВА ПОШТА - КУР'ЄР`, cost: 99 },
   ];
 
+  const emptyOrder = !Object.keys(clientData).length || !Object.keys(deliveryInfo).length;
+
   const handleSendingInfo = () => {
-    if (Object.keys(clientData).length === 0 || Object.keys(deliveryInfo).length === 0) {
-      alert('Будь ласка, заповніть усі дані перед продовженням.');
-      return;
-    }
+    
+    // if (Object.keys(clientData).length || Object.keys(deliveryInfo).length) {
+    //   alert('Будь ласка, заповніть усі дані перед продовженням.');
+    //   return;
+    // }
 
     localStorage.setItem('clientData', JSON.stringify(clientData));
     localStorage.setItem('deliveryData', JSON.stringify(deliveryInfo));
@@ -72,6 +75,7 @@ export default function Page() {
           variant='default'
           className='font-mont font-semibold text-base uppercase px-5 py-8'
           onClick={handleSendingInfo}
+          disabled={emptyOrder}
         >
           Продовжити оформлення
         </Button>

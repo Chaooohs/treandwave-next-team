@@ -13,7 +13,7 @@ import {
 import { useState, useEffect } from 'react';
 
 
-export function BranchDelivery({setDeliveryInfo}) {
+export function BranchDelivery({ setDeliveryInfo }) {
 
   const [search, setSearch] = useState('');
   const [cities, setCities] = useState([]);
@@ -24,20 +24,26 @@ export function BranchDelivery({setDeliveryInfo}) {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
   useEffect(() => {
-    const deliveryInfo = {
-      selectedCity,
-      selectedDivision,
-    };
-    setDeliveryInfo(deliveryInfo);
+    if (selectedCity) {
+      const deliveryInfo = {
+        selectedCity,
+        // selectedDivision,
+      };
+      setDeliveryInfo(deliveryInfo);
+    }
   }, [selectedCity, selectedDivision]);
 
   const handleInputChange = (e) => {
-      setSearch(e.target.value);
+    const value = e.target.value
+    if (value) {
+      setSearch(value);
+      setIsDropDownOpen(true);
+    }
   };
 
-  const handleFocus = () => {
-    setIsDropDownOpen(true);
-  };
+  // const handleFocus = () => {
+  // setIsDropDownOpen(true);
+  // };
 
   const handleSelectedAddress = (address) => {
     setSearch(address);
@@ -47,12 +53,12 @@ export function BranchDelivery({setDeliveryInfo}) {
 
   useEffect(() => {
     fetchCities().then(setCities);
-}, []);
+  }, []);
 
   useEffect(() => {
     if (search.length >= 1) {
       fetchCities(search).then(setCities);
-    } else {fetchCities('').then(setCities);}
+    } else { fetchCities('').then(setCities); }
   }, [search]);
 
   useEffect(() => {
@@ -61,6 +67,7 @@ export function BranchDelivery({setDeliveryInfo}) {
     }
   }, [selectedCity]);
 
+  
   return (
     <div className="w-full">
       <div className="w-full flex flex-col gap-10">
@@ -70,25 +77,25 @@ export function BranchDelivery({setDeliveryInfo}) {
         <div className="flex flex-col gap-5 w-full">
           <h3 className="uppercase font-semibold text-base">Адреса відділення</h3>
           <div>
-            <input 
-              type="text" 
+            <input
+              type="text"
               value={search}
               placeholder="Місто"
               onChange={handleInputChange}
-              onFocus={handleFocus}
+              // onFocus={handleFocus}
               className={`w-full p-2 font-mont border-[1px] text-black rounded-sm border-[#BABABA] font-medium  `}
-              />
-              {isDropDownOpen && 
-                <div className="border-[1px] pb-4 ">
-                  <div className=" flex flex-col gap-2 max-h-96 overflow-auto p-2 pt-4 ">
-                    {cities.map((item, index) => (
-                      <div key={index} onClick={() => handleSelectedAddress(item.Description)}
+            />
+            {isDropDownOpen &&
+              <div className="border-[1px] pb-4 ">
+                <div className=" flex flex-col gap-2 max-h-96 overflow-auto p-2 pt-4 ">
+                  {cities.map((item, index) => (
+                    <div key={index} onClick={() => handleSelectedAddress(item.Description)}
                       className=" cursor-pointer">
-                        {item.Description}
-                      </div>
-                    ))}
-                  </div>
+                      {item.Description}
+                    </div>
+                  ))}
                 </div>
+              </div>
             }
           </div>
           <div>
@@ -107,7 +114,7 @@ export function BranchDelivery({setDeliveryInfo}) {
             </Select>
           </div>
         </div>
-        
+
       </div>
     </div>
   )
@@ -115,17 +122,17 @@ export function BranchDelivery({setDeliveryInfo}) {
 
 async function fetchCities(search) {
   const res = await fetch('https://api.novaposhta.ua/v2.0/json/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify({
-              "apiKey": "692fdef2615463a4b951f6bb0754ec97",
-              "modelName": "AddressGeneral",
-              "calledMethod": "getCities",
-              "methodProperties": {
-                  "FindByString" : search || '',
-                  "Limit" : "1000"
-              }
-                  })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      "apiKey": "692fdef2615463a4b951f6bb0754ec97",
+      "modelName": "AddressGeneral",
+      "calledMethod": "getCities",
+      "methodProperties": {
+        "FindByString": search || '',
+        "Limit": "1000"
+      }
+    })
   });
 
   const data = await res.json();
@@ -134,16 +141,16 @@ async function fetchCities(search) {
 
 async function fetchDevision(params) {
   const res = await fetch('https://api.novaposhta.ua/v2.0/json/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify({
-              "apiKey": "692fdef2615463a4b951f6bb0754ec97",
-              "modelName": "AddressGeneral",
-              "calledMethod": "getWarehouses",
-              "methodProperties": {
-                  "CityName" : params,
-              }
-                  })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      "apiKey": "692fdef2615463a4b951f6bb0754ec97",
+      "modelName": "AddressGeneral",
+      "calledMethod": "getWarehouses",
+      "methodProperties": {
+        "CityName": params,
+      }
+    })
   });
 
   const data = await res.json();

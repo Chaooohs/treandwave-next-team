@@ -61,11 +61,13 @@ export function CourierDelivery({setDeliveryInfo}) {
   }, [selectedCityRef, searchStreet]);
 
   useEffect(() => {
-    const deliveryInfo = {
-      selectedCity,
-      selectedStreet,
-    };
-    setDeliveryInfo(deliveryInfo);
+    if(selectedCity) {
+      const deliveryInfo = {
+        selectedCity,
+        // selectedStreet,
+      };
+      setDeliveryInfo(deliveryInfo);
+    }
   }, [selectedCity, selectedStreet]);
 
 

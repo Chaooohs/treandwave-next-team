@@ -24,11 +24,6 @@ export default function Page() {
 
   const emptyOrder = !Object.keys(clientData).length || !Object.keys(deliveryInfo).length;
 
-  useEffect(() => {
-    
-  }, [clientData, deliveryInfo])
-
-
   const handleSendingInfo = () => {
     
     // if (Object.keys(clientData).length || Object.keys(deliveryInfo).length) {

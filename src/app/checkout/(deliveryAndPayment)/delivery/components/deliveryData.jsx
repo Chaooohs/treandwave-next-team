@@ -42,7 +42,6 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
       };
 
       setClientData(clientInfo);
-      console.log(clientInfo)
     }
 
   }, [isFirstName, isLastName, isEmail, isPhone]);

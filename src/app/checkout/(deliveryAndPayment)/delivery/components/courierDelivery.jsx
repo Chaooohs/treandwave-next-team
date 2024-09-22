@@ -65,10 +65,10 @@ export function CourierDelivery({setDeliveryInfo}) {
   }, [selectedCityRef, searchStreet]);
 
   useEffect(() => {
-    if(selectedCity) {
+    if(selectedCity && selectedStreet) {
       const deliveryInfo = {
         selectedCity,
-        // selectedStreet,
+        selectedStreet,
       };
       setDeliveryInfo(deliveryInfo);
     }

@@ -8,6 +8,7 @@ import product from './features/productSlice'
 import texture from './features/textureSlice'
 import cart from './features/cartSlice'
 import filters from './features/filtersSlice'
+import order from './features/orderSlice'
 import { goodsApi } from './api/goodsApi'
 
 export const makeStore = () => {
@@ -22,6 +23,7 @@ export const makeStore = () => {
       texture,
       cart,
       filters,
+      order,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(goodsApi.middleware),

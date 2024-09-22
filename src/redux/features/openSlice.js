@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setFilters } from "./filtersSlice";
 
 const initialState = {
   burger: false,

@@ -30,7 +30,6 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
 
   const inputRef = useRef(null);
 
-
   useEffect(() => {
     if(isFirstName && isLastName && isEmail && isPhone) {
 

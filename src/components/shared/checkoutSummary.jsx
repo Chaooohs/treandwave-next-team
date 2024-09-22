@@ -10,8 +10,8 @@ export default function CheckoutSummary({}) {
     const forPay = totalPrice - discountAmount;
 
     return(
-        <div className="flex flex-col gap-10">
-            <div className="border-[1px] font-medium text-base text-[#121212] border-[#EDEDED] p-6 flex flex-col gap-6">
+        <div className="flex flex-col gap-10 ">
+            <div className="border-[1px] font-medium text-base text-[#121212] border-[#EDEDED] p-6 flex flex-col gap-6 rounded">
                 <h3 className="uppercase font-semibold text-2xl">Ваше замовлення</h3>
                 <div className="flex justify-between">
                     <p>Товарів на суму</p>

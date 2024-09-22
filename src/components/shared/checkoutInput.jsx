@@ -33,7 +33,7 @@ export default function CheckoutInput({setDiscount}) {
         <div className='flex min-h-10 text-sm w-full'>
             {isValid ? (
                 <div>
-                    <div className='bg-[#E2ECFF] rounded-[3px] p-5'>
+                    <div className='bg-[#E2ECFF] rounded p-5'>
                         <p className='text-[#0047FF]'>
                             Промокод успішно застосовано! Знижка {appliedDiscount}%  врахована в підсумковій сумі.
                         </p>
@@ -48,7 +48,7 @@ export default function CheckoutInput({setDiscount}) {
                         placeholder={`Введіть промокод`}
                         value={promo}
                         onChange={(e) => setPromo(e.target.value)}
-                        className={`ring-0 rounded-none rounded-l-[3px] ring-offset-0 focus-visible:ring-offset-0 focus-visible:ring-0 outline-offset-0  pl-10 font-mont border-[1px] border-r-0 border-[#BABABA] font-medium  group-hover:border-[#0047FF] focus:border-[#0047FF] focus:text-[#121212]`}
+                        className={`ring-0 rounded-none rounded-l-[4px] ring-offset-0 focus-visible:ring-offset-0 focus-visible:ring-0 outline-offset-0  pl-10 font-mont border-[1px] border-r-0 border-[#BABABA] font-medium  group-hover:border-[#0047FF] focus:border-[#0047FF] focus:text-[#121212]`}
                     />
                     </div>
                     <div className='absolute z-10 rotate-90 pt-[1px] pl-5'>
@@ -56,7 +56,7 @@ export default function CheckoutInput({setDiscount}) {
                     </div>
                     <Button
                         variant='grayBut'
-                        className={`font-mont rounded-r-[3px] h-full border-[1px] font-semibold uppercase group-hover:text-[#0047FF] group-hover:border-[#0047FF] `}
+                        className={`font-mont rounded-r-[4px] h-full border-[1px] font-semibold uppercase group-hover:text-[#0047FF] group-hover:border-[#0047FF] `}
                         onClick={handlePromo}
                     >
                         Застосувати

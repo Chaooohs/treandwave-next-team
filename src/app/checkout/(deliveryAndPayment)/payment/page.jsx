@@ -20,7 +20,7 @@ export default function Page() {
     <div className="flex flex-col gap-10 w-full">
       <div className="flex flex-col gap-3 ">
         {/* Оплата карткою онлайн */}
-        <div className="w-full items-center justify-between border-[1px] border-[#4D4D4D] p-6 flex flex-col gap-5">
+        <div className="w-full items-center justify-between border-[1px] border-[#4D4D4D] p-6 flex flex-col gap-5 rounded">
           <div className="w-full items-center justify-between  flex gap-5">
             <div className="flex flex-col gap-3 w-full">
               <h2>Оплата карткою онлайн</h2>
@@ -39,7 +39,7 @@ export default function Page() {
         </div>
 
         {/* Оплата при отриманні */}
-        <div className="w-full items-center justify-between border-[1px] border-[#4D4D4D] p-6 flex flex-col gap-5">
+        <div className="w-full items-center justify-between border-[1px] border-[#4D4D4D] p-6 flex flex-col gap-5 rounded">
           <div className="w-full items-center justify-between  flex gap-5">
             <div className="flex flex-col gap-3 w-full">
               <h2>Оплата при отриманні</h2>

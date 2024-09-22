@@ -35,8 +35,10 @@ export function BranchDelivery({ setDeliveryInfo }) {
 
   const handleInputChange = (e) => {
     const value = e.target.value
-    if (value) {
-      setSearch(value);
+    setSearch(value);
+    if (value === '') {
+      setIsDropDownOpen(false);
+    } else {
       setIsDropDownOpen(true);
     }
   };

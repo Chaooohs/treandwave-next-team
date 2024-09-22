@@ -102,7 +102,7 @@ export default function CheckoutStatus() {
                   {/* <p>{storedClientData.lastName}</p> */}
                 </div>
                 <p className="grid grid-cols-2">
-                  <span>Iм'я:</span>
+                  <span>Iм&apos;я:</span>
                   <span className="font-semibold">{dataUser.userFirstName}</span>
                   {/* {`Iм'я: ${dataUser.userFirstName}`} */}
                 </p>

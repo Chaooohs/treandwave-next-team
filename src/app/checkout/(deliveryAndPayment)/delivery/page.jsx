@@ -87,7 +87,7 @@ export default function Page() {
           Продовжити оформлення
         </Button>
       </div>
-    </div>//
+    </div>
   )
 }
 

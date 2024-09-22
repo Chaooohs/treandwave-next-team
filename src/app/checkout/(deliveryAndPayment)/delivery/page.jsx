@@ -1,12 +1,16 @@
 'use client';
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useRouter } from 'next/navigation';
+
 import Nova from '/public/image/svg/delivery.svg';
 import NovaPoshta from '/public/image/svg/novaposhta.svg';
 import { Button } from "@/components/ui";
 import { DeliveryData } from "./components/deliveryData";
-import { useRouter } from 'next/navigation';
+import { setAddressUserOrder, setDataUserOrder } from "@/redux/features/orderSlice";
 
 export default function Page() {
+  const dispatch = useDispatch()
   const [selectedDelivery, setSelectedDelivery] = useState(null);
   const [clientData, setClientData] = useState({});
   const [deliveryInfo, setDeliveryInfo] = useState({});
@@ -20,12 +24,20 @@ export default function Page() {
 
   const emptyOrder = !Object.keys(clientData).length || !Object.keys(deliveryInfo).length;
 
+  useEffect(() => {
+    
+  }, [clientData, deliveryInfo])
+
+
   const handleSendingInfo = () => {
     
     // if (Object.keys(clientData).length || Object.keys(deliveryInfo).length) {
     //   alert('Будь ласка, заповніть усі дані перед продовженням.');
     //   return;
     // }
+
+    dispatch(setDataUserOrder(clientData))
+    dispatch(setAddressUserOrder(deliveryInfo))
 
     localStorage.setItem('clientData', JSON.stringify(clientData));
     localStorage.setItem('deliveryData', JSON.stringify(deliveryInfo));

@@ -27,7 +27,7 @@ export function BranchDelivery({ setDeliveryInfo }) {
     if (selectedCity) {
       const deliveryInfo = {
         selectedCity,
-        // selectedDivision,
+        selectedDivision,
       };
       setDeliveryInfo(deliveryInfo);
     }
@@ -73,11 +73,10 @@ export function BranchDelivery({ setDeliveryInfo }) {
   return (
     <div className="w-full">
       <div className="w-full flex flex-col gap-10">
-        <div className="bg-[#EDEDED] h-[1px] w-full"></div>
 
         {/*  address  */}
-        <div className="flex flex-col gap-5 w-full">
-          <h3 className="uppercase font-semibold text-base">Адреса відділення</h3>
+        <div className="flex flex-col gap-5 mob:gap-3 w-full">
+          <h3 className="uppercase font-semibold text-base pb-[6px]">Адреса відділення</h3>
           <div>
             <input
               type="text"
@@ -102,8 +101,8 @@ export function BranchDelivery({ setDeliveryInfo }) {
           </div>
           <div>
             <Select onValueChange={setSelectedDivision}>
-              <SelectTrigger className="w-full border-[#BABABA] h-[42px]">
-                <SelectValue placeholder="Відділення" />
+              <SelectTrigger className="w-full border-[#BABABA] h-[42px] ">
+                <SelectValue placeholder="Відділення" className="text-green-500"/>
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>

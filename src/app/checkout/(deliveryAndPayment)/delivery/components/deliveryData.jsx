@@ -83,7 +83,7 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
         {/*  name  */}
         <form className="flex flex-col gap-5 w-full">
           <h3 className="uppercase font-semibold text-base">Особисті дані</h3>
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-2 gap-5 mob:grid-cols-1 mob:gap-3">
             {/* <Input
               type="text"
               placeholder={`Ім’я`}

@@ -26,10 +26,6 @@ export default function Page() {
 
   const handleSendingInfo = () => {
     
-    // if (Object.keys(clientData).length || Object.keys(deliveryInfo).length) {
-    //   alert('Будь ласка, заповніть усі дані перед продовженням.');
-    //   return;
-    // }
 
     dispatch(setDataUserOrder(clientData))
     dispatch(setAddressUserOrder(deliveryInfo))
@@ -43,20 +39,23 @@ export default function Page() {
     <div className="flex flex-col gap-10 w-full">
       <div className="flex flex-col gap-3 ">
         {deliveryOptions.map((item) => (
-          <div key={item.id} className="rounded w-full items-center justify-between border-[1px] border-[#4D4D4D] p-6 flex flex-col gap-5">
+          <div key={item.id} className="rounded-[4px] w-full items-center justify-between border-[1px] border-[#4D4D4D] mob:p-3 p-6 lap:p-6 flex flex-col gap-5">
             <div className="w-full items-center justify-between  flex gap-5">
-              {item.id === 3 ? (<div> <Nova className=' ' /> </div>) :
-                (<div> <NovaPoshta className=' ' /> </div>)}
+                <div className="w-full flex justify-between mob:gap-3 gap-5 lap:gap-5 mob:flex-col lap:flex ">
+                    {item.id === 3 ? (<div> <Nova className=' ' /> </div>) :
+                        (<div> <NovaPoshta className=' ' /> </div>)}
 
-              <div className="flex flex-col gap-3 w-full">
-                <div className="flex items-center justify-between">
-                  <h3 className="">{item.name}</h3>
-                  <p>{item.cost} uah</p>
+                    <div className="flex flex-col mob:gap-1  lap:gap-3 w-full">
+                        <div className="flex items-center justify-between">
+                        <h3 className="">{item.name}</h3>
+                        </div>
+                        <div>
+                        <p className="text-sm font-medium normal-case">Безкоштовна доставка при замовленні від 2500 грн.</p>
+                        </div>
+                    </div>
+                    <p>{item.cost} uah</p>
+
                 </div>
-                <div>
-                  <p className="text-sm font-medium normal-case">Безкоштовна доставка при замовленні від 2500 грн.</p>
-                </div>
-              </div>
               <div>
                 <input
                   type="radio"

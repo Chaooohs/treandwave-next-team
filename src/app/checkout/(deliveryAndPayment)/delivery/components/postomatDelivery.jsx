@@ -19,13 +19,15 @@ export function PostomatDelivery({setDeliveryInfo}) {
   const [devisions, setDevisions] = useState([]);
 
   const [selectedCity, setSelectedCity] = useState('');
-  const [selectedDivision, setSelectedDivision] = useState('')
+  const [selectedPostomat, setSelectedPostomat] = useState('')
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
   const handleInputChange = (e) => {
     const value = e.target.value
-    if (value) {
-      setSearch(value);
+    setSearch(value);
+    if (value === '') {
+      setIsDropDownOpen(false);
+    } else {
       setIsDropDownOpen(true);
     }
   };
@@ -60,16 +62,16 @@ export function PostomatDelivery({setDeliveryInfo}) {
     if(selectedCity) {
       const deliveryInfo = {
         selectedCity,
-        // selectedDivision,
+        selectedPostomat
       };
       setDeliveryInfo(deliveryInfo);
     }
-  }, [selectedCity, selectedDivision]);
+  }, [selectedCity, selectedPostomat]);
 
   return (
     <div className="w-full">
       <div className="w-full flex flex-col gap-10">
-        <div className="bg-[#EDEDED] h-[1px] w-full"></div>
+
 
         {/*  address  */}
         <div className="flex flex-col gap-5 w-full">
@@ -97,7 +99,7 @@ export function PostomatDelivery({setDeliveryInfo}) {
             }
           </div>
           <div>
-            <Select onValueChange={setSelectedDivision}>
+            <Select onValueChange={setSelectedPostomat}>
               <SelectTrigger className="w-full border-[#BABABA] h-[42px]">
                 <SelectValue placeholder="Поштомат" />
               </SelectTrigger>

@@ -9,10 +9,10 @@ import CheckoutStatus from "@/components/shared/checkoutStatus";
 export default function Layout({ children }) {
 
   return (
-    <main className="p-10 text-base text-[#121212] font-semibold  uppercase flex gap-5 min-h-screen">
+    <main className="mob:p-5 p-10 lap:p-10 text-base text-[#121212] font-semibold  uppercase flex gap-5 min-h-screen">
       <div className="flex flex-col gap-10 w-full">
         <Stepper />
-        <div className="flex gap-16 w-full justify-between">
+        <div className="flex mob:flex-col lap:flex-col flex-row  gap-16 w-full justify-between">
           <div className="w-full">
             {children}
           </div>

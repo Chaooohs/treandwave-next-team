@@ -11,14 +11,19 @@ export function CourierDelivery({setDeliveryInfo}) {
 
   const [selectedCityRef, setSelectedCityRef] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
-  const [selectedStreet, setSelectedStreet] = useState('')
+  const [selectedStreet, setSelectedStreet] = useState('');
+  const [selectedHouse, setSelectedHouse] = useState('');
+  const [selectedAppartment, setSelectedAppartment] = useState('');
+  const [selectedHour, setSelectedHour] = useState('');
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const [isStreetDropDownOpen, setStreetIsDropDownOpen] = useState(false);
 
   const handleInputChange = (e) => {
     const value = e.target.value
-    if (value) {
-      setSearch(value);
+    setSearch(value);
+    if (value === '') {
+      setIsDropDownOpen(false);
+    } else {
       setIsDropDownOpen(true);
     }
   };
@@ -69,19 +74,21 @@ export function CourierDelivery({setDeliveryInfo}) {
       const deliveryInfo = {
         selectedCity,
         selectedStreet,
+        selectedHouse, 
+        selectedAppartment, 
+        selectedHour,
       };
       setDeliveryInfo(deliveryInfo);
     }
-  }, [selectedCity, selectedStreet]);
+  }, [selectedCity, selectedStreet, selectedHouse, selectedAppartment, selectedHour]);
 
 
   return (
     <div className="w-full">
       <div className="w-full flex flex-col gap-10">
-        <div className="bg-[#EDEDED] h-[1px] w-full"></div>
 
         {/*  address  */}
-        <div className="flex flex-col gap-5 w-full">
+        <div className="flex flex-col gap-5 mob:gap-3 w-full">
           <h3 className="uppercase font-semibold text-base">Адреса</h3>
           <div>
             <input 
@@ -128,6 +135,32 @@ export function CourierDelivery({setDeliveryInfo}) {
                     </div>
                 }
             </div>
+          </div>
+
+ {/* ввод для дома и квартир */}
+          <div className="grid grid-cols-2 gap-5 mob:gap-3">
+            <input 
+                  type="text" 
+                  value={selectedHouse}
+                  placeholder="Будинок"
+                  onChange={(e) => setSelectedHouse(e.target.value)}
+                  className={`w-full p-2 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
+                  />
+
+            <input 
+                  type="text" 
+                  value={selectedAppartment}
+                  placeholder="Квартира"
+                  onChange={(e) => setSelectedAppartment(e.target.value)}
+                  className={`w-full p-2 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
+                  />
+           <input 
+                  type="text" 
+                  value={selectedHour}
+                  placeholder="Час доставки"
+                  onChange={(e) => setSelectedHour(e.target.value)}
+                  className={`w-full p-2 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
+                  />
           </div>
         </div>
         

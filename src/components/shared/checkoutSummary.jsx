@@ -10,9 +10,9 @@ export default function CheckoutSummary({}) {
     const forPay = totalPrice - discountAmount;
 
     return(
-        <div className="flex flex-col gap-10 ">
+        <div className="flex flex-col gap-10 mob:gap-3 ">
             <div className="border-[1px] font-medium text-base text-[#121212] border-[#EDEDED] p-6 flex flex-col gap-6 rounded">
-                <h3 className="uppercase font-semibold text-2xl">Ваше замовлення</h3>
+                <h3 className="uppercase font-semibold mob:text-lg lap:text-lg  text-2xl">Ваше замовлення</h3>
                 <div className="flex justify-between">
                     <p>Товарів на суму</p>
                     <p>{totalPrice.toLocaleString('ru')} uah</p>
@@ -25,7 +25,7 @@ export default function CheckoutSummary({}) {
                 }
                 <div className="flex justify-between uppercase">
                     <h3>До сплати</h3>
-                    <h3 className="text-2xl">{forPay.toLocaleString('ru')} uah</h3>
+                    <h3 className="text-2xl mob:text-base lap:text-base">{forPay.toLocaleString('ru')} uah</h3>
                 </div>
             </div>
             <CheckoutInput setDiscount={setDiscount}/>

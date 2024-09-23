@@ -12,11 +12,11 @@ export default function Layout({ children }) {
     <main className="mob:p-5 p-10 lap:p-10 text-base text-[#121212] font-semibold  uppercase flex gap-5 min-h-screen">
       <div className="flex flex-col gap-10 w-full">
         <Stepper />
-        <div className="flex mob:flex-col lap:flex-col flex-row  gap-16 w-full justify-between">
+        <div className="flex mob:flex-col lap:flex-col flex-row  gap-16 mob:gap-10 lap:gap-10 w-full justify-between">
           <div className="w-full">
             {children}
           </div>
-          <div className="min-w-[35%] flex flex-col gap-5">
+          <div className="min-w-[35%] flex flex-col gap-10">
             <CheckoutSummary />
             <CheckoutStatus />
             <div className=" normal-case">

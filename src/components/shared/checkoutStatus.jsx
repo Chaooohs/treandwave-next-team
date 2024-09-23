@@ -31,7 +31,7 @@ export default function CheckoutStatus() {
     console.log(deliveryData);
   }, []);
 
-  console.log(storedClientData);
+  console.log(dataUser);
   return (
     <div className="border-[1px] font-medium text-base text-[#121212] border-[#EDEDED] p-6 flex flex-col gap-6 rounded">
       <h3 className="uppercase font-semibold text-2xl">Статус оформлення</h3>
@@ -78,15 +78,41 @@ export default function CheckoutStatus() {
                   <p className="grid grid-cols-2">
                     <span>Мiсто:</span>
                     <span className="font-semibold">{dataUser.userCity}</span>
-                    {/* {`Мiсто: ${dataUser.userCity}`} */}
                   </p>
                   <p className="grid grid-cols-2">
-                    <span>Вулиця:</span>
-                    <span className="font-semibold">{dataUser.userStreet}</span>
-                    {/* {`Вулиця: ${dataUser.userStreet}`} */}
+                    <span>Відділення:</span>
+                    <span className="font-semibold">{dataUser.userDevision}</span>
                   </p>
-                  {/* <p>{storedDeliveryData.selectedDivision}</p> */}
-                  {/* <p>{storedDeliveryData.selectedCity}</p> */}
+                  {dataUser.userPostomat && 
+                        <p className="grid grid-cols-2">
+                            <span>Поштомат:</span>
+                            <span className="font-semibold">{dataUser.userPostomat}</span>
+                        </p>
+                  }
+                 {dataUser.userStreet && 
+                    <p className="grid grid-cols-2">
+                        <span>Вулиця:</span>
+                        <span className="font-semibold">{dataUser.userStreet}</span>
+                    </p>
+                 }
+                 {dataUser.userHouse && 
+                    <p className="grid grid-cols-2">
+                        <span>Будинок:</span>
+                        <span className="font-semibold">{dataUser.userHouse}</span>
+                    </p>
+                 }
+                 {dataUser.userAppartment && 
+                    <p className="grid grid-cols-2">
+                        <span>Квартира:</span>
+                        <span className="font-semibold">{dataUser.userAppartment}</span>
+                    </p>
+                 }
+                 {dataUser.deliveryHours && 
+                    <p className="grid grid-cols-2">
+                        <span>Час доставки:</span>
+                        <span className="font-semibold">{dataUser.deliveryHours}</span>
+                    </p>
+                 }
                 </div>
               }
             </div>

@@ -8,6 +8,11 @@ const initialState = {
     userPhone: '',
     userCity: '',
     userStreet: '',
+    userDevision: '',
+    userPostomat: '',
+    userHouse: '',
+    userAppartment: '',
+    deliveryHours: '',
   },
 }
 
@@ -25,6 +30,11 @@ const orderSlice = createSlice({
     setAddressUserOrder: (state, action) => {
       state.dataUser.userCity = action.payload.selectedCity
       state.dataUser.userStreet = action.payload.selectedStreet
+      state.dataUser.userHouse = action.payload.selectedHouse
+      state.dataUser.userDevision = action.payload.selectedDivision
+      state.dataUser.userPostomat = action.payload.selectedPostomat
+      state.dataUser.userAppartment = action.payload.selectedAppartment
+      state.dataUser.deliveryHours = action.payload.selectedHour
     },
   },
 })

@@ -15,11 +15,10 @@ export default function Stepper({ }) {
 
     const currentStep = getCurrentStep();
 
-
     return (
         <div className="flex items-center gap-5 text-sm">
             {steps.map((step, index) => (
-                <div key={index} className="flex gap-2 items-center">
+                <div key={index} className={`flex gap-2 items-center ${index >= 3 ? 'mob:hidden' : ''}`}>
                     <div className={`w-6 h-6 flex items-center justify-center rounded-full ${
                         currentStep === index + 1
                             ? 'bg-[#0047FF] text-white'

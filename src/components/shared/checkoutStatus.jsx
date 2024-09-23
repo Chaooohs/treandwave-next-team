@@ -34,7 +34,7 @@ export default function CheckoutStatus() {
   console.log(dataUser);
   return (
     <div className="border-[1px] font-medium text-base text-[#121212] border-[#EDEDED] p-6 flex flex-col gap-6 rounded">
-      <h3 className="uppercase font-semibold text-2xl">Статус оформлення</h3>
+      <h3 className="uppercase font-semibold mob:text-lg lap:text-lg text-2xl">Статус оформлення</h3>
       <div className="bg-[#E2ECFF] text-[#0047FF] uppercase text-sm rounded-[3px] p-2 px-[14px] w-fit flex gap-2">
         <ClockIcon />
         оформлення
@@ -70,7 +70,7 @@ export default function CheckoutStatus() {
           <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-3">
               <div className="flex justify-between">
-                <h4 className="uppercase font-semibold text-lg">Адреса доставки</h4>
+                <h4 className="uppercase font-semibold mob:text-base lap:text-base  text-lg">Адреса доставки</h4>
                 <Link href={'/checkout/delivery'}> <SquarePen /></Link>
               </div>
               {storedDeliveryData &&
@@ -118,7 +118,7 @@ export default function CheckoutStatus() {
             </div>
             <div className="flex flex-col gap-3">
               <div className="flex justify-between">
-                <h4 className="uppercase font-semibold text-lg">Дані отримувача</h4>
+                <h4 className="uppercase font-semibold mob:text-base lap:text-base text-lg">Дані отримувача</h4>
                 <Link href={'/checkout/delivery'}> <SquarePen /></Link>
               </div>
               {/* {storedClientData && */}
@@ -147,10 +147,7 @@ export default function CheckoutStatus() {
                   <span className="font-semibold">{dataUser.userPhone}</span>
                   {/* {`Тел: ${dataUser.userPhone}`} */}
                 </p>
-                {/* <p>{storedClientData.email}</p> */}
-                {/* <p>{storedClientData.phone}</p> */}
               </div>
-              {/* } */}
             </div>
           </div>
         }

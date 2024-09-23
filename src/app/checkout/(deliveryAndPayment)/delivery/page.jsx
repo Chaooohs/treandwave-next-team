@@ -53,7 +53,7 @@ export default function Page() {
                         <p className="text-sm font-medium normal-case">Безкоштовна доставка при замовленні від 2500 грн.</p>
                         </div>
                     </div>
-                    <p>{item.cost} uah</p>
+                    {/* <p>{item.cost} uah</p> */}
 
                 </div>
               <div>
@@ -76,10 +76,10 @@ export default function Page() {
           </div>
         ))}
       </div>
-      <div>
+      <div className="w-full">
         <Button
           variant='default'
-          className='font-mont font-semibold text-base uppercase px-5 py-8'
+          className='font-mont mob:w-full lap:w-full font-semibold text-base uppercase px-5 py-8'
           onClick={handleSendingInfo}
           disabled={emptyOrder}
         >

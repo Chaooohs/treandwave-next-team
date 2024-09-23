@@ -84,11 +84,11 @@ export function BranchDelivery({ setDeliveryInfo }) {
               placeholder="Введіть назву міста"
               onChange={handleInputChange}
               // onFocus={handleFocus}
-              className={`w-full p-2 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
+              className={`w-full py-2 px-3 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
             />
             {isDropDownOpen &&
               <div className="border-[1px] pb-4 ">
-                <div className=" flex flex-col gap-2 max-h-96 overflow-auto p-2 pt-4 ">
+                <div className=" flex flex-col gap-2 max-h-96 overflow-auto py-2 px-3 pt-4 ">
                   {cities.map((item, index) => (
                     <div key={index} onClick={() => handleSelectedAddress(item.Description)}
                       className=" cursor-pointer">

@@ -6,8 +6,6 @@ import Cross from '/public/image/svg/cross.svg'
 import VisaLogoIcon from '/public/image/svg/visa-logo.svg';
 import MasterCardIcon from '/public/image/svg/mastercard-logo.svg';
 import ApplepayIcon from '/public/image/svg/applepay-logo.svg';
-import NovaPoshtaIcon from '/public/image/svg/novaposhta-w20.svg';
-import NovaPoshtaDeliveryIcon from '/public/image/svg/novaposhta-delivery.svg';
 import { Title } from '../ui'
 
 export const Accordion = ({ text, description }) => {
@@ -72,21 +70,6 @@ export const Accordion = ({ text, description }) => {
                     <p className='mt-6'>
                       Ми доставляємо товари по всій Україні  за допомогою служби «Нова Пошта». Відправка замовлення здійснюється  протягом 1-2 днів, за наявності товару на складі. У разі відсутності  товару в наявності, наш менеджер повідомить вам срок виготовлення виробу  та доставки.
                     </p>
-                    <div className='mt-3 flex gap-x-2'>
-                      <NovaPoshtaIcon />
-                      <span className='font-semibold text-sm uppercase'>Нова пошта - відділення</span>
-                      <span className='font-medium text-sm uppercase'>79 UAH</span>
-                    </div>
-                    <div className='mt-2 flex gap-x-2'>
-                      <NovaPoshtaIcon />
-                      <span className='font-semibold text-sm uppercase'>Нова пошта - поштомат</span>
-                      <span className='font-medium text-sm uppercase'>79 UAH</span>
-                    </div>
-                    <div className='mt-2 flex gap-x-2'>
-                      <NovaPoshtaDeliveryIcon />
-                      <span className='font-semibold text-sm uppercase'>Нова пошта - кур&apos;єр</span>
-                      <span className='font-medium text-sm uppercase'>99 UAH</span>
-                    </div>
                   </li>
                 }
                 {

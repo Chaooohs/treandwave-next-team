@@ -28,10 +28,11 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
   const [isEmail, isSetEmail] = useState('');
   const [isPhone, isSetPhone] = useState('');
 
+  const ref = useRef(null)
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if(isFirstName && isLastName && isEmail && isPhone) {
+    if (isFirstName && isLastName && isEmail && isPhone) {
 
       const clientInfo = {
         isFirstName,
@@ -66,9 +67,13 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
     if (regPhone(value)) {
       isSetPhone(value)
     }
+    else {
+      isSetPhone('')
+    }
   }
-
   
+  
+
   return (
     <div className="w-full">
       <div className="w-full flex flex-col gap-10">
@@ -120,6 +125,7 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
               radix="."
               value={isFirstName}
               unmask={false}
+              ref={ref}
               inputRef={inputRef}
               onAccept={
                 (value, mask) => isSetFirstName(value)
@@ -134,6 +140,7 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
               radix="."
               value={isLastName}
               unmask={false}
+              ref={ref}
               inputRef={inputRef}
               onAccept={
                 (value, mask) => isSetLastName(value)
@@ -148,6 +155,7 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
               radix="."
               value={isEmail}
               unmask={false}
+              ref={ref}
               inputRef={inputRef}
               onAccept={checkEmail}
               placeholder='Email'
@@ -160,6 +168,7 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
               radix="."
               value={isPhone}
               unmask={false}
+              ref={ref}
               inputRef={inputRef}
               onAccept={checkPhone}
               placeholder='+38(0__)___-__-__'

@@ -26,7 +26,6 @@ export default function Page() {
 
   const handleSendingInfo = () => {
     
-
     dispatch(setDataUserOrder(clientData))
     dispatch(setAddressUserOrder(deliveryInfo))
 

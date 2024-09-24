@@ -142,75 +142,23 @@ export function CourierDelivery({ setDeliveryInfo }) {
 
           {/* ввод для дома и квартир */}
           <div className="grid grid-cols-2 gap-5 mob:gap-3">
-            {/* <input 
+            <input 
                   type="text" 
                   value={selectedHouse}
                   placeholder="Будинок"
                   onChange={(e) => setSelectedHouse(e.target.value)}
-                  className={`w-full p-2 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
-                  /> */}
+                  className={`w-full py-2 px-3 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
+                  />
 
-            <IMaskInput
-              mask={Number}
-              radix="."
-              value={selectedHouse}
-              unmask={false}
-              inputRef={inputRef}
-              onAccept={
-                (value, mask) => setSelectedHouse(value)
-              }
-              placeholder='Будинок'
-              style={{ padding: '2px 0 0 12px' }}
-              className="rounded outline-none h-[42px] bg-transparent border border-[#bababa] pl-3"
-            />
-
-            {/* <input
+            <input
               type="text"
               value={selectedAppartment}
               placeholder="Квартира"
               onChange={(e) => setSelectedAppartment(e.target.value)}
-              className={`w-full p-2 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
-            /> */}
-
-            <IMaskInput
-              mask={Number}
-              radix="."
-              value={selectedAppartment}
-              unmask={false}
-              inputRef={inputRef}
-              onAccept={
-                (value, mask) => setSelectedAppartment(value)
-              }
-              placeholder='Квартира'
-              style={{ padding: '2px 0 0 12px' }}
-              className="rounded outline-none h-[42px] bg-transparent border border-[#bababa] pl-3"
+              className={`w-full py-2 px-3 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
             />
-
-            {/* <input
-              type="text"
-              value={selectedHour}
-              placeholder="Час доставки"
-              onChange={(e) => setSelectedHour(e.target.value)}
-              className={`w-full p-2 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
-            /> */}
-
-            {/* <IMaskInput
-              mask={Date}
-              radix="."
-              value={selectedHour}
-              unmask={false}
-              inputRef={inputRef}
-              onAccept={
-                (value, mask) => setSelectedHour(value)
-              }
-              placeholder='Час доставки __.__.____'
-              style={{ padding: '2px 0 0 12px' }}
-              className="rounded outline-none h-[42px] bg-transparent border border-[#bababa] pl-3"
-            /> */}
-
           </div>
         </div>
-
       </div>
     </div>
   )

@@ -63,6 +63,7 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
     }
   }
 
+
   function checkPhone(value) {
     if (regPhone(value)) {
       isSetPhone(value)
@@ -89,36 +90,6 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
         <form className="flex flex-col gap-5 w-full">
           <h3 className="uppercase font-semibold text-base">Особисті дані</h3>
           <div className="grid grid-cols-2 gap-5 mob:grid-cols-1 mob:gap-3">
-            {/* <Input
-              type="text"
-              placeholder={`Ім’я`}
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              className={` border-[1px]  rounded-none border-[#BABABA]  `}
-            /> */}
-            {/* <Input
-              type="text"
-              placeholder={`Прізвище`}
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              className={` border-[1px] rounded-none border-[#BABABA] `}
-            /> */}
-            {/* <Input
-              type="email"
-              placeholder={`Email`}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={` border-[1px] rounded-none border-[#BABABA] `}
-            /> */}
-            {/* <Input
-              ref={ref}
-              inputRef={inputRef}
-              type="tel"
-              placeholder={`Телефон`}
-              value={phone}
-              // onChange={(e) => setPhone(e.target.value)}
-              className={` font-mont border-[1px] rounded-none border-[#BABABA] font-medium  `}
-            /> */}
 
             <IMaskInput
               mask={/^[a-zA-Z а-щА-ЩЬьЮюЯяЇїІіЄє ]+$/g}

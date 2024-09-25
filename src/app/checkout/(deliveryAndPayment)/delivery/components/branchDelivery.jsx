@@ -16,12 +16,14 @@ import { useState, useEffect } from 'react';
 export function BranchDelivery({ setDeliveryInfo }) {
 
   const [search, setSearch] = useState('');
+  const [searchDevision, setSearchDevision] = useState('');
   const [cities, setCities] = useState([]);
   const [devisions, setDevisions] = useState([]);
 
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedDivision, setSelectedDivision] = useState('')
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  const [isDevisionDropDownOpen, setIsDevisionDropDownOpen] = useState(false);
 
   useEffect(() => {
     if (selectedCity) {
@@ -47,10 +49,20 @@ export function BranchDelivery({ setDeliveryInfo }) {
   // setIsDropDownOpen(true);
   // };
 
+  const handleFocusDevision = () => {
+    setIsDevisionDropDownOpen(true);
+  };
+
   const handleSelectedAddress = (address) => {
     setSearch(address);
     setSelectedCity(address);
     setIsDropDownOpen(false);
+  }
+
+  const handleSelectedDevision = (devision) => {
+    setSearchDevision(devision);
+    setSelectedDivision(devision);
+    setIsDevisionDropDownOpen(false);
   }
 
   useEffect(() => {
@@ -69,7 +81,7 @@ export function BranchDelivery({ setDeliveryInfo }) {
     }
   }, [selectedCity]);
 
-  
+  console.log(devisions);
   return (
     <div className="w-full">
       <div className="w-full flex flex-col gap-10">
@@ -99,7 +111,7 @@ export function BranchDelivery({ setDeliveryInfo }) {
               </div>
             }
           </div>
-          <div>
+          {/* <div>
             <Select onValueChange={setSelectedDivision}>
               <SelectTrigger className="w-full border-[#BABABA] h-[42px] ">
                 <SelectValue placeholder="Відділення" className="text-green-500"/>
@@ -113,7 +125,31 @@ export function BranchDelivery({ setDeliveryInfo }) {
                 </SelectGroup>
               </SelectContent>
             </Select>
-          </div>
+          </div> */}
+           <div>
+              <input
+                type="text"
+                value={selectedDivision}
+                placeholder="Відділення"
+                onChange={(e) => setSelectedDivision(e.target.value)}
+                onFocus={handleFocusDevision}
+                className={`w-full py-2 px-3 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
+              />
+              {isDevisionDropDownOpen &&
+                <div className="border-[1px] pb-4 ">
+                  <div className=" flex flex-col gap-2 max-h-96 overflow-auto p-2 pt-4 ">
+                  {devisions
+                      .filter(item => item.Description.toLowerCase().includes(selectedDivision.toLowerCase())) // Фильтрация списка
+                      .map((item, index) => (
+                        <div key={index} onClick={() => handleSelectedDevision(item.Description)}
+                          className="cursor-pointer normal-case">
+                          {item.Description}
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              }
+            </div>
         </div>
 
       </div>

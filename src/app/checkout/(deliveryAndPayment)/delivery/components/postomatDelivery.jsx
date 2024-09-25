@@ -17,10 +17,11 @@ export function PostomatDelivery({setDeliveryInfo}) {
   const [search, setSearch] = useState('');
   const [cities, setCities] = useState([]);
   const [devisions, setDevisions] = useState([]);
-
+  const [searchPostomat, setSearchPostomat] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
-  const [selectedPostomat, setSelectedPostomat] = useState('')
+  const [selectedPostomat, setSelectedPostomat] = useState('');
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  const [isPostomatDropDownOpen, setIsPostomatDropDownOpen] = useState(false);
 
   const handleInputChange = (e) => {
     const value = e.target.value
@@ -40,7 +41,17 @@ export function PostomatDelivery({setDeliveryInfo}) {
     setSearch(address);
     setSelectedCity(address);
     setIsDropDownOpen(false);
-  }
+  };
+
+  const handleSelectedPostomat = (postomat) => {
+    setSearchPostomat(postomat);
+    setSelectedPostomat(postomat);
+    setIsPostomatDropDownOpen(false);
+  };
+
+  const handleFocusPostomat = () => {
+    setIsPostomatDropDownOpen(true);
+  };
 
   useEffect(() => {
     fetchCities().then(setCities);
@@ -87,7 +98,7 @@ export function PostomatDelivery({setDeliveryInfo}) {
               />
               {isDropDownOpen && 
                 <div className="border-[1px] pb-4 ">
-                  <div className=" flex flex-col gap-2 max-h-96 overflow-auto py-2 px-3 pt-4 ">
+                  <div className=" flex flex-col gap-2 max-h-96 overflow-auto py-2 px-3 pt-4 text-sm font-medium normal-case ">
                     {cities.map((item, index) => (
                       <div key={index} onClick={() => handleSelectedAddress(item.Description)}
                       className=" cursor-pointer">
@@ -98,21 +109,31 @@ export function PostomatDelivery({setDeliveryInfo}) {
                 </div>
             }
           </div>
+
           <div>
-            <Select onValueChange={setSelectedPostomat}>
-              <SelectTrigger className="w-full border-[#BABABA] h-[42px]">
-                <SelectValue placeholder="Поштомат" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Поштомат</SelectLabel>
-                  {devisions.map((item, index) => (
-                    <SelectItem key={index} value={item.Description}>{item.Description}</SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
+              <input
+                type="text"
+                value={selectedPostomat}
+                placeholder="Поштомат"
+                onChange={(e) => setSelectedPostomat(e.target.value)}
+                onFocus={handleFocusPostomat}
+                className={`w-full py-2 px-3 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
+              />
+              {isPostomatDropDownOpen &&
+                <div className="border-[1px] pb-4 ">
+                  <div className=" flex flex-col gap-2 max-h-96 overflow-auto p-2 pt-4 text-sm font-medium">
+                  {devisions
+                      .filter(item => item.Description.toLowerCase().includes(selectedPostomat.toLowerCase())) // Фильтрация списка
+                      .map((item, index) => (
+                        <div key={index} onClick={() => handleSelectedPostomat(item.Description)}
+                          className="cursor-pointer normal-case">
+                          {item.Description}
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              }
+            </div>
         </div>
         
       </div>

@@ -63,6 +63,7 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
     }
   }
 
+
   function checkPhone(value) {
     if (regPhone(value)) {
       isSetPhone(value)

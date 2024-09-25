@@ -103,7 +103,7 @@ export function CourierDelivery({ setDeliveryInfo }) {
               className={`w-full py-2 px-3 border-[1px] text-black rounded-sm border-[#BABABA] outline-none bg-transparent `}
             />
             {isDropDownOpen &&
-              <div className="border-[1px] pb-4 ">
+              <div className="border-[1px] pb-4 text-sm font-medium normal-case ">
                 <div className=" flex flex-col gap-2 max-h-96 overflow-auto p-2 pt-4 ">
                   {cities.map((item, index) => (
                     <div key={index} onClick={() => handleSelectedAddress(item.Description, item.Ref)}
@@ -126,7 +126,7 @@ export function CourierDelivery({ setDeliveryInfo }) {
                 className={`w-full py-2 px-3 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
               />
               {isStreetDropDownOpen &&
-                <div className="border-[1px] pb-4 ">
+                <div className="border-[1px] pb-4 text-sm font-medium normal-case ">
                   <div className=" flex flex-col gap-2 max-h-96 overflow-auto p-2 pt-4 ">
                     {streets.map((item, index) => (
                       <div key={index} onClick={() => handleSelectedStreet(item.Description)}

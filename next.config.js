@@ -31,7 +31,8 @@ module.exports = {
     return config
   },
   images: {
-    domains: ['cdn.dummyjson.com'],
+    // domains: ['cdn.dummyjson.com'],
+    domains: ['img2.ans-media.com'],
   },
   experimental: {
     turbo: {

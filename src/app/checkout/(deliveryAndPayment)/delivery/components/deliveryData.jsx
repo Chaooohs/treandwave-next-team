@@ -73,7 +73,6 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
   }
   
   
-
   return (
     <div className="w-full">
       <div className="w-full flex flex-col gap-10">

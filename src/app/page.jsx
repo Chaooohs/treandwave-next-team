@@ -4,20 +4,20 @@ import { Baner, BestSaler, Categories, NewColection, YouSection } from "@/compon
 
 export default function Home() {
 
-  const { goods } = useGetGoodsQuery('/products', {
-    selectFromResult: ({ data }) => ({
-      goods: data?.goods,
-    }),
+  const { data: goods } = useGetGoodsQuery('/product', {
+    // selectFromResult: ({ data }) => ({
+    //   goods: data?.goods,
+    // }),
   })
-
+  
 
   return (
     <main>
       <Baner />
       <NewColection products={goods} />
-      <BestSaler products={goods}/>
-      <Categories/>
-      <YouSection/>
+      <BestSaler products={goods} />
+      <Categories />
+      <YouSection />
     </main>
   );
 }

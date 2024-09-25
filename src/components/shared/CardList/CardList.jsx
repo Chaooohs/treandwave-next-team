@@ -34,14 +34,14 @@ export default function CardList({ title, tags, image, pathname, }) {
       category = '';
   }
 
-  const { products, totalGoods, loading } = useGetGoodsQuery(`/products${category}?limit=${limit}&skip=${skip}&q=${search}`,
+  const { data: products, totalGoods, loading } = useGetGoodsQuery(`/product${category}?limit=${limit}&skip=${skip}&q=${search}`,
     {
-      selectFromResult: ({ data, isLoading }) => ({
-        products: data?.goods,
-        totalGoods: data?.totalGoods,
-        pageNumber: data?.pageNumber,
-        loading: isLoading,
-      }),
+      // selectFromResult: ({ data, isLoading }) => ({
+      //   products: data?.goods,
+      //   totalGoods: data?.totalGoods,
+      //   pageNumber: data?.pageNumber,
+      //   loading: isLoading,
+      // }),
     },
   )
 

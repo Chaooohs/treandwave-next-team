@@ -34,24 +34,26 @@ export default function Page() {
   const title = 'пошук';
 
   return (
-    <div className="wrap">
-      <div className="search-box relative">
-        <SearchIcon className='absolute top-[38px] left-3'/>
-        <input
-          type="text"
-          className="rounded border border-[#ededed] outline-none w-full h-[52px] bg-transparent box-border py-3 px-14 mt-6"
-          placeholder="пошук"
-          value={isSearchValue}
-          onChange={(e) => onChangeSearch(e.target.value)}
-        />
-        <button
-          className="absolute top-[38px] right-3"
-          onClick={onClearSearch}
-        >
-          <CloseIcon />
-        </button>
+    <main>
+      <div className="wrap">
+        <div className="search-box relative">
+          <SearchIcon className='absolute top-[38px] left-3'/>
+          <input
+            type="text"
+            className="rounded border border-[#ededed] outline-none w-full h-[52px] bg-transparent box-border py-3 px-14 mt-6"
+            placeholder="пошук"
+            value={isSearchValue}
+            onChange={(e) => onChangeSearch(e.target.value)}
+          />
+          <button
+            className="absolute top-[38px] right-3"
+            onClick={onClearSearch}
+          >
+            <CloseIcon />
+          </button>
+        </div>
+        <CardList pathname={pathname} title={title} />
       </div>
-      <CardList pathname={pathname} title={title} />
-    </div>
+    </main>
   )
 }

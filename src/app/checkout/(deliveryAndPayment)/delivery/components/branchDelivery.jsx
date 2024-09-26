@@ -86,7 +86,7 @@ export function BranchDelivery({ setDeliveryInfo }) {
     <div className="w-full">
       <div className="w-full flex flex-col gap-10">
 
-        {/*  address  */}
+  {/*  пошук населеного пункту  */}
         <div className="flex flex-col gap-5 mob:gap-3 w-full">
           <h3 className="uppercase font-semibold text-base pb-[6px]">Адреса відділення</h3>
           <div>
@@ -100,7 +100,7 @@ export function BranchDelivery({ setDeliveryInfo }) {
             />
             {isDropDownOpen &&
               <div className="border-[1px] pb-4 ">
-                <div className=" flex flex-col gap-2 max-h-96 overflow-auto py-2 px-3 pt-4 ">
+                <div className=" flex flex-col gap-2 max-h-96 overflow-auto py-2 px-3 pt-4 text-sm font-medium normal-case ">
                   {cities.map((item, index) => (
                     <div key={index} onClick={() => handleSelectedAddress(item.Description)}
                       className=" cursor-pointer">
@@ -111,21 +111,7 @@ export function BranchDelivery({ setDeliveryInfo }) {
               </div>
             }
           </div>
-          {/* <div>
-            <Select onValueChange={setSelectedDivision}>
-              <SelectTrigger className="w-full border-[#BABABA] h-[42px] ">
-                <SelectValue placeholder="Відділення" className="text-green-500"/>
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Відділення</SelectLabel>
-                  {devisions.map((item, index) => (
-                    <SelectItem key={index} value={item.Description}>{item.Description}</SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div> */}
+{/* пошук відділень */}
            <div>
               <input
                 type="text"
@@ -137,7 +123,7 @@ export function BranchDelivery({ setDeliveryInfo }) {
               />
               {isDevisionDropDownOpen &&
                 <div className="border-[1px] pb-4 ">
-                  <div className=" flex flex-col gap-2 max-h-96 overflow-auto p-2 pt-4 ">
+                  <div className=" flex flex-col gap-2 max-h-96 overflow-auto p-2 pt-4 text-sm font-medium normal-case ">
                   {devisions
                       .filter(item => item.Description.toLowerCase().includes(selectedDivision.toLowerCase())) // Фильтрация списка
                       .map((item, index) => (
@@ -151,7 +137,6 @@ export function BranchDelivery({ setDeliveryInfo }) {
               }
             </div>
         </div>
-
       </div>
     </div>
   )

@@ -20,6 +20,9 @@ const mulish = Mulish({
 })
 
 export const metadata = {
+  icons: {
+    icon: '/icon.ico',
+  },
   title: "TrendWave",
   description: "TreandWave it's cool",
 };

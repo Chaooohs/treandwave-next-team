@@ -12,7 +12,7 @@ import { useGetSingleProductQuery } from "@/redux/api/goodsApi";
 import { usePathname } from "next/navigation";
 
 
-export default function Product() {
+export default function Page() {
 
   const path = usePathname()
   const { data: product } = useGetSingleProductQuery(`${path}`)

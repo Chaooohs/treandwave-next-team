@@ -1,7 +1,10 @@
+'use client'
 import Link from "next/link"
-import { signOut } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 
 export const BurgerMenu = ({ handleClick }) => {
+  const session = useSession()
+
   return (
     <div className=" w-[586px] h-screen box-border pt-5">
       <div className="wrap">
@@ -15,7 +18,17 @@ export const BurgerMenu = ({ handleClick }) => {
           <Link href='/about/contacts' className="header-link text-gray-700" onClick={handleClick}>Контакти</Link>
           <Link href='/wishlist' className="header-link text-gray-700" onClick={handleClick}>Ваш вішліст</Link>
           <hr></hr>
-          <Link href='#!' className="header-link" onClick={()=> signOut({callbackUrl: '/'})}>Вийти</Link>
+          {
+            session?.data &&
+            <Link href='/profile' onClick={handleClick} >Profile</Link>
+          }
+          {
+            session?.data
+              ?
+              <Link href="#!" onClick={() => signOut({ callbackUrl: '/' })}>Вийти</Link>
+              :
+              <Link href='/api/auth/signin' onClick={handleClick} >Вхiд</Link>
+          }
         </div>
       </div>
     </div>

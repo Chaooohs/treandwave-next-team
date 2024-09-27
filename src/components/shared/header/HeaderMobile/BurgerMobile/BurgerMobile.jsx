@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useSession, signOut } from "next-auth/react"
 
 import Logo from '/public/image/svg/logo.svg'
 import CloseIcon from '/public/image/svg/close.svg'
@@ -12,6 +13,8 @@ export const BurgerMobile = () => {
   const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false)
   const burger = useSelector(state => state.open.burger)
+
+  const session = useSession()
 
   useEffect(() => {
     if (burger && !isOpen) {
@@ -54,6 +57,18 @@ export const BurgerMobile = () => {
           <Link href='/about' className="header-link text-gray-700" onClick={handleClick}>Про нас</Link>
           <Link href='/about/contacts' className="header-link text-gray-700" onClick={handleClick}>Контакти</Link>
           <Link href='/wishlist' className="header-link text-gray-700" onClick={handleClick}>Ваш вішліст</Link>
+          <hr></hr>
+          {
+            session?.data &&
+            <Link href='/profile' onClick={handleClick} >Profile</Link>
+          }
+          {
+            session?.data
+              ?
+              <Link href="#!" onClick={() => signOut({ callbackUrl: '/' })}>Вийти</Link>
+              :
+              <Link href='/api/auth/signin' onClick={handleClick} >Вхiд</Link>
+          }
         </div>
       </nav>
     </div>

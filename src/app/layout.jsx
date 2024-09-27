@@ -1,5 +1,5 @@
 import { Montserrat, Mulish } from "next/font/google";
-import { Footer, Header } from "@/components/shared";
+import { Footer, Header, Provider } from "@/components/shared";
 import StoreProvider from "./StoreProvider";
 import MailForm from "@/components/shared/mailForm";
 import RunningLine from "@/components/shared/runningLine";
@@ -32,13 +32,15 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${montserrat.variable} ${mulish.variable}`}>
       <body className="font-mont">
         <StoreProvider>
-          <div className="page">
-            <RunningLine/>
-            <Header />
-            {children}
-            <MailForm />
-            <Footer />
-          </div>
+          <Provider>
+            <div className="page">
+              <RunningLine />
+              <Header />
+              {children}
+              <MailForm />
+              <Footer />
+            </div>
+          </Provider>
         </StoreProvider>
       </body>
     </html>

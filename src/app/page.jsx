@@ -9,8 +9,8 @@ export default function Home() {
     //   goods: data?.goods,
     // }),
   })
-  
 
+  
   return (
     <main>
       <Baner />

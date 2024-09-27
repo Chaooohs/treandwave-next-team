@@ -1,6 +1,7 @@
 'use client'
 import Link from "next/link"
 import { useDispatch, useSelector } from "react-redux"
+import { useSession } from "next-auth/react"
 
 import Search from '/public/image/svg/search.svg'
 import Heart from '/public/image/svg/heart.svg'
@@ -20,6 +21,10 @@ export const HeaderDesk = () => {
   const CartSide = useSelector(state => state.open.cart)
   const burger = useSelector(state => state.open.burger)
   let filters = useSelector((state) => state.open.filters);
+
+  const session = useSession()
+
+  console.log(session)
 
 
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
@@ -48,9 +53,17 @@ export const HeaderDesk = () => {
           </nav>
 
           <nav className="flex gap-x-6 lg:justify-self-end lg:row-span-1">
-            <Link href='#!' className="header-link transit">
-              <Man className='header-icon' />
-            </Link>
+            {
+              session?.data 
+              ?
+              <Link href='/profile' className="header-link transit">
+                <Man className='header-icon' />
+              </Link>
+              :
+              <Link href='/api/auth/signin' className="header-link transit">
+                <Man className='header-icon' />
+              </Link>
+            }
 
             <Link href='/search' className="header-link transit">
               <Search className='header-icon' />

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const goodsApi = createApi({
   reducerPath: "goodsQuery",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://clothing-store-api-lh6l.onrender.com/api/v1",
+    baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
     // baseUrl: "https://dummyjson.com/",
   }),
   endpoints: (builder) => ({

@@ -60,7 +60,7 @@ export const HeaderDesk = () => {
                 <Man className='header-icon' />
               </Link>
               :
-              <Link href='/api/auth/signin' className="header-link transit">
+              <Link href='/login' className="header-link transit">
                 <Man className='header-icon' />
               </Link>
             }

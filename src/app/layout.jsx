@@ -27,7 +27,7 @@ export const metadata = {
   description: "TreandWave it's cool",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ auth, children }) {
   return (
     <html lang="en" className={`${montserrat.variable} ${mulish.variable}`}>
       <body className="font-mont">
@@ -36,6 +36,7 @@ export default function RootLayout({ children }) {
             <div className="page">
               <RunningLine />
               <Header />
+              {auth}
               {children}
               <MailForm />
               <Footer />

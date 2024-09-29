@@ -1,3 +1,4 @@
+'use client'
 import { Button } from "../ui"
 import GoogleIcon from '/public/image/svg/google.svg'
 

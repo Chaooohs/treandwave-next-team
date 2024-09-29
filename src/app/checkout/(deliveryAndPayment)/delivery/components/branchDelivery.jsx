@@ -33,7 +33,7 @@ export function BranchDelivery({ setDeliveryInfo }) {
       };
       setDeliveryInfo(deliveryInfo);
     }
-  }, [selectedCity, selectedDivision]);
+  }, [selectedCity, selectedDivision, setDeliveryInfo]);
 
   const handleInputChange = (e) => {
     const value = e.target.value

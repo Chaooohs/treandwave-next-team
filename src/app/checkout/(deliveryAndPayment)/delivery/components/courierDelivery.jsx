@@ -83,7 +83,7 @@ export function CourierDelivery({ setDeliveryInfo }) {
       };
       setDeliveryInfo(deliveryInfo);
     }
-  }, [selectedCity, selectedStreet, selectedHouse, selectedAppartment, selectedHour]);
+  }, [selectedCity, selectedStreet, selectedHouse, selectedAppartment, selectedHour, setDeliveryInfo]);
 
 
   return (

@@ -13,14 +13,24 @@ export default function Page() {
   const router = useRouter();
 
   const paymentOptions = [
-    { id: 1, name: 'Оплата карткою онлайн', 
+    { 
+      id: 1, 
+      name: 'Оплата карткою онлайн', 
       description: 'Ви обираєте оплату за допомогою картки.',
-      images: [<VisaIcon/>, <MasterIcon/>, <AppleIcon/>] 
+      images: [ // Добавляем ключи здесь
+        { id: 'visa', icon: <VisaIcon/> },
+        { id: 'mastercard', icon: <MasterIcon/> },
+        { id: 'applepay', icon: <AppleIcon/> }
+      ] 
     },
-    { id: 2, name: 'Оплата при отриманні', 
+    { 
+      id: 2, 
+      name: 'Оплата при отриманні', 
       description: `При отриманні замовлення у відділенні “Нова пошта“, а також при виборі кур'єрської доставки “Нова пошта”, можна оплатити карткою або готівкою.  Додаткова комісія за грошовий переказ: 20 грн. + 2% від суми переказу.`,
-      images: [<CashIcon/>] 
-    },
+      images: [
+        { id: 'cash', icon: <CashIcon/> }
+      ]
+    }
   ];
 
   useEffect(() => {
@@ -32,8 +42,8 @@ export default function Page() {
     document.body.appendChild(script);
 }, []);
 
-  const handlePaymentSelection = (id) => {
-    setSelectedPayment(id === selectedPayment ? null : id); 
+  const handlePaymentSelection = (paymentId) => {
+    setSelectedPayment(paymentId === selectedPayment ? null : paymentId); 
   };
 
   const handlePay = async () => {
@@ -123,27 +133,29 @@ export default function Page() {
 
   return (
     <div className="flex flex-col gap-[24px] w-full text-[#121212]">
-      {paymentOptions.map((option) => (
+      {paymentOptions.map((item, index) => (
         <div
-          key={option.id}
+          key={index}
           className="w-full items-start justify-between border-[1px] border-[#4D4D4D] p-6 flex flex-col gap-5 rounded"
         >
-          <div className="w-full items-center justify-between flex gap-5">
+          <div key={index} className="w-full items-center justify-between flex gap-5">
             <div className="flex flex-col gap-3 w-full">
-              <h2>{option.name}</h2>
+              <h2>{item.name}</h2>
             </div>
             <div className="flex gap-5 items-center">
-              {option.images.map((item, index) => (
-                <div key={index} className="flex">{item}</div>
+              {item.images.map((subitem, subindex) => (
+                <div key={subindex} className="flex">
+                  <div key={subitem.id}>{subitem.icon} </div>
+                  </div>
               ))}
             </div>
             <div>
               <input
                 type="radio"
                 name="payment"
-                value={option.name}
-                checked={selectedPayment === option.id}
-                onChange={() => handlePaymentSelection(option.id)}
+                value={item.name}
+                checked={selectedPayment === item.paymentId}
+                onChange={() => handlePaymentSelection(item.paymentId)}
                 className={`w-6 h-6 appearance-none rounded-full border-[1px] border-gray-600 checked:border-[#0047FF]
                             checked:ring-[1px] checked:ring-[#0047FF] checked:bg-[#0047FF] checked:ring-offset-2 focus:ring-2
                             focus:ring-[#0047FF] cursor-pointer`}
@@ -152,9 +164,9 @@ export default function Page() {
           </div>
 
  {/* Аккордеон. Описание, когда опция выбрана */}
-          {selectedPayment === option.id && (
+          {selectedPayment === item.paymentId && (
             <div className="text-sm normal-case font-medium flex justify-start items-start">
-              <p>{option.description}</p>
+              <p>{item.description}</p>
             </div>
           )}
         </div>

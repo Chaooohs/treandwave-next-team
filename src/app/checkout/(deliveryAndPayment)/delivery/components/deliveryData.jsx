@@ -44,7 +44,7 @@ export function DeliveryData({ selectedDelivery, setClientData, setDeliveryInfo 
       setClientData(clientInfo);
     }
 
-  }, [isFirstName, isLastName, isEmail, isPhone]);
+  }, [isFirstName, isLastName, isEmail, isPhone, setClientData]);
 
 
   function regEmail(email) {

@@ -77,7 +77,7 @@ export function PostomatDelivery({setDeliveryInfo}) {
       };
       setDeliveryInfo(deliveryInfo);
     }
-  }, [selectedCity, selectedPostomat]);
+  }, [selectedCity, selectedPostomat, setDeliveryInfo]);
 
   return (
     <div className="w-full">

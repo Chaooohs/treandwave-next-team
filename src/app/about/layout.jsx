@@ -35,7 +35,7 @@ export default function AboutLayout({ children }) {
         if (activeItem !== -1) {
             setActiveAccordion(`item-${activeItem + 1}`)
         }
-    }, [pathname]);
+    }, [pathname, mainLinks]);
 
     const handleClick = (link) => {
         router.push(link)

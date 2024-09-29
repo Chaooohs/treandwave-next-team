@@ -42,8 +42,8 @@ export default function Page() {
     document.body.appendChild(script);
 }, []);
 
-  const handlePaymentSelection = (paymentId) => {
-    setSelectedPayment(paymentId === selectedPayment ? null : paymentId); 
+  const handlePaymentSelection = (id) => {
+    setSelectedPayment(id === selectedPayment ? null : id); 
   };
 
   const handlePay = async () => {
@@ -154,8 +154,8 @@ export default function Page() {
                 type="radio"
                 name="payment"
                 value={item.name}
-                checked={selectedPayment === item.paymentId}
-                onChange={() => handlePaymentSelection(item.paymentId)}
+                checked={selectedPayment === item.id}
+                onChange={() => handlePaymentSelection(item.id)}
                 className={`w-6 h-6 appearance-none rounded-full border-[1px] border-gray-600 checked:border-[#0047FF]
                             checked:ring-[1px] checked:ring-[#0047FF] checked:bg-[#0047FF] checked:ring-offset-2 focus:ring-2
                             focus:ring-[#0047FF] cursor-pointer`}
@@ -164,7 +164,7 @@ export default function Page() {
           </div>
 
  {/* Аккордеон. Описание, когда опция выбрана */}
-          {selectedPayment === item.paymentId && (
+          {selectedPayment === item.id && (
             <div className="text-sm normal-case font-medium flex justify-start items-start">
               <p>{item.description}</p>
             </div>

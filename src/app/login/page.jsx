@@ -1,4 +1,4 @@
-// 'use client'
+'use client'
 import Modal from "@/components/shared/modal";
 
 

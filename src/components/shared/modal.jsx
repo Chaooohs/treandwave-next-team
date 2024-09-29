@@ -1,4 +1,5 @@
 'use client'
+import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation'
 
 import CloseIcon from '/public/image/svg/close.svg'
@@ -11,10 +12,11 @@ export default function Modal() {
   const router = useRouter()
   const path = usePathname()
 
-
+useEffect(() => {
   if (path === '/login') {
     document.body.classList.add('no-scroll')
   }
+}, [path])
 
   const handleClose = () => {
     router.back()

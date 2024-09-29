@@ -67,7 +67,7 @@ export const BurgerMobile = () => {
               ?
               <Link href="#!" onClick={() => signOut({ callbackUrl: '/' })}>Вийти</Link>
               :
-              <Link href='/api/auth/signin' onClick={handleClick} >Вхiд</Link>
+              <Link href='/login' onClick={handleClick} >Вхiд</Link>
           }
         </div>
       </nav>

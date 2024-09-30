@@ -25,7 +25,7 @@ useEffect(() => {
 
 
   return (
-    <main>
+    <main className='relative'>
       <div className="h-screen absolute top-0 right-0 bottom-0 left-0 z-20 flex items-center justify-center bg-[#00000026] ">
         <div className="grid grid-cols-2 w-[976px] bg-[#fdfdfd] rounded p-2 
             lap:w-[720px] lap:grid-cols-[1fr_2fr] 

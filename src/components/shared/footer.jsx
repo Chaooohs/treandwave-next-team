@@ -29,7 +29,7 @@ export const Footer = () => {
           },
           {
             subtitle: 'Бестселери',
-            href: ''
+            href: '/bestseller'
           },
           {
             subtitle: 'Колекції',
@@ -106,7 +106,9 @@ export const Footer = () => {
             © {currentYear} TreandWave
           </span>
           <span className="font-medium text-sm lap:text-xs mt-8 lap:mt-[28px] mob:mt-6 mob:row-start-3 mob:row-end-4">
-            Політика конфіденційності
+            <Link href={'/about/privacy-policy'}>
+              Політика конфіденційності
+            </Link>
           </span>
         </div>
       </div>

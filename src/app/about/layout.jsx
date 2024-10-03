@@ -35,7 +35,7 @@ export default function AboutLayout({ children }) {
         if (activeItem !== -1) {
             setActiveAccordion(`item-${activeItem + 1}`)
         }
-    }, [pathname, mainLinks]);
+    }, [pathname]);
 
     const handleClick = (link) => {
         router.push(link)
@@ -69,7 +69,7 @@ export default function AboutLayout({ children }) {
                                     <AccordionTrigger 
                                         onMouseEnter={() => handlePrefetch(item.link)}
                                         onClick={() => handleClick(item.link)}
-                                        
+                                        className='justify-between text-left'
                                         
                                          >{item.buttonName}</AccordionTrigger>
                                     <AccordionContent >

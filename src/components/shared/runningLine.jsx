@@ -20,9 +20,9 @@ export default function RunningLine() {
                     repeat:Infinity,
                     ease:'linear'
                 }}
-                className="flex gap-5 text-nowrap items-center">
+                className="flex gap-5 text-nowrap whitespace-nowrap items-center">
                 {runningText.map((item, index) => (
-                    <p key={index} className="font-mont text-[#FDFDFD] font-medium text-base">
+                    <p key={index} className="font-mont text-[#FDFDFD] font-medium text-base text-nowrap">
                         {item}
                     </p>
                 ))}

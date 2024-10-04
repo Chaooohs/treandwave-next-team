@@ -18,7 +18,7 @@ export const Card = ({ el }) => {
 
   return (
     <div className={`${path.substring(1) === '' ? 'lap:w-[224px] mob:w-[162px]' : null}`}>
-      <Link href={`/products/${el.id}`} >
+      <Link href={`/product/${el.id}`} >
 
         <div className="card-img">
           <Image src={el.images[0].imageUrl} alt={el.title} width={322} height={400} className="card-img-top" />

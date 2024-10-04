@@ -56,20 +56,22 @@ export default function Page() {
     const a = {
       id: product.id,
       title: product.title,
-      images: product.images,
+      images: product.images[0].imageUrl,
       price: product.price,
       discount: product.discount,
-      color: color,
+      color: product.color,
       size: size,
       count: 1,
     }
     // if (size.length > 0 & color.length > 0) {
-      dispatch(addToCart(a))
-      setIsWarning('')
+    dispatch(addToCart(a))
+    setIsWarning('')
     // } else {
-      // setIsWarning('оберiть солiр та розмiр')
+    // setIsWarning('оберiть солiр та розмiр')
     // }
   }
+
+  console.log(product)
 
   return (
     <main>
@@ -85,7 +87,7 @@ export default function Page() {
                       return (
                         <Image
                           key={index}
-                          src={img}
+                          src={img.imageUrl}
                           alt={product.title}
                           width={124}
                           height={156}
@@ -102,7 +104,7 @@ export default function Page() {
                 <div className="w-full lap:order-1">
                   {
                     product?.images &&
-                    <Image src={product.images[indexImage]} alt={product.title} width={580} height={828} />
+                    <Image src={product.images[indexImage].imageUrl} alt={product.title} width={580} height={828} />
                   }
                 </div>
               </div>
@@ -119,8 +121,11 @@ export default function Page() {
                 className='font-medium mt-3 lap:text-lg lap:mt-2'
               />
 
-              <Title text='колір' size="xs" className='font-semibold uppercase mt-8 lap:text-base' />
-              <Colors colors={product?.colors} width='36px' height='36px' className='mt-3' />
+              <div className="flex items-end mt-8 gap-x-4">
+                <Title text='колір:' size="xs" className='font-semibold uppercase lap:text-base' />
+                {/* <Colors colors={product?.colors} width='36px' height='36px' className='mt-3' /> */}
+                <div>{product?.color}</div>
+              </div>
 
               <Title text='розмір' size="xs" className='font-semibold uppercase mt-8 lap:text-base' />
               <Sizes sizes={product?.sizes} width='58px' height='36px' className='mt-3' />

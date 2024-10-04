@@ -29,7 +29,7 @@ export default function Modal() {
       <div className="h-screen absolute top-0 right-0 bottom-0 left-0 z-50 flex items-center justify-center bg-[#00000026] ">
         <div className="grid grid-cols-2 w-[976px] bg-[#fdfdfd] rounded p-2
               lap:w-[720px] lap:grid-cols-[1fr_2fr]
-              mob:absolute mob:top-[48px] mob:bottom-0 mob:grid-cols-1 mob:w-full overflow-auto">
+              mob:absolute mob:top-[48px] mob:bottom-0 mob:grid-cols-1 mob:w-full mob:overflow-auto mob:rounded-none">
           <div className='modal-image flex flex-col justify-center text-center mob:hidden'>
             <h1 className='text-mul text-6xl text-[#fdfdfd] uppercase font-extrabold lap:text-3xl'>
               New collection

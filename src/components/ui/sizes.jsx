@@ -26,7 +26,7 @@ export const Sizes = ({ sizes, width, height, className }) => {
               <input
                 type="radio"
                 name="size"
-                value={size}
+                value={size.size}
                 id={`size${index}`}
                 onChange={onChange}
                 className="hidden input-size "
@@ -36,7 +36,7 @@ export const Sizes = ({ sizes, width, height, className }) => {
                 className='rounded-lg flex items-center justify-center font-semibold text-sm cursor-pointer'
                 style={{ width: width, height: height, border: '1px solid #ededed', textTransform: 'uppercase' }}
               >
-                {size}
+                {size.size}
               </label>
             </div>
           )

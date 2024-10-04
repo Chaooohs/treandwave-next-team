@@ -14,7 +14,7 @@ export const CardForCart = ({ el }) => {
   return (
     <>
       <Image
-        src={el.images[0]}
+        src={el.images}
         alt={el.title}
         width={124}
         height={180}

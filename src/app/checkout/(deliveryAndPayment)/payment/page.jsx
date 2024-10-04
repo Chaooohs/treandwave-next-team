@@ -139,15 +139,15 @@ export default function Page() {
           className="w-full items-start justify-between border-[1px] border-[#4D4D4D] p-6 flex flex-col gap-5 rounded"
         >
           <div key={index} className="w-full items-center justify-between flex gap-5">
-            <div className="flex flex-col gap-3 w-full">
+            <div className="flex justify-between mob:flex-col mob:items-start items-center w-full gap-2">
               <h2>{item.name}</h2>
-            </div>
-            <div className="flex gap-5 items-center">
-              {item.images.map((subitem, subindex) => (
-                <div key={subindex} className="flex">
-                  <div key={subitem.id}>{subitem.icon} </div>
+              <div className="flex gap-5 items-center">
+                {item.images.map((subitem, subindex) => (
+                  <div key={subindex} className="">
+                    <div key={subitem.id} className="">{subitem.icon} </div>
                   </div>
-              ))}
+                ))}
+              </div>
             </div>
             <div>
               <input

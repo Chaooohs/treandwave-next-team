@@ -8,7 +8,7 @@ export const BestSaler = ({ products }) => {
 
   return (
     <section>
-      <div className="wrap lap:p-0">
+      <div  className="wrap lap:p-0">
         <div className="content">
           <div className="lap:px-6 mob:px-4 flex items-center justify-between">
             <Title text="бестселери" size="xl" className="font-mul font-extrabold uppercase lap:text-3xl mob:text-2xl " />

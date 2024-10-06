@@ -14,7 +14,15 @@ import { BurgerLeft } from "./BurgerLeft"
 import { Filters } from "../../filters"
 
 
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
+
+
 export const HeaderDesk = () => {
+  const headerRef = useRef()
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cart.cart)
   const CartSide = useSelector(state => state.open.cart)
@@ -24,8 +32,13 @@ export const HeaderDesk = () => {
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
 
 
+  useGSAP(() => {
+    gsap.fromTo(headerRef.current, {yPercent: -200}, {yPercent: 0, duration: 1, delay: 1});
+  });
+
+
   return (
-    <header className="sticky z-40 top-12 bg-[#fdfdfd] lap:hidden">
+    <header ref={headerRef} className="sticky z-40 top-12 bg-[#fdfdfd] lap:hidden">
       <div className="wrap">
         <div className="flex align-center justify-between items-center h-20 gap-x-8 text-header">
 

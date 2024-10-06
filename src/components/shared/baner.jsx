@@ -7,9 +7,26 @@ import BanerOne from '../../../public/image/jpg/baner-one.jpg'
 import BanerTwo from '../../../public/image/jpg/baner-two.jpg'
 import { Button, SwiperDemo, Title } from '../ui';
 
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
+
 export const Baner = () => {
+
+  const banerRef = useRef()
+
+  useGSAP(() => {
+    gsap.fromTo(banerRef.current,
+      { scale: 0, rotation: 90 },
+      { scale: 1, rotation: 0, duration: 1, delay: 1 }
+    );
+  });
+
+
   return (
-    <section>
+    <section ref={banerRef}>
       <div className='baner'>
 
         <SwiperDemo imgOne={BanerOne} imgTwo={BanerTwo} />

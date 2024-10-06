@@ -19,8 +19,8 @@ export const Baner = () => {
 
   useGSAP(() => {
     gsap.fromTo(banerRef.current,
-      { scale: 0, rotation: 90 },
-      { scale: 1, rotation: 0, duration: 1, delay: 1 }
+      { scale: 0, rotation: 90, opacity: 0 },
+      { scale: 1, rotation: 0, opacity: 1, duration: 1, delay: 1 }
     );
   });
 

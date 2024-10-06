@@ -33,7 +33,7 @@ export const HeaderDesk = () => {
 
 
   useGSAP(() => {
-    gsap.fromTo(headerRef.current, {yPercent: -200}, {yPercent: 0, duration: 1, delay: 1});
+    gsap.fromTo(headerRef.current, {yPercent: -200, opacity: 0}, {yPercent: 0, opacity: 1, duration: 1, delay: 1});
   });
 
 

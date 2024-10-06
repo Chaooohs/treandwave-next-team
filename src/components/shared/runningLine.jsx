@@ -11,7 +11,7 @@ export default function RunningLine() {
   const lineRef = useRef()
 
   useGSAP(() => {
-     gsap.fromTo(lineRef.current, {opacity: 0}, {opacity: 1, duration: 1});
+     gsap.fromTo(lineRef.current, {yPercent: -200, opacity: 0}, {yPercent: 0, opacity: 1, duration: 1});
    });
 
   const runningText = [

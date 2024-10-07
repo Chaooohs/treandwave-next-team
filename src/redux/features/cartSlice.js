@@ -10,13 +10,13 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const found = state.cart.find(el => el.id === action.payload.id && el.color[0] === action.payload.color[0]);
+      const found = state.cart.find(el => el.id === action.payload.id && el.color === action.payload.color && el.size === action.payload.size);
       if (!found) {
         state.cart.push(action.payload)
       }
     },
     removeFromCart: (state, action) => {
-      state.cart = state.cart.filter(el => el.id !== action.payload)
+      state.cart = state.cart.filter(el => el.id !== action.payload.id || el.color !== action.payload.color || el.size !== action.payload.size)
     },
     setIncrement: (state, action) => {
       state.cart.map((el) => {

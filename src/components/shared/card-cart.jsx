@@ -49,7 +49,7 @@ export const CardForCart = ({ el }) => {
       </div>
 
       <div className="header-icon">
-        <button className="header-link" onClick={() => dispatch(removeFromCart(el.id))}>
+        <button className="header-link" onClick={() => dispatch(removeFromCart(el))}>
           <Trash className='header-icon-shopping-cart' />
         </button>
       </div>

@@ -80,7 +80,7 @@ export default function Page() {
     }
     dispatch(addToCart(a))
   }
-console.log(indexImage)
+  
 
   return (
     <main>

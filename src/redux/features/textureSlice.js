@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  color: [],
-  size: [],
+  color: '',
+  size: '',
 }
 
 const textureSlice = createSlice({
@@ -10,11 +10,11 @@ const textureSlice = createSlice({
   initialState,
   reducers: {
     addColor: (state, action) => {
-      state.color[0] = action.payload
+      state.color = action.payload
     },
 
     addSize: (state, action) => {
-      state.size[0] = action.payload
+      state.size = action.payload
     },
   },
 })

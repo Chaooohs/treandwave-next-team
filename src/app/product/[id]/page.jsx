@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Button, Colors, Title, Price, Sizes } from "@/components/ui";
 import { Accordion, Card } from "@/components/shared";
 import { addToWishList } from "@/redux/features/wishlistSlice";
+import { addColor } from "@/redux/features/textureSlice";
 import { addToCart } from "@/redux/features/cartSlice";
 import Heart from '/public/image/svg/heart.svg'
 import { useGetSingleProductQuery } from "@/redux/api/goodsApi";
@@ -23,7 +24,7 @@ export default function Page() {
   const { color, size } = useSelector(state => state.texture)
   const [indexImage, setIndexImage] = useState(0)
   const ref = useRef()
-  const [isWarning, setIsWarning] = useState('')
+  const btnToCartRef = useRef()
 
   useEffect(() => {
     const found = wishlist.find(el => el.id === product.id)
@@ -36,6 +37,18 @@ export default function Page() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
+  useEffect(() => {
+    dispatch(addColor(product?.images[0].color.colorName))
+  }, [product])
+
+  useEffect(() => {
+    if (!size || !color) {
+      btnToCartRef.current.disabled = true;
+    } else {
+      btnToCartRef.current.disabled = false;
+    }
+  }, [product, size, color])
 
   const handleClick = (index) => {
     setIndexImage(index)
@@ -59,19 +72,15 @@ export default function Page() {
       images: product.images[0].imageUrl,
       price: product.price,
       discount: product.discount,
-      color: product.color,
+      color: color,
       size: size,
       count: 1,
     }
-    // if (size.length > 0 & color.length > 0) {
     dispatch(addToCart(a))
-    setIsWarning('')
-    // } else {
-    // setIsWarning('оберiть солiр та розмiр')
-    // }
   }
 
-  console.log(product)
+
+  const colorsGroup = product?.images.filter(el => color === el.color.colorName)
 
   return (
     <main>
@@ -82,13 +91,13 @@ export default function Page() {
               <div className="flex gap-4 lap:flex-col lap:gap-y-2">
                 <div className="flex flex-col gap-3 lap:order-2 lap:flex-row">
                   {
-                    product?.images &&
-                    product.images?.map((img, index) => {
+                    colorsGroup &&
+                    colorsGroup?.map((img, index) => {
                       return (
                         <Image
                           key={index}
                           src={img.imageUrl}
-                          alt={product.title}
+                          alt={product.alt}
                           width={124}
                           height={156}
                           onClick={() => handleClick(index)}
@@ -103,8 +112,8 @@ export default function Page() {
                 </div>
                 <div className="w-full lap:order-1">
                   {
-                    product?.images &&
-                    <Image src={product.images[indexImage].imageUrl} alt={product.title} width={580} height={828} />
+                    colorsGroup &&
+                    <Image src={colorsGroup[indexImage]?.imageUrl} alt={product.title} width={580} height={828} />
                   }
                 </div>
               </div>
@@ -121,15 +130,14 @@ export default function Page() {
                 className='font-medium mt-3 lap:text-lg lap:mt-2'
               />
 
-              <div className="flex items-end mt-8 gap-x-4">
+              <div className="mt-8 gap-x-4">
                 <Title text='колір:' size="xs" className='font-semibold uppercase lap:text-base' />
-                {/* <Colors colors={product?.colors} width='36px' height='36px' className='mt-3' /> */}
-                <div>{product?.color}</div>
+                <Colors colors={product?.colors} width='36px' height='36px' className='mt-3' />
               </div>
 
-              <Title text='розмір' size="xs" className='font-semibold uppercase mt-8 lap:text-base' />
+              <Title text='розмір:' size="xs" className='font-semibold uppercase mt-8 lap:text-base' />
               <Sizes sizes={product?.sizes} width='58px' height='36px' className='mt-3' />
-              <span className="text-red-500">{isWarning}</span>
+              
               <div className="flex my-8 lap:flex-col lap:gap-y-3">
                 <Button
                   ref={ref}
@@ -141,6 +149,7 @@ export default function Page() {
                   до вішлісту
                 </Button>
                 <Button
+                  ref={btnToCartRef}
                   className=' w-full max-w-[409px] h-[52px] text-base font-semibold uppercase lap:order-1 lap:max-w-full'
                   onClick={handleClickToCart}
                 >Додати в кошик

@@ -2,10 +2,9 @@ import { useDispatch } from "react-redux"
 
 import { Counter } from "."
 import Image from "next/image"
-import { Colors, Sizes, Title, PriceCart } from "../ui"
+import { Title, PriceCart } from "../ui"
 import Trash from '../../../public/image/svg/trash.svg'
 import { removeFromCart } from "@/redux/features/cartSlice"
-
 
 
 export const CardForCart = ({ el }) => {
@@ -33,14 +32,14 @@ export const CardForCart = ({ el }) => {
           className='mob:mt-1'
         />
 
-        <div className=" mt-4 flex items-center gap-x-2" >
+        <div className=" mt-4 flex gap-x-2" >
           <span className="font-medium text-sm mb-2 lap:text-xs">Колір:</span>
-          <Colors colors={el.color} width='24px' height='24px' />
+          <div style={{width: '16px', height: '16px', backgroundColor: `${el.color}`, border: '1px solid #ededed'}}></div>
         </div>
 
         <div className=" flex items-center gap-x-2">
           <span className="font-medium text-sm lap:text-xs">Розмір:</span>
-          <Sizes sizes={el.size} />
+          <div className="font-medium text-base uppercase">{el.size}</div>
         </div>
 
         <div className=" flex items-center gap-x-2">

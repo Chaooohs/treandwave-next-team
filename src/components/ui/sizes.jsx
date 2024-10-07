@@ -20,6 +20,7 @@ export const Sizes = ({ sizes, width, height, className }) => {
   return (
     <div className={cn("flex flex-wrap gap-2 w-[344px] mob:w-full", className)}>
       {
+        Array.isArray(sizes) &&
         sizes?.map((size, index) => {
           return (
             <div key={index}>

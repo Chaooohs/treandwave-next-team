@@ -14,19 +14,19 @@ export const Colors = ({ colors, width, height, className }) => {
     } else if (!checked) {
       dispatch(removeColor(value))
     }
-
   }
 
   return (
     <div className={cn("flex gap-x-2", className)}>
       {
+        Array.isArray(colors) &&
         colors?.map((color, index) => {
           return (
             <div key={index}>
               <input
                 type="radio"
                 name="color"
-                value={color}
+                value={color.colorName}
                 id={`color${index}`}
                 onChange={onChange}
                 className="hidden input-color"
@@ -34,7 +34,7 @@ export const Colors = ({ colors, width, height, className }) => {
               <label
                 htmlFor={`color${index}`}
                 className='rounded-sm cursor-pointer'
-                style={{ backgroundColor: color, width: width, height: height }}
+                style={{ backgroundColor: color.colorName, width: width, height: height, border: '1px solid #ededed'}}
               >
               </label>
             </div>

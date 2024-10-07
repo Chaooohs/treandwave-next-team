@@ -1,5 +1,3 @@
-'use client'
-
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 
@@ -7,26 +5,10 @@ import BanerOne from '../../../public/image/jpg/baner-one.jpg'
 import BanerTwo from '../../../public/image/jpg/baner-two.jpg'
 import { Button, SwiperDemo, Title } from '../ui';
 
-import { useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(useGSAP);
 
 export const Baner = () => {
-
-  const banerRef = useRef()
-
-  useGSAP(() => {
-    gsap.fromTo(banerRef.current,
-      { scale: 0, rotation: 90, opacity: 0 },
-      { scale: 1, rotation: 0, opacity: 1, duration: 1, delay: 1 }
-    );
-  });
-
-
   return (
-    <section ref={banerRef}>
+    <section>
       <div className='baner'>
 
         <SwiperDemo imgOne={BanerOne} imgTwo={BanerTwo} />

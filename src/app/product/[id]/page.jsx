@@ -64,12 +64,14 @@ export default function Page() {
     }
     dispatch(addToWishList(a))
   }
+  
+  const colorsGroup = product?.images.filter(el => color === el.color.colorName)
 
   const handleClickToCart = () => {
     const a = {
       id: product.id,
       title: product.title,
-      images: product.images[0].imageUrl,
+      images: colorsGroup[`${indexImage}`].imageUrl,
       price: product.price,
       discount: product.discount,
       color: color,
@@ -78,9 +80,7 @@ export default function Page() {
     }
     dispatch(addToCart(a))
   }
-
-
-  const colorsGroup = product?.images.filter(el => color === el.color.colorName)
+console.log(indexImage)
 
   return (
     <main>

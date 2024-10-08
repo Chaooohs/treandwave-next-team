@@ -26,11 +26,12 @@ const buttonVariants = cva(
         outlineBlue: " px-5 py-4 border-[1px] border-[#0047FF] uppercase text-[#0047FF] font-mont font-semibold text-sm rounded-[4px] ",
         aboutMenuBut: " uppercase text-[#121212] hover:text-[#6A6A6A] active:text-[#121212] font-mont font-semibold text-sm ",
         grayBut: "border-[1px] border-[#BABABA] uppercase text-[#BABABA] rounded-none font-mont font-semibold text-sm ",
+        checkoutOrderButton: "bg-[#EDEDED] uppercase text-[#999999] rounded-[4px] font-mont font-semibold text-sm ",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
+        lg: "h-11 rounded-md px-[14px]",
         icon: "h-10 w-10",
       },
     },

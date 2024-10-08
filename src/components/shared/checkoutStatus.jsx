@@ -36,7 +36,7 @@ export default function CheckoutStatus() {
     <div className="border-[1px] font-medium text-base text-[#121212] border-[#EDEDED] p-6 flex flex-col gap-6 rounded">
       <h3 className="uppercase font-semibold mob:text-lg lap:text-lg text-2xl">Статус оформлення</h3>
       <div className="bg-[#E2ECFF] text-[#0047FF] uppercase text-sm rounded-[3px] p-2 px-[14px] w-fit flex gap-2">
-        <ClockIcon />
+        <ClockIcon  style={{stroke:"#0047FF", strokeWidth:"2"}}/>
         оформлення
       </div>
       <div>

@@ -13,6 +13,9 @@ const initialState = {
     userHouse: '',
     userAppartment: '',
     deliveryHours: '',
+    deliveryType: '',
+    deliveryTime: '',
+    paymentType: '',
   },
 }
 
@@ -36,8 +39,15 @@ const orderSlice = createSlice({
       state.dataUser.userAppartment = action.payload.selectedAppartment
       state.dataUser.deliveryHours = action.payload.selectedHour
     },
+    setDeliveryUserOrder: (state, action) => {
+      state.dataUser.deliveryType = action.payload.selectedDeliveryType
+      state.dataUser.deliveryTime = action.payload.selectedDeliveryTime
+    },
+    setPaymentUserOrder: (state, action) => {
+      state.dataUser.paymentType = action.payload.selectedPaymentType
+    }
   },
 })
 
-export const { setDataUserOrder, setAddressUserOrder, } = orderSlice.actions
+export const { setDataUserOrder, setAddressUserOrder, setPaymentUserOrder, setDeliveryUserOrder } = orderSlice.actions
 export default orderSlice.reducer;

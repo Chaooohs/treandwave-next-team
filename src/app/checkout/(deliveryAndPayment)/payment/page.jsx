@@ -1,6 +1,8 @@
 'use client';
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
+import { useDispatch } from "react-redux";
+import { setPaymentUserOrder } from "@/redux/features/orderSlice";
 import VisaIcon from '/public/image/svg/visa-logo.svg';
 import MasterIcon from '/public/image/svg/mastercard-logo.svg';
 import AppleIcon from '/public/image/svg/applepay-logo.svg';
@@ -8,6 +10,7 @@ import CashIcon from '/public/image/svg/cash.svg';
 
 
 export default function Page() {
+  const dispatch = useDispatch()
   const [selectedPayment, setSelectedPayment] = useState(null); 
   const [signature, setSignature] = useState(null);
   const router = useRouter();
@@ -17,7 +20,7 @@ export default function Page() {
       id: 1, 
       name: 'Оплата карткою онлайн', 
       description: 'Ви обираєте оплату за допомогою картки.',
-      images: [ // Добавляем ключи здесь
+      images: [ 
         { id: 'visa', icon: <VisaIcon/> },
         { id: 'mastercard', icon: <MasterIcon/> },
         { id: 'applepay', icon: <AppleIcon/> }
@@ -44,6 +47,11 @@ export default function Page() {
 
   const handlePaymentSelection = (id) => {
     setSelectedPayment(id === selectedPayment ? null : id); 
+
+    const paymentMethod = (paymentOptions[id - 1].name) ;
+    console.log(paymentMethod);
+    dispatch(setPaymentUserOrder({
+      selectedPaymentType: paymentMethod }));
   };
 
   const handlePay = async () => {
@@ -130,6 +138,12 @@ export default function Page() {
         router.push('/checkout/confirmation');
       }
     }
+
+  const handleSendingInfo = () => {
+    
+    
+    
+  }
 
   return (
     <div className="flex flex-col gap-[24px] w-full text-[#121212]">

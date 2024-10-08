@@ -7,11 +7,11 @@ import Nova from '/public/image/svg/delivery.svg';
 import NovaPoshta from '/public/image/svg/novaposhta.svg';
 import { Button } from "@/components/ui";
 import { DeliveryData } from "./components/deliveryData";
-import { setAddressUserOrder, setDataUserOrder } from "@/redux/features/orderSlice";
+import { setAddressUserOrder, setDataUserOrder, setDeliveryUserOrder} from "@/redux/features/orderSlice";
 
 export default function Page() {
   const dispatch = useDispatch()
-  const [selectedDelivery, setSelectedDelivery] = useState(null);
+  const [selectedDeliveryType, setSelectedDeliveryType] = useState(null);
   const [clientData, setClientData] = useState({});
   const [deliveryInfo, setDeliveryInfo] = useState({});
   const router = useRouter();
@@ -24,15 +24,42 @@ export default function Page() {
 
   const emptyOrder = !Object.keys(clientData).length || !Object.keys(deliveryInfo).length;
 
-  const handleSendingInfo = () => {
+  const formatDate = (date) => {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // месяцы в JS начинаются с 0
+    const year = date.getFullYear();
+  
+    return (`${day}.${month}.${year}`);
+  }
+  
+  // Функция для генерации периода доставки
+  const generateDeliveryTime = () => {
+    const today = new Date();
+    const deliveryStart = new Date(today); 
+    const deliveryEnd = new Date(today);
     
-    dispatch(setDataUserOrder(clientData))
-    dispatch(setAddressUserOrder(deliveryInfo))
+    deliveryEnd.setDate(today.getDate() + 2); 
+  
+    return `${formatDate(deliveryStart)}-${formatDate(deliveryEnd)}`;
+  }
+  
+
+  const handleSendingInfo = () => {
+    const deliveryTime = generateDeliveryTime();
+    
+    dispatch(setDataUserOrder(clientData));
+    dispatch(setAddressUserOrder(deliveryInfo));
+    dispatch(setDeliveryUserOrder({
+      selectedDeliveryType: (deliveryOptions[selectedDeliveryType - 1].name),
+      selectedDeliveryTime: deliveryTime
+    }));
 
     localStorage.setItem('clientData', JSON.stringify(clientData));
     localStorage.setItem('deliveryData', JSON.stringify(deliveryInfo));
     router.push('/checkout/payment');
   }
+
+  
 
   return (
     <div className="flex flex-col gap-10 w-full">
@@ -60,8 +87,8 @@ export default function Page() {
                   type="radio"
                   name="delivery"
                   value={item.id}
-                  checked={selectedDelivery === item.id}
-                  onChange={() => setSelectedDelivery(item.id)}
+                  checked={selectedDeliveryType === item.id}
+                  onChange={() => setSelectedDeliveryType(item.id)}
                   className={`w-6 h-6 appearance-none rounded-full border-[1px] border-gray-600 checked:border-[#0047FF] 
                                                     checked:ring-[1px] checked:ring-[#0047FF] checked:bg-[#0047FF] checked:ring-offset-2 focus:ring-2 
                                                     focus:ring-[#0047FF] cursor-pointer`}
@@ -70,7 +97,7 @@ export default function Page() {
               </div>
             </div>
 
-            {selectedDelivery === item.id && <DeliveryData selectedDelivery={selectedDelivery} setClientData={setClientData} setDeliveryInfo={setDeliveryInfo} />}
+            {selectedDeliveryType === item.id && <DeliveryData selectedDelivery={selectedDeliveryType} setClientData={setClientData} setDeliveryInfo={setDeliveryInfo} />}
 
           </div>
         ))}

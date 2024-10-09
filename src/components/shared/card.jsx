@@ -7,14 +7,20 @@ import { usePathname } from "next/navigation"
 import { Price, Title } from "../ui"
 import HeartIcon from '/public/image/svg/heart.svg'
 import { addToWishList } from "@/redux/features/wishlistSlice"
+import { useState } from "react"
 
 
-export const Card = ({ el, isColor, onHandleColor }) => {
+export const Card = ({ el }) => {
   const path = usePathname()
   const dispatch = useDispatch()
   const wishlist = useSelector(state => state.wishlist.wishlist)
 
   const fillHeart = wishlist?.find((card) => card.id === el?.id)
+
+  const [isColor, setIsColor] = useState(0)
+  const handleColor = (id) => {
+    setIsColor(id)
+  }
 
   return (
     <div className={`${path.substring(1) === '' ? 'lap:w-[224px] mob:w-[162px]' : null}`}>
@@ -24,12 +30,11 @@ export const Card = ({ el, isColor, onHandleColor }) => {
           {
             el.colors.forEach(el => {
               if (el.id === isColor) {
-                console.log(el.id)
               }
             })
           }
-          <Image src={el?.colors[isColor]?.images[0]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-top" />
-          <Image src={el?.colors[isColor]?.images[1]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-hide lap:hidden" />
+          <Image src={el?.colors[0]?.images[0]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-top" />
+          <Image src={el?.colors[0]?.images[1]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-hide lap:hidden" />
         </div>
 
         <Title text={el.title} size="xs" className="font-mont font-semibold uppercase mt-3 lap:text-base mob:text-xs" />
@@ -68,7 +73,7 @@ export const Card = ({ el, isColor, onHandleColor }) => {
                 key={index}
                 className="w-6 h-6"
                 style={{ backgroundColor: `${el.colorName}` }}
-                onClick={() => onHandleColor(el.id)}
+                onClick={() => handleColor(1)}
               >
               </div>
             )

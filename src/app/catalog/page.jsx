@@ -21,11 +21,11 @@ export default function Page() {
 
 
   return (
-    <div className="wrap">
+    <main className="wrap">
       <CardList
         title={title}
         tags={tagsArr}
       />
-    </div>
+    </main>
   )
 }

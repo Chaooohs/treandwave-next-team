@@ -17,7 +17,6 @@ import FilterIcon from '/public/image/svg/filter.svg';
 export default function CardList({ title, tags, image, pathname, }) {
   const router = useRouter()
   const dispatch = useDispatch()
-  const [isColor, setIsColor] = useState(0)
   let { limit, page, search } = useSelector((state) => state.filters);
 
   let category = ''
@@ -47,7 +46,8 @@ export default function CardList({ title, tags, image, pathname, }) {
     },
   )
 
-  console.log(products)
+
+  console.log(pageNumber)
 
   useEffect(() => {
     if (window.location.search) {
@@ -69,7 +69,7 @@ export default function CardList({ title, tags, image, pathname, }) {
 
 
   const handlePaginationClick = (e) => {
-    dispatch(setPage(`${e.selected}`))
+    dispatch(setPage(e.selected + 1))
   }
 
 
@@ -78,18 +78,12 @@ export default function CardList({ title, tags, image, pathname, }) {
   }, [page])
 
 
-  const handleColor = (id) => {
-    setIsColor(id)
-  }
-
-
   const productsQuantity = products?.length;
 
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);  // Допустим, все товары уже загружены
 
   const applyFilters = (filters) => {
-    console.log(filters);
     const filtered = allProducts.filter(product => {
       const matchesSize = filters.sizes.length === 0 || filters.sizes.includes(product.size);
       const matchesModel = filters.models.length === 0 || filters.models.includes(product.model);
@@ -162,7 +156,7 @@ export default function CardList({ title, tags, image, pathname, }) {
             products.map((el) => {
               return (
                 <div key={el.id} className="relative">
-                  <Card el={el} isColor={isColor} onHandleColor={handleColor} />
+                  <Card el={el}/>
                 </div>
               )
             })
@@ -173,7 +167,7 @@ export default function CardList({ title, tags, image, pathname, }) {
         totalPages={totalPages}
         totalProduct={totalProduct}
         onPaginationClick={handlePaginationClick}
-        page={page}
+        page={pageNumber}
       />
 
     </div>

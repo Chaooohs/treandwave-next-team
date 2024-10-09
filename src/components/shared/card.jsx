@@ -62,9 +62,10 @@ export const Card = ({ el, isColor, onHandleColor }) => {
       </Link>
       <div className="relative z-40 flex gap-x-2">
         {
-          el.colors?.map(el => {
+          el.colors?.map((el,index) => {
             return (
               <div
+                key={index}
                 className="w-6 h-6"
                 style={{ backgroundColor: `${el.colorName}` }}
                 onClick={() => onHandleColor(el.id)}

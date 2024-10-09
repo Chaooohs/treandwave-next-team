@@ -11,12 +11,13 @@ export const goodsApi = createApi({
       query: (query = "") => ({
         url: query,
       }),
-      // transformResponse: response => ({
-      //   goods: response.product,
-      //   limit: response.limit,
-      //   totalGoods: response.total,
-      //   pageNumber: response.skip,
-      // }),
+      transformResponse: response => ({
+        products: response.data,
+        limit: response.limit,
+        totalProduct: response.total,
+        pageNumber: response.page,
+        totalPages: response.totalPages,
+      }),
     }),
     getSingleProduct: builder.query({
       query: (query = '') => ({

@@ -9,7 +9,7 @@ import Image from "next/image";
 import { BreadcrumbCustom, Card, Filters } from "..";
 import { Button, PaginationOutline, Title } from "@/components/ui";
 import { SortingMenu } from "../../ui/sortingMenu";
-import { setFilters, setSkip } from "@/redux/features/filtersSlice";
+import { setFilters, setPage } from "@/redux/features/filtersSlice";
 import { setOpenFilters } from "@/redux/features/openSlice";
 import FilterIcon from '/public/image/svg/filter.svg';
 
@@ -17,7 +17,8 @@ import FilterIcon from '/public/image/svg/filter.svg';
 export default function CardList({ title, tags, image, pathname, }) {
   const router = useRouter()
   const dispatch = useDispatch()
-  let { limit, skip, search } = useSelector((state) => state.filters);
+  const [isColor, setIsColor] = useState(0)
+  let { limit, page, search } = useSelector((state) => state.filters);
 
   let category = ''
   switch (pathname) {
@@ -34,17 +35,19 @@ export default function CardList({ title, tags, image, pathname, }) {
       category = '';
   }
 
-  const { data: products, totalGoods, loading } = useGetGoodsQuery(`/product${category}?limit=${limit}&skip=${skip}&q=${search}`,
+  const { products, totalProduct, pageNumber, totalPages, loading } = useGetGoodsQuery(`/product${category}?page=${page}&limit=${limit}`,
     {
-      // selectFromResult: ({ data, isLoading }) => ({
-      //   products: data?.goods,
-      //   totalGoods: data?.totalGoods,
-      //   pageNumber: data?.pageNumber,
-      //   loading: isLoading,
-      // }),
+      selectFromResult: ({ data, isLoading }) => ({
+        products: data?.products,
+        totalProduct: data?.totalProduct,
+        pageNumber: data?.pageNumber,
+        totalPages: data?.totalPages,
+        loading: isLoading,
+      }),
     },
   )
 
+  console.log(products)
 
   useEffect(() => {
     if (window.location.search) {
@@ -56,25 +59,28 @@ export default function CardList({ title, tags, image, pathname, }) {
 
   useEffect(() => {
     const string = {
+      page,
       limit,
-      skip,
       q: search === "" ? null : search,
     }
     const queryString = qs.stringify(string, { skipNulls: true })
     router.push(`?${queryString}`);
-  }, [skip, search])
+  }, [page, search])
 
 
   const handlePaginationClick = (e) => {
-    dispatch(setSkip(`${e.selected}0`))
+    dispatch(setPage(`${e.selected}`))
   }
 
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [skip])
+  }, [page])
 
 
+  const handleColor = (id) => {
+    setIsColor(id)
+  }
 
 
   const productsQuantity = products?.length;
@@ -132,7 +138,7 @@ export default function CardList({ title, tags, image, pathname, }) {
       )}
       <div className="flex justify-between items-center">
         <div>
-          <p>{totalGoods} результати</p>
+          <p>{totalProduct} результати</p>
         </div>
         <div className="flex gap-5">
 
@@ -156,7 +162,7 @@ export default function CardList({ title, tags, image, pathname, }) {
             products.map((el) => {
               return (
                 <div key={el.id} className="relative">
-                  <Card el={el} />
+                  <Card el={el} isColor={isColor} onHandleColor={handleColor} />
                 </div>
               )
             })
@@ -164,9 +170,10 @@ export default function CardList({ title, tags, image, pathname, }) {
       </div>
 
       <PaginationOutline
-        totalGoods={totalGoods}
+        totalPages={totalPages}
+        totalProduct={totalProduct}
         onPaginationClick={handlePaginationClick}
-        skip={skip}
+        page={page}
       />
 
     </div>

@@ -34,20 +34,17 @@ export default function CardList({ title, tags, image, pathname, }) {
       category = '';
   }
 
-  const { products, totalProduct, pageNumber, totalPages, loading } = useGetGoodsQuery(`/product${category}?page=${page}&limit=${limit}`,
+  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/product${category}?page=${page}&limit=${limit}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.products,
         totalProduct: data?.totalProduct,
-        pageNumber: data?.pageNumber,
         totalPages: data?.totalPages,
         loading: isLoading,
       }),
     },
   )
 
-
-  console.log(pageNumber)
 
   useEffect(() => {
     if (window.location.search) {
@@ -167,7 +164,7 @@ export default function CardList({ title, tags, image, pathname, }) {
         totalPages={totalPages}
         totalProduct={totalProduct}
         onPaginationClick={handlePaginationClick}
-        page={pageNumber}
+        page={page}
       />
 
     </div>

@@ -15,7 +15,7 @@ export const goodsApi = createApi({
         products: response.data,
         limit: response.limit,
         totalProduct: response.total,
-        pageNumber: response.page,
+        // pageNumber: response.page,
         totalPages: response.totalPages,
       }),
     }),

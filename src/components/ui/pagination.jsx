@@ -1,8 +1,7 @@
 'use client'
 import ReactPaginate from "react-paginate";
 
-export const PaginationOutline = ({ totalProduct, totalPages, onPaginationClick, page }) => {
-
+export const PaginationOutline = ({ totalPages, onPaginationClick, page }) => {
 
   return (
     <div className="flex justify-center my-7">
@@ -15,7 +14,7 @@ export const PaginationOutline = ({ totalProduct, totalPages, onPaginationClick,
         pageCount={totalPages}
         previousLabel="&#129136;"
         renderOnZeroPageCount={null}
-        forcePage={page}
+        forcePage={Number(page - 1)}
         previousClassName="prev"
         nextClassName="next"
         disabledClassName="disabled"

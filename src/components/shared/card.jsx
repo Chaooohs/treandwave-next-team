@@ -1,8 +1,9 @@
 'use client'
-import Link from "next/link"
-import Image from "next/image"
-import { useDispatch, useSelector } from "react-redux"
-import { usePathname } from "next/navigation"
+import Link from "next/link";
+import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 import { Price, Title } from "../ui"
 import HeartIcon from '/public/image/svg/heart.svg'
@@ -10,9 +11,18 @@ import { addToWishList } from "@/redux/features/wishlistSlice"
 
 
 export const Card = ({ el }) => {
-  const path = usePathname()
-  const dispatch = useDispatch()
-  const wishlist = useSelector(state => state.wishlist.wishlist)
+  const path = usePathname();
+  const dispatch = useDispatch();
+  const wishlist = useSelector(state => state.wishlist.wishlist);
+  const [selectedColor, setSelectedColor] = useState(0);
+  console.log(el);
+
+
+  const handleColor = (colorId) => {
+    console.log(colorId);
+    setSelectedColor(colorId);
+    console.log(selectedColor);
+  }
 
   const fillHeart = wishlist?.find((card) => card.id === el?.id)
 
@@ -21,8 +31,15 @@ export const Card = ({ el }) => {
       <Link href={`/product/${el.id}`} >
 
         <div className="card-img">
-          <Image src={el?.images[0]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-top" />
-          <Image src={el?.images[1]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-hide lap:hidden" />
+          {/* {
+            el.colors.forEach(el => {
+              if (el.id === isColor) {
+                console.log(el.id)
+              }
+            })
+          } */}
+          <Image src={el?.colors[selectedColor]?.images[0]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-top" />
+          <Image src={el?.colors[selectedColor]?.images[1]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-hide lap:hidden" />
         </div>
 
         <Title text={el.title} size="xs" className="font-mont font-semibold uppercase mt-3 lap:text-base mob:text-xs" />
@@ -53,7 +70,21 @@ export const Card = ({ el }) => {
         </div>
 
       </Link>
-
+      <div className="relative z-40 flex gap-x-2">
+        {
+          el.colors?.map((el,index) => {
+            return (
+              <div
+                key={index}
+                className="w-6 h-6"
+                style={{ backgroundColor: `${el.colorName}` }}
+                onClick={() => handleColor(index)}
+              >
+              </div>
+            )
+          })
+        }
+      </div>
       <button
         className="absolute top-3 right-4 w-[52px] h-[52px] bg-[#21212114] rounded-full flex items-center justify-center lap:w-9 lap:h-9"
         onClick={() => dispatch(addToWishList(el))}

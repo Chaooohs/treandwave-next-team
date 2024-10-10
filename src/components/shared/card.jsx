@@ -15,29 +15,18 @@ export const Card = ({ el }) => {
   const dispatch = useDispatch();
   const wishlist = useSelector(state => state.wishlist.wishlist);
   const [selectedColor, setSelectedColor] = useState(0);
-  console.log(el);
-
 
   const handleColor = (colorId) => {
-    console.log(colorId);
     setSelectedColor(colorId);
-    console.log(selectedColor);
   }
 
   const fillHeart = wishlist?.find((card) => card.id === el?.id)
 
   return (
     <div className={`${path.substring(1) === '' ? 'lap:w-[224px] mob:w-[162px]' : null}`}>
-      <Link href={`/product/${el.id}`} >
+      <Link href={`/product/by-slug/${el.slug}`} className="grid grid-rows-[0fr_60px_0fr]">
 
         <div className="card-img">
-          {/* {
-            el.colors.forEach(el => {
-              if (el.id === isColor) {
-                console.log(el.id)
-              }
-            })
-          } */}
           <Image src={el?.colors[selectedColor]?.images[0]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-top" />
           <Image src={el?.colors[selectedColor]?.images[1]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-hide lap:hidden" />
         </div>
@@ -70,14 +59,15 @@ export const Card = ({ el }) => {
         </div>
 
       </Link>
-      <div className="relative z-40 flex gap-x-2">
+
+      <div className="relative z-30 flex gap-x-2 mt-4">
         {
           el.colors?.map((el,index) => {
             return (
               <div
                 key={index}
-                className="w-6 h-6"
-                style={{ backgroundColor: `${el.colorName}` }}
+                className="w-6 h-6 cursor-pointer rounded"
+                style={{ border: '1px solid #121212', backgroundColor: `${el.colorName}` }}
                 onClick={() => handleColor(index)}
               >
               </div>
@@ -85,6 +75,7 @@ export const Card = ({ el }) => {
           })
         }
       </div>
+
       <button
         className="absolute top-3 right-4 w-[52px] h-[52px] bg-[#21212114] rounded-full flex items-center justify-center lap:w-9 lap:h-9"
         onClick={() => dispatch(addToWishList(el))}

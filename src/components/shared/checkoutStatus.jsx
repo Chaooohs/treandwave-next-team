@@ -27,11 +27,9 @@ export default function CheckoutStatus() {
     const deliveryData = JSON.parse(localStorage.getItem('deliveryData'));
     setStoredClientData(clientData);
     setStoredDeliveryData(deliveryData);
-    console.log(clientData);
-    console.log(deliveryData);
   }, []);
+ 
 
-  console.log(dataUser);
   return (
     <div className="border-[1px] font-medium text-base text-[#121212] border-[#EDEDED] p-6 flex flex-col gap-6 rounded">
       <h3 className="uppercase font-semibold mob:text-lg lap:text-lg text-2xl">Статус оформлення</h3>

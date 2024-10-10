@@ -21,7 +21,7 @@ export default function CheckoutCard ({ el }) {
     <div className="flex gap-2 py-5 justify-between">
       <div className="min-w-[40%]">
         <Image
-          src={el.images[0]}
+          src={el.images}
           alt={el.title}
           width={150}
           height={180}

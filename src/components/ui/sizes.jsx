@@ -34,7 +34,7 @@ export const Sizes = ({ sizes, width, height, className }) => {
               />
               <label
                 htmlFor={`size${index}`}
-                className='rounded-lg flex items-center justify-center font-semibold text-sm cursor-pointer'
+                className='rounded flex items-center justify-center font-semibold text-sm cursor-pointer'
                 style={{ width: width, height: height, border: '1px solid #ededed', textTransform: 'uppercase' }}
               >
                 {size.size}

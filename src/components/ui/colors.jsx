@@ -3,7 +3,7 @@ import { addColor, removeColor } from "@/redux/features/textureSlice"
 import { cn } from "@/lib/utils"
 
 
-export const Colors = ({ colors, width, height, className }) => {
+export const Colors = ({ colors, width, height, className, onHandleClick }) => {
   const dispatch = useDispatch()
 
   const onChange = (e) => {
@@ -29,12 +29,13 @@ export const Colors = ({ colors, width, height, className }) => {
                 value={color.colorName}
                 id={`color${index}`}
                 onChange={onChange}
+                onClick={()=>onHandleClick(index)}
                 className="hidden input-color"
               />
               <label
                 htmlFor={`color${index}`}
-                className='rounded-sm cursor-pointer'
-                style={{ backgroundColor: color.colorName, width: width, height: height, border: '1px solid #ededed'}}
+                className='rounded cursor-pointer'
+                style={{ backgroundColor: color.colorName, width: width, height: height, border: '1px solid #121212'}}
               >
               </label>
             </div>

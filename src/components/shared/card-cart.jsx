@@ -34,7 +34,7 @@ export const CardForCart = ({ el }) => {
 
         <div className=" mt-4 flex gap-x-2" >
           <span className="font-medium text-sm mb-2 lap:text-xs">Колір:</span>
-          <div style={{width: '16px', height: '16px', backgroundColor: `${el.color}`, border: '1px solid #ededed'}}></div>
+          <div style={{width: '16px', height: '16px', backgroundColor: `${el.color}`, border: '1px solid #121212'}}></div>
         </div>
 
         <div className=" flex items-center gap-x-2">

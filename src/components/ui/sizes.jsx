@@ -3,7 +3,7 @@ import { addSize, removeSize } from "@/redux/features/textureSlice"
 import { cn } from "@/lib/utils"
 
 
-export const Sizes = ({ sizes, width, height, className }) => {
+export const Sizes = ({ sizes, width, height, className, onHandleClick }) => {
   const dispatch = useDispatch()
 
   const onChange = (e) => {
@@ -30,6 +30,7 @@ export const Sizes = ({ sizes, width, height, className }) => {
                 value={size.size}
                 id={`size${index}`}
                 onChange={onChange}
+                onClick={onHandleClick}
                 className="hidden input-size "
               />
               <label

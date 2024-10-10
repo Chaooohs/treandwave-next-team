@@ -1,16 +1,15 @@
 'use client'
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 
+import Heart from '/public/image/svg/heart.svg'
 import { Button, Colors, Title, Price, Sizes } from "@/components/ui";
 import { Accordion, Card } from "@/components/shared";
 import { addToWishList } from "@/redux/features/wishlistSlice";
-import { addColor } from "@/redux/features/textureSlice";
 import { addToCart } from "@/redux/features/cartSlice";
-import Heart from '/public/image/svg/heart.svg'
 import { useGetSingleProductQuery } from "@/redux/api/goodsApi";
-import { usePathname } from "next/navigation";
 
 
 export default function Page() {
@@ -23,10 +22,12 @@ export default function Page() {
   const wishlist = useSelector(state => state.wishlist.wishlist)
   const goods = useSelector((state) => state.goods.goods);
   const { color, size } = useSelector(state => state.texture)
-  const [indexImage, setIndexImage] = useState(0)
   const ref = useRef()
   const btnToCartRef = useRef()
   const [isColor, setIsColor] = useState(0)
+  const [indexImage, setIndexImage] = useState(0)
+  const [isSelectedColor, setIsSelectedColor] = useState(false)
+  const [isSelectedSize, setIsSelectedSize] = useState(false)
 
   useEffect(() => {
     const found = wishlist.find(el => el.id === product.id)
@@ -41,16 +42,12 @@ export default function Page() {
   }, [])
 
   useEffect(() => {
-    // dispatch(addColor(product?.images[0].color.colorName))
-  }, [product])
-
-  useEffect(() => {
-    if (!size || !color) {
+    if (!isSelectedColor || !isSelectedSize) {
       btnToCartRef.current.disabled = true;
     } else {
       btnToCartRef.current.disabled = false;
     }
-  }, [product, size, color])
+  }, [isSelectedColor, isSelectedSize])
 
   const handleClick = (index) => {
     setIndexImage(index)
@@ -59,6 +56,11 @@ export default function Page() {
   const handleClickColor = (index) => {
     setIsColor(index)
     setIndexImage(0)
+    setIsSelectedColor(true)
+  }
+
+  const handleClickSize = () => {
+    setIsSelectedSize(true)
   }
 
   const handleClickToWishList = () => {
@@ -71,7 +73,7 @@ export default function Page() {
     }
     dispatch(addToWishList(a))
   }
-  
+
 
   const handleClickToCart = () => {
     const a = {
@@ -87,7 +89,7 @@ export default function Page() {
     dispatch(addToCart(a))
   }
 
-  
+
   return (
     <main>
       <div className="wrap">
@@ -140,8 +142,8 @@ export default function Page() {
               </div>
 
               <Title text='розмір:' size="xs" className='font-semibold uppercase mt-8 lap:text-base' />
-              <Sizes sizes={product?.sizes} width='58px' height='36px' className='mt-3' />
-              
+              <Sizes sizes={product?.sizes} width='58px' height='36px' className='mt-3' onHandleClick={handleClickSize} />
+
               <div className="flex my-8 lap:flex-col lap:gap-y-3">
                 <Button
                   ref={ref}

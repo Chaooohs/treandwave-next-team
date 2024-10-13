@@ -28,6 +28,7 @@ export default function Page() {
   const [indexImage, setIndexImage] = useState(0)
   const [isSelectedColor, setIsSelectedColor] = useState(false)
   const [isSelectedSize, setIsSelectedSize] = useState(false)
+  
 
   useEffect(() => {
     const found = wishlist.find(el => el.id === product.id)

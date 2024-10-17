@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { actionAsyncStorage } from "next/dist/client/components/action-async-storage-instance";
+import { act } from "react";
 
 const initialState = {
   dataUser: {
@@ -16,19 +18,45 @@ const initialState = {
     deliveryType: '',
     deliveryTime: '',
     paymentType: '',
+    orderNumber: '',
+    orderTime: '',
   },
+}
+
+const saveToLocalStorage = (state) => {
+  localStorage.setItem('userOrderData', JSON.stringify(state.dataUser))
 }
 
 const orderSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
+    setOrderFromStorage: (state, action) => {
+      const userData = action.payload.dataUser;
+      state.dataUser.userFirstName = userData.userFirstName;
+      console.log(action.payload);
+      state.dataUser.userLastName = userData.userLastName;
+      state.dataUser.userEmail = userData.userEmail;
+      state.dataUser.userPhone = userData.userPhone;
+      state.dataUser.userCity = userData.userCity;
+      state.dataUser.userStreet = userData.userStreet;
+      state.dataUser.userDevision = userData.userDevision;
+      state.dataUser.userPostomat = userData.userPostomat;
+      state.dataUser.deliveryHours = userData.deliveryHours;
+      state.dataUser.deliveryType = userData.deliveryType;
+      state.dataUser.deliveryTime = userData.deliveryTime;
+      state.dataUser.paymentType = userData.paymentType;
+      state.dataUser.orderNumber = userData.orderNumber;
+      state.dataUser.orderTime = userData.orderTime;
+
+    },
     setDataUserOrder: (state, action) => {
       state.dataUser.userFirstName = action.payload.isFirstName
       state.dataUser.userLastName = action.payload.isLastName
       state.dataUser.userEmail = action.payload.isEmail
       state.dataUser.userPhone = action.payload.isPhone
       state.dataUser.userCity = action.payload.selectedCity
+      saveToLocalStorage(state);
     },
     setAddressUserOrder: (state, action) => {
       state.dataUser.userCity = action.payload.selectedCity
@@ -38,16 +66,21 @@ const orderSlice = createSlice({
       state.dataUser.userPostomat = action.payload.selectedPostomat
       state.dataUser.userAppartment = action.payload.selectedAppartment
       state.dataUser.deliveryHours = action.payload.selectedHour
+      saveToLocalStorage(state);
     },
     setDeliveryUserOrder: (state, action) => {
       state.dataUser.deliveryType = action.payload.selectedDeliveryType
       state.dataUser.deliveryTime = action.payload.selectedDeliveryTime
+      saveToLocalStorage(state);
     },
     setPaymentUserOrder: (state, action) => {
       state.dataUser.paymentType = action.payload.selectedPaymentType
-    }
+      state.dataUser.orderNumber = action.payload.selectedOrderNumber
+      state.dataUser.orderTime = action.payload.selectedOrderTime
+      saveToLocalStorage(state);
+    },
   },
 })
 
-export const { setDataUserOrder, setAddressUserOrder, setPaymentUserOrder, setDeliveryUserOrder } = orderSlice.actions
+export const { setDataUserOrder, setAddressUserOrder, setPaymentUserOrder, setDeliveryUserOrder, setOrderFromStorage, } = orderSlice.actions
 export default orderSlice.reducer;

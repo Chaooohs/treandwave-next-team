@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import { useDispatch } from "react-redux";
-import { setPaymentUserOrder } from "@/redux/features/orderSlice";
+import { setPaymentUserOrder, selectedOrderNumber } from "@/redux/features/orderSlice";
 import VisaIcon from '/public/image/svg/visa-logo.svg';
 import MasterIcon from '/public/image/svg/mastercard-logo.svg';
 import AppleIcon from '/public/image/svg/applepay-logo.svg';
@@ -36,6 +36,9 @@ export default function Page() {
     }
   ];
 
+  const orderNumber = `order_${new Date().getTime()}`;
+  const orderTime = `${new Date().toLocaleString()}`;
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://secure.wayforpay.com/server/pay-widget.js";
@@ -51,13 +54,13 @@ export default function Page() {
     const paymentMethod = (paymentOptions[id - 1].name) ;
     console.log(paymentMethod);
     dispatch(setPaymentUserOrder({
-      selectedPaymentType: paymentMethod }));
+      selectedPaymentType: paymentMethod, selectedOrderNumber: orderNumber, selectedOrderTime: orderTime }));
   };
 
   const handlePay = async () => {
 
     if (selectedPayment === 1) {
-      const orderReference = `order_${new Date().getTime()}`;
+      const orderReference = orderNumber;
 
       const paymentData = {
         merchantAccount: "test_merch_n1",

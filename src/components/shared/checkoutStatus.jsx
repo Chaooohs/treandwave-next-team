@@ -12,22 +12,25 @@ import { SquarePen } from 'lucide-react';
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ClockIcon from '/public/image/svg/clock.svg';
+import useOrderFromStorage from "@/redux/features/useOrderFromStorage";
 
 export default function CheckoutStatus() {
+  useOrderFromStorage();
   const goods = useSelector(state => state.goods.goods);
   const { cart, totalPrice } = useSelector(state => state.cart);
   const [storedClientData, setStoredClientData] = useState(null);
   const [storedDeliveryData, setStoredDeliveryData] = useState(null);
   const pathname = usePathname();
 
-  const dataUser = useSelector(state => state.order.dataUser)
+  const dataUser = useSelector(state => state.order.dataUser);
+  console.log(dataUser);
 
-  useEffect(() => {
-    const clientData = JSON.parse(localStorage.getItem('clientData'));
-    const deliveryData = JSON.parse(localStorage.getItem('deliveryData'));
-    setStoredClientData(clientData);
-    setStoredDeliveryData(deliveryData);
-  }, []);
+  // useEffect(() => {
+  //   const clientData = JSON.parse(localStorage.getItem('clientData'));
+  //   const deliveryData = JSON.parse(localStorage.getItem('deliveryData'));
+  //   setStoredClientData(clientData);
+  //   setStoredDeliveryData(deliveryData);
+  // }, []);
  
 
   return (

@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { ArrowLeft } from 'lucide-react';
 import ConfirmationIcon from '/public/image/svg/confirmationIcon.svg';
-import CheckoutOrderDetails from "@/components/shared/checkoutOrderDetails";
+import CheckoutConfirmationOrderDetails from "@/components/shared/checkoutConfirmationOrderDetails";
+import CheckoutConfirmationOrderItemsList from "@/components/shared/checkautConfirmationOrderItemsList";
+
 
 export default function Page() {
-    const orderNumber = 'UA-847392';
-    const orderTime = '21.08.2024, 14:35';
-    const deliveryTime = '22.08.2024 - 24.08.2024';
 
     return(
         <div className="wrap min-h-screen gap-[56px] mob:gap-8 lap:gap-8 flex flex-col mob:pt-2 py-5">
@@ -28,11 +27,9 @@ export default function Page() {
                     листі, який ми надіслали на вашу  адресу.
                 </p>
             </div>
-            <CheckoutOrderDetails 
-                orderNumber={orderNumber} 
-                orderTime={orderTime}
-                deliveryTime={deliveryTime}
-            />
+            <CheckoutConfirmationOrderDetails />
+
+            <CheckoutConfirmationOrderItemsList/>
 
 
         </div>

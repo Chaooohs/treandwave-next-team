@@ -9,13 +9,15 @@ import VisaIcon from '/public/image/svg/visa-logo.svg'
 import MasterIcon from '/public/image/svg/mastercard-logo.svg'
 import AppleIcon from '/public/image/svg/applepay-logo.svg'
 import { setTotalPrice } from "@/redux/features/cartSlice";
-
+import useCartFromStorage from "@/redux/features/useCartFromStorage";
 
 export default function ShoppingCart() {
+  useCartFromStorage();
   const refButton = useRef()
   const dispatch = useDispatch()
   const goods = useSelector(state => state.goods.goods);
   const { cart, totalPrice } = useSelector(state => state.cart);
+
 
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
 

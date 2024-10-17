@@ -9,31 +9,31 @@ import CheckMark from '/public/image/svg/checkMark.svg';
 import Link from 'next/link';
 
 
-export default function CheckoutOrderDetails({orderNumber, orderTime, deliveryTime}) {
+export default function CheckoutConfirmationOrderDetails({}) {
     const [comlettedSteps, setComlettedSteps] = useState([0]);
     const [clientData, setClientData] = useState({});
     const [deliveryData, setDeliveryData] = useState({});
     const dataUser = useSelector(state => state.order.dataUser)
 
 
-    useEffect(() => {
-        const storedClientData = localStorage.getItem('clientData');
-        if (storedClientData) {
-            setClientData(JSON.parse(storedClientData))
-        };
-        const storedDeliveryData = localStorage.getItem('deliveryData');
-        if (storedDeliveryData) {
-            setDeliveryData(JSON.parse(storedDeliveryData))
-        };
-    }, [])
+    // useEffect(() => {
+    //     const storedClientData = localStorage.getItem('clientData');
+    //     if (storedClientData) {
+    //         setClientData(JSON.parse(storedClientData))
+    //     };
+    //     const storedDeliveryData = localStorage.getItem('deliveryData');
+    //     if (storedDeliveryData) {
+    //         setDeliveryData(JSON.parse(storedDeliveryData))
+    //     };
+    // }, [])
    
     console.log(dataUser);
     // console.log(deliveryData);
 
     const mainDetails = [
-        { title: 'Номер замовлення:', detail: orderNumber },
-        { title: 'Час оформлення замовлення:', detail: orderTime },
-        { title: 'Очікуваний час доставки:', detail: deliveryTime }
+        { title: 'Номер замовлення:', detail: dataUser.orderNumber },
+        { title: 'Час оформлення замовлення:', detail: dataUser.orderTime },
+        { title: 'Очікуваний час доставки:', detail: dataUser.deliveryTime }
     ];
 
     const buttons = [

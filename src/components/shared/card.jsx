@@ -24,7 +24,7 @@ export const Card = ({ el }) => {
 
   return (
     <div className={`${path.substring(1) === '' ? 'lap:w-[224px] mob:w-[162px]' : null}`}>
-      <Link href={`/product/by-slug/${el.slug}`} className="grid grid-rows-[0fr_60px_0fr]">
+      <Link href={`/catalog/by-slug/${el.slug}`} className="grid grid-rows-[0fr_60px_0fr]">
 
         <div className="card-img">
           <Image src={el?.colors[selectedColor]?.images[0]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-top" />

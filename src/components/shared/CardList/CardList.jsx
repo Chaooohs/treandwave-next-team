@@ -34,7 +34,7 @@ export default function CardList({ title, tags, image, pathname, }) {
       category = '';
   }
 
-  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/product${category}?page=${page}&limit=${limit}`,
+  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog${category}?page=${page}&limit=${limit}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.products,

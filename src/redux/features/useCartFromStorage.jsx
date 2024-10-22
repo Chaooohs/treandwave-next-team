@@ -11,7 +11,7 @@ const useCartFromStorage = () => {
     const totalPriceFromStorage = JSON.parse(localStorage.getItem('totalPrice')) || 0;
     const discountStorage = JSON.parse(localStorage.getItem('discount')) || 0;
     const forPayValueStorage = JSON.parse(localStorage.getItem('forPayValue')) || 0;
-    console.log('хук', discountStorage);
+
     // Обновляю состояние в Redux
     dispatch(setCartFromStorage({ cart: cartFromStorage, totalPrice: totalPriceFromStorage, discount: discountStorage, forPayValue: forPayValueStorage }));
   }, [dispatch]);

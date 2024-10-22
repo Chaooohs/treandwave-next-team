@@ -126,7 +126,7 @@ export default function CheckoutStatus() {
                   {/* {`Iм'я: ${dataUser.userFirstName}`} */}
                 </p>
                 <p className="grid grid-cols-2">
-                  <span>Фамiлiя:</span>
+                  <span>Прізвище:</span>
                   <span className="font-semibold">{dataUser.userLastName}</span>
                   {/* {`Фамiлiя: ${dataUser.userLastName}`} */}
                 </p>

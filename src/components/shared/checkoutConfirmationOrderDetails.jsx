@@ -9,31 +9,71 @@ import CheckMark from '/public/image/svg/checkMark.svg';
 import Link from 'next/link';
 
 
-export default function CheckoutConfirmationOrderDetails({}) {
+export default function CheckoutConfirmationOrderDetails({orderNumber, orderTime, deliveryType, userDevision, userPostomat, userStreet,userHouse, userAppartment, userCity, userFirstName, userLastName, userEmail, userPhone, paymentType }) {
     const [comlettedSteps, setComlettedSteps] = useState([0]);
-    const [clientData, setClientData] = useState({});
-    const [deliveryData, setDeliveryData] = useState({});
+    const [orderConfirmedData, setOrderConfirmedData] = useState({});
+    const [deliveryData, setDeliveryData] = useState(null);
     const dataUser = useSelector(state => state.order.dataUser)
 
 
     // useEffect(() => {
-    //     const storedClientData = localStorage.getItem('clientData');
-    //     if (storedClientData) {
-    //         setClientData(JSON.parse(storedClientData))
+    //     const orderConfirmedDataFromStorage = localStorage.getItem('orderConfirmedData');
+    //     console.log(orderConfirmedDataFromStorage);
+    //     if (orderConfirmedDataFromStorage) {
+    //         const parseInf = JSON.parse(orderConfirmedDataFromStorage);
+    //         console.log('parseinf', parseInf);
+    //         setOrderConfirmedData(parseInf);
+            
+    //         console.log('succes');
+    //         console.log(orderConfirmedData);
+            
     //     };
-    //     const storedDeliveryData = localStorage.getItem('deliveryData');
-    //     if (storedDeliveryData) {
-    //         setDeliveryData(JSON.parse(storedDeliveryData))
-    //     };
+
     // }, [])
-   
-    console.log(dataUser);
-    // console.log(deliveryData);
+
+    // useEffect(() => {
+    //     console.log(orderConfirmedData); 
+    // }, [orderConfirmedData]);
+
+    // const orderNumber = orderConfirmedData?.dataUser?.orderNumber || '';
+    // const orderTime = orderConfirmedData?.dataUser?.orderTime || '';
+    // const deliveryTime = orderConfirmedData?.dataUser?.deliveryTime || '';
+    // const deliveryType = orderConfirmedData?.dataUser?.deliveryType || '';
+    // const userDevision = orderConfirmedData?.dataUser?.userDevision || '';
+    // const userPostomat = orderConfirmedData?.dataUser?.userPostomat || '';
+    // const userStreet = orderConfirmedData?.dataUser?.userStreet || '';
+    // const userHouse = orderConfirmedData?.dataUser?.userHouse || '';
+    // const userAppartment = orderConfirmedData?.dataUser?.userAppartment || '';
+    // const userCity = orderConfirmedData?.dataUser?.userCity || '';
+    // const userFirstName = orderConfirmedData?.dataUser?.userFirstName || '';
+    // const userLastName = orderConfirmedData?.dataUser?.userLastName || '';
+    // const userEmail = orderConfirmedData?.dataUser?.userEmail || '';
+    // const userPhone = orderConfirmedData?.dataUser?.userPhone || '';
+    // const paymentType = orderConfirmedData?.dataUser?.paymentType || '';
+    
+    const formatDate = (date) => {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // месяцы в JS начинаются с 0
+        const year = date.getFullYear();
+      
+        return (`${day}.${month}.${year}`);
+      }
+      
+    const generateDeliveryTime = () => {
+        const today = new Date();
+        const deliveryStart = new Date(today); 
+        const deliveryEnd = new Date(today);
+        
+        deliveryEnd.setDate(today.getDate() + 2); 
+      
+        return `${formatDate(deliveryStart)}-${formatDate(deliveryEnd)}`;
+      }
+      const deliveryTime = generateDeliveryTime();
 
     const mainDetails = [
-        { title: 'Номер замовлення:', detail: dataUser.orderNumber },
-        { title: 'Час оформлення замовлення:', detail: dataUser.orderTime },
-        { title: 'Очікуваний час доставки:', detail: dataUser.deliveryTime }
+        { title: 'Номер замовлення:', detail: orderNumber },
+        { title: 'Час оформлення замовлення:', detail: orderTime},
+        { title: 'Очікуваний час доставки:', detail: deliveryTime}
     ];
 
     const buttons = [
@@ -71,16 +111,16 @@ export default function CheckoutConfirmationOrderDetails({}) {
                             <h4 className="uppercase font-semibold mob:text-base lap:text-base  text-lg">Адреса доставки</h4>
                         </div>
                         <div className="normal-case flex flex-col  mob:gap-[2px]">
-                            <p>{dataUser.deliveryType}</p>
-                            <p>{dataUser.userDevision}</p>
-                            <p>{dataUser.userPostomat}</p>
-                            {dataUser.userStreet && 
-                                <p>вул.{dataUser.userStreet}, будинок:{dataUser.userHouse},
-                                {dataUser.userAppartment && 
-                                    <span>кв.{dataUser.userAppartment}</span> 
+                            <p>{deliveryType}</p>
+                            <p>{userDevision}</p>
+                            <p>{userPostomat}</p>
+                            {userStreet && 
+                                <p>вул.{userStreet}, будинок:{userHouse},
+                                {userAppartment && 
+                                    <span>кв.{userAppartment}</span> 
                                 }</p>
                             }
-                            <p>{dataUser.userCity}</p>
+                            <p>{userCity}</p>
                         </div>                          
                     </div>
                     <div>
@@ -88,9 +128,9 @@ export default function CheckoutConfirmationOrderDetails({}) {
                             <h4 className="uppercase font-semibold mob:text-base lap:text-base  text-lg">Дані отримувача</h4>
                         </div>
                         <div className="normal-case flex flex-col mob:gap-[2px]">
-                            <p>{dataUser.userFirstName} {dataUser.userLastName}</p>
-                            <p>{dataUser.userEmail}</p>
-                            <p>{dataUser.userPhone }</p>
+                            <p>{userFirstName} {userLastName}</p>
+                            <p>{userEmail}</p>
+                            <p>{userPhone }</p>
                         </div>
                     </div>
                     <div>
@@ -98,7 +138,7 @@ export default function CheckoutConfirmationOrderDetails({}) {
                             <h4 className="uppercase font-semibold mob:text-base lap:text-base  text-lg">Умови доставки</h4>
                         </div>
                         <div className="normal-case flex flex-col mob:gap-[2px]">
-                            <p>{dataUser.deliveryTime} </p>
+                            <p>{deliveryTime} </p>
                         </div>
                     </div>
                     <div>
@@ -106,7 +146,7 @@ export default function CheckoutConfirmationOrderDetails({}) {
                             <h4 className="uppercase font-semibold mob:text-base lap:text-base  text-lg">Оплата</h4>
                         </div>
                         <div className="normal-case flex flex-col mob:gap-[2px]">
-                            <p>{dataUser.paymentType} </p>
+                            <p>{paymentType} </p>
                         </div>
                     </div>
                 </div>

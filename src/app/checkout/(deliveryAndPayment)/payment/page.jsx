@@ -1,12 +1,13 @@
 'use client';
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
-import { useDispatch } from "react-redux";
-import { setPaymentUserOrder, selectedOrderNumber } from "@/redux/features/orderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setPaymentUserOrder, selectedOrderNumber, clearOrderDetails } from "@/redux/features/orderSlice";
 import VisaIcon from '/public/image/svg/visa-logo.svg';
 import MasterIcon from '/public/image/svg/mastercard-logo.svg';
 import AppleIcon from '/public/image/svg/applepay-logo.svg';
 import CashIcon from '/public/image/svg/cash.svg';
+import { clearCart } from '@/redux/features/cartSlice';
 
 
 export default function Page() {
@@ -14,6 +15,8 @@ export default function Page() {
   const [selectedPayment, setSelectedPayment] = useState(null); 
   const [signature, setSignature] = useState(null);
   const router = useRouter();
+  const { cart, totalPrice, discount, forPayValue } = useSelector(state => state.cart);
+  const dataUser = useSelector(state => state.order.dataUser);
 
   const paymentOptions = [
     { 
@@ -36,7 +39,7 @@ export default function Page() {
     }
   ];
 
-  const orderNumber = `order_${new Date().getTime()}`;
+  // const orderNumber = `order_${new Date().getTime()}`;
   const orderTime = `${new Date().toLocaleString()}`;
 
   useEffect(() => {
@@ -44,30 +47,73 @@ export default function Page() {
     script.src = "https://secure.wayforpay.com/server/pay-widget.js";
     script.id = "widget-wfp-script";
     script.type = "text/javascript";
-
+    // script.onload = () => {
+    //   console.log("Wayforpay script loaded successfully");
+    // };
+    // script.onerror = () => {
+    //   console.error("Failed to load Wayforpay script");
+    // };
     document.body.appendChild(script);
+    window.addEventListener('message', handleWidgetEvents, false );
+    return () => {
+      window.removeEventListener('message', handleWidgetEvents, false);
+    }
 }, []);
+
+  
 
   const handlePaymentSelection = (id) => {
     setSelectedPayment(id === selectedPayment ? null : id); 
-
     const paymentMethod = (paymentOptions[id - 1].name) ;
-    console.log(paymentMethod);
+
     dispatch(setPaymentUserOrder({
-      selectedPaymentType: paymentMethod, selectedOrderNumber: orderNumber, selectedOrderTime: orderTime }));
+      selectedPaymentType: paymentMethod, }));
   };
 
+  const handleConfirmOrder = () => {
+    const orderConfirmedData = {
+      cart,
+      dataUser,
+      totalPrice, discount, forPayValue,
+      confirmedAt: new Date().toLocaleString(),
+    };
+    // Сохраняем данные в localStorage
+    localStorage.setItem('orderConfirmedData', JSON.stringify(orderConfirmedData));
+
+    // Очищаем корзину и данные заказа в редаксе
+    dispatch(clearCart());
+    dispatch(clearOrderDetails());
+  };
+
+  const handleWidgetEvents = (event) => {
+
+    if (event.data == 'WfpWidgetEventApproved') {
+        alert('Оплата успішна');
+        handleConfirmOrder();
+        router.push('/checkout/confirmation')
+        
+      } else if ( event.data === 'WfpWidgetEventDeclined') {
+        alert('Оплата відхилена');
+      } else if ( event.data === 'WfpWidgetEventPending') {
+        alert('Ваш платіж в обробці');
+      } else if ( event.data === 'WfpWidgetEventClose') {
+        alert('Ви закрили віджет');
+      }
+  }
+
+
   const handlePay = async () => {
-
+    const orderReference = `order_${new Date().getTime()}`;
+      dispatch(setPaymentUserOrder({
+         selectedOrderNumber: orderReference, selectedOrderTime: orderTime}));
+         
     if (selectedPayment === 1) {
-      const orderReference = orderNumber;
-
       const paymentData = {
         merchantAccount: "test_merch_n1",
         merchantDomainName: "www.market.ua",
         orderReference,
         orderDate: Math.floor(Date.now() / 1000),
-        amount: "5.00",
+        amount: "1.00",
         currency: "UAH",
         productName: ["гарна сукня"],
         productCount: ["1"],
@@ -75,78 +121,82 @@ export default function Page() {
 
       };
 
-      const response = await fetch('/api/signature', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(paymentData)
-      });
+      try {
+        const response = await fetch('/api/signature', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json'},
+          body: JSON.stringify(paymentData)
+        });
+        const { signature } = await response.json();
+        setSignature(signature);
 
-      const { signature } = await response.json();
-      setSignature(signature);
+        if (signature) {
+          const wayforpay = new Wayforpay(); 
+          wayforpay.run({ 				
+            merchantAccount : paymentData.merchantAccount, 				
+            merchantDomainName : paymentData.merchantDomainName, 				
+            authorizationType : "SimpleSignature", 				
+            merchantSignature : signature, 				
+            orderReference : paymentData.orderReference, 				
+            orderDate : paymentData.orderDate, 				
+            amount : paymentData.amount, 				
+            currency : paymentData.currency, 				
+            productName : paymentData.productName, 				
+            productPrice : paymentData.productPrice, 				
+            productCount : paymentData.productCount, 				
+            clientFirstName : "Вася", 				
+            clientLastName : "Васечкин", 				
+            clientEmail : "some@mail.com", 				
+            clientPhone: "380631234567", 				
+            language: "UA",
+            straightWidget: true 			
+          }, 			
+        function (response) {
+        // on approved	
+        localStorage.setItem('approved', JSON.stringify(response))
 
-      console.log(signature);
+        // обновить данные о заказе в базе 
+        // и перенаправить на страницу успешной оплаты
+        router.push('/checkout/confirmation');
+        // Возможно, отправить уведомление на email 
+        }, 
+  
+        function (response) {
+        // on declined 			
+        console.log("Payment Declined:", response);
+        localStorage.setItem('declined', JSON.stringify(response))
+  
+        // Уведомление пользователя
+        alert("Оплата була відхилена. Будь-ласка, спробуйте знову або оберіть інший спосіб оплати.");
+        // Логирование для дальнейшего анализа в какойто базе?
+  
+        }, 
+  
+        function (response) {
+        // on pending or in processing 	
+        console.log("Payment Pending or In Processing:", response);
+        localStorage.setItem('pending', JSON.stringify(response))
+        // Уведомить пользователя о том, что оплата в обработке
+        alert("Ваш платіж в обрабці.");
+  
+        }); } else {
+          alert('Не вдалося отримати сигнатуру для оплати');
+        }
+      } catch (error) {
+        console.error('Error fetching signature:', error);
+        alert('Сталася помилка при отриманні даних для оплати');
 
-      const wayforpay = new Wayforpay(); 		
-      wayforpay.run({ 				
-        merchantAccount : paymentData.merchantAccount, 				
-        merchantDomainName : paymentData.merchantDomainName, 				
-        authorizationType : "SimpleSignature", 				
-        merchantSignature : signature, 				
-        orderReference : paymentData.orderReference, 				
-        orderDate : paymentData.orderDate, 				
-        amount : paymentData.amount, 				
-        currency : paymentData.currency, 				
-        productName : paymentData.productName, 				
-        productPrice : paymentData.productPrice, 				
-        productCount : paymentData.productCount, 				
-        clientFirstName : "Вася", 				
-        clientLastName : "Васечкин", 				
-        clientEmail : "some@mail.com", 				
-        clientPhone: "380631234567", 				
-        language: "UA" 			
-      }, 			
-      function (response) {
-      // on approved	
-      console.log("Payment Approved:", response);
-
-      // сообщение пользователю
-      alert("Оплата пройшла успішно!");
-      // обновить данные о заказе в базе 
-      // и перенаправить на страницу успешной оплаты
-      router.push('/checkout/confirmation');
-      // Возможно, отправить уведомление на email 
-      }, 
-
-      function (response) {
-      // on declined 			
-      console.log("Payment Declined:", response);
-
-      // Уведомление пользователя
-      alert("Оплата була відхилена. Будь-ласка, спробуйте знову або оберіть інший спосіб оплати.");
-      // Логирование для дальнейшего анализа в какойто базе?
-
-      }, 
-
-      function (response) {
-      // on pending or in processing 	
-      console.log("Payment Pending or In Processing:", response);
-
-      // Уведомить пользователя о том, что оплата в обработке
-      alert("Ваш платіж в обрабці.");
-
-      }); 
-
+      }
       } else if (selectedPayment === 2) {
         console.log('переходимо на сторінку оформлення замовлення');
+        handleConfirmOrder();
+
         router.push('/checkout/confirmation');
+      
       }
     }
 
-  const handleSendingInfo = () => {
     
-    
-    
-  }
 
   return (
     <div className="flex flex-col gap-[24px] w-full text-[#121212]">

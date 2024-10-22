@@ -21,7 +21,7 @@ export default function CheckoutInput({}) {
 
     useEffect(() => {
         const storedDiscount = JSON.parse(localStorage.getItem('discount'));
-
+        
         if (storedDiscount > 0) {
             setIsValid(true);
             setAppliedDiscount(storedDiscount);

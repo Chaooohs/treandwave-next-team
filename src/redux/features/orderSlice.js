@@ -18,13 +18,16 @@ const initialState = {
     deliveryType: '',
     deliveryTime: '',
     paymentType: '',
+  },
+  orderReference: {
     orderNumber: '',
     orderTime: '',
-  },
+  }
 }
 
 const saveToLocalStorage = (state) => {
-  localStorage.setItem('userOrderData', JSON.stringify(state.dataUser))
+  localStorage.setItem('userOrderData', JSON.stringify(state.dataUser));
+  localStorage.setItem('orderReference', JSON.stringify(state.orderReference))
 }
 
 const orderSlice = createSlice({
@@ -34,7 +37,6 @@ const orderSlice = createSlice({
     setOrderFromStorage: (state, action) => {
       const userData = action.payload.dataUser;
       state.dataUser.userFirstName = userData.userFirstName;
-      console.log(action.payload);
       state.dataUser.userLastName = userData.userLastName;
       state.dataUser.userEmail = userData.userEmail;
       state.dataUser.userPhone = userData.userPhone;
@@ -75,12 +77,16 @@ const orderSlice = createSlice({
     },
     setPaymentUserOrder: (state, action) => {
       state.dataUser.paymentType = action.payload.selectedPaymentType
-      state.dataUser.orderNumber = action.payload.selectedOrderNumber
-      state.dataUser.orderTime = action.payload.selectedOrderTime
+      state.orderReference.orderNumber = action.payload.selectedOrderNumber
+      state.orderReference.orderTime = action.payload.selectedOrderTime
       saveToLocalStorage(state);
     },
+    clearOrderDetails: (state) => {
+      state.dataUser = initialState.dataUser;
+      localStorage.removeItem('userOrderData');
+    }
   },
 })
 
-export const { setDataUserOrder, setAddressUserOrder, setPaymentUserOrder, setDeliveryUserOrder, setOrderFromStorage, } = orderSlice.actions
+export const { setDataUserOrder, setAddressUserOrder, setPaymentUserOrder, setDeliveryUserOrder, setOrderFromStorage, clearOrderDetails } = orderSlice.actions
 export default orderSlice.reducer;

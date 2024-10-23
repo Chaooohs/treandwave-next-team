@@ -14,7 +14,7 @@ import { setOpenFilters } from "@/redux/features/openSlice";
 import FilterIcon from '/public/image/svg/filter.svg';
 
 
-export default function CardList({ title, tags, image, pathname, }) {
+export default function CardList({ title, catalogList, image, pathname, }) {
   const router = useRouter()
   const dispatch = useDispatch()
   let { limit, page, search } = useSelector((state) => state.filters);
@@ -112,13 +112,13 @@ export default function CardList({ title, tags, image, pathname, }) {
           </div>
         )}
       </div>
-      {tags && (
+      {catalogList && (
         <div className="flex flex-wrap gap-3">
 
-          {tags.map((item, index) => (
-            <div key={index}>
+          {catalogList.map((list) => (
+            <div key={list.id}>
               <Button variant='tag'>
-                {item}
+                {list.list}
               </Button>
             </div>
           ))}

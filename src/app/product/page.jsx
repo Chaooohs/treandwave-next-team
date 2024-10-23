@@ -1,6 +1,7 @@
 'use client'
 import CardList from "@/components/shared/CardList/CardList";
 
+import {catalogList} from '../data/catalogList'
 
 // const fetchData = async () => {
 //   let res = await fetch('https://dummyjson.com/products', {
@@ -17,14 +18,14 @@ import CardList from "@/components/shared/CardList/CardList";
 export default function Page() {
 
   const title = 'Каталог';
-  const tagsArr = ['брюки', 'спідниця', 'жакети', 'футболки', 'сукні']
+  // const tagsArr = ['брюки', 'спідниця', 'жакети', 'футболки', 'сукні']
 
 
   return (
     <main className="wrap">
       <CardList
         title={title}
-        tags={tagsArr}
+        catalogList={catalogList}
       />
     </main>
   )

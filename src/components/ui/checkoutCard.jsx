@@ -13,7 +13,8 @@ export default function CheckoutCard ({ el }) {
   const dispatch = useDispatch();
 
   const handleRemove = () => {
-    dispatch(removeFromCart(el.id));
+    console.log('remove', el.id);
+    dispatch(removeFromCart(el));
     dispatch(setTotalPrice());
   }
 
@@ -31,9 +32,11 @@ export default function CheckoutCard ({ el }) {
 
       <div className=" flex flex-col gap-5 w-full">
         <Title text={el.title} className="text-base font-semibold uppercase" />
-        <div className="text-[#BABABA] font-medium flex normal-case">
-          <p>{el.color}/</p>
-          <p>{el.size}/</p>
+        <div className="text-[#BABABA] font-medium flex normal-case gap-1">
+          <p className=" uppercase">{el.color}</p>
+          <p>/</p>
+          <p className=" uppercase">{el.size}</p>
+          <p>/</p>
           <p>Кількість {el.count}</p>
         </div>
         <div className="uppercase text-lg">

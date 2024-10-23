@@ -8,14 +8,27 @@ import { CardForCart } from "@/components/shared";
 import VisaIcon from '/public/image/svg/visa-logo.svg'
 import MasterIcon from '/public/image/svg/mastercard-logo.svg'
 import AppleIcon from '/public/image/svg/applepay-logo.svg'
-import { setTotalPrice } from "@/redux/features/cartSlice";
+import { setTotalPrice, setForPayValue } from "@/redux/features/cartSlice";
+import useCartFromStorage from "@/redux/features/useCartFromStorage";
+import useOrderFromStorage from "@/redux/features/useOrderFromStorage";
+import CheckoutInput from "@/components/shared/checkoutInput";
 
 
 export default function ShoppingCart() {
+  useCartFromStorage();
+
   const refButton = useRef()
   const dispatch = useDispatch()
   const goods = useSelector(state => state.goods.goods);
-  const { cart, totalPrice } = useSelector(state => state.cart);
+  const { cart } = useSelector(state => state.cart);
+  const discount = useSelector((state) => state.cart.discount);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const discountAmount = Math.round((totalPrice * discount / 100)*100)/100;
+  const forPay = totalPrice - discountAmount;
+
+  useEffect(() => {
+      dispatch(setForPayValue(forPay));
+  }, [forPay])
 
   const counter = cart?.reduce((sum, el) => el.count + sum, 0);
 
@@ -23,11 +36,12 @@ export default function ShoppingCart() {
 
     dispatch(setTotalPrice())
 
-    if (counter === 0) {
-      refButton.current.setAttribute('disabled', 'disabled')
-    }
+    // if (counter === 0) {
+    //   refButton.current.setAttribute('disabled', 'disabled')
+    // }
+    // console.log(counter)
 
-  }, [cart])
+  }, [cart, counter ])
 
   return (
     <main>
@@ -53,20 +67,30 @@ export default function ShoppingCart() {
             <aside>
               <div className="border rounded border-[#EDEDED] p-6 flex flex-col gap-6 lap:mt-6">
                 <h3 className="uppercase font-semibold text-2xl lap:text-lg">Ваше замовлення</h3>
-                {/* <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center">
                   <span className="text-base">Товарів на суму</span>
-                  <span className="text-lg font-medium uppercase"> uah</span>
-                </div> */}
+                  <span className="text-lg font-medium uppercase">{totalPrice.toLocaleString("ru")} uah</span>
+                </div>
+                {discount > 0 && 
+                    <div className="flex justify-between items-center">
+                      <span className="text-base">Промокод</span>
+                      <span className="text-lg text-[#D8001A] font-medium uppercase">-{discountAmount.toLocaleString("ru")} uah</span>
+                    </div>
+                }
                 <div className="flex justify-between items-center uppercase">
                   <span className="font-semibold text-base uppercase lap:text-base">До сплати</span>
                   <span className="text-2xl font-semibold uppercase lap:text-base"> {totalPrice.toLocaleString("ru")} uah</span>
                 </div>
               </div>
+              <div className="mt-3">
+                <CheckoutInput/>
+              </div>
 
               <Link href='/checkout/delivery'>
                 <Button
-                  ref={refButton}
-                  className='font-semibold text-base uppercase h-14 w-full mt-10'
+                  // ref={refButton}
+                  className={`font-semibold text-base uppercase h-14 w-full mt-10 disabled`}
+                  disabled={counter === 0}
                 >
                   Оформити замовлення
                 </Button>

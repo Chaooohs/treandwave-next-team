@@ -1,10 +1,13 @@
 'use client';
 import { Button } from '../ui/button.jsx';
 import { Input } from '../ui/input.jsx';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Tag } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { setDiscountValue } from "@/redux/features/cartSlice";
 
-export default function CheckoutInput({setDiscount}) {
+export default function CheckoutInput({}) {
+    const dispatch = useDispatch();
     const [promo, setPromo] = useState('');
     const [isValid, setIsValid] = useState(false);
     const [error, setError] = useState('');
@@ -16,16 +19,27 @@ export default function CheckoutInput({setDiscount}) {
         {promo: 'SALE20', discount: 20}
     ];
 
+    useEffect(() => {
+        const storedDiscount = JSON.parse(localStorage.getItem('discount'));
+        
+        if (storedDiscount > 0) {
+            setIsValid(true);
+            setAppliedDiscount(storedDiscount);
+        }
+    })
+
     const handlePromo = () => {
         const foundPromo = validPromoCodes.find(
             (item) => item.promo === promo.trim().toUpperCase()
         );
 
         if (foundPromo) {
+            console.log(foundPromo);
             setIsValid(true);
             setError('');
             setAppliedDiscount(foundPromo.discount);
-            setDiscount(foundPromo.discount);
+            dispatch(setDiscountValue(foundPromo.discount));
+            
         }
       };
 

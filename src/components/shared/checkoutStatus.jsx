@@ -12,23 +12,18 @@ import { SquarePen } from 'lucide-react';
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ClockIcon from '/public/image/svg/clock.svg';
+import useOrderFromStorage from "@/redux/features/useOrderFromStorage";
 
 export default function CheckoutStatus() {
+  useOrderFromStorage();
   const goods = useSelector(state => state.goods.goods);
   const { cart, totalPrice } = useSelector(state => state.cart);
   const [storedClientData, setStoredClientData] = useState(null);
   const [storedDeliveryData, setStoredDeliveryData] = useState(null);
   const pathname = usePathname();
 
-  const dataUser = useSelector(state => state.order.dataUser)
+  const dataUser = useSelector(state => state.order.dataUser);
 
-  useEffect(() => {
-    const clientData = JSON.parse(localStorage.getItem('clientData'));
-    const deliveryData = JSON.parse(localStorage.getItem('deliveryData'));
-    setStoredClientData(clientData);
-    setStoredDeliveryData(deliveryData);
-  }, []);
- 
 
   return (
     <div className="border-[1px] font-medium text-base text-[#121212] border-[#EDEDED] p-6 flex flex-col gap-6 rounded">
@@ -71,7 +66,7 @@ export default function CheckoutStatus() {
                 <h4 className="uppercase font-semibold mob:text-base lap:text-base  text-lg">Адреса доставки</h4>
                 <Link href={'/checkout/delivery'}> <SquarePen /></Link>
               </div>
-              {storedDeliveryData &&
+              {dataUser &&
                 <div className="normal-case flex flex-col gap-2">
                   <p className="grid grid-cols-2">
                     <span>Мiсто:</span>
@@ -131,7 +126,7 @@ export default function CheckoutStatus() {
                   {/* {`Iм'я: ${dataUser.userFirstName}`} */}
                 </p>
                 <p className="grid grid-cols-2">
-                  <span>Фамiлiя:</span>
+                  <span>Прізвище:</span>
                   <span className="font-semibold">{dataUser.userLastName}</span>
                   {/* {`Фамiлiя: ${dataUser.userLastName}`} */}
                 </p>

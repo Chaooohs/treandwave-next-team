@@ -6,8 +6,9 @@ import MasterIcon from '/public/image/svg/mastercard-logo.svg';
 import AppleIcon from '/public/image/svg/applepay-logo.svg';
 import CheckoutStatus from "@/components/shared/checkoutStatus";
 
-export default function Layout({ children }) {
 
+export default function Layout({ children }) {
+  
   return (
     <main className="mob:p-5 p-10 lap:p-10 text-base text-[#121212] font-semibold  uppercase flex gap-5 min-h-screen">
       <div className="flex flex-col gap-10 w-full">

@@ -1,6 +1,7 @@
 'use client'
 import Link from "next/link"
 import { useDispatch, useSelector } from "react-redux"
+import useCartFromStorage from "@/redux/features/useCartFromStorage"
 
 import Search from '/public/image/svg/search.svg'
 import Heart from '/public/image/svg/heart.svg'
@@ -15,6 +16,7 @@ import { Filters } from "../../filters"
 
 
 export const HeaderDesk = () => {
+  useCartFromStorage();
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cart.cart)
   const CartSide = useSelector(state => state.open.cart)

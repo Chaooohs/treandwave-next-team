@@ -1,8 +1,6 @@
 'use client'
 import CardList from "@/components/shared/CardList/CardList";
 
-import {catalogList} from '../data/catalogList'
-
 // const fetchData = async () => {
 //   let res = await fetch('https://dummyjson.com/products', {
 //     cache: 'force-cache',
@@ -25,7 +23,6 @@ export default function Page() {
     <main className="wrap">
       <CardList
         title={title}
-        catalogList={catalogList}
       />
     </main>
   )

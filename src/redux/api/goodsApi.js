@@ -24,7 +24,12 @@ export const goodsApi = createApi({
         url: query,
       })
     }),
+    getCategoryList: builder.query({
+      query: (query = '') => ({
+        url: query,
+      })
+    }),
   }),
 });
 
-export const { useGetGoodsQuery, useGetSingleProductQuery } = goodsApi;
+export const { useGetGoodsQuery, useGetSingleProductQuery, useGetCategoryListQuery } = goodsApi;

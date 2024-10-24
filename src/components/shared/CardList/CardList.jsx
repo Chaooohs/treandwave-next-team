@@ -4,37 +4,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGetGoodsQuery } from "@/redux/api/goodsApi";
 import { useRouter } from "next/navigation";
 import qs from 'qs'
+import CyrillicToTranslit from 'cyrillic-to-translit-js';
 
 import Image from "next/image";
-import { BreadcrumbCustom, Card, Filters } from "..";
+import { BreadcrumbCustom, Card } from "..";
 import { Button, PaginationOutline, Title } from "@/components/ui";
 import { SortingMenu } from "../../ui/sortingMenu";
 import { setFilters, setPage } from "@/redux/features/filtersSlice";
 import { setOpenFilters } from "@/redux/features/openSlice";
 import FilterIcon from '/public/image/svg/filter.svg';
+import { CategoryList } from "../categoryList";
 
 
-export default function CardList({ title, catalogList, image, pathname, }) {
+export default function CardList({ title, image, pathname, }) {
   const router = useRouter()
   const dispatch = useDispatch()
-  let { limit, page, search } = useSelector((state) => state.filters);
+  let { limit, page, search, category, subCategory } = useSelector((state) => state.filters);
+  const cyrillicToTranslit = new CyrillicToTranslit();
 
-  let category = ''
-  switch (pathname) {
-    case "/search":
-      category = '/search'
-      break;
-    case "/sale":
-      category = '/category/groceries'
-      break;
-    case "/collections":
-      category = '/category/furniture'
-      break;
-    default:
-      category = '';
-  }
-
-  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog${category}?page=${page}&limit=${limit}`,
+  
+  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?category=${category}&subCategory=${subCategory}&page=${page}&limit=${limit}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.products,
@@ -49,6 +38,8 @@ export default function CardList({ title, catalogList, image, pathname, }) {
   useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
+      params.category = cyrillicToTranslit.reverse(params.category, '-').toLowerCase()
+      params.subCategory = cyrillicToTranslit.reverse(params.subCategory, '-').toLowerCase()
       dispatch(setFilters(params));
     }
   }, []);
@@ -56,13 +47,15 @@ export default function CardList({ title, catalogList, image, pathname, }) {
 
   useEffect(() => {
     const string = {
+      category: category === "" ? null : cyrillicToTranslit.transform(category, '-').toLowerCase(),
+      subCategory: subCategory === "" ? null : cyrillicToTranslit.transform(subCategory, '-').toLowerCase(),
       page,
       limit,
       q: search === "" ? null : search,
     }
     const queryString = qs.stringify(string, { skipNulls: true })
     router.push(`?${queryString}`);
-  }, [page, search])
+  }, [category, subCategory, page, search])
 
 
   const handlePaginationClick = (e) => {
@@ -112,18 +105,9 @@ export default function CardList({ title, catalogList, image, pathname, }) {
           </div>
         )}
       </div>
-      {catalogList && (
-        <div className="flex flex-wrap gap-3">
 
-          {catalogList.map((list) => (
-            <div key={list.id}>
-              <Button variant='tag'>
-                {list.list}
-              </Button>
-            </div>
-          ))}
-        </div>
-      )}
+      <CategoryList />
+
       {pathname !== '/search' && (
         <div className="h-[1px] w-full bg-[#EDEDED]"></div>
       )}
@@ -153,7 +137,7 @@ export default function CardList({ title, catalogList, image, pathname, }) {
             products.map((el) => {
               return (
                 <div key={el.id} className="relative">
-                  <Card el={el}/>
+                  <Card el={el} />
                 </div>
               )
             })

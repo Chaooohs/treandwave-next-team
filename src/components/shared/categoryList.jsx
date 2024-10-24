@@ -1,5 +1,5 @@
 "use client";
-import { Menu, MenuButton, MenuItem, MenuItems, MenuSeparator } from "@headlessui/react";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useDispatch } from "react-redux";
 
 import { useGetCategoryListQuery } from "@/redux/api/goodsApi";
@@ -36,7 +36,7 @@ export const CategoryList = () => {
                   className="bg-white border rounder border-white-500 w-52">
                   {list?.subCategories.map((sub) => {
                     return (
-                      <MenuItem>
+                      <MenuItem key={sub.id}>
                         <div
                           onClick={() => handleClickSubCategory(sub.name)}
                           className="block p-1 font-semibold uppercase text-sm data-[focus]:bg-black data-[focus]:text-white"

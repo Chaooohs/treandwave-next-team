@@ -4,6 +4,7 @@ import 'swiper/css/effect-fade';
 import BanerOne from '../../../public/image/jpg/baner-one.jpg'
 import BanerTwo from '../../../public/image/jpg/baner-two.jpg'
 import { Button, SwiperDemo, Title } from '../ui';
+import Link from 'next/link';
 
 
 export const Baner = () => {
@@ -18,12 +19,13 @@ export const Baner = () => {
           <Title text='sale' size='2xl' className='font-mul font-extrabold uppercase text-white' />
 
           <p className='font-mont text-2xl font-semibold text-white mt-3'>до 50% знижки</p>
-
-          <Button
-            variant='default'
-            className='w-48 h-14 font-mont font-semibold text-base uppercase mt-12'>
-            Переглянути
-          </Button>
+          <Link href={'/sale'}>
+            <Button
+              variant='default'
+              className='w-48 h-14 font-mont font-semibold text-base uppercase mt-12'>
+              Переглянути
+            </Button>
+          </Link>
 
         </div>
       </div>

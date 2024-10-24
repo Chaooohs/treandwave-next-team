@@ -12,7 +12,7 @@ import { SquarePen } from 'lucide-react';
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ClockIcon from '/public/image/svg/clock.svg';
-import useOrderFromStorage from "@/redux/features/useOrderFromStorage";
+import useOrderFromStorage from "@/hooks/useOrderFromStorage";
 
 export default function CheckoutStatus() {
   useOrderFromStorage();

@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link"
 import { useDispatch, useSelector } from "react-redux"
-import useCartFromStorage from "@/redux/features/useCartFromStorage"
+import useCartFromStorage from "@/hooks/useCartFromStorage"
 
 import Search from '/public/image/svg/search.svg'
 import Heart from '/public/image/svg/heart.svg'

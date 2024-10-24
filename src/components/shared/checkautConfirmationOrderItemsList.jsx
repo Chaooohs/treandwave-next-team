@@ -2,8 +2,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import CheckoutConfirmationCard from "./checkoutConfirmationCard";
 import CheckoutConfirmationAlsoLikeBlock from "./checkoutConfirmationAlsoLikeBlock";
-import useCartFromStorage from "@/redux/features/useCartFromStorage";
-import useOrderFromStorage from "@/redux/features/useOrderFromStorage";
+import useCartFromStorage from "@/hooks/useCartFromStorage";
+import useOrderFromStorage from "@/hooks/useOrderFromStorage";
 import { Description } from "@radix-ui/react-dialog";
 
 export default function CheckoutConfirmationOrderItemsList({ totalPrice, discount, paymentType, forPayValue, cart }) {

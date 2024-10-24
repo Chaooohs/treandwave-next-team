@@ -5,7 +5,7 @@ import { useDebouncedCallback } from "use-debounce"
 import { usePathname } from "next/navigation"
 
 import CardList from "@/components/shared/CardList/CardList"
-import { setSearch, setSkip } from "@/redux/features/filtersSlice"
+import { setPage, setSearch } from "@/redux/features/filtersSlice"
 import CloseIcon from '/public/image/svg/close.svg'
 import SearchIcon from '/public/image/svg/search.svg'
 
@@ -28,7 +28,7 @@ export default function Page() {
   const onClearSearch = () => {
     setIsSearchValue('')
     dispatch(setSearch(''))
-    dispatch(setSkip('0'))
+    dispatch(setPage('0'))
   }
 
   const title = 'пошук';

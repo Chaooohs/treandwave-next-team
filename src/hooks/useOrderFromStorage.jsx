@@ -1,7 +1,7 @@
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setOrderFromStorage } from "./orderSlice";
+import { setOrderFromStorage } from "@/redux/features/orderSlice";
 
 const useOrderFromStorage = () => {
   const dispatch = useDispatch();

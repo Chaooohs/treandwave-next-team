@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import CheckoutInput from "@/components/shared/checkoutInput";
 import { useEffect } from "react";
-import useCartFromStorage from "@/redux/features/useCartFromStorage";
+import useCartFromStorage from "@/hooks/useCartFromStorage";
 import {  setForPayValue } from "@/redux/features/cartSlice";
 
 

@@ -9,8 +9,8 @@ import VisaIcon from '/public/image/svg/visa-logo.svg'
 import MasterIcon from '/public/image/svg/mastercard-logo.svg'
 import AppleIcon from '/public/image/svg/applepay-logo.svg'
 import { setTotalPrice, setForPayValue } from "@/redux/features/cartSlice";
-import useCartFromStorage from "@/redux/features/useCartFromStorage";
-import useOrderFromStorage from "@/redux/features/useOrderFromStorage";
+import useCartFromStorage from "@/hooks/useCartFromStorage";
+import useOrderFromStorage from "@/hooks/useOrderFromStorage";
 import CheckoutInput from "@/components/shared/checkoutInput";
 
 

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setCartFromStorage } from "./cartSlice";
+import { setCartFromStorage } from "@/redux/features/cartSlice";
 
 const useCartFromStorage = () => {
   const dispatch = useDispatch();

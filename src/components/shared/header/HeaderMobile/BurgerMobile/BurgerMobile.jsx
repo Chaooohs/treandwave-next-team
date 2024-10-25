@@ -46,7 +46,7 @@ export const BurgerMobile = () => {
       </div>
       <nav>
         <div className="font-semibold uppercase text-base inline-flex flex-col gap-y-4 mt-12 mob:text-sm mob:gap-y-3">
-          <Link href='/product' className="header-link" onClick={handleClick}>Усі</Link>
+          <Link href='/catalog' className="header-link" onClick={handleClick}>Усі</Link>
           <hr></hr>
           <Link href='/sale' className="header-link" onClick={handleClick}>Sale</Link>
           <Link href='/collections' className="header-link" onClick={handleClick}>Колекції</Link>

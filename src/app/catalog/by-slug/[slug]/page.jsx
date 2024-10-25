@@ -22,13 +22,12 @@ export default function Page() {
   const wishlist = useSelector(state => state.wishlist.wishlist)
   const goods = useSelector((state) => state.goods.goods);
   const { color, size } = useSelector(state => state.texture)
+  const index = useSelector(state => state.colorCard.index)
   const ref = useRef()
   const btnToCartRef = useRef()
-  const [isColor, setIsColor] = useState(0)
   const [indexImage, setIndexImage] = useState(0)
-  const [isSelectedColor, setIsSelectedColor] = useState(false)
   const [isSelectedSize, setIsSelectedSize] = useState(false)
-  
+
 
   useEffect(() => {
     const found = wishlist.find(el => el.id === product.id)
@@ -43,21 +42,15 @@ export default function Page() {
   }, [])
 
   useEffect(() => {
-    if (!isSelectedColor || !isSelectedSize) {
+    if (!isSelectedSize) {
       btnToCartRef.current.disabled = true;
     } else {
       btnToCartRef.current.disabled = false;
     }
-  }, [isSelectedColor, isSelectedSize])
+  }, [isSelectedSize])
 
   const handleClick = (index) => {
     setIndexImage(index)
-  }
-
-  const handleClickColor = (index) => {
-    setIsColor(index)
-    setIndexImage(0)
-    setIsSelectedColor(true)
   }
 
   const handleClickSize = () => {
@@ -80,7 +73,7 @@ export default function Page() {
     const a = {
       id: product.id,
       title: product.title,
-      images: product?.colors[isColor]?.images[indexImage]?.imageUrl,
+      images: product?.colors[index]?.images[indexImage]?.imageUrl,
       price: product.price,
       discount: product.discount,
       color: color,
@@ -89,7 +82,6 @@ export default function Page() {
     }
     dispatch(addToCart(a))
   }
-
 
   return (
     <main>
@@ -100,7 +92,7 @@ export default function Page() {
               <div className="flex gap-4 lap:flex-col lap:gap-y-2">
                 <div className="flex flex-col gap-3 lap:order-2 lap:flex-row">
                   {
-                    product?.colors[isColor].images.map((img, index) => {
+                    product?.colors[index]?.images.map((img, index) => {
                       return (
                         <Image
                           key={index}
@@ -120,7 +112,7 @@ export default function Page() {
                 </div>
                 <div className="w-full lap:order-1">
                   {
-                    <Image src={product?.colors[isColor]?.images[indexImage]?.imageUrl} alt={product?.title} width={580} height={828} />
+                    <Image src={product?.colors[index]?.images[indexImage]?.imageUrl} alt={product?.title} width={580} height={828} />
                   }
                 </div>
               </div>
@@ -139,7 +131,7 @@ export default function Page() {
 
               <div className="mt-8 gap-x-4">
                 <Title text='колір:' size="xs" className='font-semibold uppercase lap:text-base' />
-                <Colors colors={product?.colors} width='36px' height='36px' className='mt-3' onHandleClick={handleClickColor} />
+                <Colors colors={product?.colors} width='36px' height='36px' className='mt-3' />
               </div>
 
               <Title text='розмір:' size="xs" className='font-semibold uppercase mt-8 lap:text-base' />

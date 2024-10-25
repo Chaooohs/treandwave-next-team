@@ -6,17 +6,16 @@ import { useRouter } from "next/navigation";
 import qs from 'qs'
 import CyrillicToTranslit from 'cyrillic-to-translit-js';
 
-import Image from "next/image";
 import { BreadcrumbCustom, Card } from "..";
 import { Button, PaginationOutline, Title } from "@/components/ui";
 import { SortingMenu } from "../../ui/sortingMenu";
 import { setFilters, setPage } from "@/redux/features/filtersSlice";
 import { setOpenFilters } from "@/redux/features/openSlice";
-import FilterIcon from '/public/image/svg/filter.svg';
 import { CategoryList } from "../categoryList";
+import FilterIcon from '/public/image/svg/filter.svg';
 
 
-export default function CardList({ title, image, pathname, }) {
+export default function CardList() {
   const router = useRouter()
   const dispatch = useDispatch()
   let { limit, page, search, category, subCategory } = useSelector((state) => state.filters);
@@ -68,54 +67,29 @@ export default function CardList({ title, image, pathname, }) {
   }, [page])
 
 
-  const productsQuantity = products?.length;
-
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [allProducts, setAllProducts] = useState([]);  // Допустим, все товары уже загружены
-
-  const applyFilters = (filters) => {
-    const filtered = allProducts.filter(product => {
-      const matchesSize = filters.sizes.length === 0 || filters.sizes.includes(product.size);
-      const matchesModel = filters.models.length === 0 || filters.models.includes(product.model);
-      const matchesPrice = filters.prices.length === 0 || filters.prices.includes(product.priceRange);
-
-      return matchesSize && matchesModel && matchesPrice;
-    });
-
-    setFilteredProducts(filtered);
-
-  };
-
   return (
     <div className="bg-white pt-10 pb-20 font-mont w-full flex flex-col gap-5 xl:gap-10">
       <div className="relative flex flex-col gap-6">
-        {pathname !== '/search' && (
-          <div className="flex flex-col gap-6">
-            <div>
-              <BreadcrumbCustom category={category} subCategory={subCategory} />
-            </div>
-            <div>
-              <Title
-                text={
-                  category === '' && subCategory === '' ? 'каталог' :  category
-                }
+
+        <div className="flex flex-col gap-6">
+          <div>
+            <BreadcrumbCustom category={category} subCategory={subCategory} />
+          </div>
+          <div>
+            <Title
+              text={
+                category === '' && subCategory === '' ? 'каталог' : category
+              }
               size="xl"
-                className='font-mul font-extrabold uppercase' />
-            </div>
+              className='font-mul font-extrabold uppercase' />
           </div>
-        )}
-        {image && (
-          <div className="w-[86px] h-full absolute right-0">
-            <Image src={image} alt='category image' className=" h-full object-contain" />
-          </div>
-        )}
+        </div>
       </div>
 
       <CategoryList />
 
-      {pathname !== '/search' && (
-        <div className="h-[1px] w-full bg-[#EDEDED]"></div>
-      )}
+      <div className="h-[1px] w-full bg-[#EDEDED]"></div>
+
       <div className="flex justify-between items-center">
         <div>
           <p>{totalProduct} результати</p>

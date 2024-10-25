@@ -3,32 +3,44 @@ import Link from "next/link";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 
 import { Price, Title } from "../ui"
 import HeartIcon from '/public/image/svg/heart.svg'
 import { addToWishList } from "@/redux/features/wishlistSlice"
+import { setColorCardIndex, setColorCardColor } from "@/redux/features/choiseCardColorSlice";
+import { addColor } from "@/redux/features/textureSlice";
 
 
 export const Card = ({ el }) => {
   const path = usePathname();
   const dispatch = useDispatch();
   const wishlist = useSelector(state => state.wishlist.wishlist);
-  const [selectedColor, setSelectedColor] = useState(0);
 
-  const handleColor = (colorId) => {
-    setSelectedColor(colorId);
+  const handleColor = (colorId, color) => {
+    dispatch(setColorCardIndex(colorId))
+    dispatch(setColorCardColor(color))
+    dispatch(addColor(color));
+  }
+
+  const handleDefaultColor = () => {
+    dispatch(setColorCardColor(el?.colors[0]?.colorName))
+    dispatch(setColorCardIndex(0))
+    dispatch(addColor(el?.colors[0]?.colorName));
   }
 
   const fillHeart = wishlist?.find((card) => card.id === el?.id)
 
   return (
     <div className={`${path.substring(1) === '' ? 'lap:w-[224px] mob:w-[162px]' : null}`}>
-      <Link href={`/catalog/by-slug/${el.slug}`} className="grid grid-rows-[0fr_60px_0fr]">
+      <Link
+        href={`/catalog/by-slug/${el.slug}`}
+        className="grid grid-rows-[0fr_60px_0fr]"
+        onClick={handleDefaultColor}
+      >
 
         <div className="card-img">
-          <Image src={el?.colors[selectedColor]?.images[0]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-top" />
-          <Image src={el?.colors[selectedColor]?.images[1]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-hide lap:hidden" />
+          <Image src={el?.colors[0]?.images[0]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-top" />
+          <Image src={el?.colors[0]?.images[1]?.imageUrl} alt={el.title} width={322} height={400} className="card-img-hide lap:hidden" />
         </div>
 
         <Title text={el.title} size="xs" className="font-mont font-semibold uppercase mt-3 lap:text-base mob:text-xs" />
@@ -62,15 +74,17 @@ export const Card = ({ el }) => {
 
       <div className="relative z-30 flex gap-x-2 mt-4">
         {
-          el.colors?.map((el,index) => {
+          el.colors?.map((color, index) => {
             return (
-              <div
-                key={index}
-                className="w-6 h-6 cursor-pointer rounded"
-                style={{ border: '1px solid #121212', backgroundColor: `${el.colorName}` }}
-                onClick={() => handleColor(index)}
-              >
-              </div>
+              <Link href={`/catalog/by-slug/${el.slug}`}>
+                <div
+                  key={index}
+                  className="w-6 h-6 cursor-pointer rounded"
+                  style={{ border: '1px solid #121212', backgroundColor: `${color.colorName}` }}
+                  onClick={() => handleColor(index, color.colorName)}
+                >
+                </div>
+              </Link>
             )
           })
         }

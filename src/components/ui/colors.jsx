@@ -1,47 +1,55 @@
-import { useDispatch } from "react-redux"
-import { addColor, removeColor } from "@/redux/features/textureSlice"
-import { cn } from "@/lib/utils"
+import { useDispatch, useSelector } from "react-redux";
+import { addColor, removeColor } from "@/redux/features/textureSlice";
+import { setColorCardColor, setColorCardIndex } from "@/redux/features/choiseCardColorSlice";
+import { cn } from "@/lib/utils";
 
-
-export const Colors = ({ colors, width, height, className, onHandleClick }) => {
-  const dispatch = useDispatch()
+export const Colors = ({ colors, width, height, className }) => {
+  const dispatch = useDispatch();
+  const colorChoise = useSelector((state) => state.colorCard.color);
 
   const onChange = (e) => {
-    const value = e.target.value
-    const checked = e.target.checked
+    const value = e.target.value;
+    const checked = e.target.checked;
     if (checked) {
-      dispatch(addColor(value))
+      dispatch(addColor(value));
     } else if (!checked) {
-      dispatch(removeColor(value))
+      dispatch(removeColor(value));
     }
+  };
+
+  const handleColorClick = (index, color) => {
+    dispatch(setColorCardIndex(index))
+    dispatch(setColorCardColor(color))
   }
 
   return (
     <div className={cn("flex gap-x-2", className)}>
-      {
-        Array.isArray(colors) &&
+      {Array.isArray(colors) &&
         colors?.map((color, index) => {
           return (
             <div key={index}>
               <input
+                id={`color${index}`}
                 type="radio"
                 name="color"
                 value={color.colorName}
-                id={`color${index}`}
+                checked={colorChoise === color.colorName}
                 onChange={onChange}
-                onClick={()=>onHandleClick(index)}
+                onClick={() => handleColorClick(index, color.colorName)}
                 className="hidden input-color"
               />
               <label
                 htmlFor={`color${index}`}
-                className='rounded cursor-pointer'
-                style={{ backgroundColor: color.colorName, width: width, height: height, border: '1px solid #121212'}}
-              >
-              </label>
+                className="rounded cursor-pointer"
+                style={{
+                  backgroundColor: color.colorName,
+                  width: width,
+                  height: height,
+                  border: "1px solid #121212",
+                }}></label>
             </div>
-          )
-        })
-      }
+          );
+        })}
     </div>
-  )
-}
+  );
+};

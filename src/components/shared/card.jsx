@@ -76,9 +76,8 @@ export const Card = ({ el }) => {
         {
           el.colors?.map((color, index) => {
             return (
-              <Link href={`/catalog/by-slug/${el.slug}`}>
+              <Link href={`/catalog/by-slug/${el.slug}`} key={index}>
                 <div
-                  key={index}
                   className="w-6 h-6 cursor-pointer rounded"
                   style={{ border: '1px solid #121212', backgroundColor: `${color.colorName}` }}
                   onClick={() => handleColor(index, color.colorName)}

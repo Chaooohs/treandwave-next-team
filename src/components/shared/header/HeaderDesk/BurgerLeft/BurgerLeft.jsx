@@ -5,6 +5,7 @@ import CloseIcon from '/public/image/svg/close.svg'
 import Logo from '/public/image/svg/logo.svg'
 import { setOpenBurger } from "@/redux/features/openSlice";
 import { BurgerMenu } from "./BurgerMenu";
+import { setCategory, setSubCategory } from "@/redux/features/filtersSlice";
 
 
 export const BurgerLeft = () => {
@@ -31,6 +32,8 @@ export const BurgerLeft = () => {
   const handleClick = () => {
     setIsOpen(true)
     document.body.classList.remove('no-scroll')
+    dispatch(setCategory(''))
+    dispatch(setSubCategory(''))
   }
 
 

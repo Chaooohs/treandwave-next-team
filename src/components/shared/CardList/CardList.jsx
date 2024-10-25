@@ -22,7 +22,7 @@ export default function CardList({ title, image, pathname, }) {
   let { limit, page, search, category, subCategory } = useSelector((state) => state.filters);
   const cyrillicToTranslit = new CyrillicToTranslit();
 
-  
+
   const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?category=${category}&subCategory=${subCategory}&page=${page}&limit=${limit}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
@@ -92,10 +92,15 @@ export default function CardList({ title, image, pathname, }) {
         {pathname !== '/search' && (
           <div className="flex flex-col gap-6">
             <div>
-              <BreadcrumbCustom title={title} />
+              <BreadcrumbCustom category={category} subCategory={subCategory} />
             </div>
             <div>
-              <Title text={title} size="xl" className='font-mul font-extrabold uppercase' />
+              <Title
+                text={
+                  category === '' && subCategory === '' ? 'каталог' :  category
+                }
+              size="xl"
+                className='font-mul font-extrabold uppercase' />
             </div>
           </div>
         )}

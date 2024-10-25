@@ -9,6 +9,11 @@ export const CategoryList = () => {
   const { data: catalogList } = useGetCategoryListQuery("/category");
   const dispatch = useDispatch()
 
+  const handleClickAll = () => {
+    dispatch(setCategory(''))
+    dispatch(setSubCategory(''))
+  }
+
   const handleClickCategory = (name) => {
     dispatch(setCategory(name))
     dispatch(setSubCategory(''))
@@ -23,6 +28,11 @@ export const CategoryList = () => {
     <>
       {catalogList && (
         <div className="flex flex-wrap gap-3">
+          <button
+            onClick={handleClickAll}
+            className="py-2 px-4 border rounder border-white-500 font-semibold uppercase text-sm">
+            усi
+          </button>
           {catalogList.map((list) => {
             return (
               <Menu key={list.id}>

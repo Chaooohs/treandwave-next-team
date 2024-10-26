@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { useGetCategoryListQuery } from "@/redux/api/goodsApi";
 import { setCategory, setSubCategory } from "@/redux/features/filtersSlice";
+import ArrowDown from '/public/image/svg/arrow-down.svg'
 
 export const CategoryList = () => {
   const { data: catalogList } = useGetCategoryListQuery("/category");
@@ -21,7 +22,6 @@ export const CategoryList = () => {
 
   const handleClickSubCategory = (subName) => {
     dispatch(setSubCategory(subName))
-    // dispatch(setCategory(''))
   }
 
   return (
@@ -38,18 +38,20 @@ export const CategoryList = () => {
               <Menu key={list.id}>
                 <MenuButton
                   onClick={() => handleClickCategory(list.name)}
-                  className="py-2 px-4 border rounder border-white-500 font-semibold uppercase text-sm">
-                  {list.name}
+                  className="group flex gap-x-1 items-center py-2 px-4 border rounded border-white-500 font-semibold uppercase text-sm">
+                  <span className="leading-[150%]">{list.name}</span>
+                  <ArrowDown className='group-data-[open]:rotate-180' />
                 </MenuButton>
                 <MenuItems
                   anchor={{ to: 'bottom start', gap: '4px' }}
-                  className="bg-white border rounder border-white-500 w-52">
+                  transition
+                  className="bg-white border rounded border-white-500 w-52 transition duration-300 ease-out data-[closed]:scale-95 data-[closed]:opacity-0">
                   {list?.subCategories.map((sub) => {
                     return (
                       <MenuItem key={sub.id}>
                         <div
                           onClick={() => handleClickSubCategory(sub.name)}
-                          className="block p-1 font-semibold uppercase text-sm data-[focus]:bg-black data-[focus]:text-white"
+                          className="p-1 font-semibold uppercase text-sm data-[focus]:bg-[#ededed] cursor-pointer"
                         >
                           {sub.name}
                         </div>

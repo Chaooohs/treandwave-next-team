@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import qs from 'qs'
 import CyrillicToTranslit from 'cyrillic-to-translit-js';
 
-import { BreadcrumbCustom, Card } from "..";
+import { BreadcrumbCustom, Card, InputSearch, } from "..";
 import { Button, PaginationOutline, Title } from "@/components/ui";
 import { SortingMenu } from "../../ui/sortingMenu";
 import { setFilters, setPage } from "@/redux/features/filtersSlice";
@@ -22,7 +22,7 @@ export default function CardList() {
   const cyrillicToTranslit = new CyrillicToTranslit();
 
 
-  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?category=${category}&subCategory=${subCategory}&page=${page}&limit=${limit}`,
+  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?category=${category}&subCategory=${subCategory}&title=${search}&page=${page}&limit=${limit}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.products,
@@ -48,9 +48,9 @@ export default function CardList() {
     const string = {
       category: category === "" ? null : cyrillicToTranslit.transform(category, '-').toLowerCase(),
       subCategory: subCategory === "" ? null : cyrillicToTranslit.transform(subCategory, '-').toLowerCase(),
+      title: search === "" ? null : cyrillicToTranslit.transform(search, '-').toLowerCase(),
       page,
       limit,
-      q: search === "" ? null : search,
     }
     const queryString = qs.stringify(string, { skipNulls: true })
     router.push(`?${queryString}`);
@@ -70,6 +70,8 @@ export default function CardList() {
   return (
     <div className="bg-white pt-10 pb-20 font-mont w-full flex flex-col gap-5 xl:gap-10">
       <div className="relative flex flex-col gap-6">
+
+        <InputSearch />
 
         <div className="flex flex-col gap-6">
           <div>

@@ -22,7 +22,7 @@ export const filtersSlice = createSlice({
       state.page = action.payload.page;
       state.category = action.payload.category;
       state.subCategory = action.payload.subCategory;
-      // state.search = action.payload.q;
+      // state.search = action.payload.title;
     },
     setCategory: (state, action) => {
       state.category = action.payload;

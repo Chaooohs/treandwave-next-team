@@ -1,12 +1,12 @@
 'use client';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetGoodsQuery } from "@/redux/api/goodsApi";
 import { useRouter } from "next/navigation";
 import qs from 'qs'
 import CyrillicToTranslit from 'cyrillic-to-translit-js';
 
-import { BreadcrumbCustom, Card, InputSearch, } from "..";
+import { BreadcrumbCustom, Card, } from "..";
 import { Button, PaginationOutline, Title } from "@/components/ui";
 import { SortingMenu } from "../../ui/sortingMenu";
 import { setFilters, setPage } from "@/redux/features/filtersSlice";
@@ -18,11 +18,11 @@ import FilterIcon from '/public/image/svg/filter.svg';
 export default function CardList() {
   const router = useRouter()
   const dispatch = useDispatch()
-  let { limit, page, search, category, subCategory } = useSelector((state) => state.filters);
+  let { limit, page, category, subCategory } = useSelector((state) => state.filters);
   const cyrillicToTranslit = new CyrillicToTranslit();
 
 
-  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?category=${category}&subCategory=${subCategory}&title=${search}&page=${page}&limit=${limit}`,
+  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?category=${category}&subCategory=${subCategory}&page=${page}&limit=${limit}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.products,
@@ -48,13 +48,12 @@ export default function CardList() {
     const string = {
       category: category === "" ? null : cyrillicToTranslit.transform(category, '-').toLowerCase(),
       subCategory: subCategory === "" ? null : cyrillicToTranslit.transform(subCategory, '-').toLowerCase(),
-      title: search === "" ? null : cyrillicToTranslit.transform(search, '-').toLowerCase(),
       page,
       limit,
     }
     const queryString = qs.stringify(string, { skipNulls: true })
     router.push(`?${queryString}`);
-  }, [category, subCategory, page, search])
+  }, [category, subCategory, page])
 
 
   const handlePaginationClick = (e) => {
@@ -70,8 +69,6 @@ export default function CardList() {
   return (
     <div className="bg-white pt-10 pb-20 font-mont w-full flex flex-col gap-5 xl:gap-10">
       <div className="relative flex flex-col gap-6">
-
-        {/* <InputSearch /> */}
 
         <div className="flex flex-col gap-6">
           <div>

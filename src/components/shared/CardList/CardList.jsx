@@ -71,7 +71,7 @@ export default function CardList() {
     <div className="bg-white pt-10 pb-20 font-mont w-full flex flex-col gap-5 xl:gap-10">
       <div className="relative flex flex-col gap-6">
 
-        <InputSearch />
+        {/* <InputSearch /> */}
 
         <div className="flex flex-col gap-6">
           <div>

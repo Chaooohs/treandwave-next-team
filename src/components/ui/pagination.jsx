@@ -1,7 +1,11 @@
 'use client'
 import ReactPaginate from "react-paginate";
+import { useDispatch } from "react-redux";
 
-export const PaginationOutline = ({ totalPages, onPaginationClick, page }) => {
+import { setPage } from "@/redux/features/filtersSlice";
+
+export const PaginationOutline = ({ totalPages,  page }) => {
+  const dispatch = useDispatch()
 
   return (
     <div className="flex justify-center my-7">
@@ -9,12 +13,10 @@ export const PaginationOutline = ({ totalPages, onPaginationClick, page }) => {
         className="pagination"
         breakLabel="..."
         nextLabel="&#10095;"
-        // nextLabel="&#129138;"
-        onPageChange={onPaginationClick}
+        onPageChange={(e) => dispatch(setPage(e.selected + 1))}
         pageRangeDisplayed={2}
         pageCount={totalPages}
         previousLabel="&#10094;"
-        // previousLabel="&#129136;"
         renderOnZeroPageCount={null}
         forcePage={Number(page - 1)}
         previousClassName="prev"

@@ -2,9 +2,9 @@ import { ButtonWithArrow, Title } from "../ui";
 import { Card } from "../shared";
 
 
-export const NewColection = ({ products }) => {
+export const NewColection = ({ goods }) => {
 
-  const goods = products?.slice(6, 10);
+  const products = goods?.slice(10, 14);
 
   return (
     <section>
@@ -16,8 +16,8 @@ export const NewColection = ({ products }) => {
           </div>
           <div className="lap:h-[450px] lap:relative mob:h-[368px]">
             <div className="card-layout-home lap:absolute lap:inset-0 lap:px-6 mob:px-4">
-              {Array.isArray(goods) &&
-                goods?.map((el) => {
+              {Array.isArray(products) &&
+                products?.map((el) => {
                   return (
                     <div key={el.id} className="relative">
                       <Card el={el} />

@@ -63,9 +63,9 @@ export const Card = ({ el }) => {
             </div>
           }
           {
-            el.best === true &&
-            <div className=" w-28 h-9	bg-black flex items-center text-center justify-center">
-              <span className="text-base font-medium text-white">Bestseller</span>
+            el.bestseller === true &&
+            <div className=" w-28 h-9	bg-black flex items-center text-center justify-center lap:w-20 lap:h-7">
+              <span className="text-base font-medium text-white lap:text-xs	">Bestseller</span>
             </div>
           }
         </div>

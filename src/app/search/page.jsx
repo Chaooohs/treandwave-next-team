@@ -25,9 +25,11 @@ export default function Page() {
   const router = useRouter()
   let { limit, page, search } = useSelector((state) => state.filters);
   const cyrillicToTranslit = new CyrillicToTranslit();
-  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?&title=${search}&page=${page}&limit=${limit}`,
+  let bestseller
+  search === '' ? bestseller = true : bestseller = ''
+  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?&title=${search}&bestseller=${bestseller}&page=${page}&limit=${limit}`,
     {
-      skip: search === '' ? true : false,
+      // skip: search === '' ? true : false,
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.products,
         totalProduct: data?.totalProduct,
@@ -40,6 +42,7 @@ export default function Page() {
   useEffect(() => {
     const string = {
       title: search === "" ? null : cyrillicToTranslit.transform(search, '-').toLowerCase(),
+      bestseller: bestseller === "" ? null : bestseller,
       page,
       limit,
     }
@@ -48,16 +51,9 @@ export default function Page() {
   }, [page, search])
 
 
-  const handlePaginationClick = (e) => {
-    dispatch(setPage(e.selected + 1))
-  }
-
-
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [page])
-
-
 
 
   const searchValueByTimer = useDebouncedCallback((value) => {
@@ -84,7 +80,7 @@ export default function Page() {
             type="text"
             className="rounded border border-[#ededed] outline-none w-full h-[52px] bg-transparent box-border py-3 px-14 mt-6"
             placeholder="пошук"
-            value={isSearchValue}
+            value={isSearchValue || search}
             onChange={(e) => onChangeSearch(e.target.value)}
           />
           <button
@@ -97,24 +93,28 @@ export default function Page() {
 
         {search !== '' &&
           <div className="flex justify-between items-center mt-14">
-          <div>
-            <p>{totalProduct} результати</p>
-          </div>
-          <div className="flex gap-5">
-
-            <SortingMenu />
-
-            <div onClick={() => dispatch(setOpenFilters(true))} className="button-outline">
-              <Button variant='outline'>
-                <FilterIcon />
-                <p className="pl-1 lap:block mob:hidden font-semibold uppercase">фільтрувати</p>
-              </Button>
+            <div>
+              <p>{totalProduct} результати</p>
             </div>
-          </div>
-        </div>}
+            <div className="flex gap-5">
 
-        {search !== '' &&
-          <div className="grid grid-cols-4 gap-5 lap:grid-cols-3 mob:grid-cols-2 mt-6">
+              <SortingMenu />
+
+              <div onClick={() => dispatch(setOpenFilters(true))} className="button-outline">
+                <Button variant='outline'>
+                  <FilterIcon />
+                  <p className="pl-1 lap:block mob:hidden font-semibold uppercase">фільтрувати</p>
+                </Button>
+              </div>
+            </div>
+          </div>}
+
+        {
+          search === '' &&
+          <h2 className="font-semibold text-2xl mt-14	mb-6 lap:mt-6 mob:text-lg">Популярні запити</h2>
+        }
+
+        <div className="grid grid-cols-4 gap-5 lap:grid-cols-3 mob:grid-cols-2 mt-6">
           {
             loading ?
               <h1>Loading...</h1>
@@ -128,15 +128,13 @@ export default function Page() {
                 )
               })
           }
-        </div>}
+        </div>
 
-        {search !== '' &&
-          <PaginationOutline
+        <PaginationOutline
           totalPages={totalPages}
           totalProduct={totalProduct}
-          onPaginationClick={handlePaginationClick}
           page={page}
-        />}
+        />
       </div>
     </main>
   )

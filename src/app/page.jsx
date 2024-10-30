@@ -1,21 +1,22 @@
 'use client'
-import { useGetGoodsQuery } from "@/redux/api/goodsApi";
 import { Baner, BestSaler, Categories, NewColection, YouSection } from "@/components/shared";
+import { useGetGoodsQuery } from "@/redux/api/goodsApi";
 
 export default function Home() {
 
-  const { data: goods } = useGetGoodsQuery('/product', {
-    // selectFromResult: ({ data }) => ({
-    //   goods: data?.goods,
-    // }),
-  })
+  const { bestsellers } = useGetGoodsQuery('/catalog?page=1&limit=20&bestseller=true', 
+    {
+      selectFromResult: ({ data, }) => ({
+        bestsellers: data?.products,
+      }),
+    }
+  )
 
-  
   return (
     <main>
       <Baner />
-      <NewColection products={goods} />
-      <BestSaler products={goods} />
+      <NewColection />
+      <BestSaler bestsellers={bestsellers} />
       <Categories />
       <YouSection />
     </main>

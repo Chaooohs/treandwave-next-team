@@ -11,6 +11,7 @@ export const BurgerMenu = ({ handleClick }) => {
           <hr></hr>
           <Link href='/sale' className="header-link" onClick={handleClick}>Sale</Link>
           <Link href='/collections' className="header-link" onClick={handleClick}>Колекції</Link>
+          <Link href='/bestseller' className="header-link" onClick={handleClick}>Бестселери</Link>
           <hr></hr>
           <Link href='/about' className="header-link text-gray-700" onClick={handleClick}>Про нас</Link>
           <Link href='/about/contacts' className="header-link text-gray-700" onClick={handleClick}>Контакти</Link>

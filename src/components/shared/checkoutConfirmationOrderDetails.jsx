@@ -15,50 +15,15 @@ export default function CheckoutConfirmationOrderDetails({orderNumber, orderTime
     const [deliveryData, setDeliveryData] = useState(null);
     const dataUser = useSelector(state => state.order.dataUser)
 
-
-    // useEffect(() => {
-    //     const orderConfirmedDataFromStorage = localStorage.getItem('orderConfirmedData');
-    //     console.log(orderConfirmedDataFromStorage);
-    //     if (orderConfirmedDataFromStorage) {
-    //         const parseInf = JSON.parse(orderConfirmedDataFromStorage);
-    //         console.log('parseinf', parseInf);
-    //         setOrderConfirmedData(parseInf);
-            
-    //         console.log('succes');
-    //         console.log(orderConfirmedData);
-            
-    //     };
-
-    // }, [])
-
-    // useEffect(() => {
-    //     console.log(orderConfirmedData); 
-    // }, [orderConfirmedData]);
-
-    // const orderNumber = orderConfirmedData?.dataUser?.orderNumber || '';
-    // const orderTime = orderConfirmedData?.dataUser?.orderTime || '';
-    // const deliveryTime = orderConfirmedData?.dataUser?.deliveryTime || '';
-    // const deliveryType = orderConfirmedData?.dataUser?.deliveryType || '';
-    // const userDevision = orderConfirmedData?.dataUser?.userDevision || '';
-    // const userPostomat = orderConfirmedData?.dataUser?.userPostomat || '';
-    // const userStreet = orderConfirmedData?.dataUser?.userStreet || '';
-    // const userHouse = orderConfirmedData?.dataUser?.userHouse || '';
-    // const userAppartment = orderConfirmedData?.dataUser?.userAppartment || '';
-    // const userCity = orderConfirmedData?.dataUser?.userCity || '';
-    // const userFirstName = orderConfirmedData?.dataUser?.userFirstName || '';
-    // const userLastName = orderConfirmedData?.dataUser?.userLastName || '';
-    // const userEmail = orderConfirmedData?.dataUser?.userEmail || '';
-    // const userPhone = orderConfirmedData?.dataUser?.userPhone || '';
-    // const paymentType = orderConfirmedData?.dataUser?.paymentType || '';
     
     const formatDate = (date) => {
         const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // месяцы в JS начинаются с 0
+        const month = String(date.getMonth() + 1).padStart(2, '0'); 
         const year = date.getFullYear();
       
         return (`${day}.${month}.${year}`);
       }
-      
+
     const generateDeliveryTime = () => {
         const today = new Date();
         const deliveryStart = new Date(today); 

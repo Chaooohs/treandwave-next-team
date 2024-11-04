@@ -89,14 +89,20 @@ export function BranchDelivery({ setDeliveryInfo }) {
         <div className="flex flex-col gap-5 mob:gap-3 w-full">
           <h3 className="uppercase font-semibold text-base pb-[6px]">Адреса відділення</h3>
           <div>
-            <input
-              type="text"
-              value={search}
-              placeholder="Введіть назву міста"
-              onChange={handleInputChange}
-              // onFocus={handleFocus}
-              className={`w-full py-2 px-3 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
-            />
+            <div className="relative">
+              <input
+                id="city"
+                type="text"
+                value={search}
+                onChange={handleInputChange}
+                // onFocus={handleFocus}
+                className="focus:outline-none bg-white ring-0 ring-offset-0 p-3 rounded w-full border-[#BABABA] border-[1px] hover:ring-[#336CFF] hover:border-[#336CFF] focus:ring-[#336CFF] focus:border-[#336CFF]"
+              />
+              <label htmlFor="city" className={`absolute normal-case left-3 bg-white px-1 text-[#BABABA] ${search ? '-top-3' : 'top-1/2 -translate-y-1/2'}`}>
+                Місто
+              </label>
+            </div>
+            
             {isDropDownOpen &&
               <div className="border-[1px] pb-4 ">
                 <div className=" flex flex-col gap-2 max-h-96 overflow-auto py-2 px-3 pt-4 text-sm font-medium normal-case ">
@@ -112,14 +118,19 @@ export function BranchDelivery({ setDeliveryInfo }) {
           </div>
 {/* пошук відділень */}
            <div>
-              <input
+            <div className=" relative">
+            <input
                 type="text"
                 value={selectedDivision}
-                placeholder="Відділення"
                 onChange={(e) => setSelectedDivision(e.target.value)}
                 onFocus={handleFocusDevision}
-                className={`w-full py-2 px-3 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
+                className="focus:outline-none bg-white ring-0 ring-offset-0 p-3 rounded w-full border-[#BABABA] border-[1px] hover:ring-[#336CFF] hover:border-[#336CFF] focus:ring-[#336CFF] focus:border-[#336CFF]"
               />
+              <label htmlFor="city" className={`absolute normal-case left-3 bg-white px-1 text-[#BABABA] ${selectedDivision ? '-top-3' : 'top-1/2 -translate-y-1/2'}`}>
+                Відділення
+              </label>
+            </div>
+              
               {isDevisionDropDownOpen &&
                 <div className="border-[1px] pb-4 ">
                   <div className=" flex flex-col gap-2 max-h-96 overflow-auto p-2 pt-4 text-sm font-medium normal-case ">

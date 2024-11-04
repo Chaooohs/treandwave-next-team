@@ -92,16 +92,21 @@ export function CourierDelivery({ setDeliveryInfo }) {
 
         {/*  address  */}
         <div className="flex flex-col gap-5 mob:gap-3 w-full">
-          <h3 className="uppercase font-semibold text-base">Адреса</h3>
+          <h3 className="uppercase font-semibold text-base">Адреса - кур’єр</h3>
           <div>
-            <input
-              type="text"
-              value={search}
-              placeholder="Введіть назву міста"
-              onChange={handleInputChange}
-              // onFocus={handleFocus}
-              className={`w-full py-2 px-3 border-[1px] text-black rounded-sm border-[#BABABA] outline-none bg-transparent `}
-            />
+            <div className="relative">
+              <input
+                type="text"
+                value={search}
+                onChange={handleInputChange}
+                // onFocus={handleFocus}
+                className="focus:outline-none bg-white ring-0 ring-offset-0 p-3 rounded w-full border-[#BABABA] border-[1px] hover:ring-[#336CFF] hover:border-[#336CFF] focus:ring-[#336CFF] focus:border-[#336CFF]"
+              />
+              <label htmlFor="city" className={`absolute normal-case left-3 bg-white px-1 text-[#BABABA] ${search ? '-top-3' : 'top-1/2 -translate-y-1/2'}`}>
+                    Місто
+              </label>
+            </div>
+            
             {isDropDownOpen &&
               <div className="border-[1px] pb-4 text-sm font-medium normal-case ">
                 <div className=" flex flex-col gap-2 max-h-96 overflow-auto p-2 pt-4 ">
@@ -117,14 +122,19 @@ export function CourierDelivery({ setDeliveryInfo }) {
           </div>
           <div>
             <div>
-              <input
-                type="text"
-                value={searchStreet}
-                placeholder="Вулиця"
-                onChange={handleInputChangeStreet}
-                onFocus={handleFocusStreet}
-                className={`w-full py-2 px-3 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
-              />
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchStreet}
+                  onChange={handleInputChangeStreet}
+                  onFocus={handleFocusStreet}
+                  className="focus:outline-none bg-white ring-0 ring-offset-0 p-3 rounded w-full border-[#BABABA] border-[1px] hover:ring-[#336CFF] hover:border-[#336CFF] focus:ring-[#336CFF] focus:border-[#336CFF]"
+                />
+                <label htmlFor="city" className={`absolute normal-case left-3 bg-white px-1 text-[#BABABA] ${searchStreet ? '-top-3' : 'top-1/2 -translate-y-1/2'}`}>
+                  Вулиця
+                </label>
+              </div>
+            
               {isStreetDropDownOpen &&
                 <div className="border-[1px] pb-4 text-sm font-medium normal-case ">
                   <div className=" flex flex-col gap-2 max-h-96 overflow-auto p-2 pt-4 ">
@@ -142,21 +152,28 @@ export function CourierDelivery({ setDeliveryInfo }) {
 
           {/* ввод для дома и квартир */}
           <div className="grid grid-cols-2 gap-5 mob:gap-3">
-            <input 
-                  type="text" 
-                  value={selectedHouse}
-                  placeholder="Будинок"
-                  onChange={(e) => setSelectedHouse(e.target.value)}
-                  className={`w-full py-2 px-3 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
-                  />
-
-            <input
-              type="text"
-              value={selectedAppartment}
-              placeholder="Квартира"
-              onChange={(e) => setSelectedAppartment(e.target.value)}
-              className={`w-full py-2 px-3 border-[1px] text-black rounded border-[#BABABA] outline-none bg-transparent `}
-            />
+            <div className="relative">
+              <input 
+                type="text" 
+                value={selectedHouse}
+                onChange={(e) => setSelectedHouse(e.target.value)}
+                className="focus:outline-none bg-white ring-0 ring-offset-0 p-3 rounded w-full border-[#BABABA] border-[1px] hover:ring-[#336CFF] hover:border-[#336CFF] focus:ring-[#336CFF] focus:border-[#336CFF]"
+                />
+              <label htmlFor="city" className={`absolute normal-case left-3 bg-white px-1 text-[#BABABA] ${searchStreet ? '-top-3' : 'top-1/2 -translate-y-1/2'}`}>
+                Будинок
+              </label>
+            </div>
+            <div className="relative">
+              <input
+                type="text"
+                value={selectedAppartment}
+                onChange={(e) => setSelectedAppartment(e.target.value)}
+                className="focus:outline-none bg-white ring-0 ring-offset-0 p-3 rounded w-full border-[#BABABA] border-[1px] hover:ring-[#336CFF] hover:border-[#336CFF] focus:ring-[#336CFF] focus:border-[#336CFF]"
+              />
+              <label htmlFor="city" className={`absolute normal-case left-3 bg-white px-1 text-[#BABABA] ${searchStreet ? '-top-3' : 'top-1/2 -translate-y-1/2'}`}>
+                Квартира
+              </label>
+            </div>
           </div>
         </div>
       </div>

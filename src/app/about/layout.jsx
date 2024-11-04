@@ -53,7 +53,7 @@ export default function AboutLayout({ children }) {
     return (
         <main className="w-full ">
             <div className="mob:hidden lap:flex w-full pt-10 pb-20 px-5 lg:px-10 flex">
-                <AboutNavigation/>
+                <AboutNavigation mainLinks={mainLinks}/>
                 {children}
             </div>
 

@@ -1,17 +1,35 @@
+'use client'
 import AboutNavigation from "@/components/shared/aboutNvigation";
 import { Button } from "@/components/ui";
 import { LogOut } from 'lucide-react';
+import ModalLogOut from "@/components/shared/modalLogOut";
+import { useState } from "react";
 
  function LogOutButton() {
+    const [isModalOpen, setIsModelOpen] = useState(false);
+
+    const handleLogOut = () => {
+        window.scrollTo({top:0, behavior:'smooth'})
+        setIsModelOpen(true);
+    };
+    const closeModal = () => {
+        setIsModelOpen(false);
+    };
+
     return(
-        <div className="group flex gap-2 items-center text-[#121212] ">
+        <div 
+            className="group flex gap-2 items-center text-[#121212] ">
             <LogOut  className=" rotate-180 group-hover:text-[#262626] group-hover:stroke-gray-500"/>
             <Button 
+                onClick={handleLogOut}
                 variant='aboutMenuBut'
                 className={`p-0 text-base mob:text-sm group-hover:text-gray-500`}
                 >
                     Вийти з кабінету
             </Button>
+            {isModalOpen && 
+                <ModalLogOut handleClose={closeModal}/>
+            }
         </div>
     )
 }

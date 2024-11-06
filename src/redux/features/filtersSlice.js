@@ -7,6 +7,7 @@ const initialState = {
   category: '',
   subCategory: '',
   bestseller: true,
+  sale: true,
 };
 
 export const filtersSlice = createSlice({

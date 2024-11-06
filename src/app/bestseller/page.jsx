@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import qs from 'qs'
@@ -10,9 +10,11 @@ import { useGetGoodsQuery } from "@/redux/api/goodsApi";
 import { SortingMenu } from "@/components/ui/sortingMenu";
 import FilterIcon from '/public/image/svg/filter.svg';
 import { setOpenFilters } from "@/redux/features/openSlice";
+import { setFilters, setPage } from "@/redux/features/filtersSlice";
 
 
 export default function BestSeller() {
+  const isFirstRender = useRef(true);
   const router = useRouter()
   const dispatch = useDispatch()
   let { limit, page, bestseller } = useSelector((state) => state.filters);
@@ -27,6 +29,16 @@ export default function BestSeller() {
     },
   )
 
+
+  useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+      dispatch(setFilters(params));
+      isFirstRender.current = false;
+    }
+  }, []);
+
+
   useEffect(() => {
     const string = {
       bestseller,
@@ -35,9 +47,14 @@ export default function BestSeller() {
     }
     const queryString = qs.stringify(string, { skipNulls: true })
     router.push(`?${queryString}`);
+
   }, [page, bestseller])
 
+  
   useEffect(() => {
+    if(isFirstRender.current) {
+      dispatch(setPage(1))
+    }
     window.scrollTo(0, 0)
   }, [])
 

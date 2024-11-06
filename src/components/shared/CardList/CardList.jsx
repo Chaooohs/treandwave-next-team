@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetGoodsQuery } from "@/redux/api/goodsApi";
 import { useRouter } from "next/navigation";
@@ -16,6 +16,7 @@ import FilterIcon from '/public/image/svg/filter.svg';
 
 
 export default function CardList() {
+  const isFirstRender = useRef(true);
   const router = useRouter()
   const dispatch = useDispatch()
   let { limit, page, category, subCategory } = useSelector((state) => state.filters);
@@ -40,6 +41,7 @@ export default function CardList() {
       params.category = cyrillicToTranslit.reverse(params.category, '-').toLowerCase()
       params.subCategory = cyrillicToTranslit.reverse(params.subCategory, '-').toLowerCase()
       dispatch(setFilters(params));
+      isFirstRender.current = false;
     }
   }, []);
 
@@ -56,14 +58,17 @@ export default function CardList() {
   }, [category, subCategory, page])
 
 
+  useEffect(() => {
+    if(isFirstRender.current) {
+      dispatch(setPage(1))
+    }
+    window.scrollTo(0, 0)
+  }, [])
+
+
   const handlePaginationClick = (e) => {
     dispatch(setPage(e.selected + 1))
   }
-
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [page])
 
 
   return (

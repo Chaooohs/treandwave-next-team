@@ -17,8 +17,8 @@ export default function Sale() {
   const isFirstRender = useRef(true);
   const router = useRouter()
   const dispatch = useDispatch()
-  let { limit, page, sale } = useSelector((state) => state.filters);
-  let { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?sale=${sale}&page=${page}&limit=${limit}`,
+  let { limit, page, } = useSelector((state) => state.filters);
+  let { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?sale=true&page=${page}&limit=${limit}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.products,
@@ -41,18 +41,17 @@ export default function Sale() {
 
   useEffect(() => {
     const string = {
-      sale,
       page,
       limit,
     }
     const queryString = qs.stringify(string, { skipNulls: true })
     router.push(`?${queryString}`);
 
-  }, [page, sale])
-  
+  }, [page,])
+
 
   useEffect(() => {
-    if(isFirstRender.current) {
+    if (isFirstRender.current) {
       dispatch(setPage(1))
     }
     window.scrollTo(0, 0)

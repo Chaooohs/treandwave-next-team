@@ -17,8 +17,8 @@ export default function BestSeller() {
   const isFirstRender = useRef(true);
   const router = useRouter()
   const dispatch = useDispatch()
-  let { limit, page, bestseller } = useSelector((state) => state.filters);
-  let { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?bestseller=${bestseller}&page=${page}&limit=${limit}`,
+  let { limit, page, } = useSelector((state) => state.filters);
+  let { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?bestseller=true&page=${page}&limit=${limit}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.products,
@@ -41,14 +41,13 @@ export default function BestSeller() {
 
   useEffect(() => {
     const string = {
-      bestseller,
       page,
       limit,
     }
     const queryString = qs.stringify(string, { skipNulls: true })
     router.push(`?${queryString}`);
 
-  }, [page, bestseller])
+  }, [page, ])
 
   
   useEffect(() => {

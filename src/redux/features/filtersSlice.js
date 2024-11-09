@@ -6,8 +6,7 @@ const initialState = {
   search: '',
   category: '',
   subCategory: '',
-  bestseller: true,
-  sale: true,
+  color: '',
 };
 
 export const filtersSlice = createSlice({
@@ -24,7 +23,7 @@ export const filtersSlice = createSlice({
       state.page = action.payload.page;
       state.category = action.payload.category;
       state.subCategory = action.payload.subCategory;
-      state.bestseller = action.payload.bestseller;
+      state.color = action.payload.color;
       // state.search = action.payload.title;
     },
     setCategory: (state, action) => {
@@ -33,11 +32,11 @@ export const filtersSlice = createSlice({
     setSubCategory: (state, action) => {
       state.subCategory = action.payload;
     },
-    setBestsellers: (state, action) => {
-      state.bestseller = action.payload;
+    setColor: (state, action) => {
+      state.color = action.payload;
     },
   },
 });
 
-export const { setPage, setFilters, setSearch, setCategory, setSubCategory, setBestsellers } = filtersSlice.actions;
+export const { setPage, setFilters, setSearch, setCategory, setSubCategory, setColor } = filtersSlice.actions;
 export default filtersSlice.reducer;

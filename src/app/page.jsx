@@ -1,6 +1,6 @@
 'use client'
 import { Baner, BestSaler, Categories, NewColection, YouSection } from "@/components/shared";
-import { useGetGoodsQuery } from "@/redux/api/goodsApi";
+import { useGetCategoryListQuery, useGetGoodsQuery } from "@/redux/api/goodsApi";
 
 export default function Home() {
 
@@ -12,12 +12,14 @@ export default function Home() {
     }
   )
 
+  const { data: catalogList } = useGetCategoryListQuery("/category");
+
   return (
     <main>
       <Baner />
       <NewColection />
       <BestSaler bestsellers={bestsellers} />
-      <Categories />
+      <Categories catalogList={catalogList}/>
       <YouSection />
     </main>
   );

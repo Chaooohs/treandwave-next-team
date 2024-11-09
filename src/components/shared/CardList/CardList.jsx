@@ -19,11 +19,13 @@ export default function CardList() {
   const isFirstRender = useRef(true);
   const router = useRouter()
   const dispatch = useDispatch()
-  let { limit, page, category, subCategory } = useSelector((state) => state.filters);
+  let { limit, page, category, subCategory, color } = useSelector((state) => state.filters);
   const cyrillicToTranslit = new CyrillicToTranslit();
 
+  let a
+  color === undefined ? a = '' : a = color
 
-  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?category=${category}&subCategory=${subCategory}&page=${page}&limit=${limit}`,
+  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?category=${category}&subCategory=${subCategory}&color=${a}&page=${page}&limit=${limit}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.products,
@@ -50,16 +52,17 @@ export default function CardList() {
     const string = {
       category: category === "" ? null : cyrillicToTranslit.transform(category, '-').toLowerCase(),
       subCategory: subCategory === "" ? null : cyrillicToTranslit.transform(subCategory, '-').toLowerCase(),
+      color: color === "" ? null : color,
       page,
       limit,
     }
     const queryString = qs.stringify(string, { skipNulls: true })
     router.push(`?${queryString}`);
-  }, [category, subCategory, page])
+  }, [category, subCategory, page, color])
 
 
   useEffect(() => {
-    if(isFirstRender.current) {
+    if (isFirstRender.current) {
       dispatch(setPage(1))
     }
     window.scrollTo(0, 0)

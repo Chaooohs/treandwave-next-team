@@ -30,10 +30,11 @@ module.exports = {
 
     return config
   },
+
   images: {
-    // domains: ['cdn.dummyjson.com'],
-    domains: ['img2.ans-media.com'],
+    domains: ['img2.ans-media.com', 'img.modivo.cloud'],
   },
+  
   experimental: {
     turbo: {
       rules: {

@@ -18,12 +18,12 @@ export const Colors = ({ colors, width, height, className }) => {
   };
 
   const handleColorClick = (index, color) => {
-    dispatch(setColorCardIndex(index))
-    dispatch(setColorCardColor(color))
-  }
+    dispatch(setColorCardIndex(index));
+    dispatch(setColorCardColor(color));
+  };
 
   return (
-    <div className={cn("flex gap-x-2", className)}>
+    <div className={cn("flex gap-x-4", className)}>
       {Array.isArray(colors) &&
         colors?.map((color, index) => {
           return (
@@ -40,12 +40,12 @@ export const Colors = ({ colors, width, height, className }) => {
               />
               <label
                 htmlFor={`color${index}`}
-                className="rounded cursor-pointer"
+                className="rounded-full relative cursor-pointer"
                 style={{
+                  border: color.colorName === "white" ? "1px solid #E7E7E7" : `1px solid ${color.colorName}`,
                   backgroundColor: color.colorName,
-                  width: width,
-                  height: height,
-                  border: "1px solid #121212",
+                  width: "24px",
+                  height: "24px",
                 }}></label>
             </div>
           );

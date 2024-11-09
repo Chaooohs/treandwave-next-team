@@ -130,6 +130,10 @@
     margin-top: 48px;
   }
 
+  .card-font-size {
+    font-size: clamp(14px, 1cqi, 18px);
+  }
+
   .swiper-pd {
     padding-left: 40px !important;
   }
@@ -158,8 +162,17 @@
     }
   }
 
-  .input-color:checked+label {
-    transform: scale(1.1);
+  .input-color:checked+label::before {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 50%;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #666666;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .input-size:checked+label {

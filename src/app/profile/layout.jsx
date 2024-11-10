@@ -1,5 +1,6 @@
 'use client'
-import AboutNavigation from "@/components/shared/aboutNvigation";
+import ProfileNavigation from "@/components/shared/profileNavigation";
+
 import { Button } from "@/components/ui";
 import { LogOut } from 'lucide-react';
 import ModalLogOut from "@/components/shared/modalLogOut";
@@ -39,7 +40,7 @@ export default function ProfileLayout({children}) {
     return(
         <div className="wrap w-full flex mob:flex-col lap:flex-col  gap-10 py-8 ">
             <nav className="w-1/3 border-r-[1px] border-[#EDEDED] mob:border-0 lap:border-0 flex flex-col gap-4">
-                <AboutNavigation />
+                <ProfileNavigation />
                 <div className="block mob:hidden lap:hidden">
                     <LogOutButton/>
                 </div>

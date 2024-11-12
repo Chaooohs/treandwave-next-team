@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import * as Slider from "@radix-ui/react-slider";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -10,19 +11,25 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { useGetCategoryListQuery } from "@/redux/api/goodsApi";
-import { setColor } from "@/redux/features/filtersSlice";
+import { setColor, setMaxPrice, setMinPrice } from "@/redux/features/filtersSlice";
 
 
 export function Filter() {
 
   const { data: colors } = useGetCategoryListQuery("/color");
-  let { color } = useSelector((state) => state.filters);
+  let { color, minPrice, maxPrice } = useSelector((state) => state.filters);
 
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedModels, setSelectedModels] = useState([]);
   const [selectedColors, setSelectedColors] = useState('');
   const [selectedPrice, setSelectedPrice] = useState([]);
   const dispatch = useDispatch()
+  const [isSlider, setIsSlider] = useState([100, 10000])
+
+  useEffect(() => {
+    setIsSlider([minPrice, maxPrice])
+  }, [])
+
 
   // console.log(selectedSizes);
   // console.log(selectedModels);
@@ -34,7 +41,7 @@ export function Filter() {
 
   const sizes = ["34", "36", "38", "40", "XS", "S", "M", "L", "XL"];
   const models = ["Футболки", "Боді", "Сукні Міні", "Джинси", "Палаццо", "Штани", "Худі", "Класичні Костюми", "Спортивні Костюми"];
-  const prices = ['до 750 UaH', 'до 1000 UaH', 'до 1500 UaH', 'до 1750 UaH', 'до 2000 UaH', 'до 2500 UaH']
+  // const prices = ['до 750 UaH', 'до 1000 UaH', 'до 1500 UaH', 'до 1750 UaH', 'до 2000 UaH', 'до 2500 UaH']
   // const colors = ['#336cff', '#e03348', '#4d4d4d'];
 
   const toggleSelection = (item, setSelected, selected) => {
@@ -46,17 +53,20 @@ export function Filter() {
     setSelectedColors(color)
   }, [color])
 
-  
+
   const clearFilters = () => {
     // dispatch(setColor(''))
     setSelectedSizes([]);
     setSelectedModels([]);
     setSelectedColors('');
     setSelectedPrice([]);
+    setIsSlider([100, 10000])
   };
 
   const applyFilters = () => {
     dispatch(setColor(selectedColors))
+    dispatch(setMinPrice(isSlider[0]))
+    dispatch(setMaxPrice(isSlider[1]))
     const filters = {
       sizes: selectedSizes,
       models: selectedModels,
@@ -136,17 +146,39 @@ export function Filter() {
         <AccordionItem value="item-4" className='border-b-0'>
           <AccordionTrigger>Ціна</AccordionTrigger>
           <AccordionContent >
-            <div className="flex flex-wrap gap-2 mt-2">
-              {prices.map(price => (
-                <Button
-                  key={price}
-                  variant='tag'
-                  onClick={() => toggleSelection(price, setSelectedPrice, selectedPrice)}
-                  className={`${selectedPrice.includes(price) ? 'bg-[#121212] text-[#FDFDFD]' : ''}`}
+            <div className="flex flex-wrap gap-2 mt-2 p-2 flex flex-col">
+              <div className="flex gap-x-10 text-base font-semibold mb-4 mx-auto">
+                <div>
+                  вiд:
+                  <div className="w-[80px] h-8 border border-[#4d4d4d] rounded flex items-center justify-center">{isSlider[0]}</div>
+                </div>
+                <div>
+                  до:
+                  <div className="w-[80px] h-8 border border-[#4d4d4d] rounded flex items-center justify-center">{isSlider[1]}</div>
+                </div>
+              </div>
+              <form>
+                <Slider.Root
+                  className="relative flex h-5 w-[200px] touch-none select-none items-center mx-auto"
+                  value={isSlider}
+                  min={100}
+                  max={10000}
+                  step={100}
+                  onValueChange={(value) => setIsSlider(value)}
                 >
-                  {price}
-                </Button>
-              ))}
+                  <Slider.Track className="relative h-[3px] grow rounded-full bg-[#e5e7eb]">
+                    <Slider.Range className="absolute h-full rounded-full bg-[#121212]" />
+                  </Slider.Track>
+                  <Slider.Thumb
+                    className="block size-4 rounded-[10px] bg-black shadow-[0_2px_10px] shadow-blackA4  focus:outline-none"
+                    aria-label="Volume"
+                  />
+                  <Slider.Thumb
+                    className="block size-4 rounded-[10px] bg-black shadow-[0_2px_10px] shadow-blackA4  focus:outline-none"
+                    aria-label="Volume"
+                  />
+                </Slider.Root>
+              </form>
             </div>
           </AccordionContent>
         </AccordionItem>

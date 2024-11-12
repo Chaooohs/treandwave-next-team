@@ -19,13 +19,13 @@ export default function CardList() {
   const isFirstRender = useRef(true);
   const router = useRouter()
   const dispatch = useDispatch()
-  let { limit, page, category, subCategory, color } = useSelector((state) => state.filters);
+  let { limit, page, category, subCategory, color, minPrice, maxPrice } = useSelector((state) => state.filters);
   const cyrillicToTranslit = new CyrillicToTranslit();
 
   let a
   color === undefined ? a = '' : a = color
 
-  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?category=${category}&subCategory=${subCategory}&color=${a}&page=${page}&limit=${limit}`,
+  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?category=${category}&subCategory=${subCategory}&color=${a}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}&limit=${limit}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.products,
@@ -53,12 +53,14 @@ export default function CardList() {
       category: category === "" ? null : cyrillicToTranslit.transform(category, '-').toLowerCase(),
       subCategory: subCategory === "" ? null : cyrillicToTranslit.transform(subCategory, '-').toLowerCase(),
       color: color === "" ? null : color,
+      minPrice: minPrice === 100 ? null : minPrice,
+      maxPrice: maxPrice === 10000 ? null : maxPrice,
       page,
       limit,
     }
     const queryString = qs.stringify(string, { skipNulls: true })
     router.push(`?${queryString}`);
-  }, [category, subCategory, page, color])
+  }, [category, subCategory, page, color, minPrice, maxPrice])
 
 
   useEffect(() => {

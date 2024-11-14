@@ -32,7 +32,7 @@ module.exports = {
   },
 
   images: {
-    domains: ['img2.ans-media.com', 'img.modivo.cloud'],
+    domains: ['img2.ans-media.com', 'img.modivo.cloud', 'res.cloudinary.com'],
   },
   
   experimental: {

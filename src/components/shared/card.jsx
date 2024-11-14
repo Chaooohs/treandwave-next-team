@@ -14,11 +14,12 @@ export const Card = ({ el }) => {
   const path = usePathname();
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.wishlist);
+  const color = useSelector((state) => state.filters.color);
 
-  const handleColor = (colorId, color) => {
+  const handleColor = (colorId, colorName) => {
     dispatch(setColorCardIndex(colorId));
-    dispatch(setColorCardColor(color));
-    dispatch(addColor(color));
+    dispatch(setColorCardColor(colorName));
+    dispatch(addColor(colorName));
   };
 
   const handleDefaultColor = () => {
@@ -54,9 +55,7 @@ export const Card = ({ el }) => {
         <Price
           price={el.price}
           discount={Math.floor(el.discountPercentage)}
-          sizeP="text-lg"
-          sizeD="text-base"
-          className="mt-2 lap:text-sm mob:flex-col mob:items-start mob:text-sm"
+          className="card-font-size mt-2 lap:text-sm mob:flex-col mob:items-start mob:text-sm"
         />
 
         <div className="absolute top-4 left-4 flex gap-x-1">
@@ -75,17 +74,24 @@ export const Card = ({ el }) => {
         </div>
       </Link>
 
-      <div className="relative z-30 flex gap-x-2 mt-4">
-        {el.colors?.map((color, index) => {
+      <div className="relative z-30 flex gap-x-5 mt-4">
+        {el.colors?.map((item, index) => {
           return (
             <Link href={`/catalog/by-slug/${el.slug}`} key={index}>
-              <div
-                className="w-6 h-6 cursor-pointer rounded-full"
-                onClick={() => handleColor(index, color.colorName)}
-                style={{
-                  border: color.colorName === "white" ? "1px solid #E7E7E7" : `1px solid ${color.colorName}`,
-                  backgroundColor: `${color.colorName}`,
-                }}></div>
+              <input
+                type="checkbox"
+                id={`color${index}`}
+                value={item.colorName}
+                className="hidden input-color"
+                checked={color?.includes(item.colorName)}
+              />
+              <label
+                onClick={() => handleColor(index, item.colorName)}
+                htmlFor={`color${index}`}
+                className='cursor-pointer rounded-full relative'
+                style={{ border: item.colorName === 'white' ? '1px solid #E7E7E7' : `1px solid ${item.colorName}`, backgroundColor: item.colorName, width: '24px', height: '24px' }}
+              >
+              </label>
             </Link>
           );
         })}

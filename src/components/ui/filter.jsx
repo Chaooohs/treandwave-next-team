@@ -15,20 +15,19 @@ import { setColor, setMaxPrice, setMinPrice } from "@/redux/features/filtersSlic
 
 
 export function Filter() {
+  const dispatch = useDispatch()
 
   const { data: colors } = useGetCategoryListQuery("/color");
   let { color, minPrice, maxPrice } = useSelector((state) => state.filters);
 
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedModels, setSelectedModels] = useState([]);
-  const [selectedColors, setSelectedColors] = useState('');
-  const [selectedPrice, setSelectedPrice] = useState([]);
-  const dispatch = useDispatch()
+  const [selectedColors, setSelectedColors] = useState([]);
   const [isSlider, setIsSlider] = useState([100, 10000])
 
   useEffect(() => {
     setIsSlider([minPrice, maxPrice])
-  }, [])
+  }, [minPrice, maxPrice])
 
 
   // console.log(selectedSizes);
@@ -41,8 +40,6 @@ export function Filter() {
 
   const sizes = ["34", "36", "38", "40", "XS", "S", "M", "L", "XL"];
   const models = ["Футболки", "Боді", "Сукні Міні", "Джинси", "Палаццо", "Штани", "Худі", "Класичні Костюми", "Спортивні Костюми"];
-  // const prices = ['до 750 UaH', 'до 1000 UaH', 'до 1500 UaH', 'до 1750 UaH', 'до 2000 UaH', 'до 2500 UaH']
-  // const colors = ['#336cff', '#e03348', '#4d4d4d'];
 
   const toggleSelection = (item, setSelected, selected) => {
     setSelected(selected.includes(item) ? selected.filter(i => i !== item) : [...selected, item]);
@@ -50,17 +47,28 @@ export function Filter() {
 
 
   useEffect(() => {
+    color &&
     setSelectedColors(color)
   }, [color])
 
 
+  const handleColorChange = (item) => {
+    setSelectedColors((prevCheckedItems) => {
+      if (prevCheckedItems?.includes(item)) {
+        return prevCheckedItems.filter((el) => el !== item);
+      } else {
+        return [...prevCheckedItems, item];
+      }
+    });
+  };
+
+
   const clearFilters = () => {
-    // dispatch(setColor(''))
+    dispatch(setColor([]))
+    dispatch(setMinPrice(100))
+    dispatch(setMaxPrice(10000))
     setSelectedSizes([]);
     setSelectedModels([]);
-    setSelectedColors('');
-    setSelectedPrice([]);
-    setIsSlider([100, 10000])
   };
 
   const applyFilters = () => {
@@ -70,10 +78,7 @@ export function Filter() {
     const filters = {
       sizes: selectedSizes,
       models: selectedModels,
-      prices: selectedPrice,
-      // colors: selectedColors
     };
-    // onApplyFilters(filters);
   }
 
 
@@ -121,21 +126,20 @@ export function Filter() {
           <AccordionTrigger>колір</AccordionTrigger>
           <AccordionContent>
             <div className="flex flex-wrap gap-4 mt-2 p-2">
-              {colors?.map((color, index) => (
+              {colors?.map((el, index) => (
                 <div key={index}>
                   <input
-                    type="radio"
-                    name="color"
-                    value={color.colorName}
+                    type="checkbox"
                     id={`color${index}`}
+                    value={el.colorName}
                     className="hidden input-color"
-                    checked={selectedColors === color.colorName ? true : false}
-                    onChange={(e) => setSelectedColors(e.target.value)}
+                    checked={selectedColors?.includes(el.colorName) || color?.includes(el.colorName)}
+                    onChange={(e) => handleColorChange(e.target.value)}
                   />
                   <label
                     htmlFor={`color${index}`}
                     className='cursor-pointer rounded-full relative'
-                    style={{ border: color.colorName === 'white' ? '1px solid #E7E7E7' : `1px solid ${color.colorName}`, backgroundColor: color.colorName, width: '24px', height: '24px' }}
+                    style={{ border: el.colorName === 'white' ? '1px solid #E7E7E7' : `1px solid ${el.colorName}`, backgroundColor: el.colorName, width: '24px', height: '24px' }}
                   >
                   </label>
                 </div>

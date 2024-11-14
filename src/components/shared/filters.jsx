@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import CloseIcon from '/public/image/svg/close.svg'
 import { setOpenFilters } from "@/redux/features/openSlice";
-import { Button, Title } from "@/components/ui";
+import { Title } from "@/components/ui";
 import { Filter } from "../ui/filter";
 
 

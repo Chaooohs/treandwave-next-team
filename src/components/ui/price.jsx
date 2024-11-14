@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-export const Price = ({ price, discount, sizeP, sizeD, className }) => {
+export const Price = ({ price, discount, className }) => {
 
   let finalPrice = price * (1 - (discount / 100))
 
@@ -10,16 +10,16 @@ export const Price = ({ price, discount, sizeP, sizeD, className }) => {
       {
         discount > 0
           ?
-          <div className={cn(`font-semibold ${sizeP} uppercase flex items-center gap-x-2`, className)}>
+          <div className={cn(`font-semibold uppercase flex items-center gap-x-2`, className)}>
             <span
-              className={`${sizeD} line-through text-gray-400 mob:text-sm`}
+              className={` line-through text-gray-400 mob:text-sm`}
             >
               {`${price} uah`}
             </span>
             <span>{`${finalPrice.toFixed(2)} uah`}</span>
           </div>
           :
-          <div className={cn(`mt-3 font-semibold ${sizeP} uppercase flex items-center gap-x-2`, className)}>
+          <div className={cn(`mt-3 font-semibold uppercase flex items-center gap-x-2`, className)}>
             <span>{`${price} uah`}</span>
           </div>
       }

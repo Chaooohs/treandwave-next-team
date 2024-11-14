@@ -6,7 +6,7 @@ const initialState = {
   search: '',
   category: '',
   subCategory: '',
-  color: '',
+  color: [],
   minPrice: 100,
   maxPrice: 10000,
 };

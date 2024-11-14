@@ -19,13 +19,18 @@ export default function CardList() {
   const isFirstRender = useRef(true);
   const router = useRouter()
   const dispatch = useDispatch()
-  let { limit, page, category, subCategory, color, minPrice, maxPrice } = useSelector((state) => state.filters);
   const cyrillicToTranslit = new CyrillicToTranslit();
 
-  let a
-  color === undefined ? a = '' : a = color
+  let { limit, page, category, subCategory, color, minPrice, maxPrice } = useSelector((state) => state.filters);
 
-  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(`/catalog?category=${category}&subCategory=${subCategory}&color=${a}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}&limit=${limit}`,
+  let categoryQuery = category === '' ? '' : `category=${category}&`
+  let subCategoryQuery = subCategory === '' ? '' : `subCategory=${subCategory}&`
+  let colorQuery = color === null || color === undefined || color.length === 0  ? '' : `color=${color.join(",")}&`
+  let minPriceQuery = `minPrice=${minPrice}&`
+  let maxPriceQuery = `maxPrice=${maxPrice}&`
+
+  const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(
+    `/catalog?${categoryQuery}${subCategoryQuery}${colorQuery}${minPriceQuery}${maxPriceQuery}page=${page}&limit=${limit}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.products,
@@ -122,7 +127,7 @@ export default function CardList() {
             <h1>Loading...</h1>
             :
             Array.isArray(products) &&
-            products.map((el) => {
+            products?.map((el) => {
               return (
                 <div key={el.id} className="relative">
                   <Card el={el} />

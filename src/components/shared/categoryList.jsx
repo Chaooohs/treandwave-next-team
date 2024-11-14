@@ -46,7 +46,7 @@ export const CategoryList = () => {
                   anchor={{ to: 'bottom start', gap: '4px' }}
                   transition
                   className="bg-white border rounded border-white-500 w-52 transition duration-300 ease-out data-[closed]:scale-95 data-[closed]:opacity-0">
-                  {list?.subCategories.map((sub) => {
+                  {list?.subCategories?.map((sub) => {
                     return (
                       <MenuItem key={sub.id}>
                         <div

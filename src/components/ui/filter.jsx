@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as Slider from "@radix-ui/react-slider";
+import { IMaskInput } from 'react-imask';
+import { useDebounce } from 'use-debounce';
 
 import { Button } from "@/components/ui/button";
 import {
@@ -24,9 +26,22 @@ export function Filter() {
   const [selectedModels, setSelectedModels] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [isSlider, setIsSlider] = useState([100, 10000])
+  const [isSliderClick, setIsSliderClick] = useState(false)
+  const [isPriceOne, setIsPriceOne] = useState()
+  const [isPriceTwo, setIsPriceTwo] = useState()
+  const [valueOne] = useDebounce(isPriceOne, 2000);
+  const [valueTwo] = useDebounce(isPriceTwo, 2000);
+
+
+  useEffect(() => {
+    setIsSlider([valueOne, valueTwo])
+  }, [valueOne, valueTwo])
+
 
   useEffect(() => {
     setIsSlider([minPrice, maxPrice])
+    setIsPriceOne(minPrice)
+    setIsPriceTwo(maxPrice)
   }, [minPrice, maxPrice])
 
 
@@ -48,7 +63,7 @@ export function Filter() {
 
   useEffect(() => {
     color &&
-    setSelectedColors(color)
+      setSelectedColors(color)
   }, [color])
 
 
@@ -62,6 +77,23 @@ export function Filter() {
     });
   };
 
+  const handleSliderChange = (value) => {
+    setIsSlider(value)
+    setIsSliderClick(true)
+  }
+
+
+  const handlePriceFieldChangeOne = (value) => {
+    setIsPriceOne(value)
+    setIsSliderClick(false)
+  }
+
+
+  const handlePriceFieldChangeTwo = (value) => {
+    setIsPriceTwo(value)
+    setIsSliderClick(false)
+  }
+
 
   const clearFilters = () => {
     dispatch(setColor([]))
@@ -70,6 +102,7 @@ export function Filter() {
     setSelectedSizes([]);
     setSelectedModels([]);
   };
+
 
   const applyFilters = () => {
     dispatch(setColor(selectedColors))
@@ -150,17 +183,41 @@ export function Filter() {
         <AccordionItem value="item-4" className='border-b-0'>
           <AccordionTrigger>Ціна</AccordionTrigger>
           <AccordionContent >
-            <div className="flex flex-wrap gap-2 mt-2 p-2 flex flex-col">
+            <div className="flex gap-2 mt-2 p-2 flex-col">
+
               <div className="flex gap-x-10 text-base font-semibold mb-4 mx-auto">
-                <div>
+                <label>
                   вiд:
-                  <div className="w-[80px] h-8 border border-[#4d4d4d] rounded flex items-center justify-center">{isSlider[0]}</div>
-                </div>
-                <div>
+                  <IMaskInput
+                    autoFocus={true}
+                    mask={Number}
+                    value={`${isSliderClick ? isSlider[0] : isPriceOne}`}
+                    onAccept={
+                      (value) => handlePriceFieldChangeOne(+value)
+                    }
+                    placeholder='100'
+                    min={0}
+                    max={10000}
+                    className="bg-transparent w-[80px] h-8 border border-[#4d4d4d] rounded flex items-center justify-center pl-2"
+                  />
+                </label>
+                <label>
                   до:
-                  <div className="w-[80px] h-8 border border-[#4d4d4d] rounded flex items-center justify-center">{isSlider[1]}</div>
-                </div>
+                  <IMaskInput
+                    mask={Number}
+                    value={`${isSliderClick ? isSlider[1] : isPriceTwo}`}
+                    onAccept={
+                      (value) => handlePriceFieldChangeTwo(+value)
+                    }
+                    placeholder='10000'
+                    min={0}
+                    max={10000}
+                    className="bg-transparent w-[80px] h-8 border border-[#4d4d4d] rounded flex items-center justify-center pl-2"
+                  />
+                </label>
               </div>
+
+
               <form>
                 <Slider.Root
                   className="relative flex h-5 w-[200px] touch-none select-none items-center mx-auto"
@@ -168,17 +225,17 @@ export function Filter() {
                   min={100}
                   max={10000}
                   step={100}
-                  onValueChange={(value) => setIsSlider(value)}
+                  onValueChange={(value) => handleSliderChange(value)}
                 >
                   <Slider.Track className="relative h-[3px] grow rounded-full bg-[#e5e7eb]">
                     <Slider.Range className="absolute h-full rounded-full bg-[#121212]" />
                   </Slider.Track>
                   <Slider.Thumb
-                    className="block size-4 rounded-[10px] bg-black shadow-[0_2px_10px] shadow-blackA4  focus:outline-none"
+                    className="block size-4 rounded-[10px] bg-black focus:shadow-[0_2px_10px] focus:shadow-blackA4  focus:outline-none"
                     aria-label="Volume"
                   />
                   <Slider.Thumb
-                    className="block size-4 rounded-[10px] bg-black shadow-[0_2px_10px] shadow-blackA4  focus:outline-none"
+                    className="block size-4 rounded-[10px] bg-black focus:shadow-[0_2px_10px] focus:shadow-blackA4  focus:outline-none"
                     aria-label="Volume"
                   />
                 </Slider.Root>

@@ -13,14 +13,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { useGetCategoryListQuery } from "@/redux/api/goodsApi";
-import { setColor, setMaxPrice, setMinPrice } from "@/redux/features/filtersSlice";
+import { setColor, setMaxPrice, setMinPrice, setSize } from "@/redux/features/filtersSlice";
 
 
 export function Filter() {
   const dispatch = useDispatch()
 
   const { data: colors } = useGetCategoryListQuery("/color");
-  let { color, minPrice, maxPrice } = useSelector((state) => state.filters);
+  const { data: sizes } = useGetCategoryListQuery("/size");
+  let { size, color, minPrice, maxPrice } = useSelector((state) => state.filters);
 
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedModels, setSelectedModels] = useState([]);
@@ -31,6 +32,12 @@ export function Filter() {
   const [isPriceTwo, setIsPriceTwo] = useState()
   const [valueOne] = useDebounce(isPriceOne, 2000);
   const [valueTwo] = useDebounce(isPriceTwo, 2000);
+
+
+  useEffect(() => {
+    size &&
+    setSelectedSizes(size)
+  }, [size])
 
 
   useEffect(() => {
@@ -53,11 +60,10 @@ export function Filter() {
 
 
 
-  const sizes = ["34", "36", "38", "40", "XS", "S", "M", "L", "XL"];
   const models = ["Футболки", "Боді", "Сукні Міні", "Джинси", "Палаццо", "Штани", "Худі", "Класичні Костюми", "Спортивні Костюми"];
 
-  const toggleSelection = (item, setSelected, selected) => {
-    setSelected(selected.includes(item) ? selected.filter(i => i !== item) : [...selected, item]);
+  const toggleSelection = (item) => {
+    setSelectedSizes(selected => selected.includes(item) ? selected.filter(i => i !== item) : [...selected, item]);
   };
 
 
@@ -97,6 +103,7 @@ export function Filter() {
 
   const clearFilters = () => {
     dispatch(setColor([]))
+    dispatch(setSize([]))
     dispatch(setMinPrice(100))
     dispatch(setMaxPrice(10000))
     setSelectedSizes([]);
@@ -105,6 +112,7 @@ export function Filter() {
 
 
   const applyFilters = () => {
+    dispatch(setSize(selectedSizes))
     dispatch(setColor(selectedColors))
     dispatch(setMinPrice(isSlider[0]))
     dispatch(setMaxPrice(isSlider[1]))
@@ -122,14 +130,14 @@ export function Filter() {
           <AccordionTrigger>Розмір</AccordionTrigger>
           <AccordionContent>
             <div className="flex flex-wrap gap-2 mt-2">
-              {sizes.map(size => (
+              {sizes?.map(size => (
                 <Button
-                  key={size}
+                  key={size.id}
                   variant='tag'
-                  onClick={() => toggleSelection(size, setSelectedSizes, selectedSizes)}
-                  className={`w-[58px] ${selectedSizes.includes(size) ? 'bg-[#121212] text-[#FDFDFD]' : ''}`}
+                  onClick={() => toggleSelection(size.size)}
+                  className={`w-[58px] ${selectedSizes.includes(size.size) ? 'bg-[#121212] text-[#FDFDFD]' : ''}`}
                 >
-                  {size}
+                  {size.size}
                 </Button>
               ))}
             </div>

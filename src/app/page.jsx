@@ -4,7 +4,15 @@ import { useGetCategoryListQuery, useGetGoodsQuery } from "@/redux/api/goodsApi"
 
 export default function Home() {
 
-  const { bestsellers } = useGetGoodsQuery('/catalog?page=1&limit=20&bestseller=true', 
+  const { newList } = useGetGoodsQuery('/catalog?page=1&limit=20&isNew=true',
+    {
+      selectFromResult: ({ data, }) => ({
+        newList: data?.products,
+      }),
+    }
+  )
+
+  const { bestsellers } = useGetGoodsQuery('/catalog?page=1&limit=20&bestseller=true',
     {
       selectFromResult: ({ data, }) => ({
         bestsellers: data?.products,
@@ -17,9 +25,9 @@ export default function Home() {
   return (
     <main>
       <Baner />
-      <NewColection />
+      <NewColection newList={newList} />
       <BestSaler bestsellers={bestsellers} />
-      <Categories catalogList={catalogList}/>
+      <Categories catalogList={catalogList} />
       <YouSection />
     </main>
   );

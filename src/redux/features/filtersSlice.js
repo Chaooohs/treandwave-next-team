@@ -7,6 +7,7 @@ const initialState = {
   category: '',
   subCategory: '',
   color: [],
+  size: [],
   minPrice: 100,
   maxPrice: 10000,
 };
@@ -25,6 +26,7 @@ export const filtersSlice = createSlice({
       state.page = action.payload.page;
       state.category = action.payload.category;
       state.subCategory = action.payload.subCategory;
+      state.size = action.payload.size;
       state.color = action.payload.color;
       if(action.payload.minPrice === undefined) {
         state.minPrice = 100;
@@ -46,6 +48,9 @@ export const filtersSlice = createSlice({
     setColor: (state, action) => {
       state.color = action.payload;
     },
+    setSize: (state, action) => {
+      state.size = action.payload;
+    },
     setMinPrice: (state, action) => {
       state.minPrice = action.payload;
     },
@@ -55,5 +60,5 @@ export const filtersSlice = createSlice({
   },
 });
 
-export const { setPage, setFilters, setSearch, setCategory, setSubCategory, setColor, setMinPrice, setMaxPrice } = filtersSlice.actions;
+export const { setPage, setFilters, setSearch, setCategory, setSubCategory, setColor, setSize, setMinPrice, setMaxPrice } = filtersSlice.actions;
 export default filtersSlice.reducer;

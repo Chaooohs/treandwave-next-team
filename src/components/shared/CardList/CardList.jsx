@@ -21,16 +21,17 @@ export default function CardList() {
   const dispatch = useDispatch()
   const cyrillicToTranslit = new CyrillicToTranslit();
 
-  let { limit, page, category, subCategory, color, minPrice, maxPrice } = useSelector((state) => state.filters);
+  let { limit, page, category, subCategory, color, size, minPrice, maxPrice } = useSelector((state) => state.filters);
 
   let categoryQuery = category === '' ? '' : `category=${category}&`
   let subCategoryQuery = subCategory === '' ? '' : `subCategory=${subCategory}&`
+  let sizeQuery = size === undefined || size.length === 0 ? '' : `size=${size.join(',')}&`
   let colorQuery = color === null || color === undefined || color.length === 0  ? '' : `color=${color.join(",")}&`
   let minPriceQuery = `minPrice=${minPrice}&`
   let maxPriceQuery = `maxPrice=${maxPrice}&`
 
   const { products, totalProduct, totalPages, loading } = useGetGoodsQuery(
-    `/catalog?${categoryQuery}${subCategoryQuery}${colorQuery}${minPriceQuery}${maxPriceQuery}page=${page}&limit=${limit}`,
+    `/catalog?${categoryQuery}${subCategoryQuery}${sizeQuery}${colorQuery}${minPriceQuery}${maxPriceQuery}page=${page}&limit=${limit}`,
     {
       selectFromResult: ({ data, isLoading }) => ({
         products: data?.products,
@@ -57,6 +58,7 @@ export default function CardList() {
     const string = {
       category: category === "" ? null : cyrillicToTranslit.transform(category, '-').toLowerCase(),
       subCategory: subCategory === "" ? null : cyrillicToTranslit.transform(subCategory, '-').toLowerCase(),
+      size: size === "" ? null : size,
       color: color === "" ? null : color,
       minPrice: minPrice === 100 ? null : minPrice,
       maxPrice: maxPrice === 10000 ? null : maxPrice,
@@ -65,7 +67,7 @@ export default function CardList() {
     }
     const queryString = qs.stringify(string, { skipNulls: true })
     router.push(`?${queryString}`);
-  }, [category, subCategory, page, color, minPrice, maxPrice])
+  }, [category, subCategory, page, size, color, minPrice, maxPrice])
 
 
   useEffect(() => {

@@ -3,9 +3,9 @@ import AdminTitle from "../../lib/title";
 import ProductCard from "../../lib/productcard";
 import Link from "next/link";
 import { cookies } from 'next/headers';
-import { AddForm } from "../../lib/addTagForm";
-import { DeleteForm } from "../../lib/deleteTagForm";
-import { getTags } from "../../lib/actions/auth";
+import { AddForm } from "../../lib/forms/addTagForm";
+import { DeleteForm } from "../../lib/forms/deleteTagForm";
+import { getTags } from "../../lib/actions/tagActions";
 
 
 export default async function TagsPage() {

@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteTag } from "./actions/auth";
+import { deleteTag } from "../actions/tagActions";
 
 function DeleteButton() {
     const handleRefresh = () => {
@@ -11,7 +11,7 @@ function DeleteButton() {
     <button 
         onClick={handleRefresh}
         type="submit"  
-        className="rounded p-2 border border-[#336CFF]">
+        className="rounded p-2 border border-red-600">
       Видалити
     </button>
   );

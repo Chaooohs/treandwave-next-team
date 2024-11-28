@@ -1,6 +1,6 @@
 "use client";
 
-import { addTag } from "./actions/auth";
+import { addTag } from "../actions/tagActions";
 
 function SubmitButton() {
 

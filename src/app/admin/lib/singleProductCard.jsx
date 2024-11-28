@@ -4,6 +4,7 @@ import Image from "next/image";
 
 
 export default function SingleProductCard({ product }) {
+  console.log(product);
   const [images, setImages] = useState(product.colors[0]?.images || []);
   const [title, setTitle] = useState(product.title);
   const [description, setDescription] = useState(product.description);
@@ -17,33 +18,33 @@ export default function SingleProductCard({ product }) {
   // Обработчик для удаления изображения
   const handleDeleteImage = async (imageId) => {
     
-      await fetch(`/api/images/${imageId}`, {
-        method: 'DELETE'
-        });
-      setImages(images.filter((img) => img.id !== imageId));
+      // await fetch(`/api/images/${imageId}`, {
+      //   method: 'DELETE'
+      //   });
+      // setImages(images.filter((img) => img.id !== imageId));
   };
 
    // Обработчик для добавления тегов
    const handleAddTag = async () => {
-    if (!selectedTag) return;
+    // if (!selectedTag) return;
   
-    try {
-      const response = await fetch(`/api/v1/catalog/${product.id}/${encodeURIComponent(selectedTag)}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
+    // try {
+    //   const response = await fetch(`/api/v1/catalog/${product.id}/${encodeURIComponent(selectedTag)}`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     }
+    //   });
   
-      if (!response.ok) {
-        throw new Error("Ошибка при добавлении тега");
-      }
+    //   if (!response.ok) {
+    //     throw new Error("Ошибка при добавлении тега");
+    //   }
   
-      setTags((prevTags) => [...prevTags, selectedTag]);
-      setSelectedTag("");
-    } catch (error) {
-      console.error("Ошибка при добавлении тега:", error);
-    }
+    //   setTags((prevTags) => [...prevTags, selectedTag]);
+    //   setSelectedTag("");
+    // } catch (error) {
+    //   console.error("Ошибка при добавлении тега:", error);
+    // }
   };
 
 
@@ -63,12 +64,12 @@ export default function SingleProductCard({ product }) {
       <h2 className="text-xl uppercase font-bold ">{title}</h2>
       <p className="text-gray-500 ">{description}</p>
       <p className="text-gray-700 ">Категорія: {category}</p>
-      {subCategory && <p className="text-gray-700 ">Підкатегорія: {subCategory}</p>}
+      {subCategory && <p className="text-gray-700 ">Підкатегорія: {subCategory.name}</p>}
       <div className=" flex space-x-2">
         <p>Теги: </p>
-        {tags.map((tag, index) => (
-          <span key={index} className="bg-gray-200 px-2 py-1 rounded-full text-sm">
-            {tag}
+        {tags.map((tag) => (
+          <span key={tag.id} className="bg-gray-200 px-2 py-1 rounded-full text-sm">
+            {tag.name}
           </span>
         ))}
       </div>
@@ -157,7 +158,7 @@ export default function SingleProductCard({ product }) {
             type="number"
             value={discount || ""}
             onChange={(e) => setDiscount(e.target.value)}
-            placeholder="Скидка (%)"
+            placeholder="Знижка (%)"
             className="border rounded px-2 py-1"
           />
         </div>
@@ -166,7 +167,7 @@ export default function SingleProductCard({ product }) {
           Оновити товар
         </button>
       </div>
-    </div>
+    </div> 
   );
 };
 

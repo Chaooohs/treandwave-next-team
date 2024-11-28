@@ -12,7 +12,7 @@ export default function AdminLayout({ children }) {
 
     const navLinks = [
         {name: 'Товари', link: '/admin/dashboard/products'},
-        {name: 'Категорії', link: '/admin/dashboard/catagory'},
+        {name: 'Категорії', link: '/admin/dashboard/category'},
         {name: 'Теги', link: '/admin/dashboard/tags'},
         {name: 'Замовлення', link: '/admin/dashboard/orders'},
         {name: 'Користувачі', link: '/admin/dashboard/users'},

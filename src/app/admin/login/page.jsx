@@ -6,22 +6,6 @@ export const metadata = {
    title: 'Login',
 };
 
-// export async function adminLogin(username, password) {
-//     const response = await fetch('/api/v1/auth/admin/login', {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({ username, password }),
-//     });
-  
-//     if (response.ok) {
-//       const data = await response.json();
-//       localStorage.setItem('adminToken', data.token);
-//       return true;
-//     } else {
-//       console.error('Ошибка авторизации');
-//       return false;
-//     }
-//   }
 
 export default function LoginPage() {
 

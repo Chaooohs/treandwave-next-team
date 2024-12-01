@@ -1,5 +1,6 @@
 'use server'
 import { cookies } from "next/headers";
+import { revalidatePath } from 'next/cache';
 
 const API_BASE_URL = 'https://clothing-store-api-lh6l.onrender.com/api/v1';
 
@@ -17,11 +18,10 @@ export async function getSubCategories(params) {
     return subCategories;
 }
 
-export async function addCategory(formData) {
+export async function addCategory(prevState, formData) {
     const token = cookies().get('adminToken');
     const category = formData.get('category');
     const image = formData.get('image');
-
     const catagoryFormData = new FormData();
     catagoryFormData.append('name', category.toString());
     catagoryFormData.append('image', image);
@@ -38,19 +38,18 @@ export async function addCategory(formData) {
         if (!res.ok) {
             const errorData = await res.json();
             console.error('Помилка додавання категорії:', errorData.message || 'помилка');
-            return {error: 'Помилка додавання категорії'}
+            return {message: 'Помилка додавання категорії'}
         }
-        alert('категорії додали');
-        return { success: true };
+        revalidatePath('/admin/dashboard/category');
 
     } catch (error) {
         console.error('Помилка мережі:', error.message);
-        return{ error: 'Помилка мережі'}
+        return{ message: 'Помилка мережі'}
     }
 }
 
 
-export async function deleteCategory(formData) {
+export async function deleteCategory(prevState, formData) {
     const token = cookies().get('adminToken');
     const id = formData.get('id');
 
@@ -59,25 +58,24 @@ export async function deleteCategory(formData) {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token.value}`
-            },
+            }
         });
 
         if (!res.ok) {
             const errorData = await res.json();
             console.error('Помилка видалення категорії:', errorData.message || 'помилка');
-            return {error: 'Помилка видалення категорії'}
+            return {message: 'Помилка видалення категорії'}
         }
-        console.log('категорія видалена');
-        return true;
+        revalidatePath('/admin/dashboard/category');
 
     } catch (error) {
         console.error('Помилка мережі:', error.message);
-        return{ error: 'Помилка мережі'}
+        return{ message: 'Помилка мережі'}
     }
 }
 
 
-export async function addSubCategory(formData) {
+export async function addSubCategory(prevState, formData) {
     const token = cookies().get('adminToken');
     const categoryId = formData.get('category');
     const subcategory = formData.get('subcategory');
@@ -95,18 +93,18 @@ export async function addSubCategory(formData) {
         if (!res.ok) {
             const errorData = await res.json();
             console.error('Помилка додавання підкатегорії:', errorData.message || 'помилка');
-            return {error: 'Помилка додавання підкатегорії'}
+            return {message: 'Помилка додавання підкатегорії'}
         }
-        return true;
+        revalidatePath('/admin/dashboard/category');
 
     } catch (error) {
         console.error('Помилка мережі:', error.message);
-        return{ error: 'Помилка мережі'}
+        return{ message: 'Помилка мережі'}
     }  
 }
 
 
-export async function deleteSubCategory(formData) {
+export async function deleteSubCategory(prevState, formData) {
     const token = cookies().get('adminToken');
     const id = formData.get('id');
 
@@ -122,13 +120,12 @@ export async function deleteSubCategory(formData) {
         if (!res.ok) {
             const errorData = await res.json();
             console.error('Помилка видалення підкатегорії:', errorData.message || 'помилка');
-            return {error: 'Помилка видалення підкатегорії'}
+            return {message: 'Помилка видалення підкатегорії'}
         }
-
-        return true;
+        revalidatePath('/admin/dashboard/category');
 
     } catch (error) {
         console.error('Помилка мережі:', error.message);
-        return{ error: 'Помилка мережі'}
+        return{ message: 'Помилка мережі'}
     }
 }

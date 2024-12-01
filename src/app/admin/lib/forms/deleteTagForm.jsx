@@ -1,31 +1,40 @@
 "use client";
 
 import { deleteTag } from "../actions/tagActions";
+import { useFormState } from 'react-dom';
+import { useFormStatus } from 'react-dom';
+import NotificationModal from "../notificationModal";
+
+const initialState = {
+  message: '',
+};
 
 function DeleteButton() {
-    const handleRefresh = () => {
-        location.reload();
-    }
+    const { pending, error } = useFormStatus();
 
   return (
     <button 
-        onClick={handleRefresh}
+        disabled={pending}
         type="submit"  
         className="rounded p-2 border border-red-600">
-      Видалити
+          {pending ? 'Видалення...' : 'Видалити'}
     </button>
   );
 }
 
 export function DeleteForm({ id, tag }) {
-    console.log('dele', tag)
+  const [state, formAction] = useFormState(deleteTag, initialState);
   
   return (
-    <form action={deleteTag}>
-      <input type="hidden" name="id" value={id} />
-      <input type="hidden" name="tag" value={tag} />
-      <DeleteButton />
-      
-    </form>
+    <div className="relative">
+      <form action={formAction}>
+        <input type="hidden" name="id" value={id} />
+        <input type="hidden" name="tag" value={tag} />
+        <DeleteButton />
+      </form>
+      <div className="w-full h-full relative">
+        <NotificationModal message={state?.message}/>
+      </div>
+    </div>
   );
 }

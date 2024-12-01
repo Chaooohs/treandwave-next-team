@@ -1,29 +1,40 @@
 "use client";
 
 import { deleteCategory } from "../actions/catagoryActions";
+import NotificationModal from "../notificationModal";
+import { useFormState } from 'react-dom';
+import { useFormStatus } from 'react-dom'
+
+const initialState = {
+  message: '',
+};
 
 function DeleteButton() {
-    const handleRefresh = () => {
-        location.reload();
-    }
+  const { pending, error } = useFormStatus();
 
   return (
     <button 
-        onClick={handleRefresh}
         type="submit"  
         className="rounded p-2 border border-red-600 text-nowrap hover:bg-blue-50">
-      Видалити категорію
+        {pending ? 'Видалення...' : 'Видалити категорію'}
     </button>
   );
 }
 
 export function DeleteCategoryForm({ id, category }) {
+  const [state, formAction] = useFormState(deleteCategory, initialState);
+  
   
   return (
-    <form action={deleteCategory}>
+    <div className="relative">
+      <form action={formAction}>
       <input type="hidden" name="id" value={id} />
       <input type="hidden" name="category" value={category} />
       <DeleteButton />
     </form>
+    <div className="w-full h-full relative">
+        <NotificationModal message={state?.message}/>
+    </div>
+    </div>
   );
 }

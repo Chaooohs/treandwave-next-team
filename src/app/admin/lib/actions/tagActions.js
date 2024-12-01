@@ -1,6 +1,6 @@
 'use server';
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { revalidatePath } from 'next/cache';
 
 
 export async function getTags(params) {
@@ -11,7 +11,7 @@ export async function getTags(params) {
 }
 
 
-export async function addTag(formData) {
+export async function addTag(prevState, formData) {
     const token = cookies().get('adminToken');
     const tagName = formData.get('tag');
 
@@ -28,21 +28,19 @@ export async function addTag(formData) {
         if (!res.ok) {
             const errorData = await res.json();
             console.error('Помилка додавання тега:', errorData.message || 'помилка');
-            return {error: 'Помилка додавання тега'}
+            return { message: 'Помилка додавання тега' }
         }
-
-        console.log('Тег додали');
-        return true;
+        revalidatePath('/admin/dashboard/tags');
 
     } catch (error) {
         console.error('Помилка мережі:', error.message);
-        return{ error: 'Помилка мережі'}
+        return{ message: 'Помилка мережі'}
     }
     
 }
 
 
-export async function deleteTag(formData) {
+export async function deleteTag(prevState, formData) {
     const token = cookies().get('adminToken');
     const id = formData.get('id');
 
@@ -60,15 +58,13 @@ export async function deleteTag(formData) {
         if (!res.ok) {
             const errorData = await res.json();
             console.error('Помилка видалення тега:', errorData.message || 'помилка');
-            return {error: 'Помилка видалення тега'}
+            return {message: 'Помилка видалення тега'}
         }
-
-        console.log('Тег видалений');
-        return true;
+        revalidatePath('/admin/dashboard/tags');
 
     } catch (error) {
         console.error('Помилка мережі:', error.message);
-        return{ error: 'Помилка мережі'}
+        return{ message: 'Помилка мережі'}
     }
 }
 

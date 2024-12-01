@@ -1,7 +1,7 @@
 
 import AdminTitle from "../../lib/title";
 import { AddProductForm } from "../../lib/forms/addProductForm";
-import { getColors, getTags, getModel, getCategories, getSizes } from "../../lib/actions/newProduct";
+import { getColors, getTags, getModel, getCategories, getSizes, getCollection } from "../../lib/actions/newProduct";
 
 
 export default async function NewProductPage() {
@@ -10,6 +10,7 @@ export default async function NewProductPage() {
     const models = await getModel();
     const categories = await getCategories();
     const sizes = await getSizes();
+    const collection = await getCollection();
 
     return(
         <div>
@@ -21,6 +22,7 @@ export default async function NewProductPage() {
                     models={models}
                     categories={categories}
                     sizes={sizes}
+                    collection={collection}
                 />
             </div>
 

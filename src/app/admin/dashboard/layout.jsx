@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Montserrat} from "next/font/google";
+import { cookies } from 'next/headers';
+import NotificationModal from '../lib/notificationModal';
 
 const montserrat = Montserrat({
     subsets: ['cyrillic'],
@@ -9,6 +11,9 @@ const montserrat = Montserrat({
   })
 
 export default function AdminLayout({ children }) {
+    const cookieStore = cookies();
+    const actionNotification = cookieStore.get('actionNotification')?.value;
+
 
     const navLinks = [
         {name: 'Товари', link: '/admin/dashboard/products'},
@@ -16,9 +21,10 @@ export default function AdminLayout({ children }) {
         {name: 'Теги', link: '/admin/dashboard/tags'},
         {name: 'Замовлення', link: '/admin/dashboard/orders'},
         {name: 'Користувачі', link: '/admin/dashboard/users'},
+        {name: 'Кольори', link: '/admin/dashboard/colors'},
     ]
     return (
-        <section className={` ${montserrat.className} wrap py-5 `}>
+        <section className={` ${montserrat.className} wrap py-5 relative`}>
             <div className="flex gap-5 border rounded-md border-gray-200 ">
                 <nav className="flex flex-col bg-gray-200 w-1/4">
                     {navLinks.map((item, index) => (
@@ -35,7 +41,6 @@ export default function AdminLayout({ children }) {
                 </div>
 
             </div>
-
         </section>
     )
         

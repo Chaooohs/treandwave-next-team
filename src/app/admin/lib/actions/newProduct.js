@@ -1,5 +1,7 @@
 'use server'
 import { cookies } from "next/headers";
+import { revalidatePath } from 'next/cache';
+import { redirect } from "next/navigation";
 
 export async function getCategories(params) {
     
@@ -36,6 +38,13 @@ export async function getColors(params) {
     return colors;
 }
 
+export async function getCollection(params) {
+    
+    let res = await fetch (`https://clothing-store-api-lh6l.onrender.com/api/v1/collection`)
+    let collection = await res.json();
+    return collection;
+}
+
 export async function getSizes(params) {
     
     let res = await fetch (`https://clothing-store-api-lh6l.onrender.com/api/v1/size`)
@@ -45,14 +54,14 @@ export async function getSizes(params) {
 
 //Images
 
-export async function addProduct(formData) {
+export async function addProduct(prevState, formData) {
     const token = cookies().get('adminToken');
     console.log('added goods', formData);
-
+    let redirectPath = null;
 
     if (!token?.value) {
         console.error('Отсутствует токен администратора');
-        return { error: 'Требуется авторизация' };
+        return { message: 'Требуется авторизация' };
     }
 
     try {
@@ -64,8 +73,7 @@ export async function addProduct(formData) {
 
         if (!mainImage || !mainImageColor) {
             console.error('Одне з полів відсутнє ');
-            alert('Одне з полів відсутнє ');
-            return { error: 'Не все поля заполнены' };
+            return { message: 'Не все поля заполнены' };
         }
         const mainImageFormData = new FormData();
         mainImageFormData.append('image', mainImage);
@@ -86,7 +94,7 @@ export async function addProduct(formData) {
         if (!mainImageRes.ok) {
             const errorData = await mainImageRes.json();
             console.error('Помилка додавання основної картинки:', errorData.message || 'помилка');
-            return {error: 'Помилка додавання основної картинки'}
+            return {message: 'Помилка додавання основної картинки'}
         }
 
         const mainImageData = await mainImageRes.json();
@@ -173,8 +181,10 @@ export async function addProduct(formData) {
         const subCategory = formData.get('subCategory');
         const model = formData.get('model');
         const tags = formData.get('tags');
+        const tagsArray = tags ? [tags] : [];
+        const collection = formData.get('collection');
         
-        console.log('productData перед отправкой', title, description, price, discountPercentage, article, isNew, category, subCategory, model, tags, colors, mainImageId);
+        console.log('productData перед отправкой', title, description, price, discountPercentage, article, isNew, category, subCategory, model, tags, colors, mainImageId, collection);
 
         const productRes = await fetch('https://clothing-store-api-lh6l.onrender.com/api/v1/catalog', {
             method: 'POST',
@@ -192,7 +202,8 @@ export async function addProduct(formData) {
                 category: category,
                 subCategory: subCategory,
                 model: model,
-                tags: [ tags ],
+                collection: collection,
+                tags: tagsArray,
                 colors: colors,
                 mainImageId: mainImageId,
               }),
@@ -201,20 +212,28 @@ export async function addProduct(formData) {
         if (!productRes.ok) {
             const errorData = await productRes.json();
             console.error('Помилка додавання товару:', errorData.message || 'помилка');
-            return {error: 'Помилка додавання товару'}
+            return {message: 'Помилка додавання товару'}
         }
 
         const product = await productRes.json();
-        console.log('товар додано', product);
-        return product
+        const productId = product.id;
+        
+        revalidatePath('/admin/dashboard/ptoducts');
+        console.log('товар додано', productId);
+        
+        redirectPath = `/admin/dashboard/products/${productId}`;
 
     } catch (error) {
         console.error('Помилка мережі:', error.message);
-        return{ error: 'Помилка мережі'}
+        return{ message: 'Помилка мережі'}
+
+    } finally {
+        if (redirectPath)
+            redirect(redirectPath);
     }
 }
 
-export async function deleteProduct(formData) {
+export async function deleteProduct(prevState, formData) {
     const token = cookies().get('adminToken');
     const id = formData.get('id');
     console.log('delete prod', formData, id)
@@ -233,8 +252,8 @@ export async function deleteProduct(formData) {
             console.error('Помилка видалення товару:', errorData.message || 'помилка');
             return {error: 'Помилка видалення товару'}
         }
-
-        console.log('товар видалений');
+        
+        revalidatePath('/admin/dashboard/ptoducts');
         return true;
 
     } catch (error) {

@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { addSubCategory } from "../actions/catagoryActions";
+import { addColor } from "../actions/colorsActions";
 import NotificationModal from "../notificationModal";
 import { useFormState } from 'react-dom';
 import { useFormStatus } from 'react-dom'
 
 const initialState = {
-    message: '',
-  };
+  message: '',
+};
 
 function SubmitButton() {
     const { pending, error } = useFormStatus();
@@ -17,14 +17,14 @@ function SubmitButton() {
         <button 
             type="submit" 
             className="bg-[#336CFF] p-2 rounded text-white uppercase">
-            {pending ? 'Додавання...' : 'Додати підкатегорію'}
+            {pending ? 'Додавання...' : 'Додати колір'}
         </button>
     );
 }
 
-export function AddSubCategoryForm({categories}) {
+export function AddColorForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [state, formAction] = useFormState(addSubCategory, initialState);
+    const [state, formAction] = useFormState(addColor, initialState);
 
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
@@ -35,7 +35,7 @@ export function AddSubCategoryForm({categories}) {
                 className="bg-[#336CFF] p-2 px-3 rounded text-white"
                 onClick={handleOpenModal}
             >
-                Додати підкатегорію
+                Додати колір
             </button>
             {isModalOpen && (
                 <div className="font-mont h-screen absolute top-0 right-0 bottom-0 left-0 z-50 flex items-center justify-center bg-black/40 ">
@@ -45,16 +45,12 @@ export function AddSubCategoryForm({categories}) {
                             onClick={handleCloseModal}>
                                 x
                         </button>
-                        <form action={formAction} className="flex flex-col gap-2">
-                            <label htmlFor="category">Оберіть категорію</label>
-                            <select name="category" id="category">
-                                {categories.map((category) => (
-                                    <option key={category.id} value={category.id}>{category.name}</option>
-                                ))}
-                            </select>
-                            <div></div>
-                            <label htmlFor="subcategory">Введіть нову підкатегорію</label>
-                            <input type="text" id="subcategory" name="subcategory" required  className="focus:outline-none bg-white ring-0 ring-offset-0 p-3 rounded w-full border-[#BABABA] border-[1px] hover:ring-[#336CFF] hover:border-[#336CFF] focus:ring-[#336CFF] focus:border-[#336CFF]"/>
+                        <form action={formAction} className="flex flex-col gap-5">
+                            <div className="flex flex-col gap-2">
+                                <label htmlFor="color">Введіть назву кольору</label>
+                                <input type="text" id="color" name="color" required  className="focus:outline-none bg-white ring-0 ring-offset-0 p-3 rounded w-full border-[#BABABA] border-[1px] hover:ring-[#336CFF] hover:border-[#336CFF] focus:ring-[#336CFF] focus:border-[#336CFF]"/>
+                            </div>
+                            
                             <SubmitButton />
                         </form>
                     </div>

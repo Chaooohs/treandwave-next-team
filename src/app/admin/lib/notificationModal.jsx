@@ -8,21 +8,19 @@ export default function NotificationModal({ message }) {
   useEffect(() => {
     if (message) {
       setNewMessage(message);
-      setIsVisible(true); // Показать уведомление при новом сообщении
+      setIsVisible(true); 
     }
-  }, [message]); // Следим за обновлением message
+  }, [message]); 
 
   useEffect(() => {
     if (newMessage && isVisible) {
       const timer = setTimeout(() => {
-        setIsVisible(false); // Скрыть уведомление через 5 секунд
+        setIsVisible(false);
       }, 3000);
 
-      return () => clearTimeout(timer); // Очистить таймер при размонтировании
+      return () => clearTimeout(timer); 
     }
-  }, [newMessage, isVisible]); // Таймер запускается при изменении newMessage
-
-//   if (!isVisible || !newMessage) return null; // Уведомление не отображается, если нет текста или оно скрыто
+  }, [newMessage, isVisible]); 
 
   return (
     <div>

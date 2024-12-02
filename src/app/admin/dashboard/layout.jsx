@@ -22,6 +22,8 @@ export default function AdminLayout({ children }) {
         {name: 'Замовлення', link: '/admin/dashboard/orders'},
         {name: 'Користувачі', link: '/admin/dashboard/users'},
         {name: 'Кольори', link: '/admin/dashboard/colors'},
+        {name: 'Моделі', link: '/admin/dashboard/model'},
+        {name: 'Колекції', link: '/admin/dashboard/collection'},
     ]
     return (
         <section className={` ${montserrat.className} wrap py-5 relative`}>

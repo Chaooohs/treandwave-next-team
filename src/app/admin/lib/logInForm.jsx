@@ -1,8 +1,10 @@
 'use client';
-import { useRouter } from "next/navigation";
+
 import { signup } from "./actions/auth";
 import { Montserrat } from "next/font/google";
-
+import NotificationModal from "./notificationModal";
+import { useFormState } from 'react-dom';
+import { useFormStatus } from 'react-dom';
 
 const montserrat = Montserrat({
     subsets: ['cyrillic'],
@@ -11,12 +13,18 @@ const montserrat = Montserrat({
     weight: ['400', '500', '600']
   })
 
-export default function LogInForm({}) {
-    const router = useRouter();
+  const initialState = {
+   message: '',
+ };
 
+export default function LogInForm({}) {
+
+    const { pending, error } = useFormStatus();
+    const [state, formAction] = useFormState(signup, initialState);
 
     return(
-        <form  className='space-y-3' action={signup}>
+      <div className="relative">
+        <form  className='space-y-3' action={formAction}>
          <div className='flex flex-col rounded-lg bg-slate-50 px-6 pb-4 pt-8 gap-5'>
             <h1 className={`${montserrat.className} mb-3 text-xl `}>
                Будь-ласка авторизуйтесь, щоб продовжити
@@ -65,10 +73,14 @@ export default function LogInForm({}) {
                </div>
             </div>
             <button type="submit"  className="bg-[#0047FF] w-full uppercase text-white p-4 rounded">
-                Увійти
+            {pending ? 'Вхід...' : 'Увійти'}
             </button>
 
          </div>
       </form>
+      <div className=" w-full h-full relative">
+         <NotificationModal message={state?.message}/>
+      </div>
+      </div>
     )
 }

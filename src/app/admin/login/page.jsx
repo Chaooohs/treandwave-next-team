@@ -1,10 +1,5 @@
 
 import LogInForm from '../lib/logInForm';
-import { Metadata } from 'next';
-
-export const metadata = {
-   title: 'Login',
-};
 
 
 export default function LoginPage() {

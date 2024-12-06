@@ -2,7 +2,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export async function signup(formData) {
+export async function signup(prevState, formData) {
     const email = formData.get('email');
     const password = formData.get('password');
     const cookieStore = cookies();
@@ -33,7 +33,7 @@ export async function signup(formData) {
         
     } else {
         console.error('Authorithation error');
-        return { error: 'Authentication failed' };
+        return { message: 'Authentication failed' };
     }
 
 }

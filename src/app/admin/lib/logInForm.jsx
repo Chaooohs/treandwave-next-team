@@ -27,7 +27,7 @@ export default function LogInForm({}) {
         <form  className='space-y-3' action={formAction}>
          <div className='flex flex-col rounded-lg bg-slate-50 px-6 pb-4 pt-8 gap-5'>
             <h1 className={`${montserrat.className} mb-3 text-xl `}>
-               Будь-ласка авторизуйтесь, щоб продовжити
+               Будь-ласка авторизуйтесь, щоб продовжити g
             </h1>
             <div className='w-full'>
                <div>
@@ -73,7 +73,7 @@ export default function LogInForm({}) {
                </div>
             </div>
             <button type="submit"  className="bg-[#0047FF] w-full uppercase text-white p-4 rounded">
-            {pending ? 'Вхід...' : 'Увійти'}
+               {pending ? 'Вхід...' : 'Увійти'}
             </button>
 
          </div>

@@ -180,7 +180,7 @@ export function Filter() {
                   <label
                     htmlFor={`color${index}`}
                     className='cursor-pointer rounded-full relative'
-                    style={{ border: el.colorName === 'white' ? '1px solid #E7E7E7' : `1px solid ${el.colorName}`, backgroundColor: el.colorName, width: '24px', height: '24px' }}
+                    style={{ border: el.colorName === 'white' ? '1px solid #E7E7E7' : `1px solid ${el.hex}`, backgroundColor: el.hex, width: '24px', height: '24px' }}
                   >
                   </label>
                 </div>

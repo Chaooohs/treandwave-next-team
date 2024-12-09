@@ -4,6 +4,7 @@ import { updateCollection } from '../actions/collectionActions';
 import { useFormState } from 'react-dom';
 import { useFormStatus } from 'react-dom';
 import NotificationModal from "../notificationModal";
+import { PenLine } from 'lucide-react';
 
 const initialState = {
   message: '',
@@ -29,16 +30,19 @@ export function UpdateCollectionForm({ id }) {
   const handleCloseModal = () => setIsModalOpen(false);
 
   return (
-    <div className="z-20">
-      <button
-          className="bg-[#336CFF] p-2 px-3 rounded text-white"
-          onClick={handleOpenModal}
-      >
-          Редагувати
-      </button>
+    <div className="">
+    <div className="">
+      <div className="relative z-10">
+        <button
+            className="bg-[#336CFF] p-2 rounded text-white"
+            onClick={handleOpenModal}
+        >
+            <PenLine/>
+        </button>
+      </div>
       {isModalOpen && (
-        <div className="font-mont h-screen absolute top-0 right-0 bottom-0 left-0 z-50 flex items-center justify-center bg-black/40 ">
-          <div className="bg-white relative p-10 rounded lap:w-1/2 w-1/2">
+        <div className="font-mont h-screen absolute top-0 right-0 bottom-0 left-0 z-30 flex items-center justify-center bg-black/40 ">
+          <div className="bg-white relative p-10 rounded mob:w-[90%] lap:w-1/2 w-1/2 z-40">
             <button 
                 className="absolute top-5 right-5"
                 onClick={handleCloseModal}>
@@ -57,9 +61,8 @@ export function UpdateCollectionForm({ id }) {
           </div>
         </div>
       )}
-      <div className="w-full h-full relative">
-        <NotificationModal message={state?.message}/>
-      </div>
+    </div>
+    <NotificationModal message={state?.message}/>
     </div>
   );
 }

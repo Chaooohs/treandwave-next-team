@@ -11,7 +11,7 @@ export default async function CollectionPage() {
 
     return(
         <div className="flex flex-col w-full justify-center items-center gap-5">
-            <AdminTitle text={'Теги'}/>
+            <AdminTitle text={'Колекції'}/>
             <div className=" flex flex-col gap-5">
                 <AddCollectionForm />
                 <ul className="flex flex-col gap-2">

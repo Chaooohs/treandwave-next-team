@@ -41,7 +41,7 @@ export async function signup(prevState, formData) {
         });
 
         console.log("Cookie set successfully.");
-        redirect('/admin/dashboard');
+        redirect('/admin');
 
     
 }

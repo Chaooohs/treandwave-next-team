@@ -4,6 +4,7 @@ import { deleteCollection } from '../actions/collectionActions';
 import { useFormState } from 'react-dom';
 import { useFormStatus } from 'react-dom';
 import NotificationModal from "../notificationModal";
+import { Trash2 } from 'lucide-react';
 
 const initialState = {
   message: '',
@@ -16,8 +17,8 @@ function DeleteButton() {
     <button 
         disabled={pending}
         type="submit"  
-        className="rounded p-2 border border-red-600">
-          {pending ? 'Видалення...' : 'Видалити'}
+        className="rounded p-2 border border-red-600 w-10">
+          {pending ? <Trash2 color='gray'/> : <Trash2 />}
     </button>
   );
 }
@@ -27,7 +28,7 @@ export function DeleteCollectionForm({ id }) {
   
   return (
     <div className="relative">
-      <form action={formAction}>
+      <form action={formAction} className='flex items-center justify-center'>
         <input type="hidden" name="id" value={id} />
         <DeleteButton />
       </form>

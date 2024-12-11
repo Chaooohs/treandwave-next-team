@@ -218,10 +218,10 @@ export async function addProduct(prevState, formData) {
         const product = await productRes.json();
         const productId = product.id;
         
-        revalidatePath('/admin/dashboard/ptoducts');
+        revalidatePath('/admin/ptoducts');
         console.log('товар додано', productId);
         
-        redirectPath = `/admin/dashboard/products/${productId}`;
+        redirectPath = `/admin/products/${productId}`;
 
     } catch (error) {
         console.error('Помилка мережі:', error.message);
@@ -253,7 +253,7 @@ export async function deleteProduct(prevState, formData) {
             return {error: 'Помилка видалення товару'}
         }
         
-        revalidatePath('/admin/dashboard/ptoducts');
+        revalidatePath('/admin/ptoducts');
         return true;
 
     } catch (error) {

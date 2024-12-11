@@ -13,20 +13,16 @@ export default async function NewProductPage() {
     const collection = await getCollection();
 
     return(
-        <div>
+        <div className="flex flex-col w-full justify-center items-center gap-5">
             <AdminTitle text={'Сторінка додавання'}/>
-            <div>
-                <AddProductForm 
-                    colorsList={colorsList}
-                    tags={tags}
-                    models={models}
-                    categories={categories}
-                    sizes={sizes}
-                    collection={collection}
-                />
-            </div>
-
-
+            <AddProductForm 
+                colorsList={colorsList}
+                tags={tags}
+                models={models}
+                categories={categories}
+                sizes={sizes}
+                collection={collection}
+            />
         </div>
     )
 }

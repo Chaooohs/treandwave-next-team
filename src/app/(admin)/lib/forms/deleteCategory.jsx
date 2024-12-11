@@ -3,7 +3,8 @@
 import { deleteCategory } from "../actions/catagoryActions";
 import NotificationModal from "../notificationModal";
 import { useFormState } from 'react-dom';
-import { useFormStatus } from 'react-dom'
+import { useFormStatus } from 'react-dom';
+import { Trash2 } from 'lucide-react';
 
 const initialState = {
   message: '',
@@ -16,7 +17,7 @@ function DeleteButton() {
     <button 
         type="submit"  
         className="rounded p-2 border border-red-600 text-nowrap hover:bg-blue-50">
-        {pending ? 'Видалення...' : 'Видалити категорію'}
+        {pending ? <Trash2 color='gray'/> : <Trash2 />}
     </button>
   );
 }

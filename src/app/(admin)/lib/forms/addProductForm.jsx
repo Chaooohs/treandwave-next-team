@@ -63,12 +63,12 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
 
 
   return (
-    <div className="relative">
-        <div className="w-full h-full relative">
+    <div className="w-full flex-col relative">
+        <div className=" relative">
           <NotificationModal message={state?.message}/>
-      </div>
-        <form action={formAction} className="flex w-full flex-col gap-5">
-            <div className="border border-[#0047FF] rounded p-5 flex w-full flex-col gap-2">
+        </div>
+        <form action={formAction} className="flex w-full flex-col gap-10">
+            <div className="border border-[#0047FF] mob:border-0 rounded p-5 mob:p-0 flex w-full flex-col gap-2">
                 <label htmlFor="title">Назва товару</label>
                 <input
                     type="text"
@@ -85,7 +85,7 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
                     required
                     className="focus:outline-none bg-white ring-0 ring-offset-0 p-3 rounded w-full border-[#BABABA] border-[1px] hover:ring-[#336CFF] hover:border-[#336CFF] focus:ring-[#336CFF] focus:border-[#336CFF]"
                 />
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 mob:grid-cols-1 gap-2">
                     <div>
                         <label htmlFor="price">Ціна</label>
                         <input
@@ -107,7 +107,7 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
                         />
                     </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 mob:flex-col">
                     <div>
                         <label htmlFor="article">Артикул</label>
                         <input
@@ -130,7 +130,7 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
                         </select>
                     </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 mob:flex-col">
                 <div>
                     <label htmlFor="category">Категорія</label>
                     <select
@@ -217,7 +217,7 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
                     </div>
                 </div>
             </div>
-            <div className="border border-[#0047FF] rounded p-5 flex flex-col gap-2">
+            <div className="border border-[#0047FF] mob:border-0 rounded p-5 mob:p-0 flex flex-col gap-2">
                 <h3>Фото товару</h3>
                 {additionalFields.map((field, index) => (
                     <div key={index} className="flex flex-col gap-5">
@@ -239,7 +239,7 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
                         />
                         <div className="flex flex-col gap-2">
                             {additionalSizeFields.map((field, subindex) => (
-                                <div key={subindex} className="flex gap-2">
+                                <div key={subindex} className="flex mob:flex-col gap-2">
                                     <select
                                         name={`sizes_${index}_${subindex}`}
                                         className="capitalize focus:outline-none bg-white ring-0 ring-offset-0 p-3 rounded w-full border-[#BABABA] border-[1px] hover:ring-[#336CFF] hover:border-[#336CFF] focus:ring-[#336CFF] focus:border-[#336CFF]"

@@ -38,8 +38,8 @@ export function AddCategoryForm() {
                 Додати категорію
             </button>
             {isModalOpen && (
-                <div className="font-mont h-screen absolute top-0 right-0 bottom-0 left-0 z-50 flex items-center justify-center bg-black/40 ">
-                    <div className="bg-white relative p-10 rounded lap:w-1/2 w-1/2">
+                <div className="fixed top-0 font-mont h-screen w-screen right-0 bottom-0 left-0 z-50 flex items-center justify-center bg-black/40 ">
+                    <div className="bg-white relative p-10 rounded mob:w-[80%] lap:w-1/2 w-1/2">
                         <button 
                             className="absolute top-5 right-5"
                             onClick={handleCloseModal}>

@@ -13,7 +13,7 @@ export default function NavigationMobile({ navLinks }) {
   return (
     <div className="absolute mob:block hidden top-0 w-full ">
       <div className="relative">
-        <div className=" bg-gray-100 p-5 w-20">
+        <div className=" bg-gray-100 p-2 w-14">
           <button
               className="p-2 text-gray-800 "
               onClick={() => setIsMenuOpen(!isMenuOpen)}

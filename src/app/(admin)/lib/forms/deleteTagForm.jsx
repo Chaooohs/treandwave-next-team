@@ -4,6 +4,7 @@ import { deleteTag } from "../actions/tagActions";
 import { useFormState } from 'react-dom';
 import { useFormStatus } from 'react-dom';
 import NotificationModal from "../notificationModal";
+import { Trash2 } from 'lucide-react';
 
 const initialState = {
   message: '',
@@ -17,7 +18,7 @@ function DeleteButton() {
         disabled={pending}
         type="submit"  
         className="rounded p-2 border border-red-600">
-          {pending ? 'Видалення...' : 'Видалити'}
+          {pending ? <Trash2 color='gray'/> : <Trash2 />}
     </button>
   );
 }

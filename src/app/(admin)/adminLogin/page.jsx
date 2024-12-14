@@ -1,5 +1,5 @@
 
-import LogInForm from '../lib/logInForm';
+import LogInForm from '../lib/forms/logInForm';
 
 
 export default function LoginPage() {

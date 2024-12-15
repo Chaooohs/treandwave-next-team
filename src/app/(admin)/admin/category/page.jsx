@@ -7,6 +7,7 @@ import { AddSubCategoryForm } from "../../lib/forms/addSubCategory";
 
 export default async function CategoryPage() {
     const categories = await getCategories();
+    console.log('categories', categories);
 
     return(
         <div className="flex flex-col w-full justify-center items-center gap-5">

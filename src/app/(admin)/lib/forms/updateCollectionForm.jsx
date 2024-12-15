@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { updateCollection } from '../actions/collectionActions';
 import { useFormState } from 'react-dom';
 import { useFormStatus } from 'react-dom';
@@ -29,6 +29,12 @@ export function UpdateCollectionForm({ id }) {
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
+  useEffect(() => {
+    if (state?.message === 'Renamed successfully') {
+        setIsModalOpen(false);
+    }
+}, [state]);
+
   return (
     <div className="">
     <div className="">
@@ -41,7 +47,7 @@ export function UpdateCollectionForm({ id }) {
         </button>
       </div>
       {isModalOpen && (
-        <div className="font-mont h-screen absolute top-0 right-0 bottom-0 left-0 z-30 flex items-center justify-center bg-black/40 ">
+        <div  className="fixed top-0 font-mont h-screen w-screen right-0 bottom-0 left-0 z-50 flex items-center justify-center bg-black/40 ">
           <div className="bg-white relative p-10 rounded mob:w-[90%] lap:w-1/2 w-1/2 z-40">
             <button 
                 className="absolute top-5 right-5"

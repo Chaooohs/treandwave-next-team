@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addCategory } from "../actions/catagoryActions";
 import NotificationModal from "../notificationModal";
 import { useFormState } from 'react-dom';
@@ -28,6 +28,12 @@ export function AddCategoryForm() {
 
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
+
+    useEffect(() => {
+        if (state?.message === 'Category added successfully') {
+            setIsModalOpen(false);
+        }
+    }, [state]);
 
     return (
         <div className="">

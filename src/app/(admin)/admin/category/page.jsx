@@ -6,20 +6,20 @@ import { DeleteSubCategoryForm } from "../../lib/forms/deleteSubCategoryForm";
 import { AddSubCategoryForm } from "../../lib/forms/addSubCategory";
 
 export default async function CategoryPage() {
-    let categories = await getCategories();
-    console.log(categories[13])
+    const categories = await getCategories();
+    console.log('categories', categories);
 
     return(
-        <div className="flex w-full flex-col justify-center items-start">
+        <div className="flex flex-col w-full justify-center items-center gap-5">
             <AdminTitle text={'Категорії'}/>
-            <div className=" flex flex-col gap-5">
+            <div className="w-full flex flex-col gap-5">
                 <div className=" flex gap-5">
                     <AddCategoryForm />
                     <AddSubCategoryForm categories={categories}/>
                 </div>
-                <ul className="flex flex-col gap-5">
+                <ul className="w-full flex flex-col gap-5">
                     {categories.map((category) => (
-                    <li key={category.id} className="flex gap-5 justify-between uppercase">
+                    <li key={category.id} className="w-full flex gap-5 justify-between uppercase border-l rounded border-slate-100 ">
                         <span className="flex flex-col w-full gap-2">
                             <p className="bg-slate-100 p-2 px-3 rounded w-full text-center">{category.name}</p>
                             {category.subCategories.length > 0 && 

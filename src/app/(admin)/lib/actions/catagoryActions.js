@@ -6,8 +6,9 @@ const API_BASE_URL = 'https://clothing-store-api-lh6l.onrender.com/api/v1';
 
 
 export async function getCategories(params) {
-    let res = await fetch (`${API_BASE_URL}/category`)
+    let res = await fetch (`${API_BASE_URL}/category`, { cache: 'no-store' })
     let categories = await res.json();
+    revalidatePath('/admin/dashboard/category');
     return categories;
 }
 
@@ -41,6 +42,7 @@ export async function addCategory(prevState, formData) {
             return {message: 'Помилка додавання категорії'}
         }
         revalidatePath('/admin/dashboard/category');
+        return{message: 'Category added successfully'}
 
     } catch (error) {
         console.error('Помилка мережі:', error.message);
@@ -96,6 +98,7 @@ export async function addSubCategory(prevState, formData) {
             return {message: 'Помилка додавання підкатегорії'}
         }
         revalidatePath('/admin/dashboard/category');
+        return{message: 'Subcategory added successfully'};
 
     } catch (error) {
         console.error('Помилка мережі:', error.message);

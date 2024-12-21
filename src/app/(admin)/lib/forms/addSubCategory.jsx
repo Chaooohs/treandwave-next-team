@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { addSubCategory } from "../actions/catagoryActions";
 import NotificationModal from "../notificationModal";
 import { useFormState } from 'react-dom';
@@ -29,6 +29,12 @@ export function AddSubCategoryForm({categories}) {
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
 
+    useEffect(() => {
+        if (state?.message === 'Subcategory added successfully') {
+            setIsModalOpen(false);
+        }
+    }, [state]);
+
     return (
         <div className="">
             <button
@@ -38,8 +44,8 @@ export function AddSubCategoryForm({categories}) {
                 Додати підкатегорію
             </button>
             {isModalOpen && (
-                <div className="font-mont h-screen absolute top-0 right-0 bottom-0 left-0 z-50 flex items-center justify-center bg-black/40 ">
-                    <div className="bg-white relative p-10 rounded lap:w-1/2 w-1/2">
+                <div className="font-mont h-screen fixed top-0 right-0 bottom-0 left-0 z-50 flex items-center justify-center bg-black/40 ">
+                    <div className="bg-white relative p-10 rounded mob:w-[80%] lap:w-1/2 w-1/2">
                         <button 
                             className="absolute top-5 right-5"
                             onClick={handleCloseModal}>
@@ -47,7 +53,7 @@ export function AddSubCategoryForm({categories}) {
                         </button>
                         <form action={formAction} className="flex flex-col gap-2">
                             <label htmlFor="category">Оберіть категорію</label>
-                            <select name="category" id="category">
+                            <select name="category" id="category" className="p-2">
                                 {categories.map((category) => (
                                     <option key={category.id} value={category.id}>{category.name}</option>
                                 ))}

@@ -26,7 +26,7 @@ function SubmitButton() {
        disabled={pending}
        type="submit"  
        className="bg-[#0047FF] w-full uppercase flex text-white p-4 rounded items-center justify-center">
-         {pending ? <LoaderCircle class="animate-spin h-5 w-5 mr-3 ..."/> : ''}
+         {pending ? <LoaderCircle className="animate-spin h-5 w-5 mr-3 ..."/> : ''}
          {pending ? 'Вхід' : 'Увійти'}
    </button>
  );

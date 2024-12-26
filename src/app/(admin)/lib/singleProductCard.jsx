@@ -119,7 +119,7 @@ export default function SingleProductCard({ product }) {
       {/* Поля для редактирования */}
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-2">
-          <h3>Назва:</h3>
+          <label>Назва:</label>
           <input
             type="text"
             value={title}

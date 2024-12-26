@@ -3,6 +3,8 @@ import { cookies } from "next/headers";
 import { revalidatePath } from 'next/cache';
 import { redirect } from "next/navigation";
 
+const API_BASE_URL = 'https://clothing-store-api-lh6l.onrender.com/api/v1';
+
 export async function getCategories(params) {
     
     let res = await fetch (`https://clothing-store-api-lh6l.onrender.com/api/v1/category`)
@@ -259,5 +261,146 @@ export async function deleteProduct(prevState, formData) {
     } catch (error) {
         console.error('Помилка мережі:', error.message);
         return{ error: 'Помилка мережі'}
+    }
+}
+
+
+export async function editProduct(prevState, formData) {
+    const token = cookies().get('adminToken');
+    console.log('edit information', formData);
+    let redirectPath = null;
+    let tagsArray = [];
+    let allImageIds = [];
+
+    if (!token?.value) {
+        console.error('Отсутствует токен администратора');
+        return { message: 'Требуется авторизация' };
+    }
+
+    try {
+        const title = formData.get('title');
+        const productId = formData.get('productId');
+        const description = formData.get('description');
+        const price = parseFloat(formData.get('price'));
+        const discountPercentage = parseFloat(formData.get('discountPercentage'));
+        const article = formData.get('article');
+        const isNew = JSON.parse(formData.get('isNew'));
+        const category = parseInt(formData.get('category'), 10);
+        const subCategory = parseInt(formData.get('subCategory'), 10);
+        const model = parseInt(formData.get('model'), 10);
+        const tags = formData.getAll('tags');
+        tagsArray = tags.map(Number);
+        console.log('tags', tags);
+        const images = formData.getAll('image');
+        allImageIds = images.map(Number);
+
+        // if (typeof tags === 'string') {
+        //     console.log('это строка, разбиваем её в массив');
+        //     // Если это строка, разбиваем её в массив
+        //     tagsArray = [parseInt(tags, 10)]
+        // } else if (Array.isArray(tags)) {
+        //     console.log('это массив, просто копируем его');
+        //     // Если это массив, просто копируем его
+        //     tagsArray = tags.map(Number);
+        // }
+        
+        console.log('tagsArray:', tagsArray);
+        console.log('allimages', allImageIds)
+        const collection = parseInt(formData.get('collection'), 10);
+        
+        console.log('productData перед отправкой', title, description, price, discountPercentage, article, isNew, category, subCategory, model, tags, tagsArray, collection);
+
+        const productRes = await fetch(`${API_BASE_URL}/catalog/${productId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${token.value}`
+            },
+            body: JSON.stringify({
+                title: title,
+                description: description,
+                price: price,
+                discountPercentage: discountPercentage,
+                article: article,
+                isNew: isNew,
+                imagesIds: allImageIds,
+                categoryId: category,
+                subCategoryId: subCategory,
+                modelId: model,
+                collectionId: collection,
+                tagsIds: tagsArray,
+              }),
+        });
+
+        if (!productRes.ok) {
+            const errorData = await productRes.json();
+            console.error('Помилка додавання товару:', errorData.message || 'помилка');
+            return {message: 'Помилка додавання товару'}
+        }
+
+        const product = await productRes.json();
+        
+        revalidatePath('/admin/ptoducts');
+        console.log('товар додано', productId);
+        
+        redirectPath = `/admin/products`;
+
+    } catch (error) {
+        console.error('Помилка мережі:', error.message);
+        return{ message: 'Помилка мережі'}
+
+    } finally {
+        if (redirectPath)
+            redirect(redirectPath);
+    }
+}
+
+
+export default async function AddImages (prevState, formData) {
+
+    const token = cookies().get('adminToken');
+    console.log('AddImages information', formData);
+    const dataEntries = Array.from(formData.entries());
+    console.log('dataEntries', dataEntries);
+    const title = formData.get('title');
+    const imageEntries = dataEntries.filter(([key]) => key.startsWith('image_'));
+    console.log('imageEntry', imageEntries);
+    const index = imageEntries[0][0].split('_')[1];
+    console.log(index);
+    const colorName = formData.get(`colorName_${index}`);
+    const imagesAlt = `${title}_${colorName}_image`;
+
+    const payload = new FormData();
+    for (const [key, images] of imageEntries) {
+        payload.append('images', images);
+    }
+    payload.append('imagesAlt', imagesAlt);
+    payload.append('colorName', colorName);
+    console.log('payload', payload);
+
+    try {
+        const addingImagesRes = await fetch('https://clothing-store-api-lh6l.onrender.com/api/v1/image/with-color', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token.value}`
+            },
+            body: payload,
+        });
+    
+        if (!addingImagesRes.ok) {
+            const errorData = await colorRes.json();
+            console.error('Помилка додавання картинок:', errorData.message || 'помилка');
+            return {message: 'Помилка додавання картинок'}
+        }
+        const newImageData = await addingImagesRes.json();
+        // const colorId = newImageData.colorId;
+        // const imageIds = newImageData.imageIds;
+        // console.log('newImageData', newImageData);
+        // console.log(colorId, imageIds);
+        return {message: `Картинки додались успішно`, newImageData}
+        
+    } catch (error) {
+        console.error('Помилка мережі:', error.message);
+        return{ message: 'Помилка мережі'}
     }
 }

@@ -1,6 +1,4 @@
 
-import Image from "next/image";
-import SingleProductCard from "../../../lib/singleProductCard";
 import { UpdateProductForm } from "@/app/(admin)/lib/forms/updateProductForm";
 import { getColors, getTags, getModel, getCategories, getSizes, getCollection } from "@/app/(admin)/lib/actions/newProduct";
 
@@ -19,11 +17,9 @@ export default async function SingleProductPage({params}) {
     const sizes = await getSizes();
     const collection = await getCollection();
 
-    // console.log('singleProductData',singleProductData);
     return(
         <div className="w-full">
-            <SingleProductCard product={singleProductData}/> 
-            {/* <UpdateProductForm 
+            <UpdateProductForm 
                 data={singleProductData}
                 colorsList={colorsList}
                 tags={tags}
@@ -31,7 +27,7 @@ export default async function SingleProductPage({params}) {
                 categories={categories}
                 sizes={sizes}
                 collection={collection}
-            /> */}
+            />
         </div>
     )
 }

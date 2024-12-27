@@ -159,7 +159,7 @@ export async function addProduct(prevState, formData) {
 
                 const colorImageData = await colorRes.json();
                 const colorId = colorImageData.colorId;
-                const imageIds = colorImageData.imageIds;
+                const imageIds = colorImageData.uploadedImages.id;
                 
                 colors.push({ 
                     colorId, 

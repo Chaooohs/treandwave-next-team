@@ -1,10 +1,8 @@
 'use client';
 
-import { ChevronLeft, ChevronRight} from 'lucide-react';
 import Link from 'next/link';
 import { createUrl } from './utils/createUrl';
-
-import { usePathname, useSearchParams, useRouter } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export default function Pagination({ totalPages, limit }) {
     const pathname = usePathname();
@@ -34,9 +32,7 @@ export default function Pagination({ totalPages, limit }) {
                     totalPages
                 );
             }
-            console.log('pages',pages);
             return pages;
-            
         }
     }
 

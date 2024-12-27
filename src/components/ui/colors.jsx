@@ -1,3 +1,5 @@
+'use client'
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addColor, removeColor } from "@/redux/features/textureSlice";
 import { setColorCardColor, setColorCardIndex } from "@/redux/features/choiseCardColorSlice";
@@ -6,6 +8,11 @@ import { cn } from "@/lib/utils";
 export const Colors = ({ colors, width, height, className }) => {
   const dispatch = useDispatch();
   const colorChoise = useSelector((state) => state.colorCard.color);
+  
+  useEffect(() => {
+    dispatch(setColorCardColor(colors?.[0].colorName));
+    console.log(colors?.[0].colorName)
+  }, [colors])
 
   const onChange = (e) => {
     const value = e.target.value;
@@ -21,6 +28,7 @@ export const Colors = ({ colors, width, height, className }) => {
     dispatch(setColorCardIndex(index));
     dispatch(setColorCardColor(color));
   };
+
 
   return (
     <div className={cn("flex gap-x-4", className)}>
@@ -44,8 +52,8 @@ export const Colors = ({ colors, width, height, className }) => {
                 style={{
                   border: color.colorName === "white" ? "1px solid #E7E7E7" : `1px solid ${color.colorName}`,
                   backgroundColor: color.colorName,
-                  width: "24px",
-                  height: "24px",
+                  width: width,
+                  height: height,
                 }}></label>
             </div>
           );

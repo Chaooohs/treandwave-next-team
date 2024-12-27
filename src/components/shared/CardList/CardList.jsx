@@ -82,7 +82,7 @@ export default function CardList() {
     dispatch(setPage(e.selected + 1))
   }
 
-
+  
   return (
     <div className="bg-white pt-10 pb-20 font-mont w-full flex flex-col gap-5 xl:gap-10">
       <div className="relative flex flex-col gap-6">

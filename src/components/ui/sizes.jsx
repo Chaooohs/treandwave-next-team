@@ -1,10 +1,11 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { addSize, removeSize } from "@/redux/features/textureSlice"
 import { cn } from "@/lib/utils"
 
 
-export const Sizes = ({ sizes, width, height, className, onHandleClick }) => {
+export const Sizes = ({ colors, width, height, className, onHandleClick }) => {
   const dispatch = useDispatch()
+  const colorChoiseIndex = useSelector((state) => state.colorCard.index);
 
   const onChange = (e) => {
     const value = e.target.value
@@ -14,20 +15,20 @@ export const Sizes = ({ sizes, width, height, className, onHandleClick }) => {
     } else if (!checked) {
       dispatch(removeSize(value))
     }
-
   }
+
 
   return (
     <div className={cn("flex flex-wrap gap-2 w-[344px] mob:w-full", className)}>
       {
-        Array.isArray(sizes) &&
-        sizes?.map((size, index) => {
+        Array.isArray(colors) &&
+        colors[colorChoiseIndex].sizes?.map((size, index) => {
           return (
             <div key={index}>
               <input
                 type="radio"
                 name="size"
-                value={size.size}
+                value={size.size.name}
                 id={`size${index}`}
                 onChange={onChange}
                 onClick={onHandleClick}
@@ -38,7 +39,7 @@ export const Sizes = ({ sizes, width, height, className, onHandleClick }) => {
                 className='rounded flex items-center justify-center font-semibold text-sm cursor-pointer'
                 style={{ width: width, height: height, border: '1px solid #ededed', textTransform: 'uppercase' }}
               >
-                {size.size}
+                {size.size.name}
               </label>
             </div>
           )

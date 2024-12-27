@@ -131,11 +131,11 @@ export default function Page() {
 
               <div className="mt-8 gap-x-4">
                 <Title text='колір:' size="xs" className='font-semibold uppercase lap:text-base' />
-                <Colors colors={product?.colors} width='36px' height='36px' className='mt-3' />
+                <Colors colors={product?.colors} width='24px' height='24px' className='mt-3' />
               </div>
 
               <Title text='розмір:' size="xs" className='font-semibold uppercase mt-8 lap:text-base' />
-              <Sizes sizes={product?.sizes} width='58px' height='36px' className='mt-3' onHandleClick={handleClickSize} />
+              <Sizes colors={product?.colors} width='58px' height='36px' className='mt-3' onHandleClick={handleClickSize} />
 
               <div className="flex my-8 lap:flex-col lap:gap-y-3">
                 <Button

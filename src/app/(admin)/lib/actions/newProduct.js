@@ -3,53 +3,53 @@ import { cookies } from "next/headers";
 import { revalidatePath } from 'next/cache';
 import { redirect } from "next/navigation";
 
-const API_BASE_URL = 'https://clothing-store-api-lh6l.onrender.com/api/v1';
+const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function getCategories(params) {
     
-    let res = await fetch (`https://clothing-store-api-lh6l.onrender.com/api/v1/category`)
+    let res = await fetch (`${API_BASE_URL}/category`)
     let categories = await res.json();
     return categories;
 }
 
 export async function getSubCategories(params) {
     
-    let res = await fetch (`https://clothing-store-api-lh6l.onrender.com/api/v1/category/${params}`)
+    let res = await fetch (`${API_BASE_URL}/category/${params}`)
     let subCategories = await res.json();
     return subCategories;
 }
 
 export async function getModel(params) {
     
-    let res = await fetch (`https://clothing-store-api-lh6l.onrender.com/api/v1/model`)
+    let res = await fetch (`${API_BASE_URL}/model`)
     let models = await res.json();
     return models;
 }
 
 export async function getTags(params) {
     
-    let res = await fetch (`https://clothing-store-api-lh6l.onrender.com/api/v1/tag`)
+    let res = await fetch (`${API_BASE_URL}/tag`)
     let tags = await res.json();
     return tags;
 }
 
 export async function getColors(params) {
     
-    let res = await fetch (`https://clothing-store-api-lh6l.onrender.com/api/v1/color`)
+    let res = await fetch (`${API_BASE_URL}/color`)
     let colors = await res.json();
     return colors;
 }
 
 export async function getCollection(params) {
     
-    let res = await fetch (`https://clothing-store-api-lh6l.onrender.com/api/v1/collection`)
+    let res = await fetch (`${API_BASE_URL}/collection`)
     let collection = await res.json();
     return collection;
 }
 
 export async function getSizes(params) {
     
-    let res = await fetch (`https://clothing-store-api-lh6l.onrender.com/api/v1/size`)
+    let res = await fetch (`${API_BASE_URL}/size`)
     let sizes = await res.json();
     return sizes;
 }
@@ -85,7 +85,7 @@ export async function addProduct(prevState, formData) {
         console.log('main image data перед отправкой', mainImageColor, mainImageAlt, mainImage);
         console.log('mainImageFormData перед отправкой', mainImageFormData);
 
-        const mainImageRes = await fetch('https://clothing-store-api-lh6l.onrender.com/api/v1/image', {
+        const mainImageRes = await fetch(`${API_BASE_URL}/image`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token.value}`
@@ -143,7 +143,7 @@ export async function addProduct(prevState, formData) {
 
                 console.log('colorFormData', colorFormData);
 
-                const colorRes = await fetch('https://clothing-store-api-lh6l.onrender.com/api/v1/image/with-color', {
+                const colorRes = await fetch(`${API_BASE_URL}/image/with-color`, {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token.value}`
@@ -159,7 +159,7 @@ export async function addProduct(prevState, formData) {
 
                 const colorImageData = await colorRes.json();
                 const colorId = colorImageData.colorId;
-                const imageIds = colorImageData.uploadedImages.id;
+                const imageIds = colorImageData.uploadedImages.map(img => img.id);
                 
                 colors.push({ 
                     colorId, 
@@ -188,7 +188,7 @@ export async function addProduct(prevState, formData) {
         
         console.log('productData перед отправкой', title, description, price, discountPercentage, article, isNew, category, subCategory, model, tags, colors, mainImageId, collection);
 
-        const productRes = await fetch('https://clothing-store-api-lh6l.onrender.com/api/v1/catalog', {
+        const productRes = await fetch(`${API_BASE_URL}/catalog`, {
             method: 'POST',
             headers: {
                 'Content-Type':'application/json',
@@ -241,7 +241,7 @@ export async function deleteProduct(prevState, formData) {
     console.log('delete prod', formData, id)
 
     try {
-        const res = await fetch(`https://clothing-store-api-lh6l.onrender.com/api/v1/catalog/${id}`, {
+        const res = await fetch(`${API_BASE_URL}/catalog/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type':'application/json',
@@ -290,22 +290,10 @@ export async function editProduct(prevState, formData) {
         const model = parseInt(formData.get('model'), 10);
         const tags = formData.getAll('tags');
         tagsArray = tags.map(Number);
-        console.log('tags', tags);
+
         const images = formData.getAll('image');
         allImageIds = images.map(Number);
-
-        // if (typeof tags === 'string') {
-        //     console.log('это строка, разбиваем её в массив');
-        //     // Если это строка, разбиваем её в массив
-        //     tagsArray = [parseInt(tags, 10)]
-        // } else if (Array.isArray(tags)) {
-        //     console.log('это массив, просто копируем его');
-        //     // Если это массив, просто копируем его
-        //     tagsArray = tags.map(Number);
-        // }
         
-        console.log('tagsArray:', tagsArray);
-        console.log('allimages', allImageIds)
         const collection = parseInt(formData.get('collection'), 10);
         
         console.log('productData перед отправкой', title, description, price, discountPercentage, article, isNew, category, subCategory, model, tags, tagsArray, collection);
@@ -379,7 +367,7 @@ export default async function AddImages (prevState, formData) {
     console.log('payload', payload);
 
     try {
-        const addingImagesRes = await fetch('https://clothing-store-api-lh6l.onrender.com/api/v1/image/with-color', {
+        const addingImagesRes = await fetch(`${API_BASE_URL}/image/with-color`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token.value}`
@@ -393,10 +381,6 @@ export default async function AddImages (prevState, formData) {
             return {message: 'Помилка додавання картинок'}
         }
         const newImageData = await addingImagesRes.json();
-        // const colorId = newImageData.colorId;
-        // const imageIds = newImageData.imageIds;
-        // console.log('newImageData', newImageData);
-        // console.log(colorId, imageIds);
         return {message: `Картинки додались успішно`, newImageData}
         
     } catch (error) {

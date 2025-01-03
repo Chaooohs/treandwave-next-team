@@ -56,19 +56,19 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
     //     setAdditionalFields(updatedFields);
     // };
 
-    const handleImageAdd = (colorId, uploadedImages) => {
-        console.log('handleImageAdd');
-        setAdditionalFields((prev) => 
-        prev.map((field) => 
-            field.colorId === colorId ? {...field, images: [...field.images, ...uploadedImages.map((image) => ({
-                id: image.id,
-                imageUrl: image.imageUrl,
-                alt: `new Image ${image.id}`
-            }))]} : field
-            )
-        );
-        console.log('additionalFields from handle',additionalFields);
-    };
+    // const handleImageAdd = (colorId, uploadedImages) => {
+    //     console.log('handleImageAdd');
+    //     setAdditionalFields((prev) => 
+    //     prev.map((field) => 
+    //         field.colorId === colorId ? {...field, images: [...field.images, ...uploadedImages.map((image) => ({
+    //             id: image.id,
+    //             imageUrl: image.imageUrl,
+    //             alt: `new Image ${image.id}`
+    //         }))]} : field
+    //         )
+    //     );
+    //     console.log('additionalFields from handle',additionalFields);
+    // };
     console.log( 'additionalFields', additionalFields);
 
     const addSizeField = () => {
@@ -81,9 +81,7 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
 
   return (
     <div className="w-full flex-col relative">
-        <div className=" relative">
-          <NotificationModal message={state?.message}/>
-        </div>
+        
         <form action={formAction} className="flex w-full flex-col gap-10">
             <div className="border border-[#0047FF] mob:border-0 rounded p-5 mob:p-0 flex w-full flex-col gap-2">
                 <label htmlFor="title">Назва товару</label>
@@ -338,6 +336,9 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
             </div>       
         <SubmitButton />
         </form>
+        <div className="w-full h-full relative">
+          <NotificationModal message={state?.message}/>
+        </div>
     </div>
   );
 }

@@ -94,9 +94,11 @@ export async function addProduct(prevState, formData) {
         });
 
         if (!mainImageRes.ok) {
-            const errorData = await mainImageRes.json();
-            console.error('Помилка додавання основної картинки:', errorData.message || 'помилка');
-            return {message: 'Помилка додавання основної картинки'}
+            const text = await mainImageRes.text();
+            console.error('відповідь сервера', text);
+            // const errorData = await mainImageRes.json();
+            // console.error('Помилка додавання основної картинки:', errorData.message || 'помилка');
+            return {message: `Помилка додавання основної картинки:  ${text}`}
         }
 
         const mainImageData = await mainImageRes.json();
@@ -152,9 +154,9 @@ export async function addProduct(prevState, formData) {
                 });
         
                 if (!colorRes.ok) {
-                    const errorData = await colorRes.json();
-                    console.error('Помилка додавання картинок:', errorData.message || 'помилка');
-                    return {error: 'Помилка додавання картинок'}
+                    const text = await colorRes.text();
+                    console.error('відповідь сервера (не JSON):', text);
+                    return { message: `Помилка додавання картинки: некоректний формат відповіді: ${text}` };
                 }
 
                 const colorImageData = await colorRes.json();

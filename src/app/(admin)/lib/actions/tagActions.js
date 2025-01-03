@@ -2,10 +2,11 @@
 import { cookies } from "next/headers";
 import { revalidatePath } from 'next/cache';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function getTags(params) {
     
-    let res = await fetch (`https://clothing-store-api-lh6l.onrender.com/api/v1/tag`)
+    let res = await fetch (`${API_BASE_URL}/tag`)
     let tags = await res.json();
     return tags;
 }
@@ -16,7 +17,7 @@ export async function addTag(prevState, formData) {
     const tagName = formData.get('tag');
 
     try {
-        const res = await fetch('https://clothing-store-api-lh6l.onrender.com/api/v1/tag', {
+        const res = await fetch(`${API_BASE_URL}/tag`, {
             method: 'POST',
             headers: {
                 'Content-Type':'application/json',
@@ -45,7 +46,7 @@ export async function deleteTag(prevState, formData) {
     const id = formData.get('id');
 
     try {
-        const res = await fetch(`https://clothing-store-api-lh6l.onrender.com/api/v1/tag`, {
+        const res = await fetch(`${API_BASE_URL}/tag`, {
             method: 'DELETE',
             headers: {
                 'Content-Type':'application/json',

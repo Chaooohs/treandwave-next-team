@@ -1,9 +1,11 @@
 'use client';
+import Image from "next/image";
 import { useState } from "react";
 import { addProduct } from "../actions/newProduct";
 import NotificationModal from "../notificationModal";
 import { useFormState } from 'react-dom';
-import { useFormStatus } from 'react-dom'
+import { useFormStatus } from 'react-dom';
+import { AddImageForm } from "./addImageForm";
 
 const initialState = {
     message: '',
@@ -24,7 +26,7 @@ function SubmitButton() {
 export function AddProductForm({ colorsList, tags, models, categories, sizes, collection }) {
     const [selectedCategories, setSelectedCategories] = useState(categories[0].name);
     const [selectedTags, setSelectedTags] = useState([]);
-    const [additionalFields, setAdditionalFields] = useState([{ colorName: '', altText: '', images: null, sizes: [{size:'', quantity: ''}] },]);
+    const [additionalFields, setAdditionalFields] = useState([{ colorName: '', altText: '', images: [], sizes: [{size:'', quantity: ''}] },]);
     const [additionalSizeFields, setAdditionalSizeFields] = useState([{size:'', quantity: ''}]);
     const [state, formAction] = useFormState(addProduct, initialState);
 
@@ -48,11 +50,26 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
         ]);
     };
 
-    const handleFieldChange = (index, field, value) => {
-        const updatedFields = [...additionalFields];
-        updatedFields[index][field] = value;
-        setAdditionalFields(updatedFields);
+    // const handleFieldChange = (index, field, value) => {
+    //     const updatedFields = [...additionalFields];
+    //     updatedFields[index][field] = value;
+    //     setAdditionalFields(updatedFields);
+    // };
+
+    const handleImageAdd = (colorId, uploadedImages) => {
+        console.log('handleImageAdd');
+        setAdditionalFields((prev) => 
+        prev.map((field) => 
+            field.colorId === colorId ? {...field, images: [...field.images, ...uploadedImages.map((image) => ({
+                id: image.id,
+                imageUrl: image.imageUrl,
+                alt: `new Image ${image.id}`
+            }))]} : field
+            )
+        );
+        console.log('additionalFields from handle',additionalFields);
     };
+    console.log( 'additionalFields', additionalFields);
 
     const addSizeField = () => {
         setAdditionalSizeFields([
@@ -102,7 +119,6 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
                             type="number"
                             id="discountPercentage"
                             name="discountPercentage"
-                            required
                             className="focus:outline-none bg-white ring-0 ring-offset-0 p-3 rounded w-full border-[#BABABA] border-[1px] hover:ring-[#336CFF] hover:border-[#336CFF] focus:ring-[#336CFF] focus:border-[#336CFF]"
                         />
                     </div>
@@ -237,6 +253,29 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
                             name={`images_${index}`}
                             multiple
                         />
+                        <div className="grid grid-cols-2 gap-2">
+                            {/* {field.images.map((image, imageIdx) => (
+                                <div key={imageIdx} className="relative">
+                                    <Image src={image.imageUrl} alt={image.alt} width={500} height={500}/>
+                                    <button 
+                                        type="button"
+                                        className="absolute top-3 right-3"
+                                        onClick={() => handleImageDelate(index, imageIdx)}
+                                        > 
+                                        <CircleX/>
+                                    </button>
+                                    <input type="hidden" name={`image`} value={image.id} />
+                                </div>
+                            ))} */}
+                        </div>
+                        {/* <div>
+                            <AddImageForm 
+                                color={field} 
+                                // name={data.title} 
+                                index={index}
+                                handleImageAdd={handleImageAdd}
+                            />
+                        </div> */}
                         <div className="flex flex-col gap-2">
                             {additionalSizeFields.map((field, subindex) => (
                                 <div key={subindex} className="flex mob:flex-col gap-2">

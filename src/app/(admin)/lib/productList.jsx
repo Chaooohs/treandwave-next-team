@@ -22,9 +22,9 @@ export default function ProductList({tableTitle, products}) {
                                 onClick={() => router.push(`/admin/products/${item.id}`)}
                             >
                                 <td className="mob:w-16">
-                                    <div className="h-20 ">
+                                    <div className="h-20 w-full">
                                         <Image src={item.colors[0]?.images[0]?.imageUrl} width={100} height={100} alt="image"
-                                        className="h-full object-contain object-left"/>
+                                        className="h-full  object-cover object-left"/>
                                     </div>
                                 </td>
                                 <td className="text-wrap truncate">{item.title}</td>

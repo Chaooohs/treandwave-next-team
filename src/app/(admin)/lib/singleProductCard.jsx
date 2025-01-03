@@ -15,10 +15,11 @@ export default function SingleProductCard({ product }) {
   const [category, setCategory] = useState(product.category?.name);
   const [subCategory, setSubCategory] = useState(product.subCategory);
   const [tags, setTags] = useState(product.tags);
-  const [model, setModel] = useState(product.model.name || '');
+  const [model, setModel] = useState(product.model?.name || '');
   const [article, setArticle] = useState(product.article || '');
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]?.images || '')
-
+  const [selectedColor, setSelectedColor] = useState(product.colors[0]?.images || '');
+  const [sizes, setSizes] = useState(product.colors[0]?.sizes || '');
+  console.log(sizes);
   const handleColorClick = (color) => {
     setImages(color.images);
     setSelectedColor(color.colorName);
@@ -85,6 +86,15 @@ export default function SingleProductCard({ product }) {
             <Image priority={true} src={img.imageUrl} alt={img.alt} width={250} height={360} className="rounded" />
           </div>
         ))}
+      </div>
+      <div>
+      <h3>Розміри:</h3>
+      {sizes.map((size) => (
+        <div key={size.size.id} className="flex gap-2 uppercase">
+          <p>{size.size.name}</p> -
+          <p>{size.available} шт</p>
+        </div>
+      ))}
       </div>
       
     </div> 

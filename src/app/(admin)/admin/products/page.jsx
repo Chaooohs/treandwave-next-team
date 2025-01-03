@@ -13,6 +13,7 @@ export async function getProducts(limitOnPage, currentPage) {
 
     let res = await fetch (`https://clothing-store-api-lh6l.onrender.com/api/v1/catalog?page=${page}&limit=${limit}`, { cache: 'no-store' })
     let products = await res.json();
+    console.log('products', products);
     return products;
 }
 

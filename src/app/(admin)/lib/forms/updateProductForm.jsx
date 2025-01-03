@@ -6,7 +6,6 @@ import { useFormState } from 'react-dom';
 import { useFormStatus } from 'react-dom';
 import Image from "next/image";
 import { CircleX } from 'lucide-react';
-import AddImages from "../actions/newProduct";
 import { AddImageForm } from "./addImageForm";
 
 

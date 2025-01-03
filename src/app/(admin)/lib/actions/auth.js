@@ -3,6 +3,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 export async function signup(prevState, formData) {
     const email = formData.get('email');
     const password = formData.get('password');
@@ -12,7 +14,7 @@ export async function signup(prevState, formData) {
     console.log("Received form data:", { email, password });
 
    
-        const response = await fetch('https://clothing-store-api-lh6l.onrender.com/api/v1/auth/admin/login', {
+        const response = await fetch(`${API_BASE_URL}/auth/admin/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 

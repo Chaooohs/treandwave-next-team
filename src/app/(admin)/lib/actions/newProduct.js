@@ -7,49 +7,49 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function getCategories(params) {
     
-    let res = await fetch (`${API_BASE_URL}/category`)
+    let res = await fetch (`${API_BASE_URL}/category`, { cache: 'no-store' })
     let categories = await res.json();
     return categories;
 }
 
 export async function getSubCategories(params) {
     
-    let res = await fetch (`${API_BASE_URL}/category/${params}`)
+    let res = await fetch (`${API_BASE_URL}/category/${params}`, { cache: 'no-store' })
     let subCategories = await res.json();
     return subCategories;
 }
 
 export async function getModel(params) {
     
-    let res = await fetch (`${API_BASE_URL}/model`)
+    let res = await fetch (`${API_BASE_URL}/model`, { cache: 'no-store' })
     let models = await res.json();
     return models;
 }
 
 export async function getTags(params) {
     
-    let res = await fetch (`${API_BASE_URL}/tag`)
+    let res = await fetch (`${API_BASE_URL}/tag`, { cache: 'no-store' })
     let tags = await res.json();
     return tags;
 }
 
 export async function getColors(params) {
     
-    let res = await fetch (`${API_BASE_URL}/color`)
+    let res = await fetch (`${API_BASE_URL}/color`, { cache: 'no-store' })
     let colors = await res.json();
     return colors;
 }
 
 export async function getCollection(params) {
     
-    let res = await fetch (`${API_BASE_URL}/collection`)
+    let res = await fetch (`${API_BASE_URL}/collection`, { cache: 'no-store' })
     let collection = await res.json();
     return collection;
 }
 
 export async function getSizes(params) {
     
-    let res = await fetch (`${API_BASE_URL}/size`)
+    let res = await fetch (`${API_BASE_URL}/size`, { cache: 'no-store' })
     let sizes = await res.json();
     return sizes;
 }

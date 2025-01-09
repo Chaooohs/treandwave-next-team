@@ -7,7 +7,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function getColors(params) {
     
-    let res = await fetch (`${API_BASE_URL}/color`)
+    let res = await fetch (`${API_BASE_URL}/color`, { cache: 'no-store' })
     let colors = await res.json();
     return colors;
 }

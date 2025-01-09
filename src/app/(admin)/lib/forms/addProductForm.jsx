@@ -50,26 +50,6 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
         ]);
     };
 
-    // const handleFieldChange = (index, field, value) => {
-    //     const updatedFields = [...additionalFields];
-    //     updatedFields[index][field] = value;
-    //     setAdditionalFields(updatedFields);
-    // };
-
-    // const handleImageAdd = (colorId, uploadedImages) => {
-    //     console.log('handleImageAdd');
-    //     setAdditionalFields((prev) => 
-    //     prev.map((field) => 
-    //         field.colorId === colorId ? {...field, images: [...field.images, ...uploadedImages.map((image) => ({
-    //             id: image.id,
-    //             imageUrl: image.imageUrl,
-    //             alt: `new Image ${image.id}`
-    //         }))]} : field
-    //         )
-    //     );
-    //     console.log('additionalFields from handle',additionalFields);
-    // };
-    console.log( 'additionalFields', additionalFields);
 
     const addSizeField = () => {
         setAdditionalSizeFields([
@@ -241,39 +221,21 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
                         >
                             <option value="">Оберіть колір</option>
                             {colorsList.map((color) => (
-                                <option key={color.id} value={color.colorName}>
+                                <option key={color.id} value={color.colorName} style={{backgroundColor: '#36454F'}} className="relative w-full">
                                     {color.colorName}
+                                    
                                 </option>
+                                
                             ))}
                         </select>
+                        
+
                         <input
                             type="file"
                             name={`images_${index}`}
                             multiple
                         />
-                        <div className="grid grid-cols-2 gap-2">
-                            {/* {field.images.map((image, imageIdx) => (
-                                <div key={imageIdx} className="relative">
-                                    <Image src={image.imageUrl} alt={image.alt} width={500} height={500}/>
-                                    <button 
-                                        type="button"
-                                        className="absolute top-3 right-3"
-                                        onClick={() => handleImageDelate(index, imageIdx)}
-                                        > 
-                                        <CircleX/>
-                                    </button>
-                                    <input type="hidden" name={`image`} value={image.id} />
-                                </div>
-                            ))} */}
-                        </div>
-                        {/* <div>
-                            <AddImageForm 
-                                color={field} 
-                                // name={data.title} 
-                                index={index}
-                                handleImageAdd={handleImageAdd}
-                            />
-                        </div> */}
+                    
                         <div className="flex flex-col gap-2">
                             {additionalSizeFields.map((field, subindex) => (
                                 <div key={subindex} className="flex mob:flex-col gap-2">
@@ -312,9 +274,9 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
                 <button
                     type="button"
                     onClick={addField}
-                    className="bg-[#0047FF] text-white p-2 rounded uppercase"
+                    className="bg-[#0047FF] mt-5 text-white p-2 rounded uppercase"
                 >
-                    Додати поле
+                    Додати поле з іншим кольором
                 </button>
             </div>
 
@@ -336,7 +298,7 @@ export function AddProductForm({ colorsList, tags, models, categories, sizes, co
             </div>       
         <SubmitButton />
         </form>
-        <div className="w-full h-full relative">
+        <div className="w-full h-auto relative">
           <NotificationModal message={state?.message}/>
         </div>
     </div>

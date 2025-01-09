@@ -215,7 +215,7 @@ export function UpdateProductForm({ data, colorsList, tags, models, categories, 
                         <label htmlFor="model">Модель</label>
                         <select 
                             name="model" 
-                            defaultValue={data.model.id}
+                            defaultValue={data.model?.id || ''}
                             className="capitalize focus:outline-none bg-white ring-0 ring-offset-0 p-3 rounded w-full border-[#BABABA] border-[1px] hover:ring-[#336CFF] hover:border-[#336CFF] focus:ring-[#336CFF] focus:border-[#336CFF]"
                             >
                             {models.map((model) => (

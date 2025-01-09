@@ -21,11 +21,11 @@ export default function AdminLayout({ children }) {
         {name: 'Товари', link: '/admin/products'},
         {name: 'Категорії', link: '/admin/category'},
         {name: 'Теги', link: '/admin/tags'},
-        {name: 'Замовлення', link: '/admin/orders'},
-        {name: 'Користувачі', link: '/admin/users'},
         {name: 'Кольори', link: '/admin/colors'},
         {name: 'Моделі', link: '/admin/model'},
         {name: 'Колекції', link: '/admin/collection'},
+        {name: 'Замовлення', link: '/admin/orders'},
+        {name: 'Користувачі', link: '/admin/users'}
     ]
     return (
         <section className={` ${montserrat.className} wrap py-5 relative min-h-[40vh]`}>

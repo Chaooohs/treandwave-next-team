@@ -6,7 +6,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function getTags(params) {
     
-    let res = await fetch (`${API_BASE_URL}/tag`)
+    let res = await fetch (`${API_BASE_URL}/tag`, { cache: 'no-store' })
     let tags = await res.json();
     return tags;
 }

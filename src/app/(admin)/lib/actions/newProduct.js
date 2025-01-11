@@ -70,7 +70,7 @@ export async function addProduct(prevState, formData) {
         //For main image
         const title = formData.get('title');
         const mainImage = formData.get('image');
-        const mainImageColor = formData.get('color');
+        const mainImageColor = formData.get('mainColor');
         const mainImageAlt = `${title} ${mainImageColor}`;
 
         if (!mainImage || !mainImageColor) {

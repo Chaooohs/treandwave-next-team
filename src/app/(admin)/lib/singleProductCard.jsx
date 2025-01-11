@@ -6,8 +6,7 @@ import { Pencil } from 'lucide-react';
 
 
 export default function SingleProductCard({ product }) {
-  console.log('product', product);
-  const [images, setImages] = useState(product.colors[0]?.images || []);
+  const [images, setImages] = useState(product?.colors[0]?.images || []);
   const [title, setTitle] = useState(product.title);
   const [description, setDescription] = useState(product.description);
   const [price, setPrice] = useState(product.price);
@@ -19,7 +18,6 @@ export default function SingleProductCard({ product }) {
   const [article, setArticle] = useState(product.article || '');
   const [selectedColor, setSelectedColor] = useState(product.colors[0]?.images || '');
   const [sizes, setSizes] = useState(product.colors[0]?.sizes || '');
-  console.log(sizes);
   const handleColorClick = (color) => {
     setImages(color.images);
     setSelectedColor(color.colorName);
